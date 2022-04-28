@@ -10,6 +10,7 @@
 		C00648AA2682060F00265EB8 /* UIApplicationExtemsion.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00648A92682060F00265EB8 /* UIApplicationExtemsion.swift */; };
 		C00648AC2682070200265EB8 /* EmailManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00648AB2682070200265EB8 /* EmailManager.swift */; };
 		C00648AF2682140800265EB8 /* Options.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00648AE2682140800265EB8 /* Options.swift */; };
+		C015BD8C281AF04900095BCD /* UINavigationBarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C015BD8B281AF04900095BCD /* UINavigationBarExtension.swift */; };
 		C028C4C8280C852400F6894E /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = C028C4C7280C852400F6894E /* .gitignore */; };
 		C028C4CA2811C0F000F6894E /* NewDeckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C028C4C92811C0F000F6894E /* NewDeckViewController.swift */; };
 		C028C4CC2811C71500F6894E /* EmptyStateDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C028C4CB2811C71500F6894E /* EmptyStateDelegate.swift */; };
@@ -85,6 +86,7 @@
 		C00648A92682060F00265EB8 /* UIApplicationExtemsion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplicationExtemsion.swift; sourceTree = "<group>"; };
 		C00648AB2682070200265EB8 /* EmailManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailManager.swift; sourceTree = "<group>"; };
 		C00648AE2682140800265EB8 /* Options.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Options.swift; sourceTree = "<group>"; };
+		C015BD8B281AF04900095BCD /* UINavigationBarExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationBarExtension.swift; sourceTree = "<group>"; };
 		C028C4C7280C852400F6894E /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		C028C4C92811C0F000F6894E /* NewDeckViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDeckViewController.swift; sourceTree = "<group>"; };
 		C028C4CB2811C71500F6894E /* EmptyStateDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateDelegate.swift; sourceTree = "<group>"; };
@@ -206,6 +208,7 @@
 				C0CBE871266BA50900B83253 /* URLExtension.swift */,
 				C00648A92682060F00265EB8 /* UIApplicationExtemsion.swift */,
 				C0F4FD1427BD82DF00814BD6 /* UIViewExtension.swift */,
+				C015BD8B281AF04900095BCD /* UINavigationBarExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -538,6 +541,7 @@
 				C00648AF2682140800265EB8 /* Options.swift in Sources */,
 				C0ADAD5825EC19F7005DE503 /* TableViewExtension.swift in Sources */,
 				C0B5FF7825E981A8001D8D83 /* SceneDelegate.swift in Sources */,
+				C015BD8C281AF04900095BCD /* UINavigationBarExtension.swift in Sources */,
 				C028C4CC2811C71500F6894E /* EmptyStateDelegate.swift in Sources */,
 				C0E8477527F9AEF4006AEED1 /* NewCardViewController.swift in Sources */,
 			);

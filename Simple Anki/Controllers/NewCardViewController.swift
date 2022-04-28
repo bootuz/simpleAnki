@@ -18,14 +18,6 @@ class NewCardViewController: UIViewController {
     var audioRecorder: AVAudioRecorder!
     var player: AVAudioPlayer!
     var recordingSession = AVAudioSession.sharedInstance()
-    let recordSettings = [
-        AVFormatIDKey: Int(kAudioFormatAppleLossless),
-        AVSampleRateKey: 44100,
-        AVEncoderBitRateKey: 320000,
-        AVNumberOfChannelsKey: 2,
-        AVEncoderAudioQualityKey: AVAudioQuality.max.rawValue
-    ]
-    
     let indicatorView = SPIndicatorView(title: "Card saved", preset: .done)
     var recordFilePath: URL?
     
@@ -441,6 +433,13 @@ extension NewCardViewController: AVAudioPlayerDelegate {
 extension NewCardViewController: AVAudioRecorderDelegate {
 
     func startRecording() {
+        let recordSettings = [
+            AVFormatIDKey: Int(kAudioFormatAppleLossless),
+            AVSampleRateKey: 44100,
+            AVEncoderBitRateKey: 320000,
+            AVNumberOfChannelsKey: 2,
+            AVEncoderAudioQualityKey: AVAudioQuality.max.rawValue
+        ]
         do {
             try recordingSession.setCategory(.record, mode: .default)
             try recordingSession.setActive(true)
@@ -470,15 +469,5 @@ extension NewCardViewController: AVAudioRecorderDelegate {
 
     func audioRecorderBeginInterruption(_ recorder: AVAudioRecorder) {
         finishRecording()
-    }
-}
-
-
-extension UINavigationBar {
-    @available(iOS 14, *)
-    func cleanNavigationBarForiOS14() {
-        self.setBackgroundImage(UIImage(), for: .default)
-        self.shadowImage = UIImage()
-        self.layoutIfNeeded()
     }
 }
