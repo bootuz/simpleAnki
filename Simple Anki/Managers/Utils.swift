@@ -31,7 +31,6 @@ class Utils {
             } catch {
                 print("Could not delete file: \(error)")
             }
-            
         }
     }
     
@@ -42,7 +41,6 @@ class Utils {
             } catch {
                 print("Could not delete file: \(error)")
             }
-            
         }
     }
 }
