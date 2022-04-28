@@ -371,17 +371,17 @@ class NewCardViewController: UIViewController {
     
     func saveCard() {
         let newCard = Card()
-        newCard.front = frontField.text!.trimmingCharacters(in: .whitespaces)
+        if let fronText = frontField.text {
+            newCard.front = fronText.trimmingCharacters(in: .whitespaces)
+        }
         if let backText = backField.text {
             newCard.back = backText.trimmingCharacters(in: .whitespaces)
         }
-
         if let path = recordFilePath {
             if path.exists() {
                 newCard.audioName = recordFilePath?.lastPathComponent
             }
         }
-
         if let card = selectedCard {
             StorageManager.update(card, with: newCard)
         } else {
@@ -442,7 +442,7 @@ extension NewCardViewController: AVAudioRecorderDelegate {
 
     func startRecording() {
         do {
-            try recordingSession.setCategory(.record, mode: .spokenAudio)
+            try recordingSession.setCategory(.record, mode: .default)
             try recordingSession.setActive(true)
             let url = Utils.generateNewRecordName()
             audioRecorder = try AVAudioRecorder(url: url, settings: recordSettings)
