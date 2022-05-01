@@ -266,8 +266,10 @@ class NewCardViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
-    private func loadRecordingUI(with config: UIImage.Configuration) {
+    private func loadRecordingUI() {
         UIView.animate(withDuration: 0.2) {
+            let font = UIFont.systemFont(ofSize: 25)
+            let config = UIImage.SymbolConfiguration(font: font)
             self.addAndNext.backgroundColor = .systemGray2
             self.addAndNext.setTitle("Recording...", for: .normal)
             self.recordButton.layer.cornerRadius = 25
@@ -278,7 +280,9 @@ class NewCardViewController: UIViewController {
         addAndNext.isEnabled = false
     }
     
-    private func loadPlaybackUI(with config: UIImage.Configuration) {
+    private func loadPlaybackUI() {
+        let font = UIFont.systemFont(ofSize: 25)
+        let config = UIImage.SymbolConfiguration(font: font)
         guard let isEmpty = frontField.text?.isEmpty else { return }
         if !isEmpty {
             addAndNext.backgroundColor = .systemBlue
@@ -301,15 +305,14 @@ class NewCardViewController: UIViewController {
         switch recordingSession.recordPermission {
             case .granted:
                 HapticManager.shared.vibrate(for: .warning)
-                let font = UIFont.systemFont(ofSize: 25)
-                let config = UIImage.SymbolConfiguration(font: font)
+
                 if !isRecording {
                     isRecording = true
-                    loadRecordingUI(with: config)
+                    loadRecordingUI()
                     startRecording()
                 } else {
                     finishRecording()
-                    loadPlaybackUI(with: config)
+                    loadPlaybackUI()
                     isRecording = false
                 }
             case .denied:
