@@ -36,7 +36,7 @@ class SettingsViewController: UIViewController {
     
     func configure() {
         models.append(Section(title: K.Settings.appearence, options: [
-            .switchCell(model: SwitchOption(title: K.Settings.darkMode, icon: UIImage(systemName: K.Icon.lefthalf), isOn: darkMode, switchType: .darkMode, handler: nil))
+            .switchCell(model: SwitchOption(title: K.Settings.darkMode, icon: UIImage(systemName: K.Icon.lefthalf), isOn: darkMode, handler: nil))
         ]))
         
         models.append(Section(title: K.Settings.support, options: [
@@ -60,8 +60,8 @@ class SettingsViewController: UIViewController {
                 self.notificationCenter.requestAuthorization(options: [.alert, .sound]) { permissionGranted, error in
                     if permissionGranted {
                         self.presentReminderViewController()
-                    } else {
-                        
+                    } else if let error = error {
+                        print(error.localizedDescription)
                     }
                 }
             }))
@@ -142,6 +142,7 @@ extension SettingsViewController: UITableViewDataSource {
                         withIdentifier: SwitchTableViewCell.identifier,
                         for: indexPath
                 ) as? SwitchTableViewCell else { return UITableViewCell() }
+                cell.delegate = self
                 cell.selectionStyle = .none
                 cell.configure(with: model)
                 return cell
@@ -151,3 +152,21 @@ extension SettingsViewController: UITableViewDataSource {
         }
     }
 }
+
+extension SettingsViewController: SwitchViewCellDelegate {
+    func switchAction(with cell: UITableViewCell) {
+        guard let switchCell = cell as? SwitchTableViewCell else { return }
+        if switchCell.mySwitch.isOn {
+            UserDefaults.standard.set(true, forKey: K.UserDefaultsKeys.darkMode)
+            UIApplication.shared.windows.forEach { window in
+                window.overrideUserInterfaceStyle = .dark
+            }
+        } else {
+            UserDefaults.standard.set(false, forKey: K.UserDefaultsKeys.darkMode)
+            UIApplication.shared.windows.forEach { window in
+                window.overrideUserInterfaceStyle = .light
+            }
+        }
+    }
+}
+

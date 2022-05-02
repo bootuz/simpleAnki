@@ -18,6 +18,8 @@
 		C0460DF42819A6C000B6EBB2 /* SwitchViewCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0460DF32819A6C000B6EBB2 /* SwitchViewCellDelegate.swift */; };
 		C05F7C4827E3A29700F4FAB4 /* BaseSettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05F7C4727E3A29700F4FAB4 /* BaseSettingsCell.swift */; };
 		C070008E263E86E0006DF020 /* RateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C070008D263E86E0006DF020 /* RateManager.swift */; };
+		C078B5FC281EA90400DE5A86 /* DaysViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C078B5FB281EA90300DE5A86 /* DaysViewController.swift */; };
+		C078B5FE281EADB500DE5A86 /* DatePickerViewCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C078B5FD281EADB500DE5A86 /* DatePickerViewCellDelegate.swift */; };
 		C0ADAD4225EC0E0B005DE503 /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0ADAD4125EC0E0B005DE503 /* Deck.swift */; };
 		C0ADAD4725EC0E62005DE503 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0ADAD4625EC0E62005DE503 /* Card.swift */; };
 		C0ADAD5825EC19F7005DE503 /* TableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0ADAD5725EC19F7005DE503 /* TableViewExtension.swift */; };
@@ -34,6 +36,7 @@
 		C0B5FF8D25E981AF001D8D83 /* Simple_AnkiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B5FF8C25E981AF001D8D83 /* Simple_AnkiTests.swift */; };
 		C0B5FFAA25E98362001D8D83 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C0B5FFA925E98362001D8D83 /* RealmSwift */; };
 		C0B5FFAC25E98362001D8D83 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = C0B5FFAB25E98362001D8D83 /* Realm */; };
+		C0C043DF282030A500A8AC6D /* WeekdaysViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C043DE282030A500A8AC6D /* WeekdaysViewCell.swift */; };
 		C0C081B425ED379600DF1083 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C081B325ED379600DF1083 /* StorageManager.swift */; };
 		C0CBE86E266AAA9A00B83253 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CBE86D266AAA9A00B83253 /* Utils.swift */; };
 		C0CBE870266B7A2900B83253 /* PlayerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CBE86F266B7A2900B83253 /* PlayerManager.swift */; };
@@ -94,6 +97,8 @@
 		C0460DF32819A6C000B6EBB2 /* SwitchViewCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchViewCellDelegate.swift; sourceTree = "<group>"; };
 		C05F7C4727E3A29700F4FAB4 /* BaseSettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseSettingsCell.swift; sourceTree = "<group>"; };
 		C070008D263E86E0006DF020 /* RateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateManager.swift; sourceTree = "<group>"; };
+		C078B5FB281EA90300DE5A86 /* DaysViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaysViewController.swift; sourceTree = "<group>"; };
+		C078B5FD281EADB500DE5A86 /* DatePickerViewCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerViewCellDelegate.swift; sourceTree = "<group>"; };
 		C0ADAD4125EC0E0B005DE503 /* Deck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deck.swift; sourceTree = "<group>"; };
 		C0ADAD4625EC0E62005DE503 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		C0ADAD5725EC19F7005DE503 /* TableViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewExtension.swift; sourceTree = "<group>"; };
@@ -114,6 +119,7 @@
 		C0B5FF8E25E981AF001D8D83 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C0B5FF9325E981B0001D8D83 /* Simple AnkiUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Simple AnkiUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0B5FF9925E981B0001D8D83 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C0C043DE282030A500A8AC6D /* WeekdaysViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekdaysViewCell.swift; sourceTree = "<group>"; };
 		C0C081B325ED379600DF1083 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		C0CBE86D266AAA9A00B83253 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		C0CBE86F266B7A2900B83253 /* PlayerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerManager.swift; sourceTree = "<group>"; };
@@ -180,6 +186,8 @@
 				C0F4FD1C27BD84DA00814BD6 /* SwitchTableViewCell.swift */,
 				C0D1C1732815CB9100350862 /* DatePickerViewCell.swift */,
 				C0460DF32819A6C000B6EBB2 /* SwitchViewCellDelegate.swift */,
+				C078B5FD281EADB500DE5A86 /* DatePickerViewCellDelegate.swift */,
+				C0C043DE282030A500A8AC6D /* WeekdaysViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -187,18 +195,35 @@
 		C05AA2B025E9891E00E40346 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				C078B5FA281EA8B300DE5A86 /* Settings */,
 				C0B1275227C3F0CB008E412D /* Decks */,
 				C00648A62681F26000265EB8 /* Cells */,
 				C0B1275627C3FB7A008E412D /* CardsTableViewController.swift */,
 				C0F4FD2927BD855A00814BD6 /* MainTabBarViewController.swift */,
 				C0B1275A27C3FB8E008E412D /* ResultsTableViewController.swift */,
 				C0B1275C27C3FB91008E412D /* ReviewViewController.swift */,
-				C0F4FD2827BD855A00814BD6 /* SettingsTableViewController.swift */,
 				C0E8477427F9AEF4006AEED1 /* NewCardViewController.swift */,
 				C034B16E2801984D00942E77 /* AudioViewController.swift */,
-				C0D1C1712815A57600350862 /* ReminderViewController.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		C078B5F9281EA89500DE5A86 /* Reminder */ = {
+			isa = PBXGroup;
+			children = (
+				C0D1C1712815A57600350862 /* ReminderViewController.swift */,
+				C078B5FB281EA90300DE5A86 /* DaysViewController.swift */,
+			);
+			path = Reminder;
+			sourceTree = "<group>";
+		};
+		C078B5FA281EA8B300DE5A86 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				C0F4FD2827BD855A00814BD6 /* SettingsTableViewController.swift */,
+				C078B5F9281EA89500DE5A86 /* Reminder */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		C0ADAD5625EC19D3005DE503 /* Extensions */ = {
@@ -534,11 +559,14 @@
 				C0B1275D27C3FB91008E412D /* ReviewViewController.swift in Sources */,
 				C0ADAD4725EC0E62005DE503 /* Card.swift in Sources */,
 				C0F4FD3127BD855A00814BD6 /* MainTabBarViewController.swift in Sources */,
+				C078B5FC281EA90400DE5A86 /* DaysViewController.swift in Sources */,
 				C0B1275B27C3FB8E008E412D /* ResultsTableViewController.swift in Sources */,
 				C0D1C1742815CB9100350862 /* DatePickerViewCell.swift in Sources */,
 				C05F7C4827E3A29700F4FAB4 /* BaseSettingsCell.swift in Sources */,
 				C0B5FF7625E981A8001D8D83 /* AppDelegate.swift in Sources */,
 				C00648AF2682140800265EB8 /* Options.swift in Sources */,
+				C078B5FE281EADB500DE5A86 /* DatePickerViewCellDelegate.swift in Sources */,
+				C0C043DF282030A500A8AC6D /* WeekdaysViewCell.swift in Sources */,
 				C0ADAD5825EC19F7005DE503 /* TableViewExtension.swift in Sources */,
 				C0B5FF7825E981A8001D8D83 /* SceneDelegate.swift in Sources */,
 				C015BD8C281AF04900095BCD /* UINavigationBarExtension.swift in Sources */,
