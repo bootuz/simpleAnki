@@ -11,7 +11,6 @@ import RealmSwift
 class DecksTableViewController: UITableViewController {
     
     var viewModel = DecksViewModel()
-    private var searchController: UISearchController!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,10 +25,6 @@ class DecksTableViewController: UITableViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: K.deckCellIdentifier)
         
-        let resultsTableController = ResultsTableViewController()
-        resultsTableController.originatingController = self
-        configureSearchController(resultsTableController)
-        navigationItem.searchController = searchController
         viewModel.delegate = self
     }
     
@@ -37,16 +32,6 @@ class DecksTableViewController: UITableViewController {
         super.viewWillAppear(animated)
         let key = viewModel.getSortType() ?? .dateCreated
         viewModel.loadDecks(by: key)
-    }
-    
-    private func configureSearchController(_ searchResultsController: ResultsTableViewController) {
-        searchController = UISearchController(searchResultsController: searchResultsController)
-        searchController.searchResultsUpdater = searchResultsController
-        searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Search"
-        searchController.searchBar.scopeButtonTitles = ["Decks", "Cards"]
-        searchController.searchBar.delegate = searchResultsController
-        navigationItem.searchController = searchController
     }
     
     @objc private func didTapPlus() {

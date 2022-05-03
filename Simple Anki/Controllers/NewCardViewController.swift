@@ -218,17 +218,11 @@ class NewCardViewController: UIViewController {
         addAndNext.safeLeadingAnchor.constraint(equalTo: view.safeLeadingAnchor, constant: 16).isActive = true
         addAndNext.widthAnchor.constraint(equalToConstant: 285).isActive = true
         addAndNext.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        if #available(iOS 15.0, *) {
-            recordButton.safeBottomAnchor.constraint(equalTo: view.keyboardLayoutGuide.topAnchor, constant: -10).isActive = true
-            playButton.safeBottomAnchor.constraint(equalTo: view.keyboardLayoutGuide.topAnchor, constant: -10).isActive = true
-            addAndNext.safeBottomAnchor.constraint(equalTo: view.keyboardLayoutGuide.topAnchor, constant: -10).isActive = true
-        } else {
-            addAndNext.safeTopAnchor.constraint(equalTo: cardView.bottomAnchor, constant: 20).isActive = true
-            recordButton.safeTopAnchor.constraint(equalTo: cardView.bottomAnchor, constant: 20).isActive = true
-            playButton.safeTopAnchor.constraint(equalTo: cardView.bottomAnchor, constant: 20).isActive = true
-        }
+        recordButton.safeBottomAnchor.constraint(equalTo: view.keyboardLayoutGuide.topAnchor, constant: -10).isActive = true
+        playButton.safeBottomAnchor.constraint(equalTo: view.keyboardLayoutGuide.topAnchor, constant: -10).isActive = true
+        addAndNext.safeBottomAnchor.constraint(equalTo: view.keyboardLayoutGuide.topAnchor, constant: -10).isActive = true
+
         setupEditScreen()
-        navigationController?.navigationBar.cleanNavigationBarForiOS14()
     }
     
     private func setupMenuForPlayButton() {

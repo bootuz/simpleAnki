@@ -10,39 +10,45 @@ import UIKit
 class ReminderViewController: UIViewController {
     
     private let tableView: UITableView = {
-        let table = UITableView(frame: .zero)
+        let table = UITableView(frame: .zero, style: .insetGrouped)
         table.register(DatePickerViewCell.self, forCellReuseIdentifier: DatePickerViewCell.identifier)
         table.register(SwitchTableViewCell.self, forCellReuseIdentifier: SwitchTableViewCell.identifier)
         table.register(SettingsTableViewCell.self, forCellReuseIdentifier: SettingsTableViewCell.identifier)
         table.isScrollEnabled = false
-        table.layoutMargins = UIEdgeInsets.zero
-        table.separatorInset = UIEdgeInsets.zero
-//        table.separatorStyle = .none
         return table
     }()
     
     var models = [Section]()
     let remonderOn = UserDefaults.standard.bool(forKey: K.UserDefaultsKeys.reminder)
     let reminderTime = UserDefaults.standard.string(forKey: K.UserDefaultsKeys.reminderTime) ?? "00:00"
+    let reminderIcon = ReminderManager.shared.isReminderOn() ? UIImage(systemName: "bell") : UIImage(systemName: "bell.slash")
+
+    var selectedDays = [Weekday]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Reminder"
         view.backgroundColor = .systemBackground
-        tableView.tableFooterView = UIView()
         view.addSubview(tableView)
         tableView.delegate = self
         tableView.dataSource = self
         tableView.frame = view.bounds
+        tableView.frame.origin.y = tableView.frame.origin.y - 20
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(doneButtonTapped))
         configure()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        selectedDays.removeAll()
+        selectedDays = ReminderManager.shared.collectSelectedWeekdays()
     }
     
     private func configure() {
         models.append(Section(title: "", options: [
             .switchCell(model: SwitchOption(
                 title: K.Settings.reminderOn,
-                icon: UIImage(systemName: "bell"),
+                icon: reminderIcon,
                 isOn: remonderOn,
                 handler: nil
             )),
@@ -53,15 +59,23 @@ class ReminderViewController: UIViewController {
                 title: "Repeat",
                 icon: UIImage(systemName: "repeat"),
                 handler: {
-                
+                    self.showWeekdaysViewController()
             }))
         ]))
     }
     
+    private func showWeekdaysViewController() {
+        let weekdaysVC = WeekdaysViewController()
+        navigationController?.pushViewController(weekdaysVC, animated: true)
+    }
+    
     
     @objc private func doneButtonTapped() {
-        if remonderOn  {
-            
+        let notifications = ReminderManager.shared.getNotificationsCredentials(weekdays: selectedDays)
+        if ReminderManager.shared.isReminderOn() {
+            ReminderManager.shared.scheduleNotifications(notifications: notifications)
+        } else {
+            ReminderManager.shared.removeAllNotifications()
         }
         dismiss(animated: true)
     }
@@ -147,9 +161,11 @@ extension ReminderViewController: SwitchViewCellDelegate {
     func switchAction(with cell: UITableViewCell) {
         guard let switchCell = cell as? SwitchTableViewCell else { return }
         if switchCell.mySwitch.isOn {
-            UserDefaults.standard.set(true, forKey: K.UserDefaultsKeys.reminder)
+            ReminderManager.shared.setReminderOn()
+            switchCell.iconImageView.image = UIImage(systemName: "bell")
         } else {
-            UserDefaults.standard.set(false, forKey: K.UserDefaultsKeys.reminder)
+            ReminderManager.shared.setReminderOff()
+            switchCell.iconImageView.image = UIImage(systemName: "bell.slash")
         }
     }
 }
@@ -163,89 +179,3 @@ extension ReminderViewController: DatePickerViewCellDelegate {
         UserDefaults.standard.set(timeString, forKey: K.UserDefaultsKeys.reminderTime)
     }
 }
- 
-//class ViewController: UIViewController,UNUserNotificationCenterDelegate {
-//    var isGrantedNotificationAccess = false
-//    var pressed = 0
-//
-//    @IBAction func setNotification(_ sender: UIButton) {
-//        if isGrantedNotificationAccess{
-//            //set content
-//            let content = UNMutableNotificationContent()
-//            content.title = "My Notification Management Demo"
-//            content.subtitle = "Timed Notification"
-//            content.body = "Notification pressed"
-//            pressed += 1
-//            content.body = "Notification pressed \(pressed) times"
-//            content.categoryIdentifier = "message"
-//
-//            //set trigger
-//            /*let trigger = UNTimeIntervalNotificationTrigger(
-//                timeInterval: 10.0,
-//                repeats: false)*/
-//            let trigger = UNTimeIntervalNotificationTrigger(
-//                timeInterval: 60.0,
-//                repeats: true)
-//
-//            //Create the request
-//            let request = UNNotificationRequest(
-//                identifier: "my.notification",
-//                content: content,
-//                trigger: trigger
-//            )
-//            //Schedule the request
-//            UNUserNotificationCenter.current().add(
-//                request, withCompletionHandler: nil)
-//        }
-//    }
-//
-//    @IBAction func listNotification(_ sender: UIButton) {
-//        UNUserNotificationCenter.current().getPendingNotificationRequests(completionHandler: {requests -> () in
-//            print("\(requests.count) requests -------")
-//            for request in requests{
-//                print(request.identifier)
-//            }
-//        })
-//        UNUserNotificationCenter.current().getDeliveredNotifications(completionHandler: {deliveredNotifications -> () in
-//            print("\(deliveredNotifications.count) Delivered notifications-------")
-//            for notification in deliveredNotifications{
-//                print(notification.request.identifier)
-//            }
-//        })
-//
-//    }
-//
-//    @IBAction func removeNotification(_ sender: UIButton) {
-//        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: ["my.notification"])
-//    }
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//        // Do any additional setup after loading the view, typically from a nib.
-//        UNUserNotificationCenter.current().requestAuthorization(
-//            options: [.alert,.sound,.badge],
-//            completionHandler: { (granted,error) in
-//                self.isGrantedNotificationAccess = granted
-//                if !granted{
-//                    //add alert to complain
-//                }
-//        })
-//        UNUserNotificationCenter.current().delegate = self
-//    }
-//    //MARK: Delegates
-//    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-//        completionHandler([.alert,.sound])
-//
-//        /* Not a very good way to do this, just here to give you ideas.
-//         let alert = UIAlertController(
-//         title: notification.request.content.title,
-//         message: notification.request.content.body,
-//         preferredStyle: .alert)
-//         let okAction = UIAlertAction(
-//         title: "OK",
-//         style: .default,
-//         handler: nil)
-//         alert.addAction(okAction)
-//         present(alert, animated: true, completion: nil)
-//         */
-//    }
-//}

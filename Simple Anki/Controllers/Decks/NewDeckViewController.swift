@@ -63,16 +63,11 @@ class NewDeckViewController: UIViewController {
                                  width: deckView.frame.width - rightPadding,
                                  height: 40.0)
         
-//        addCardsButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         addCardsButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
         addCardsButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16).isActive = true
-//        addCardsButton.widthAnchor.constraint(equalToConstant: 300).isActive = true
         addCardsButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        if #available(iOS 15.0, *) {
-            addCardsButton.safeBottomAnchor.constraint(equalTo: view.keyboardLayoutGuide.topAnchor, constant: -10).isActive = true
-        } else {
-            addCardsButton.safeTopAnchor.constraint(equalTo: deckView.bottomAnchor, constant: 20).isActive = true
-        }
+        addCardsButton.safeBottomAnchor.constraint(equalTo: view.keyboardLayoutGuide.topAnchor, constant: -10).isActive = true
+
     }
     
     @objc func didCancelTapped() {
