@@ -13,22 +13,22 @@ struct Option {
 	let handler: (() -> Void)?
 }
 
-struct DatePickerOption {
-    let picker: UIDatePicker
-}
-
 struct SwitchOption {
 	let title: String
 	let icon: UIImage?
 	let isOn: Bool
-    let switchType: SwitchType
     let handler: (() -> Void)?
 }
+
+struct DatePickerOption {
+    let date: String
+}
+
 
 enum OptionType {
 	case staticCell(model: Option)
 	case switchCell(model: SwitchOption)
-    case datePickerCell
+    case datePickerCell(model: DatePickerOption)
 }
 
 enum SwitchType {

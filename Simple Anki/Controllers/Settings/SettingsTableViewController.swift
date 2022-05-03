@@ -12,7 +12,7 @@ import StoreKit
 class SettingsViewController: UIViewController {
     
     private let tableView: UITableView = {
-        let table = UITableView(frame: .zero, style: .grouped)
+        let table = UITableView(frame: .zero, style: .insetGrouped)
         table.register(SettingsTableViewCell.self, forCellReuseIdentifier: SettingsTableViewCell.identifier)
         table.register(SwitchTableViewCell.self, forCellReuseIdentifier: SwitchTableViewCell.identifier)
         return table
@@ -36,7 +36,7 @@ class SettingsViewController: UIViewController {
     
     func configure() {
         models.append(Section(title: K.Settings.appearence, options: [
-            .switchCell(model: SwitchOption(title: K.Settings.darkMode, icon: UIImage(systemName: K.Icon.lefthalf), isOn: darkMode, switchType: .darkMode, handler: nil))
+            .switchCell(model: SwitchOption(title: K.Settings.darkMode, icon: UIImage(systemName: K.Icon.lefthalf), isOn: darkMode, handler: nil))
         ]))
         
         models.append(Section(title: K.Settings.support, options: [
@@ -57,15 +57,41 @@ class SettingsViewController: UIViewController {
         
         models.append(Section(title: K.Settings.notifications, options: [
             .staticCell(model: Option(title: "Reminder", icon: UIImage(systemName: K.Icon.bell), handler: {
-                self.notificationCenter.requestAuthorization(options: [.alert, .sound]) { permissionGranted, error in
-                    if permissionGranted {
+                ReminderManager.shared.notificationCenter.requestAuthorization(options: [.alert, .sound]) { permissionGranted, error in
+                    if let error = error {
+                        print(error.localizedDescription)
+                    } else if permissionGranted {
                         self.presentReminderViewController()
                     } else {
-                        
+                        self.showSettingsAlert()
                     }
                 }
             }))
         ]))
+    }
+    
+    private func showSettingsAlert() {
+        DispatchQueue.main.async {
+            let alert = UIAlertController(
+                title: "Notifications Are Turn Off",
+                message: "Open settings to allow Simple Anki send you notifications.",
+                preferredStyle: .alert
+            )
+
+            let settingsAction = UIAlertAction(title: "Settings", style: .default) { _ in
+                guard let appSettingsUrl = URL(string: UIApplication.openSettingsURLString) else { return }
+                if UIApplication.shared.canOpenURL(appSettingsUrl) {
+                    UIApplication.shared.open(appSettingsUrl) { (success) in
+                        print("Settings opened: \(success)")
+                    }
+                }
+            }
+
+            let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+            alert.addAction(cancelAction)
+            alert.addAction(settingsAction)
+            self.present(alert, animated: true, completion: nil)
+        }
     }
     
     private func presentReminderViewController() {
@@ -73,13 +99,9 @@ class SettingsViewController: UIViewController {
             let reminderVC = ReminderViewController()
             let nav = UINavigationController(rootViewController: reminderVC)
             nav.isModalInPresentation = true
-            if #available(iOS 15, *) {
-                if let sheetController = nav.sheetPresentationController {
-                    sheetController.detents = [.medium()]
-                    sheetController.prefersScrollingExpandsWhenScrolledToEdge = false
-                }
-            } else {
-                // Fallback on earlier versions
+            if let sheetController = nav.sheetPresentationController {
+                sheetController.detents = [.medium()]
+                sheetController.prefersScrollingExpandsWhenScrolledToEdge = false
             }
             self.present(nav, animated: true)
         }
@@ -142,6 +164,7 @@ extension SettingsViewController: UITableViewDataSource {
                         withIdentifier: SwitchTableViewCell.identifier,
                         for: indexPath
                 ) as? SwitchTableViewCell else { return UITableViewCell() }
+                cell.delegate = self
                 cell.selectionStyle = .none
                 cell.configure(with: model)
                 return cell
@@ -151,3 +174,22 @@ extension SettingsViewController: UITableViewDataSource {
         }
     }
 }
+
+extension SettingsViewController: SwitchViewCellDelegate {
+    func switchAction(with cell: UITableViewCell) {
+        guard let switchCell = cell as? SwitchTableViewCell else { return }
+        let wdws = UIApplication.shared.connectedScenes.flatMap { ($0 as? UIWindowScene)?.windows ?? [] }
+        if switchCell.mySwitch.isOn {
+            UserDefaults.standard.set(true, forKey: K.UserDefaultsKeys.darkMode)
+            wdws.forEach { window in
+                window.overrideUserInterfaceStyle = .dark
+            }
+        } else {
+            UserDefaults.standard.set(false, forKey: K.UserDefaultsKeys.darkMode)
+            wdws.forEach { window in
+                window.overrideUserInterfaceStyle = .light
+            }
+        }
+    }
+}
+

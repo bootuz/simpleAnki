@@ -130,7 +130,6 @@ class ReviewViewController: UIViewController {
         let tap = UITapGestureRecognizer(target: self, action: #selector(screenTapped))
         view.isUserInteractionEnabled = true
         view.addGestureRecognizer(tap)
-        navigationController?.navigationBar.cleanNavigationBarForiOS14()
     }
     
     

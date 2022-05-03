@@ -46,6 +46,7 @@ struct K {
     
     struct UserDefaultsKeys {
         static let reminder = "reminder"
+        static let reminderTime = "reminderTime"
         static let darkMode = "dark_mode"
     }
     

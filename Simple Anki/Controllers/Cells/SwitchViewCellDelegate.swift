@@ -6,9 +6,9 @@
 //
 
 import Foundation
+import UIKit
 
 
 protocol SwitchViewCellDelegate: AnyObject {
-    func whenSwitchIsOn()
-    func whenSwitchIsOff()
+    func switchAction(with cell: UITableViewCell)
 }

@@ -10,56 +10,73 @@ import UIKit
 class ReminderViewController: UIViewController {
     
     private let tableView: UITableView = {
-        let table = UITableView(frame: .zero)
+        let table = UITableView(frame: .zero, style: .insetGrouped)
         table.register(DatePickerViewCell.self, forCellReuseIdentifier: DatePickerViewCell.identifier)
         table.register(SwitchTableViewCell.self, forCellReuseIdentifier: SwitchTableViewCell.identifier)
         table.register(SettingsTableViewCell.self, forCellReuseIdentifier: SettingsTableViewCell.identifier)
         table.isScrollEnabled = false
-        table.layoutMargins = UIEdgeInsets.zero
-        table.separatorInset = UIEdgeInsets.zero
         return table
     }()
     
     var models = [Section]()
     let remonderOn = UserDefaults.standard.bool(forKey: K.UserDefaultsKeys.reminder)
+    let reminderTime = UserDefaults.standard.string(forKey: K.UserDefaultsKeys.reminderTime) ?? "00:00"
+    let reminderIcon = ReminderManager.shared.isReminderOn() ? UIImage(systemName: "bell") : UIImage(systemName: "bell.slash")
+
+    var selectedDays = [Weekday]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Reminder"
         view.backgroundColor = .systemBackground
-        tableView.tableFooterView = UIView()
         view.addSubview(tableView)
         tableView.delegate = self
         tableView.dataSource = self
         tableView.frame = view.bounds
-        configureCloseButton()
+        tableView.frame.origin.y = tableView.frame.origin.y - 20
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(doneButtonTapped))
         configure()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        selectedDays.removeAll()
+        selectedDays = ReminderManager.shared.collectSelectedWeekdays()
     }
     
     private func configure() {
         models.append(Section(title: "", options: [
-            .switchCell(model: SwitchOption(title: K.Settings.reminderOn, icon: UIImage(systemName: "bell"), isOn: remonderOn, switchType: .reminder, handler: nil)),
-            .datePickerCell,
-            .staticCell(model: Option(title: "Repeat", icon: UIImage(systemName: "repeat"), handler: {
-                
+            .switchCell(model: SwitchOption(
+                title: K.Settings.reminderOn,
+                icon: reminderIcon,
+                isOn: remonderOn,
+                handler: nil
+            )),
+            .datePickerCell(model: DatePickerOption(
+                date: reminderTime
+            )),
+            .staticCell(model: Option(
+                title: "Repeat",
+                icon: UIImage(systemName: "repeat"),
+                handler: {
+                    self.showWeekdaysViewController()
             }))
         ]))
     }
     
-    @objc
-    private func handleDateSelection() {
-        
-    }
-    
-    private func configureCloseButton() {
-        let button = UIButton(type: .close)
-        button.addTarget(self, action: #selector(cancelButtonTapped), for: .touchUpInside)
-        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: button)
+    private func showWeekdaysViewController() {
+        let weekdaysVC = WeekdaysViewController()
+        navigationController?.pushViewController(weekdaysVC, animated: true)
     }
     
     
-    @objc
-    private func cancelButtonTapped() {
+    @objc private func doneButtonTapped() {
+        let notifications = ReminderManager.shared.getNotificationsCredentials(weekdays: selectedDays)
+        if ReminderManager.shared.isReminderOn() {
+            ReminderManager.shared.scheduleNotifications(notifications: notifications)
+        } else {
+            ReminderManager.shared.removeAllNotifications()
+        }
         dismiss(animated: true)
     }
 }
@@ -122,18 +139,43 @@ extension ReminderViewController: UITableViewDataSource {
                         withIdentifier: SwitchTableViewCell.identifier,
                         for: indexPath
                 ) as? SwitchTableViewCell else { return UITableViewCell() }
+                cell.delegate = self
                 cell.selectionStyle = .none
                 cell.configure(with: model)
                 return cell
             
-            case .datePickerCell:
+            case .datePickerCell(let model):
                 guard let cell = tableView.dequeueReusableCell(
                     withIdentifier: DatePickerViewCell.identifier,
                     for: indexPath
                 ) as? DatePickerViewCell else { return UITableViewCell() }
+                cell.delegate = self
                 cell.selectionStyle = .none
+                cell.configure(with: model)
                 return cell
         }
     }
 }
 
+extension ReminderViewController: SwitchViewCellDelegate {
+    func switchAction(with cell: UITableViewCell) {
+        guard let switchCell = cell as? SwitchTableViewCell else { return }
+        if switchCell.mySwitch.isOn {
+            ReminderManager.shared.setReminderOn()
+            switchCell.iconImageView.image = UIImage(systemName: "bell")
+        } else {
+            ReminderManager.shared.setReminderOff()
+            switchCell.iconImageView.image = UIImage(systemName: "bell.slash")
+        }
+    }
+}
+
+extension ReminderViewController: DatePickerViewCellDelegate {
+    func datePicker(with cell: UITableViewCell) {
+        guard let datePickerCell = cell as? DatePickerViewCell else { return }
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm"
+        let timeString = dateFormatter.string(from: datePickerCell.datePicker.date)
+        UserDefaults.standard.set(timeString, forKey: K.UserDefaultsKeys.reminderTime)
+    }
+}
