@@ -196,7 +196,6 @@
 			children = (
 				C078B5FA281EA8B300DE5A86 /* Settings */,
 				C0B1275227C3F0CB008E412D /* Decks */,
-				C00648A62681F26000265EB8 /* Cells */,
 				C0B1275627C3FB7A008E412D /* CardsTableViewController.swift */,
 				C0F4FD2927BD855A00814BD6 /* MainTabBarViewController.swift */,
 				C0B1275A27C3FB8E008E412D /* ResultsTableViewController.swift */,
@@ -219,6 +218,7 @@
 		C078B5FA281EA8B300DE5A86 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				C00648A62681F26000265EB8 /* Cells */,
 				C0F4FD2827BD855A00814BD6 /* SettingsTableViewController.swift */,
 				C078B5F9281EA89500DE5A86 /* Reminder */,
 			);
