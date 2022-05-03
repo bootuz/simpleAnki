@@ -14,6 +14,7 @@
 		C028C4CA2811C0F000F6894E /* NewDeckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C028C4C92811C0F000F6894E /* NewDeckViewController.swift */; };
 		C028C4CC2811C71500F6894E /* EmptyStateDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C028C4CB2811C71500F6894E /* EmptyStateDelegate.swift */; };
 		C02D41C3282146BF005E9835 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02D41C2282146BF005E9835 /* DateExtension.swift */; };
+		C02D41D028218E3C005E9835 /* SwitchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02D41CF28218E3C005E9835 /* SwitchTableViewCell.swift */; };
 		C034B16F2801984D00942E77 /* AudioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C034B16E2801984D00942E77 /* AudioViewController.swift */; };
 		C0460DF42819A6C000B6EBB2 /* SwitchViewCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0460DF32819A6C000B6EBB2 /* SwitchViewCellDelegate.swift */; };
 		C05F7C4827E3A29700F4FAB4 /* BaseSettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05F7C4727E3A29700F4FAB4 /* BaseSettingsCell.swift */; };
@@ -51,7 +52,6 @@
 		C0E8477827F9C9EA006AEED1 /* SPIndicator in Frameworks */ = {isa = PBXBuildFile; productRef = C0E8477727F9C9EA006AEED1 /* SPIndicator */; };
 		C0F4FD1527BD82DF00814BD6 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F4FD1427BD82DF00814BD6 /* UIViewExtension.swift */; };
 		C0F4FD1F27BD84DA00814BD6 /* SettingsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F4FD1B27BD84DA00814BD6 /* SettingsViewCell.swift */; };
-		C0F4FD2027BD84DA00814BD6 /* SwitchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F4FD1C27BD84DA00814BD6 /* SwitchTableViewCell.swift */; };
 		C0F4FD3027BD855A00814BD6 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F4FD2827BD855A00814BD6 /* SettingsTableViewController.swift */; };
 		C0F4FD3127BD855A00814BD6 /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F4FD2927BD855A00814BD6 /* MainTabBarViewController.swift */; };
 		C0F4FD3727BD862E00814BD6 /* Simple_AnkiUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F4FD3227BD862D00814BD6 /* Simple_AnkiUITestsLaunchTests.swift */; };
@@ -93,6 +93,7 @@
 		C028C4C92811C0F000F6894E /* NewDeckViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDeckViewController.swift; sourceTree = "<group>"; };
 		C028C4CB2811C71500F6894E /* EmptyStateDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateDelegate.swift; sourceTree = "<group>"; };
 		C02D41C2282146BF005E9835 /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
+		C02D41CF28218E3C005E9835 /* SwitchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchTableViewCell.swift; sourceTree = "<group>"; };
 		C034B16E2801984D00942E77 /* AudioViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioViewController.swift; sourceTree = "<group>"; };
 		C0460DF32819A6C000B6EBB2 /* SwitchViewCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchViewCellDelegate.swift; sourceTree = "<group>"; };
 		C05F7C4727E3A29700F4FAB4 /* BaseSettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseSettingsCell.swift; sourceTree = "<group>"; };
@@ -132,7 +133,6 @@
 		C0E8477427F9AEF4006AEED1 /* NewCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCardViewController.swift; sourceTree = "<group>"; };
 		C0F4FD1427BD82DF00814BD6 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		C0F4FD1B27BD84DA00814BD6 /* SettingsViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewCell.swift; sourceTree = "<group>"; };
-		C0F4FD1C27BD84DA00814BD6 /* SwitchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwitchTableViewCell.swift; path = "../../../../../ZBS/Simple Anki/Simple Anki/Controllers/Cells/SwitchTableViewCell.swift"; sourceTree = "<group>"; };
 		C0F4FD2827BD855A00814BD6 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		C0F4FD2927BD855A00814BD6 /* MainTabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
 		C0F4FD3227BD862D00814BD6 /* Simple_AnkiUITestsLaunchTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Simple_AnkiUITestsLaunchTests.swift; sourceTree = "<group>"; };
@@ -183,10 +183,10 @@
 			children = (
 				C05F7C4727E3A29700F4FAB4 /* BaseSettingsCell.swift */,
 				C0F4FD1B27BD84DA00814BD6 /* SettingsViewCell.swift */,
-				C0F4FD1C27BD84DA00814BD6 /* SwitchTableViewCell.swift */,
 				C0D1C1732815CB9100350862 /* DatePickerViewCell.swift */,
 				C0460DF32819A6C000B6EBB2 /* SwitchViewCellDelegate.swift */,
 				C078B5FD281EADB500DE5A86 /* DatePickerViewCellDelegate.swift */,
+				C02D41CF28218E3C005E9835 /* SwitchTableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -541,6 +541,7 @@
 				C0C043E328206B1F00A8AC6D /* WeekdaysViewController.swift in Sources */,
 				C0F4FD1F27BD84DA00814BD6 /* SettingsViewCell.swift in Sources */,
 				C0460DF42819A6C000B6EBB2 /* SwitchViewCellDelegate.swift in Sources */,
+				C02D41D028218E3C005E9835 /* SwitchTableViewCell.swift in Sources */,
 				C0B1275527C3F0E7008E412D /* DecksViewModel.swift in Sources */,
 				C034B16F2801984D00942E77 /* AudioViewController.swift in Sources */,
 				C0AF0E7D2614F1E000853FA7 /* ReviewManager.swift in Sources */,
@@ -556,7 +557,6 @@
 				C0B1275727C3FB7A008E412D /* CardsTableViewController.swift in Sources */,
 				C00648AC2682070200265EB8 /* EmailManager.swift in Sources */,
 				C0C081B425ED379600DF1083 /* StorageManager.swift in Sources */,
-				C0F4FD2027BD84DA00814BD6 /* SwitchTableViewCell.swift in Sources */,
 				C0F4FD1527BD82DF00814BD6 /* UIViewExtension.swift in Sources */,
 				C0DDE0F32658608C0051059B /* RecorderManager.swift in Sources */,
 				C0B1275D27C3FB91008E412D /* ReviewViewController.swift in Sources */,
