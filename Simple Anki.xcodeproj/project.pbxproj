@@ -27,7 +27,6 @@
 		C0AF0E7D2614F1E000853FA7 /* ReviewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0AF0E7C2614F1E000853FA7 /* ReviewManager.swift */; };
 		C0B1275527C3F0E7008E412D /* DecksViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B1275427C3F0E7008E412D /* DecksViewModel.swift */; };
 		C0B1275727C3FB7A008E412D /* CardsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B1275627C3FB7A008E412D /* CardsTableViewController.swift */; };
-		C0B1275B27C3FB8E008E412D /* ResultsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B1275A27C3FB8E008E412D /* ResultsTableViewController.swift */; };
 		C0B1275D27C3FB91008E412D /* ReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B1275C27C3FB91008E412D /* ReviewViewController.swift */; };
 		C0B1275E27C3FC4A008E412D /* DecksTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B1275327C3F0D4008E412D /* DecksTableViewController.swift */; };
 		C0B5FF7625E981A8001D8D83 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B5FF7525E981A8001D8D83 /* AppDelegate.swift */; };
@@ -107,7 +106,6 @@
 		C0B1275327C3F0D4008E412D /* DecksTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecksTableViewController.swift; sourceTree = "<group>"; };
 		C0B1275427C3F0E7008E412D /* DecksViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecksViewModel.swift; sourceTree = "<group>"; };
 		C0B1275627C3FB7A008E412D /* CardsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsTableViewController.swift; sourceTree = "<group>"; };
-		C0B1275A27C3FB8E008E412D /* ResultsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsTableViewController.swift; sourceTree = "<group>"; };
 		C0B1275C27C3FB91008E412D /* ReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewController.swift; sourceTree = "<group>"; };
 		C0B5FF7225E981A8001D8D83 /* Simple Anki.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Simple Anki.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0B5FF7525E981A8001D8D83 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -195,10 +193,10 @@
 			isa = PBXGroup;
 			children = (
 				C078B5FA281EA8B300DE5A86 /* Settings */,
+				C0F4FD2827BD855A00814BD6 /* SettingsTableViewController.swift */,
 				C0B1275227C3F0CB008E412D /* Decks */,
 				C0B1275627C3FB7A008E412D /* CardsTableViewController.swift */,
 				C0F4FD2927BD855A00814BD6 /* MainTabBarViewController.swift */,
-				C0B1275A27C3FB8E008E412D /* ResultsTableViewController.swift */,
 				C0B1275C27C3FB91008E412D /* ReviewViewController.swift */,
 				C0E8477427F9AEF4006AEED1 /* NewCardViewController.swift */,
 				C034B16E2801984D00942E77 /* AudioViewController.swift */,
@@ -219,7 +217,6 @@
 			isa = PBXGroup;
 			children = (
 				C00648A62681F26000265EB8 /* Cells */,
-				C0F4FD2827BD855A00814BD6 /* SettingsTableViewController.swift */,
 				C078B5F9281EA89500DE5A86 /* Reminder */,
 			);
 			path = Settings;
@@ -562,7 +559,6 @@
 				C0B1275D27C3FB91008E412D /* ReviewViewController.swift in Sources */,
 				C0ADAD4725EC0E62005DE503 /* Card.swift in Sources */,
 				C0F4FD3127BD855A00814BD6 /* MainTabBarViewController.swift in Sources */,
-				C0B1275B27C3FB8E008E412D /* ResultsTableViewController.swift in Sources */,
 				C0D1C1742815CB9100350862 /* DatePickerViewCell.swift in Sources */,
 				C05F7C4827E3A29700F4FAB4 /* BaseSettingsCell.swift in Sources */,
 				C0B5FF7625E981A8001D8D83 /* AppDelegate.swift in Sources */,

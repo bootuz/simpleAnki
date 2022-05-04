@@ -25,7 +25,7 @@ class RateManager {
         if withoutCounter {
             SKStoreReviewController.requestReview(in: scene)
         } else {
-            if count >= 2 {
+            if count == 2 {
                 DispatchQueue.main.async {
                     SKStoreReviewController.requestReview(in: scene)
                 }

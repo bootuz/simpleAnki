@@ -6,8 +6,6 @@
 //
 
 import UIKit
-import StoreKit
-
 
 class SettingsViewController: UIViewController {
     
@@ -18,7 +16,6 @@ class SettingsViewController: UIViewController {
         return table
     }()
     
-    let notificationCenter = UNUserNotificationCenter.current()
     var models = [Section]()
     
     let darkMode = UserDefaults.standard.bool(forKey: K.UserDefaultsKeys.darkMode)
