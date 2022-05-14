@@ -15,6 +15,7 @@ final class HapticManager {
     
     public func vibrate(for type: UINotificationFeedbackGenerator.FeedbackType) {
         let notificationGenerator = UINotificationFeedbackGenerator()
+        notificationGenerator.prepare()
         notificationGenerator.notificationOccurred(type)
     }
 }

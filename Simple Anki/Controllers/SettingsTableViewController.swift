@@ -70,7 +70,7 @@ class SettingsViewController: UIViewController {
     private func showSettingsAlert() {
         DispatchQueue.main.async {
             let alert = UIAlertController(
-                title: "Notifications Are Turn Off",
+                title: "You turned off notifications :(",
                 message: "Open settings to allow Simple Anki send you notifications.",
                 preferredStyle: .alert
             )

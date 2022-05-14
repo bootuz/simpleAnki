@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import RealmSwift
 
 struct ReviewCard {
     let front: String
@@ -15,7 +14,6 @@ struct ReviewCard {
 }
 
 class ReviewManager {
-    
     let layout: String!
     let autoPlay: Bool!
     var cardsForReview = [ReviewCard]()
@@ -49,8 +47,8 @@ class ReviewManager {
     }
     
     private func all(with card: Card) {
-        cardsForReview.append(ReviewCard(front: card.front, back: card.back, audioName: card.audioName))
-        cardsForReview.append(ReviewCard(front: card.back, back: card.front, audioName: card.audioName))
+        frontToBack(with: card)
+        backToFront(with: card)
     }
     
     private func backToFront(with card: Card) {

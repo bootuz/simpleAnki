@@ -9,23 +9,20 @@ import UIKit
 import RealmSwift
 
 class CardsTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-    
-    let tableView: UITableView = {
+    private lazy var tableView: UITableView = {
         let table = UITableView(frame: .zero)
         table.register(UITableViewCell.self, forCellReuseIdentifier: K.cardCellIdentifier)
-        table.layoutMargins = .zero
-        table.separatorInset = .zero
         return table
     }()
     
-    let cardToolbar: UIToolbar = {
+    private lazy var cardToolbar: UIToolbar = {
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
         toolbar.backgroundColor = .systemBackground
         return toolbar
     }()
     
-    let segmentedControl: UISegmentedControl = {
+    private lazy var segmentedControl: UISegmentedControl = {
         let sc = UISegmentedControl (items: ["Learning", "Memorized"])
         sc.selectedSegmentIndex = 0
         return sc
@@ -33,24 +30,7 @@ class CardsTableViewController: UIViewController, UITableViewDataSource, UITable
     
     var cards: Results<Card>?
     var cardsToDisplay: Results<Card>?
-    var cardFromResult: Card?
     
-    var alreadyHighLighted: Bool = false
-    var cellIndexPath: IndexPath? {
-        didSet {
-            if !alreadyHighLighted {
-                guard let indexPath = cellIndexPath else { return }
-                DispatchQueue.main.async {
-                    self.tableView.scrollToRow(at: indexPath, at: .middle, animated: true)
-                    self.tableView.selectRow(at: indexPath, animated: true, scrollPosition: .middle)
-                }
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
-                    self.tableView.deselectRow(at: indexPath, animated: true)
-                    self.alreadyHighLighted = true
-                }
-            }
-        }
-    }
     var selectedDeck: Deck? {
         didSet {
             loadCards()
@@ -59,7 +39,8 @@ class CardsTableViewController: UIViewController, UITableViewDataSource, UITable
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.navigationBar.prefersLargeTitles = false
+        navigationController?.navigationBar.prefersLargeTitles = true
+        title = selectedDeck?.name
         view.addSubview(tableView)
         tableView.frame = view.bounds
         segmentedControl.addTarget(self, action: #selector(segmentedControlSwitched), for: .valueChanged)
@@ -68,8 +49,18 @@ class CardsTableViewController: UIViewController, UITableViewDataSource, UITable
         tableView.dataSource = self
         tableView.frame = view.bounds
         tableView.tableFooterView = UIView()
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(didTapPlus))
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Close", style: .plain, target: self, action: #selector(didTapClose))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            image: UIImage(systemName: "plus"),
+            style: .plain,
+            target: self,
+            action: #selector(didTapPlus)
+        )
+        navigationItem.leftBarButtonItem = UIBarButtonItem(
+            title: "Close",
+            style: .plain,
+            target: self,
+            action: #selector(didTapClose)
+        )
         configureToolbar()
         tableView.contentInset.bottom = cardToolbar.constraints[1].constant
     }
@@ -79,57 +70,31 @@ class CardsTableViewController: UIViewController, UITableViewDataSource, UITable
         loadCards()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        if cardFromResult != nil && cellIndexPath == nil {
-            guard let cardsCount = self.cardsToDisplay?.count else { return }
-            let indexPath = IndexPath(row: cardsCount - 1, section: 0)
-            DispatchQueue.main.async {
-                self.tableView.scrollToRow(at: indexPath, at: .middle, animated: true)
-            }
-        }
-    }
-    
     //  MARK: - Private methods
     
     private func configureToolbar() {
         let gearButton = UIButton(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
-        gearButton.layer.cornerRadius = 10
-        gearButton.backgroundColor = .systemBlue
         let font = UIFont.systemFont(ofSize: 25)
         let config = UIImage.SymbolConfiguration(font: font)
-        gearButton.tintColor = .white
+        gearButton.tintColor = .systemBlue
         gearButton.setImage(UIImage(systemName: "gearshape", withConfiguration: config), for: .normal)
         gearButton.addTarget(self, action: #selector(didLayoutTap), for: .touchUpInside)
         let gear = UIBarButtonItem(customView: gearButton)
         
         let flexible = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
         
-        let reviewButton = UIButton(frame: CGRect(x: 0, y: 0, width: 285, height: 50))
-        reviewButton.backgroundColor = .systemBlue
-        reviewButton.layer.cornerRadius = 10
-        reviewButton.setTitle("Review", for: .normal)
+        let reviewButton = UIButton().configureDefaultButton(title: "Review")
+        reviewButton.frame = CGRect(x: 0, y: 0, width: view.frame.width - 94, height: 50)
         reviewButton.addTarget(self, action: #selector(reviewButtonTouchUpInside), for: .touchUpInside)
         let review = UIBarButtonItem(customView: reviewButton)
         
         cardToolbar.items = [gear, flexible, review]
         view.addSubview(cardToolbar)
-        
         cardToolbar.translatesAutoresizingMaskIntoConstraints = false
         cardToolbar.widthAnchor.constraint(equalToConstant: view.frame.size.width).isActive = true
         cardToolbar.heightAnchor.constraint(equalToConstant: 70).isActive = true
-        cardToolbar.leftAnchor.constraint(equalTo: self.view.safeLeftAnchor).isActive = true
-        cardToolbar.rightAnchor.constraint(equalTo: self.view.safeRightAnchor).isActive = true
         cardToolbar.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -16).isActive = true
         
-    }
-    
-    private func getIndexPathOfCell(at indexPath: IndexPath) {
-        if let card = cardFromResult {
-            if cardsToDisplay?[indexPath.row]._id == card._id {
-                cellIndexPath = indexPath
-            }
-        }
     }
     
     // MARK: - Actions
@@ -219,9 +184,6 @@ class CardsTableViewController: UIViewController, UITableViewDataSource, UITable
     }
     
     // MARK: - Table view data source
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        getIndexPathOfCell(at: indexPath)
-    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let cardsCount = cardsToDisplay?.count {
@@ -246,9 +208,9 @@ class CardsTableViewController: UIViewController, UITableViewDataSource, UITable
         return cardsToDisplay?.count ?? 0
     }
     
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return 60
-//    }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 60
+    }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: K.cardCellIdentifier, for: indexPath)
@@ -259,7 +221,6 @@ class CardsTableViewController: UIViewController, UITableViewDataSource, UITable
         content.secondaryTextProperties.numberOfLines = 1
         content.text = cardsToDisplay?[indexPath.row].front
         content.secondaryText = cardsToDisplay?[indexPath.row].back
-        getIndexPathOfCell(at: indexPath)
         cell.contentConfiguration = content
         return cell
     }
@@ -380,11 +341,7 @@ extension CardsTableViewController: EmptyStateDelegate {
         stackView.axis = .vertical
         stackView.alignment = .center
         
-        let button = UIButton()
-        button.layer.cornerRadius = 10
-        button.setTitle("Add a card", for: .normal)
-        button.backgroundColor = .systemBlue
-        button.tintColor = .white
+        let button = UIButton().configureDefaultButton(title: "Add a card")
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(didTapPlus), for: .touchUpInside)
         

@@ -48,7 +48,6 @@ class DatePickerViewCell: UITableViewCell {
         dateFormatter.dateFormat = "HH:mm"
         dateFormatter.timeZone = .current
         let date = dateFormatter.date(from: model.date) ?? Date()
-        print(date)
         datePicker.date = date
     }
 }

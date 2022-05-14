@@ -11,10 +11,6 @@ import Foundation
 struct K {
     static let deckCellIdentifier = "decks"
     static let cardCellIdentifier = "cardCell"
-    static let cardsSegue = "goToCards"
-    static let newCardSegue = "goToNewCard"
-    static let reviewSegue = "goToReview"
-    static let cardDetailSegue = "goToCardDetail"
     
     struct Layout {
         static let frontToBack = "frontToBack"

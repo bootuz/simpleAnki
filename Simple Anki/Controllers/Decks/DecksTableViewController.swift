@@ -7,6 +7,8 @@
 
 import UIKit
 import RealmSwift
+import SwiftCSV
+import FirebaseAnalytics
 
 class DecksTableViewController: UITableViewController {
     
@@ -15,17 +17,9 @@ class DecksTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Decks"
-        tableView.tableFooterView = UIView()
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus"),
-                                                            style: .plain,
-                                                            target: self,
-                                                            action: #selector(didTapPlus))
-        navigationItem.rightBarButtonItem?.accessibilityIdentifier = "addButton"
-        
         navigationController?.navigationBar.prefersLargeTitles = true
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: K.deckCellIdentifier)
-        
-        viewModel.delegate = self
+        congigureBarButtonItems()
+        configureTableView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -34,11 +28,22 @@ class DecksTableViewController: UITableViewController {
         viewModel.loadDecks(by: key)
     }
     
-    @objc private func didTapPlus() {
-        createDeckTapped()
+    @objc func didTapImport() {
+        let reminderVC = ImportViewController()
+        let nav = UINavigationController(rootViewController: reminderVC)
+        nav.isModalInPresentation = true
+        if let sheetController = nav.sheetPresentationController {
+            sheetController.detents = [.medium()]
+            sheetController.prefersScrollingExpandsWhenScrolledToEdge = false
+        }
+        present(nav, animated: true)
     }
     
-    @objc func createDeckTapped() {
+    @objc private func didTapPlus() {
+        didTapCreateDeck()
+    }
+    
+    @objc func didTapCreateDeck() {
         let newDeckVC = NewDeckViewController()
         newDeckVC.reloadData = { [weak self] in
             self?.reload()
@@ -46,6 +51,32 @@ class DecksTableViewController: UITableViewController {
         let navVC = UINavigationController(rootViewController: newDeckVC)
         navVC.modalPresentationStyle = .fullScreen
         present(navVC, animated: true)
+    }
+    
+    // MARK: - Configure UI
+    
+    private func configureTableView() {
+        tableView.tableFooterView = UIView()
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: K.deckCellIdentifier)
+        viewModel.delegate = self
+    }
+    
+    private func congigureBarButtonItems() {
+        let barButtonItems = [
+            UIBarButtonItem(
+                image: UIImage(systemName: "plus"),
+                style: .plain,
+                target: self,
+                action: #selector(didTapPlus)
+            ),
+            UIBarButtonItem(
+                image: UIImage(systemName: "tray.and.arrow.down"),
+                style: .plain,
+                target: self,
+                action: #selector(didTapImport)
+            )
+        ]
+        navigationItem.rightBarButtonItems = barButtonItems
     }
     
     // MARK: - Table view data source
@@ -189,13 +220,9 @@ extension DecksTableViewController: EmptyStateDelegate {
         messageLabel.font = .systemFont(ofSize: 20)
         messageLabel.textColor = .systemGray
         
-        let button = UIButton()
-        button.layer.cornerRadius = 10
-        button.setTitle("Create your first deck", for: .normal)
-        button.backgroundColor = .systemBlue
-        button.tintColor = .white
+        let button = UIButton().configureDefaultButton(title: "Create a deck")
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.addTarget(self, action: #selector(createDeckTapped), for: .touchUpInside)
+        button.addTarget(self, action: #selector(didTapCreateDeck), for: .touchUpInside)
         
         let emptyStateview = UIView()
         emptyStateview.addSubview(imageView)
@@ -215,8 +242,20 @@ extension DecksTableViewController: EmptyStateDelegate {
         tableView.backgroundView = nil
         tableView.isScrollEnabled = true
     }
-    
-    
 }
 
-
+extension DecksTableViewController: UIDocumentPickerDelegate {
+    func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
+        guard let url = urls.first else {
+            return
+        }
+        do {
+            let data = try CSV(url: url)
+            for row in data.enumeratedColumns {
+                print(row)
+            }
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+}

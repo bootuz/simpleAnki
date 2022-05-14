@@ -6,11 +6,12 @@
 //
 
 import UIKit
+import SPIndicator
 
 class NewDeckViewController: UIViewController {
     
     var reloadData: (() -> Void)?
-    
+    let indicatorView = SPIndicatorView(title: "Deck saved", preset: .done)
     private let deckView: UIView = {
         let view = UIView()
         view.backgroundColor = .systemBackground
@@ -18,14 +19,10 @@ class NewDeckViewController: UIViewController {
         return view
     }()
     
-    private let addCardsButton: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Add cards", for: .normal)
-        button.backgroundColor = .systemBlue
-        button.layer.cornerRadius = 10
-        return button
-    }()
+    private let addCardsButton = UIButton().configureDefaultButton(
+        title: "Add cards",
+        image: UIImage(systemName: "arrow.forward")
+    )
     
     private let textField: UITextField = {
         let field = UITextField()
@@ -38,17 +35,31 @@ class NewDeckViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "New deck"
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(didCancelTapped))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(didSaveTapped))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(
+            title: "Cancel",
+            style: .plain,
+            target: self,
+            action: #selector(didCancelTapped)
+        )
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            title: "Save",
+            style: .done,
+            target: self,
+            action: #selector(didSaveTapped)
+        )
+        textField.addTarget(self, action: #selector(textFieldChanged), for: .editingChanged)
+        addCardsButton.addTarget(self, action: #selector(addCardsButtonTapped), for: .touchUpInside)
+        setupUI()
+
+    }
+    
+    private func setupUI() {
         navigationItem.rightBarButtonItem?.isEnabled = false
         addCardsButton.isEnabled = false
-        addCardsButton.backgroundColor = .systemGray2
         view.backgroundColor = .secondarySystemBackground
         view.addSubview(deckView)
         view.addSubview(addCardsButton)
         deckView.addSubview(textField)
-        textField.addTarget(self, action: #selector(textFieldChanged), for: .editingChanged)
-        addCardsButton.addTarget(self, action: #selector(addCardsButtonTapped), for: .touchUpInside)
         textField.becomeFirstResponder()
         
         let leftPadding = 16.0
@@ -63,11 +74,11 @@ class NewDeckViewController: UIViewController {
                                  width: deckView.frame.width - rightPadding,
                                  height: 40.0)
         
+        addCardsButton.translatesAutoresizingMaskIntoConstraints = false
         addCardsButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
         addCardsButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16).isActive = true
         addCardsButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
         addCardsButton.safeBottomAnchor.constraint(equalTo: view.keyboardLayoutGuide.topAnchor, constant: -10).isActive = true
-
     }
     
     @objc func didCancelTapped() {
@@ -80,6 +91,7 @@ class NewDeckViewController: UIViewController {
         newDeck.name = deckName.trimmingCharacters(in: .whitespacesAndNewlines)
         StorageManager.save(newDeck)
         reloadData?()
+        indicatorView.present(duration: 0.5, haptic: .success)
         dismiss(animated: true)
     }
     
@@ -100,22 +112,10 @@ class NewDeckViewController: UIViewController {
         if textField.text?.isEmpty == false {
             navigationItem.rightBarButtonItem?.isEnabled = true
             addCardsButton.isEnabled = true
-            addCardsButton.backgroundColor = .systemBlue
         } else {
             navigationItem.rightBarButtonItem?.isEnabled = false
             addCardsButton.isEnabled = false
-            addCardsButton.backgroundColor = .systemGray2
         }
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

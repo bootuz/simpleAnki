@@ -15,7 +15,5 @@ protocol EmptyStateDelegate {
 }
 
 extension EmptyStateDelegate {
-    func setEmptyStateForMemorizedCards() {
-        
-    }
+    func setEmptyStateForMemorizedCards() {}
 }
