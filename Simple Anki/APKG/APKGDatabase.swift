@@ -9,6 +9,7 @@ import Foundation
 import ZIPFoundation
 import SQLite
 
+
 enum SQLiteError: Error {
   case OpenDatabase(message: String)
   case Prepare(message: String)

@@ -10,18 +10,18 @@ enum ZIPError: Error {
 final class APKGManager {
     var dbManager: APKGDatabase?
     let destionation: URL = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent("temp")
-    let fileManager = FileManager()
     
     let apkgURL: URL
     
     init(apkgURL: URL) {
         self.apkgURL = apkgURL
+        
     }
     
     func unzipApkg() throws {
         deleteTempFolderIfExists()
         do {
-            try fileManager.unzipItem(at: apkgURL, to: destionation)
+            try FileManager().unzipItem(at: apkgURL, to: destionation)
             try initializeDB()
         } catch {
             throw ZIPError.Unzip(message: "Could not unzip apkg file")
@@ -30,7 +30,7 @@ final class APKGManager {
     
     func initializeDB() throws {
         do {
-            if fileManager.fileExists(atPath: destionation.appendingPathComponent("collection.anki21").path) {
+            if FileManager().fileExists(atPath: destionation.appendingPathComponent("collection.anki21").path) {
                 self.dbManager = try APKGDatabase(dbPath: destionation.appendingPathComponent("collection.anki21").path)
             } else {
                 self.dbManager = try APKGDatabase(dbPath: destionation.appendingPathComponent("collection.anki2").path)
@@ -43,9 +43,9 @@ final class APKGManager {
     
     func deleteTempFolderIfExists() {
         var isDir: ObjCBool = true
-        if fileManager.fileExists(atPath: destionation.path, isDirectory: &isDir) {
+        if FileManager().fileExists(atPath: destionation.path, isDirectory: &isDir) {
             do {
-                try fileManager.removeItem(atPath: destionation.path)
+                try FileManager().removeItem(atPath: destionation.path)
             } catch {
                 print(error.localizedDescription)
             }

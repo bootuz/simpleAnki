@@ -73,18 +73,18 @@ class CardsTableViewController: UIViewController, UITableViewDataSource, UITable
     //  MARK: - Private methods
     
     private func configureToolbar() {
-        let gearButton = UIButton(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
-        let font = UIFont.systemFont(ofSize: 25)
-        let config = UIImage.SymbolConfiguration(font: font)
-        gearButton.tintColor = .systemBlue
-        gearButton.setImage(UIImage(systemName: "gearshape", withConfiguration: config), for: .normal)
+        let gearButton = UIButton().configureIconButton(
+            configuration: .tinted(),
+            image: UIImage(systemName: "gearshape")
+        )
+        gearButton.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
         gearButton.addTarget(self, action: #selector(didLayoutTap), for: .touchUpInside)
         let gear = UIBarButtonItem(customView: gearButton)
         
         let flexible = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
         
         let reviewButton = UIButton().configureDefaultButton(title: "Review")
-        reviewButton.frame = CGRect(x: 0, y: 0, width: view.frame.width - 94, height: 50)
+        reviewButton.frame = CGRect(x: 0, y: 0, width: view.frame.width - 98, height: 50)
         reviewButton.addTarget(self, action: #selector(reviewButtonTouchUpInside), for: .touchUpInside)
         let review = UIBarButtonItem(customView: reviewButton)
         

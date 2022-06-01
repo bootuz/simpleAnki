@@ -70,35 +70,15 @@ class NewCardViewController: UIViewController {
     private let addAndNext = UIButton().configureDefaultButton(title: "Add")
     
     private let recordButton = UIButton().configureIconButton(
-        configuration: .plain(),
+        configuration: .tinted(),
         image: UIImage(systemName: "mic")
     )
-//    = {
-//        let button = UIButton()
-//        let font = UIFont.systemFont(ofSize: 25)
-//        let config = UIImage.SymbolConfiguration(font: font)
-//        button.tintColor = .white
-//        button.setImage(UIImage(systemName: "mic", withConfiguration: config), for: .normal)
-//        button.backgroundColor = .systemBlue
-//        button.layer.cornerRadius = 10
-//        return button
-//    }()
+
     
     private let playButton = UIButton().configureIconButton(
-        configuration: .plain(),
+        configuration: .tinted(),
         image: UIImage(systemName: "speaker.wave.3")
     )
-//    ) UIButton = {
-//        let button = UIButton()
-//        button.translatesAutoresizingMaskIntoConstraints = false
-//        let font = UIFont.systemFont(ofSize: 25)
-//        let config = UIImage.SymbolConfiguration(font: font)
-//        button.tintColor = .white
-//        button.setImage(UIImage(systemName: "speaker.wave.3", withConfiguration: config), for: .normal)
-//        button.backgroundColor = .systemBlue
-//        button.layer.cornerRadius = 10
-//        return button
-//    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -271,6 +251,7 @@ class NewCardViewController: UIViewController {
             self.addAndNext.setTitle("Recording...", for: .normal)
             self.recordButton.configuration?.image = UIImage(systemName: "square.fill")
             self.recordButton.configuration?.baseForegroundColor = .systemRed
+            self.recordButton.configuration?.cornerStyle = .capsule
         }
         addAndNext.isEnabled = false
     }
@@ -281,13 +262,10 @@ class NewCardViewController: UIViewController {
             addAndNext.isEnabled = true
         }
         recordButton.configuration?.image = UIImage(systemName: "mic")
+        self.recordButton.configuration?.cornerStyle = .large
         recordButton.isHidden = true
-        UIView.animate(withDuration: 0.2) { [unowned self] in
-            playButton.isHidden = false
-            playButton.layer.cornerRadius = 10
-        }
+        playButton.isHidden = false
         addAndNext.setTitle("Add", for: .normal)
-        recordButton.tintColor = .white
     }
     
     //MARK: - Button handlers
@@ -295,18 +273,19 @@ class NewCardViewController: UIViewController {
     @objc func recordButtonTapped() {
         switch recordingSession.recordPermission {
             case .granted:
-                DispatchQueue.main.async {
-                    HapticManager.shared.vibrate(for: .success)
-                }
-                if !isRecording {
-                    isRecording = true
-                    loadRecordingUI()
-                    startRecording()
+                HapticManager.shared.vibrate(for: .success)
+                if !self.isRecording {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.09) {
+                        self.isRecording = true
+                        self.loadRecordingUI()
+                        self.startRecording()
+                    }
                 } else {
                     finishRecording()
                     loadPlaybackUI()
                     isRecording = false
                 }
+                
             case .denied:
                 HapticManager.shared.vibrate(for: .error)
                 showSettingsAlert()
@@ -351,6 +330,7 @@ class NewCardViewController: UIViewController {
         addAndNext.isEnabled = false
         recordButton.isEnabled = false
         recordButton.isHidden = false
+        recordButton.configuration?.baseForegroundColor = .systemBlue
         playButton.isHidden = true
         recordFilePath = nil
     }

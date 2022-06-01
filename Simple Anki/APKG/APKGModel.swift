@@ -12,6 +12,8 @@ struct APKGCard {
     let back: String
 }
 
+typealias CSVCard = APKGCard
+
 struct APKGModel: Codable {
     let id: Int
     var flds: [APKGField]

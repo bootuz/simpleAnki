@@ -11,15 +11,26 @@ class ImportedCardsCollectionViewController: UIViewController {
     
     var collectionView: UICollectionView!
     var importedCards: [APKGCard]?
+    var deckName: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Imported cards"
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(didSaveTapped))
         configureCollectionView()
+        setupUI()
+    }
+    
+    private func setupUI() {
         view.addSubview(collectionView)
         collectionView.frame = view.bounds
         collectionView.delegate = self
         collectionView.dataSource = self
+        
+    }
+    
+    @objc private func didSaveTapped() {
+        print(deckName!)
     }
     
     private func configureCollectionView() {
