@@ -8,11 +8,11 @@
 import UIKit
 
 final class HapticManager {
-    
+
     static let shared = HapticManager()
-    
+
     private init() {}
-    
+
     public func vibrate(for type: UINotificationFeedbackGenerator.FeedbackType) {
         let notificationGenerator = UINotificationFeedbackGenerator()
         notificationGenerator.prepare()
