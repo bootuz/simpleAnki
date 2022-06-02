@@ -34,7 +34,12 @@ class ReminderViewController: UIViewController {
         tableView.dataSource = self
         tableView.frame = view.bounds
         tableView.frame.origin.y = tableView.frame.origin.y - 20
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(doneButtonTapped))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            title: "Done",
+            style: .done,
+            target: self,
+            action: #selector(doneButtonTapped)
+        )
         configure()
     }
 
@@ -60,7 +65,7 @@ class ReminderViewController: UIViewController {
                 icon: UIImage(systemName: "repeat"),
                 handler: {
                     self.showWeekdaysViewController()
-            }))
+                }))
         ]))
     }
 
@@ -128,16 +133,16 @@ extension ReminderViewController: UITableViewDataSource {
         switch model.self {
             case .staticCell(let model):
                 guard let cell = tableView.dequeueReusableCell(
-                        withIdentifier: SettingsTableViewCell.identifier,
-                        for: indexPath
+                    withIdentifier: SettingsTableViewCell.identifier,
+                    for: indexPath
                 ) as? SettingsTableViewCell else { return UITableViewCell() }
                 cell.configure(with: model)
                 return cell
 
             case .switchCell(let model):
                 guard let cell = tableView.dequeueReusableCell(
-                        withIdentifier: SwitchTableViewCell.identifier,
-                        for: indexPath
+                    withIdentifier: SwitchTableViewCell.identifier,
+                    for: indexPath
                 ) as? SwitchTableViewCell else { return UITableViewCell() }
                 cell.delegate = self
                 cell.selectionStyle = .none
