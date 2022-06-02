@@ -3,8 +3,8 @@ name: Lint code
 on:
   pull_request:
     paths:
-      - '.github/workflows/codelint.yml'
-      - '.github/workflows/.swiftlint.yml'
+      - '.github/workflows/swift.yml'
+      - '.swiftlint.yml'
       - '**/*.swift'
 
 jobs:
