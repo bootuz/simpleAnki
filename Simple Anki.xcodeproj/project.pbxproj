@@ -49,10 +49,10 @@
 		C0C9BA672848A3B30020E555 /* (null) in Resources */ = {isa = PBXBuildFile; };
 		C0C9BAA42848B9120020E555 /* ImportedCardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C9BAA12848B9120020E555 /* ImportedCardCollectionViewCell.swift */; };
 		C0C9BAA52848B9120020E555 /* ImportedCardsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C9BAA22848B9120020E555 /* ImportedCardsCollectionViewController.swift */; };
-		C0C9BAA62848B9120020E555 /* ImportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C9BAA32848B9120020E555 /* ImportViewController.swift */; };
 		C0C9BAAB2848B9410020E555 /* APKGManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C9BAA82848B9410020E555 /* APKGManager.swift */; };
-		C0C9BAAC2848B9410020E555 /* APKGDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C9BAA92848B9410020E555 /* APKGDatabase.swift */; };
-		C0C9BAAD2848B9410020E555 /* APKGModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C9BAAA2848B9410020E555 /* APKGModel.swift */; };
+		C0C9BAB62848B9F20020E555 /* APKGModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C9BAB52848B9F20020E555 /* APKGModel.swift */; };
+		C0C9BAB82848BA160020E555 /* ImportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C9BAB72848BA160020E555 /* ImportViewController.swift */; };
+		C0C9BABA2848BA360020E555 /* APKGDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C9BAB92848BA360020E555 /* APKGDatabase.swift */; };
 		C0CBE86E266AAA9A00B83253 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CBE86D266AAA9A00B83253 /* Utils.swift */; };
 		C0CBE870266B7A2900B83253 /* PlayerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CBE86F266B7A2900B83253 /* PlayerManager.swift */; };
 		C0CBE872266BA50900B83253 /* URLExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CBE871266BA50900B83253 /* URLExtension.swift */; };
@@ -144,10 +144,10 @@
 		C0C9BA762848AE500020E555 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		C0C9BAA12848B9120020E555 /* ImportedCardCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImportedCardCollectionViewCell.swift; sourceTree = "<group>"; };
 		C0C9BAA22848B9120020E555 /* ImportedCardsCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImportedCardsCollectionViewController.swift; sourceTree = "<group>"; };
-		C0C9BAA32848B9120020E555 /* ImportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImportViewController.swift; sourceTree = "<group>"; };
 		C0C9BAA82848B9410020E555 /* APKGManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APKGManager.swift; sourceTree = "<group>"; };
-		C0C9BAA92848B9410020E555 /* APKGDatabase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APKGDatabase.swift; sourceTree = "<group>"; };
-		C0C9BAAA2848B9410020E555 /* APKGModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APKGModel.swift; sourceTree = "<group>"; };
+		C0C9BAB52848B9F20020E555 /* APKGModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APKGModel.swift; sourceTree = "<group>"; };
+		C0C9BAB72848BA160020E555 /* ImportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportViewController.swift; sourceTree = "<group>"; };
+		C0C9BAB92848BA360020E555 /* APKGDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APKGDatabase.swift; sourceTree = "<group>"; };
 		C0CBE86D266AAA9A00B83253 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		C0CBE86F266B7A2900B83253 /* PlayerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerManager.swift; sourceTree = "<group>"; };
 		C0CBE871266BA50900B83253 /* URLExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLExtension.swift; sourceTree = "<group>"; };
@@ -392,7 +392,7 @@
 			children = (
 				C0C9BAA12848B9120020E555 /* ImportedCardCollectionViewCell.swift */,
 				C0C9BAA22848B9120020E555 /* ImportedCardsCollectionViewController.swift */,
-				C0C9BAA32848B9120020E555 /* ImportViewController.swift */,
+				C0C9BAB72848BA160020E555 /* ImportViewController.swift */,
 			);
 			path = Import;
 			sourceTree = "<group>";
@@ -401,8 +401,8 @@
 			isa = PBXGroup;
 			children = (
 				C0C9BAA82848B9410020E555 /* APKGManager.swift */,
-				C0C9BAA92848B9410020E555 /* APKGDatabase.swift */,
-				C0C9BAAA2848B9410020E555 /* APKGModel.swift */,
+				C0C9BAB52848B9F20020E555 /* APKGModel.swift */,
+				C0C9BAB92848BA360020E555 /* APKGDatabase.swift */,
 			);
 			path = APKG;
 			sourceTree = "<group>";
@@ -610,15 +610,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				C0ADAD4225EC0E0B005DE503 /* Deck.swift in Sources */,
+				C0C9BAB62848B9F20020E555 /* APKGModel.swift in Sources */,
 				C02D41C3282146BF005E9835 /* DateExtension.swift in Sources */,
 				C0A70E6028211E620020D533 /* ReminderManager.swift in Sources */,
 				C0CBE872266BA50900B83253 /* URLExtension.swift in Sources */,
 				C0FA7EAA25F511FE00710F0D /* Constants.swift in Sources */,
-				C0C9BAAC2848B9410020E555 /* APKGDatabase.swift in Sources */,
 				C0C043E328206B1F00A8AC6D /* WeekdaysViewController.swift in Sources */,
 				C0F4FD1F27BD84DA00814BD6 /* SettingsViewCell.swift in Sources */,
 				C0B85479282ABA49009816D0 /* APKGDatabase.swift in Sources */,
-				C0C9BAAD2848B9410020E555 /* APKGModel.swift in Sources */,
 				C0460DF42819A6C000B6EBB2 /* SwitchViewCellDelegate.swift in Sources */,
 				C02D41D028218E3C005E9835 /* SwitchTableViewCell.swift in Sources */,
 				C0B1275527C3F0E7008E412D /* DecksViewModel.swift in Sources */,
@@ -630,6 +629,7 @@
 				C0DBE8322673E9E00074DC13 /* HapticManager.swift in Sources */,
 				C0B1275E27C3FC4A008E412D /* DecksTableViewController.swift in Sources */,
 				C0B8546D28295771009816D0 /* ImportedCardsCollectionViewController.swift in Sources */,
+				C0C9BABA2848BA360020E555 /* APKGDatabase.swift in Sources */,
 				C0B85471282AB012009816D0 /* APKGManager.swift in Sources */,
 				C0CBE86E266AAA9A00B83253 /* Utils.swift in Sources */,
 				C0C9BAAB2848B9410020E555 /* APKGManager.swift in Sources */,
@@ -651,9 +651,9 @@
 				C0DD10BD2826A89C0058F96B /* ImportViewController.swift in Sources */,
 				C0D1C1742815CB9100350862 /* DatePickerViewCell.swift in Sources */,
 				C05F7C4827E3A29700F4FAB4 /* BaseSettingsCell.swift in Sources */,
+				C0C9BAB82848BA160020E555 /* ImportViewController.swift in Sources */,
 				C0B5FF7625E981A8001D8D83 /* AppDelegate.swift in Sources */,
 				C00648AF2682140800265EB8 /* Options.swift in Sources */,
-				C0C9BAA62848B9120020E555 /* ImportViewController.swift in Sources */,
 				C078B5FE281EADB500DE5A86 /* DatePickerViewCellDelegate.swift in Sources */,
 				C0ADAD5825EC19F7005DE503 /* TableViewExtension.swift in Sources */,
 				C00D75CC282E68A7004E92B2 /* UIButtonExtension.swift in Sources */,
