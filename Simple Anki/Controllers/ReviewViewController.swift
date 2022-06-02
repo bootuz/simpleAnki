@@ -96,30 +96,42 @@ class ReviewViewController: UIViewController {
         super.viewDidLayoutSubviews()
         let width = view.frame.size.width - 32
         let height = view.frame.size.height / 3 - 50
-        topWordLabel.frame = CGRect(x: 16,
-                                    y: 150,
-                                    width: width,
-                                    height: height)
-        bottomWordLabel.frame = CGRect(x: 16,
-                                       y: view.frame.size.height / 2 - 40,
-                                       width: width,
-                                       height: height)
-        speakerButton.frame = CGRect(x: (view.frame.size.width - 70) / 2,
-                                     y: height * 2 + 180,
-                                     width: 70,
-                                     height: 70)
-        progressBar.frame = CGRect(x: 16,
-                                   y: view.frame.size.height - 32,
-                                   width: view.frame.size.width - 32,
-                                   height: 0)
-        finishLabel.frame = CGRect(x: 0,
-                                   y: view.frame.size.height / 2 - 100,
-                                   width: view.frame.size.width,
-                                   height: 100)
-        repeatButton.frame = CGRect(x: view.frame.size.width / 2 - 25,
-                                    y: view.frame.size.height / 2 + 50,
-                                    width: 50,
-                                    height: 40)
+        topWordLabel.frame = CGRect(
+            x: 16,
+            y: 150,
+            width: width,
+            height: height
+        )
+        bottomWordLabel.frame = CGRect(
+            x: 16,
+            y: view.frame.size.height / 2 - 40,
+            width: width,
+            height: height
+        )
+        speakerButton.frame = CGRect(
+            x: (view.frame.size.width - 70) / 2,
+            y: height * 2 + 180,
+            width: 70,
+            height: 70
+        )
+        progressBar.frame = CGRect(
+            x: 16,
+            y: view.frame.size.height - 32,
+            width: view.frame.size.width - 32,
+            height: 0
+        )
+        finishLabel.frame = CGRect(
+            x: 0,
+            y: view.frame.size.height / 2 - 100,
+            width: view.frame.size.width,
+            height: 100
+        )
+        repeatButton.frame = CGRect(
+            x: view.frame.size.width / 2 - 25,
+            y: view.frame.size.height / 2 + 50,
+            width: 50,
+            height: 40
+        )
         view.addSubview(topWordLabel)
         view.addSubview(bottomWordLabel)
         view.addSubview(speakerButton)
