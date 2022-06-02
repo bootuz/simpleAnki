@@ -9,14 +9,14 @@ import UIKit
 
 class ImportedCardCollectionViewCell: UICollectionViewCell {
     static let identifier = "ImportedCardTableViewCell"
-    
+
     private let cardView: UIView = {
         let view = UIView()
         view.backgroundColor = .systemBackground
         view.layer.cornerRadius = 10
         return view
     }()
-    
+
     let frontField: UITextField = {
         let field = UITextField()
         field.placeholder = "Front word"
@@ -24,7 +24,7 @@ class ImportedCardCollectionViewCell: UICollectionViewCell {
         field.returnKeyType = .next
         return field
     }()
-    
+
     let backField: UITextField = {
         let field = UITextField()
         field.placeholder = "Back word"
@@ -32,27 +32,27 @@ class ImportedCardCollectionViewCell: UICollectionViewCell {
         field.returnKeyType = .done
         return field
     }()
-    
+
     private let frontLabel: UILabel = {
         let label = UILabel()
         label.text = "Front"
         label.textColor = .systemGray
         return label
     }()
-    
+
     private let backLabel: UILabel = {
         let label = UILabel()
         label.text = "Back"
         label.textColor = .systemGray
         return label
     }()
-    
+
     private let separationLine: UIView = {
         let view = UIView()
         view.backgroundColor = .systemGray4
         return view
     }()
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         cardView.addSubview(separationLine)
@@ -62,18 +62,18 @@ class ImportedCardCollectionViewCell: UICollectionViewCell {
         cardView.addSubview(backField)
         contentView.addSubview(cardView)
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     override func layoutSubviews() {
         super.layoutSubviews()
         let leftPadding = 16.0
         let rightPadding = leftPadding * 2.0
         let labelHeight = 15.0
         let labelWidth = 100.0
-        
+
         cardView.frame = CGRect(
             x: leftPadding,
             y: 0,
@@ -111,13 +111,13 @@ class ImportedCardCollectionViewCell: UICollectionViewCell {
             height: 40.0
         )
     }
-    
+
     override func prepareForReuse() {
         super.prepareForReuse()
         frontField.text = nil
         backField.text = nil
     }
-    
+
     public func configure(with model: APKGCard?) {
         frontField.text = model?.front
         backField.text = model?.back

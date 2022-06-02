@@ -9,7 +9,7 @@ import UIKit
 import SPIndicator
 
 class NewDeckViewController: UIViewController {
-    
+
     var reloadData: (() -> Void)?
     let indicatorView = SPIndicatorView(title: "Deck saved", preset: .done)
     private let deckView: UIView = {
@@ -18,12 +18,12 @@ class NewDeckViewController: UIViewController {
         view.layer.cornerRadius = 10
         return view
     }()
-    
+
     private let addCardsButton = UIButton().configureDefaultButton(
         title: "Add cards",
         image: UIImage(systemName: "arrow.forward")
     )
-    
+
     private let textField: UITextField = {
         let field = UITextField()
         field.placeholder = "Name"
@@ -52,7 +52,7 @@ class NewDeckViewController: UIViewController {
         setupUI()
 
     }
-    
+
     private func setupUI() {
         navigationItem.rightBarButtonItem?.isEnabled = false
         addCardsButton.isEnabled = false
@@ -61,10 +61,10 @@ class NewDeckViewController: UIViewController {
         view.addSubview(addCardsButton)
         deckView.addSubview(textField)
         textField.becomeFirstResponder()
-        
+
         let leftPadding = 16.0
         let rightPadding = 32.0
-        
+
         deckView.frame = CGRect(x: leftPadding,
                                 y: 200.0,
                                 width: view.bounds.width - rightPadding,
@@ -73,18 +73,18 @@ class NewDeckViewController: UIViewController {
                                  y: (deckView.frame.height - 40.0) / 2.0,
                                  width: deckView.frame.width - rightPadding,
                                  height: 40.0)
-        
+
         addCardsButton.translatesAutoresizingMaskIntoConstraints = false
         addCardsButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
         addCardsButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16).isActive = true
         addCardsButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
         addCardsButton.safeBottomAnchor.constraint(equalTo: view.keyboardLayoutGuide.topAnchor, constant: -10).isActive = true
     }
-    
+
     @objc func didCancelTapped() {
         dismiss(animated: true)
     }
-    
+
     @objc func didSaveTapped() {
         let newDeck = Deck()
         guard let deckName = textField.text else { return }
@@ -94,7 +94,7 @@ class NewDeckViewController: UIViewController {
         indicatorView.present(duration: 0.5, haptic: .success)
         dismiss(animated: true)
     }
-    
+
     @objc func addCardsButtonTapped() {
         let newCardVC = NewCardViewController()
         let newDeck = Deck()
@@ -106,8 +106,8 @@ class NewDeckViewController: UIViewController {
         textField.resignFirstResponder()
         navigationController?.pushViewController(newCardVC, animated: true)
     }
-    
-    
+
+
     @objc func textFieldChanged() {
         if textField.text?.isEmpty == false {
             navigationItem.rightBarButtonItem?.isEnabled = true

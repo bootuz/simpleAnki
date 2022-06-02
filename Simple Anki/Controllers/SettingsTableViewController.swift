@@ -8,18 +8,18 @@
 import UIKit
 
 class SettingsViewController: UIViewController {
-    
+
     private let tableView: UITableView = {
         let table = UITableView(frame: .zero, style: .insetGrouped)
         table.register(SettingsTableViewCell.self, forCellReuseIdentifier: SettingsTableViewCell.identifier)
         table.register(SwitchTableViewCell.self, forCellReuseIdentifier: SwitchTableViewCell.identifier)
         return table
     }()
-    
+
     var models = [Section]()
-    
+
     let darkMode = UserDefaults.standard.bool(forKey: K.UserDefaultsKeys.darkMode)
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Settings"
@@ -30,12 +30,12 @@ class SettingsViewController: UIViewController {
         tableView.dataSource = self
         tableView.frame = view.bounds
     }
-    
+
     func configure() {
         models.append(Section(title: K.Settings.appearence, options: [
             .switchCell(model: SwitchOption(title: K.Settings.darkMode, icon: UIImage(systemName: K.Icon.lefthalf), isOn: darkMode, handler: nil))
         ]))
-        
+
         models.append(Section(title: K.Settings.support, options: [
             .staticCell(model: Option(title: K.Settings.rateThisApp, icon: UIImage(systemName: K.Icon.star)) {
                 RateManager.rateApp()
@@ -49,9 +49,9 @@ class SettingsViewController: UIViewController {
             .staticCell(model: Option(title: K.Settings.shareThisApp, icon: UIImage(systemName: K.Icon.share)) {
                 self.showActivityViewController()
             }),
-            
+
         ]))
-        
+
         models.append(Section(title: K.Settings.notifications, options: [
             .staticCell(model: Option(title: "Reminder", icon: UIImage(systemName: K.Icon.bell), handler: {
                 ReminderManager.shared.notificationCenter.requestAuthorization(options: [.alert, .sound]) { permissionGranted, error in
@@ -66,7 +66,7 @@ class SettingsViewController: UIViewController {
             }))
         ]))
     }
-    
+
     private func showSettingsAlert() {
         DispatchQueue.main.async {
             let alert = UIAlertController(
@@ -74,7 +74,7 @@ class SettingsViewController: UIViewController {
                 message: "Open settings to allow Simple Anki send you notifications.",
                 preferredStyle: .alert
             )
-            
+
             let settingsAction = UIAlertAction(title: "Settings", style: .default) { _ in
                 guard let appSettingsUrl = URL(string: UIApplication.openSettingsURLString) else { return }
                 if UIApplication.shared.canOpenURL(appSettingsUrl) {
@@ -83,14 +83,14 @@ class SettingsViewController: UIViewController {
                     }
                 }
             }
-            
+
             let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
             alert.addAction(cancelAction)
             alert.addAction(settingsAction)
             self.present(alert, animated: true, completion: nil)
         }
     }
-    
+
     private func presentReminderViewController() {
         DispatchQueue.main.async {
             let reminderVC = ReminderViewController()
@@ -103,7 +103,7 @@ class SettingsViewController: UIViewController {
             self.present(nav, animated: true)
         }
     }
-    
+
     private func showActivityViewController() {
         let items: [Any] = ["Check this out!", URL(string: K.appURL)!]
         let avc = UIActivityViewController(activityItems: items, applicationActivities: nil)
@@ -113,11 +113,11 @@ class SettingsViewController: UIViewController {
 
 
 extension SettingsViewController: UITableViewDelegate {
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let type = models[indexPath.section].options[indexPath.row]
-        
+
         switch type.self {
             case .staticCell(let model):
                 model.handler?()
@@ -129,24 +129,24 @@ extension SettingsViewController: UITableViewDelegate {
 
 
 extension SettingsViewController: UITableViewDataSource {
-    
+
     func numberOfSections(in tableView: UITableView) -> Int {
         return models.count
     }
-    
+
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         let model = models[section]
         return model.title
     }
-    
-    
+
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return models[section].options.count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let model = models[indexPath.section].options[indexPath.row]
-        
+
         switch model.self {
             case .staticCell(let model):
                 guard let cell = tableView.dequeueReusableCell(
@@ -155,7 +155,7 @@ extension SettingsViewController: UITableViewDataSource {
                 ) as? SettingsTableViewCell else { return UITableViewCell() }
                 cell.configure(with: model)
                 return cell
-                
+
             case .switchCell(let model):
                 guard let cell = tableView.dequeueReusableCell(
                     withIdentifier: SwitchTableViewCell.identifier,

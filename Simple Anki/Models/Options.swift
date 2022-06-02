@@ -8,15 +8,15 @@
 import UIKit
 
 struct Option {
-	let title: String
-	let icon: UIImage?
-	let handler: (() -> Void)?
+    let title: String
+    let icon: UIImage?
+    let handler: (() -> Void)?
 }
 
 struct SwitchOption {
-	let title: String
-	let icon: UIImage?
-	let isOn: Bool
+    let title: String
+    let icon: UIImage?
+    let isOn: Bool
     let handler: (() -> Void)?
 }
 
@@ -26,8 +26,8 @@ struct DatePickerOption {
 
 
 enum OptionType {
-	case staticCell(model: Option)
-	case switchCell(model: SwitchOption)
+    case staticCell(model: Option)
+    case switchCell(model: SwitchOption)
     case datePickerCell(model: DatePickerOption)
 }
 
@@ -37,6 +37,6 @@ enum SwitchType {
 }
 
 struct Section {
-	let title: String
-	let options: [OptionType]
+    let title: String
+    let options: [OptionType]
 }

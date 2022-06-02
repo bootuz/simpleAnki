@@ -8,7 +8,7 @@
 import UIKit
 
 class ReminderViewController: UIViewController {
-    
+
     private let tableView: UITableView = {
         let table = UITableView(frame: .zero, style: .insetGrouped)
         table.register(DatePickerViewCell.self, forCellReuseIdentifier: DatePickerViewCell.identifier)
@@ -17,7 +17,7 @@ class ReminderViewController: UIViewController {
         table.isScrollEnabled = false
         return table
     }()
-    
+
     var models = [Section]()
     let remonderOn = UserDefaults.standard.bool(forKey: K.UserDefaultsKeys.reminder)
     let reminderTime = UserDefaults.standard.string(forKey: K.UserDefaultsKeys.reminderTime) ?? "00:00"
@@ -37,13 +37,13 @@ class ReminderViewController: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(doneButtonTapped))
         configure()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         selectedDays.removeAll()
         selectedDays = ReminderManager.shared.collectSelectedWeekdays()
     }
-    
+
     private func configure() {
         models.append(Section(title: "", options: [
             .switchCell(model: SwitchOption(
@@ -63,13 +63,13 @@ class ReminderViewController: UIViewController {
             }))
         ]))
     }
-    
+
     private func showWeekdaysViewController() {
         let weekdaysVC = WeekdaysViewController()
         navigationController?.pushViewController(weekdaysVC, animated: true)
     }
-    
-    
+
+
     @objc private func doneButtonTapped() {
         let notifications = ReminderManager.shared.getNotificationsCredentials(weekdays: selectedDays)
         if ReminderManager.shared.isReminderOn() {
@@ -82,11 +82,11 @@ class ReminderViewController: UIViewController {
 }
 
 extension ReminderViewController: UITableViewDelegate {
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let type = models[indexPath.section].options[indexPath.row]
-        
+
         switch type.self {
             case .staticCell(let model):
                 model.handler?()
@@ -98,16 +98,16 @@ extension ReminderViewController: UITableViewDelegate {
 
 
 extension ReminderViewController: UITableViewDataSource {
-    
+
     func numberOfSections(in tableView: UITableView) -> Int {
         return models.count
     }
-    
+
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         let model = models[section]
         return model.title
     }
-    
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let model = models[indexPath.section].options[indexPath.row]
         switch model.self {
@@ -118,11 +118,11 @@ extension ReminderViewController: UITableViewDataSource {
         }
         return UITableViewCell().frame.height
     }
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return models[section].options.count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let model = models[indexPath.section].options[indexPath.row]
         switch model.self {
@@ -133,7 +133,7 @@ extension ReminderViewController: UITableViewDataSource {
                 ) as? SettingsTableViewCell else { return UITableViewCell() }
                 cell.configure(with: model)
                 return cell
-            
+
             case .switchCell(let model):
                 guard let cell = tableView.dequeueReusableCell(
                         withIdentifier: SwitchTableViewCell.identifier,
@@ -143,7 +143,7 @@ extension ReminderViewController: UITableViewDataSource {
                 cell.selectionStyle = .none
                 cell.configure(with: model)
                 return cell
-            
+
             case .datePickerCell(let model):
                 guard let cell = tableView.dequeueReusableCell(
                     withIdentifier: DatePickerViewCell.identifier,

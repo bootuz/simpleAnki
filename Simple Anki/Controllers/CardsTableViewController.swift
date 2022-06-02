@@ -14,23 +14,23 @@ class CardsTableViewController: UIViewController, UITableViewDataSource, UITable
         table.register(UITableViewCell.self, forCellReuseIdentifier: K.cardCellIdentifier)
         return table
     }()
-    
+
     private lazy var cardToolbar: UIToolbar = {
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
         toolbar.backgroundColor = .systemBackground
         return toolbar
     }()
-    
+
     private lazy var segmentedControl: UISegmentedControl = {
         let sc = UISegmentedControl (items: ["Learning", "Memorized"])
         sc.selectedSegmentIndex = 0
         return sc
     }()
-    
+
     var cards: Results<Card>?
     var cardsToDisplay: Results<Card>?
-    
+
     var selectedDeck: Deck? {
         didSet {
             loadCards()
@@ -64,14 +64,14 @@ class CardsTableViewController: UIViewController, UITableViewDataSource, UITable
         configureToolbar()
         tableView.contentInset.bottom = cardToolbar.constraints[1].constant
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         loadCards()
     }
-    
+
     //  MARK: - Private methods
-    
+
     private func configureToolbar() {
         let gearButton = UIButton().configureIconButton(
             configuration: .tinted(),
@@ -80,25 +80,25 @@ class CardsTableViewController: UIViewController, UITableViewDataSource, UITable
         gearButton.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
         gearButton.addTarget(self, action: #selector(didLayoutTap), for: .touchUpInside)
         let gear = UIBarButtonItem(customView: gearButton)
-        
+
         let flexible = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
-        
+
         let reviewButton = UIButton().configureDefaultButton(title: "Review")
         reviewButton.frame = CGRect(x: 0, y: 0, width: view.frame.width - 98, height: 50)
         reviewButton.addTarget(self, action: #selector(reviewButtonTouchUpInside), for: .touchUpInside)
         let review = UIBarButtonItem(customView: reviewButton)
-        
+
         cardToolbar.items = [gear, flexible, review]
         view.addSubview(cardToolbar)
         cardToolbar.translatesAutoresizingMaskIntoConstraints = false
         cardToolbar.widthAnchor.constraint(equalToConstant: view.frame.size.width).isActive = true
         cardToolbar.heightAnchor.constraint(equalToConstant: 70).isActive = true
         cardToolbar.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -16).isActive = true
-        
+
     }
-    
+
     // MARK: - Actions
-    
+
     @objc private func segmentedControlSwitched() {
         print(segmentedControl.selectedSegmentIndex)
         if segmentedControl.selectedSegmentIndex == 0 {
@@ -108,11 +108,11 @@ class CardsTableViewController: UIViewController, UITableViewDataSource, UITable
         }
         reload()
     }
-    
+
     @objc private func didTapClose() {
         dismiss(animated: true)
     }
-    
+
     @objc private func reviewButtonTouchUpInside() {
         let reviewVC = ReviewViewController()
         guard let deck = selectedDeck else { return }
@@ -125,7 +125,7 @@ class CardsTableViewController: UIViewController, UITableViewDataSource, UITable
         navVC.modalPresentationStyle = .fullScreen
         present(navVC, animated: true)
     }
-    
+
     @objc private func didLayoutTap() {
         let alert = UIAlertController(title: "Set layout", message: nil, preferredStyle: .actionSheet)
         let frontToBack = UIAlertAction(title: "Front-to-Back", style: .default) { (action) in
@@ -134,22 +134,22 @@ class CardsTableViewController: UIViewController, UITableViewDataSource, UITable
             }
             self.tableView.reloadData()
         }
-        
+
         let backToFront = UIAlertAction(title: "Back-to-Front", style: .default) { (action) in
             try! StorageManager.realm.write {
                 self.selectedDeck?.layout = K.Layout.backToFront
             }
             self.tableView.reloadData()
         }
-        
+
         let all = UIAlertAction(title: "All", style: .default) { (action) in
             try! StorageManager.realm.write {
                 self.selectedDeck?.layout = K.Layout.all
             }
         }
-        
+
         let cancel = UIAlertAction(title: "Cancel", style: .cancel)
-        
+
         let checked = "checked"
         switch selectedDeck?.layout {
         case K.Layout.frontToBack:
@@ -167,14 +167,14 @@ class CardsTableViewController: UIViewController, UITableViewDataSource, UITable
         default:
             break
         }
-        
+
         alert.addAction(frontToBack)
         alert.addAction(backToFront)
         alert.addAction(all)
         alert.addAction(cancel)
         present(alert, animated: true)
     }
-    
+
     @objc private func didTapPlus() {
         let newCardVC = NewCardViewController()
         let navVC = UINavigationController(rootViewController: newCardVC)
@@ -182,9 +182,9 @@ class CardsTableViewController: UIViewController, UITableViewDataSource, UITable
         newCardVC.selectedDeck = selectedDeck
         present(navVC, animated: true)
     }
-    
+
     // MARK: - Table view data source
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let cardsCount = cardsToDisplay?.count {
             if segmentedControl.selectedSegmentIndex == 0 {
@@ -207,7 +207,7 @@ class CardsTableViewController: UIViewController, UITableViewDataSource, UITable
         }
         return cardsToDisplay?.count ?? 0
     }
-    
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60
     }
@@ -224,13 +224,13 @@ class CardsTableViewController: UIViewController, UITableViewDataSource, UITable
         cell.contentConfiguration = content
         return cell
     }
-    
-     
+
+
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let config = UISwipeActionsConfiguration(actions: [makeCardMemorizedContextualAction(forRowAt: indexPath)])
         return config
     }
-    
+
     private func makeCardMemorizedContextualAction(forRowAt indexPath: IndexPath) -> UIContextualAction {
         let memorizedContextualAction = UIContextualAction(style: .normal, title: "Memorized") { (action, swipeButtonView, completion) in
             guard let cards = self.cardsToDisplay else { return }
@@ -249,11 +249,11 @@ class CardsTableViewController: UIViewController, UITableViewDataSource, UITable
         memorizedContextualAction.backgroundColor = .systemGreen
         return memorizedContextualAction
     }
-    
+
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         return UISwipeActionsConfiguration(actions: [makeDeleteContextualAction(forRowAt: indexPath)])
     }
-    
+
     private func makeDeleteContextualAction(forRowAt indexPath: IndexPath) -> UIContextualAction {
         let deleteContextualAction = UIContextualAction(style: .destructive, title: "Delete") { (action, swipeButtonView, completion) in
             guard let cards = self.cardsToDisplay else { return }
@@ -265,8 +265,8 @@ class CardsTableViewController: UIViewController, UITableViewDataSource, UITable
         deleteContextualAction.image = UIImage(systemName: "trash")
         return deleteContextualAction
     }
-    
-    
+
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let newCardVC = NewCardViewController()
@@ -278,7 +278,7 @@ class CardsTableViewController: UIViewController, UITableViewDataSource, UITable
         }
         present(navVC, animated: true)
     }
-    
+
     func loadCards() {
         cards = selectedDeck?.cards.sorted(byKeyPath: "dateCreated", ascending: true)
         if segmentedControl.selectedSegmentIndex == 0 {
@@ -301,50 +301,50 @@ extension CardsTableViewController: EmptyStateDelegate {
         let imageView = UIImageView(image: UIImage(systemName: "brain"))
         imageView.tintColor = .systemGray3
         imageView.contentMode = .scaleAspectFill
-        
+
         let messageLabel = UILabel()
         messageLabel.text = "No memorized cards in this deck."
         messageLabel.numberOfLines = 0
         messageLabel.textAlignment = .center
         messageLabel.font = .systemFont(ofSize: 20)
         messageLabel.textColor = .systemGray
-        
+
         let stackView = UIStackView(arrangedSubviews: [imageView, messageLabel])
         stackView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 180)
         stackView.spacing = 20
         stackView.center = view.center
         stackView.axis = .vertical
         stackView.alignment = .center
-        
+
         let emptyStateview = UIView()
         emptyStateview.addSubview(stackView)
         tableView.backgroundView = emptyStateview
         tableView.isScrollEnabled = false
     }
-    
+
     func setEmptyState() {
         let imageView = UIImageView(image: UIImage(systemName: "square.stack"))
         imageView.contentMode = .scaleAspectFill
         imageView.tintColor = .systemGray3
-        
+
         let messageLabel = UILabel()
         messageLabel.text = "No cards in this deck."
         messageLabel.numberOfLines = 0
         messageLabel.textAlignment = .center
         messageLabel.font = .systemFont(ofSize: 20)
         messageLabel.textColor = .systemGray
-        
+
         let stackView = UIStackView(arrangedSubviews: [imageView, messageLabel])
         stackView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 200)
         stackView.spacing = 20
         stackView.center = view.center
         stackView.axis = .vertical
         stackView.alignment = .center
-        
+
         let button = UIButton().configureDefaultButton(title: "Add a card")
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(didTapPlus), for: .touchUpInside)
-        
+
         let emptyStateview = UIView()
         emptyStateview.addSubview(stackView)
         emptyStateview.addSubview(button)
@@ -357,7 +357,7 @@ extension CardsTableViewController: EmptyStateDelegate {
         tableView.backgroundView = emptyStateview
         tableView.isScrollEnabled = false
     }
-    
+
     func restore() {
         tableView.backgroundView = nil
         tableView.isScrollEnabled = true

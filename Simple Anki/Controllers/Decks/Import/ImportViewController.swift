@@ -21,7 +21,7 @@ enum CSVDelimeterType: Character {
 }
 
 class ImportViewController: UIViewController {
-    
+
     let segmentedControl: UISegmentedControl = {
         let sc = UISegmentedControl(items: ["APKG", "CSV"])
         sc.selectedSegmentIndex = 0
@@ -49,11 +49,11 @@ class ImportViewController: UIViewController {
     }()
     var selectedFile: ImportFileType = .apkg
     var selectedCSVDelimeter: CSVDelimeterType = .semiColon
-    
+
     var semiColonButton = UIButton().configureTintedButton(title: ";")
     var commaButton = UIButton().configureTintedButton(title: ",")
     var tabButton = UIButton().configureTintedButton(title: "\\t")
-    
+
     let stackView: UIStackView = {
         let stack = UIStackView()
         stack.sizeToFit()
@@ -61,7 +61,7 @@ class ImportViewController: UIViewController {
         stack.axis = .horizontal
         return stack
     }()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
@@ -69,18 +69,18 @@ class ImportViewController: UIViewController {
         closeButton.addTarget(self, action: #selector(didTapCloseButton), for: .touchUpInside)
         importButton.addTarget(self, action: #selector(didTapImportDeckButton), for: .touchUpInside)
         segmentedControl.addTarget(self, action: #selector(didChangeSegmentedControl), for: .valueChanged)
-        
+
         tabButton.addTarget(self, action: #selector(didTapTabButton), for: .touchUpInside)
         commaButton.addTarget(self, action: #selector(didTapCommaButton), for: .touchUpInside)
         semiColonButton.addTarget(self, action: #selector(didTapSemiColonButton), for: .touchUpInside)
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: closeButton)
-        
+
         stackView.addArrangedSubview(semiColonButton)
         stackView.addArrangedSubview(commaButton)
         stackView.addArrangedSubview(tabButton)
         semiColonButton.isSelected = true
         semiColonButton.configuration?.baseForegroundColor = .white
-        
+
         view.addSubview(stackView)
         view.addSubview(importButton)
         view.addSubview(apkgInfoLabel)
@@ -88,11 +88,11 @@ class ImportViewController: UIViewController {
         csvInfoLabel.isHidden = true
         stackView.isHidden = true
     }
-    
+
     @objc func didTapCloseButton() {
         dismiss(animated: true)
     }
-    
+
     @objc func didTapSemiColonButton() {
         selectedCSVDelimeter = .semiColon
         semiColonButton.isSelected = true
@@ -102,7 +102,7 @@ class ImportViewController: UIViewController {
         commaButton.configuration?.baseForegroundColor = .systemBlue
         semiColonButton.configuration?.baseForegroundColor = .white
     }
-    
+
     @objc func didTapCommaButton() {
         selectedCSVDelimeter = .comma
         semiColonButton.isSelected = false
@@ -112,7 +112,7 @@ class ImportViewController: UIViewController {
         commaButton.configuration?.baseForegroundColor = .white
         semiColonButton.configuration?.baseForegroundColor = .systemBlue
     }
-    
+
     @objc func didTapTabButton() {
         selectedCSVDelimeter = .tab
         semiColonButton.isSelected = false
@@ -122,30 +122,30 @@ class ImportViewController: UIViewController {
         commaButton.configuration?.baseForegroundColor = .systemBlue
         semiColonButton.configuration?.baseForegroundColor = .systemBlue
     }
-    
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         stackView.frame.size = CGSize(width: 300, height: 50)
         stackView.center = view.center
         stackView.frame.origin.y += 25
-        
+
         importButton.frame.size = CGSize(width: 300, height: 50)
         importButton.center = view.center
         importButton.frame.origin.y += 100
-        
+
         csvInfoLabel.frame.size = CGSize(width: 300, height: 300)
         csvInfoLabel.center = view.center
         csvInfoLabel.frame.origin.y -= 80
-        
+
         apkgInfoLabel.frame.size = CGSize(width: 300, height: 300)
         apkgInfoLabel.center = view.center
         apkgInfoLabel.frame.origin.y -= 50
     }
-    
+
     @objc private func didTapImportDeckButton() {
         presentDocumentPicker(with: selectedFile)
     }
-    
+
     @objc private func didChangeSegmentedControl() {
         if segmentedControl.selectedSegmentIndex == 0 {
             selectedFile = .apkg
@@ -159,7 +159,7 @@ class ImportViewController: UIViewController {
             apkgInfoLabel.isHidden = true
         }
     }
-    
+
     func presentImportedCards(deckName: String, _ cards: [APKGCard]?) {
         if let cards = cards {
             let importedCardsCV = ImportedCardsCollectionViewController()
@@ -171,9 +171,9 @@ class ImportViewController: UIViewController {
         } else {
             // show error
         }
-        
+
     }
-    
+
     private func presentDocumentPicker(with type: ImportFileType) {
         guard let csvType = UTType(filenameExtension: type.rawValue) else { return }
         let documentPicker = UIDocumentPickerViewController(forOpeningContentTypes: [csvType], asCopy: true)

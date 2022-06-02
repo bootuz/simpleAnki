@@ -27,7 +27,7 @@ struct Queries {
 
 class APKGDatabase {
     var db: Connection?
-    
+
     init(dbPath: String) throws {
         do {
             self.db = try Connection(dbPath)
@@ -36,7 +36,7 @@ class APKGDatabase {
             throw SQLiteError.OpenDatabase(message: "Could not initilize database")
         }
     }
-    
+
     private func fetch(table: Table) -> RowIterator? {
         do {
             let rowIterator = try db?.prepareRowIterator(table)
@@ -46,19 +46,19 @@ class APKGDatabase {
             return nil
         }
     }
-    
+
     private func fetch<T: Value>(col: Expression<T>, row: Row) -> T {
         return row[col]
     }
-    
+
     func getFields() -> [APKGField]? {
         guard let row = fetch(table: Queries.col)?.next() else { return nil }
         let data = fetch(col: Queries.models, row: row)
         let model: [String: APKGModel]? = decode(data: data)
         return model?.values.first?.flds
     }
-    
-    
+
+
     private func decode<T>(data: String?) -> [String: T]? where T: Codable {
         guard let data = data?.data(using: .utf8) else { return nil }
         do {
@@ -69,7 +69,7 @@ class APKGDatabase {
             return nil
         }
     }
-    
+
     func getCards() throws -> [APKGCard] {
         var cards = [APKGCard]()
         do {

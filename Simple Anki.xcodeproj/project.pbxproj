@@ -16,7 +16,6 @@
 		C028C4CC2811C71500F6894E /* EmptyStateDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C028C4CB2811C71500F6894E /* EmptyStateDelegate.swift */; };
 		C02D41C3282146BF005E9835 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02D41C2282146BF005E9835 /* DateExtension.swift */; };
 		C02D41D028218E3C005E9835 /* SwitchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02D41CF28218E3C005E9835 /* SwitchTableViewCell.swift */; };
-		C034B16F2801984D00942E77 /* AudioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C034B16E2801984D00942E77 /* AudioViewController.swift */; };
 		C0460DF42819A6C000B6EBB2 /* SwitchViewCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0460DF32819A6C000B6EBB2 /* SwitchViewCellDelegate.swift */; };
 		C05F7C4827E3A29700F4FAB4 /* BaseSettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05F7C4727E3A29700F4FAB4 /* BaseSettingsCell.swift */; };
 		C070008E263E86E0006DF020 /* RateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C070008D263E86E0006DF020 /* RateManager.swift */; };
@@ -104,7 +103,6 @@
 		C028C4CB2811C71500F6894E /* EmptyStateDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateDelegate.swift; sourceTree = "<group>"; };
 		C02D41C2282146BF005E9835 /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		C02D41CF28218E3C005E9835 /* SwitchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchTableViewCell.swift; sourceTree = "<group>"; };
-		C034B16E2801984D00942E77 /* AudioViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioViewController.swift; sourceTree = "<group>"; };
 		C0460DF32819A6C000B6EBB2 /* SwitchViewCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchViewCellDelegate.swift; sourceTree = "<group>"; };
 		C05F7C4727E3A29700F4FAB4 /* BaseSettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseSettingsCell.swift; sourceTree = "<group>"; };
 		C070008D263E86E0006DF020 /* RateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateManager.swift; sourceTree = "<group>"; };
@@ -226,7 +224,6 @@
 				C0F4FD2927BD855A00814BD6 /* MainTabBarViewController.swift */,
 				C0B1275C27C3FB91008E412D /* ReviewViewController.swift */,
 				C0E8477427F9AEF4006AEED1 /* NewCardViewController.swift */,
-				C034B16E2801984D00942E77 /* AudioViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -618,7 +615,6 @@
 				C0460DF42819A6C000B6EBB2 /* SwitchViewCellDelegate.swift in Sources */,
 				C02D41D028218E3C005E9835 /* SwitchTableViewCell.swift in Sources */,
 				C0B1275527C3F0E7008E412D /* DecksViewModel.swift in Sources */,
-				C034B16F2801984D00942E77 /* AudioViewController.swift in Sources */,
 				C0AF0E7D2614F1E000853FA7 /* ReviewManager.swift in Sources */,
 				C0F4FD3027BD855A00814BD6 /* SettingsTableViewController.swift in Sources */,
 				C0D1C1722815A57600350862 /* ReminderViewController.swift in Sources */,

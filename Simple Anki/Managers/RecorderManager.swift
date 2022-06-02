@@ -11,9 +11,5 @@ import AVFoundation
 class RecorderManager: NSObject, AVAudioRecorderDelegate {
     static let shared = RecorderManager()
 
-
     private override init() { }
-
-
-
 }

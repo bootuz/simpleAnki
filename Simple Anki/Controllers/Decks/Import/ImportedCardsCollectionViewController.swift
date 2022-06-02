@@ -8,11 +8,11 @@
 import UIKit
 
 class ImportedCardsCollectionViewController: UIViewController {
-    
+
     var collectionView: UICollectionView!
     var importedCards: [APKGCard]?
     var deckName: String?
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Imported cards"
@@ -20,19 +20,19 @@ class ImportedCardsCollectionViewController: UIViewController {
         configureCollectionView()
         setupUI()
     }
-    
+
     private func setupUI() {
         view.addSubview(collectionView)
         collectionView.frame = view.bounds
         collectionView.delegate = self
         collectionView.dataSource = self
-        
+
     }
-    
+
     @objc private func didSaveTapped() {
         print(deckName!)
     }
-    
+
     private func configureCollectionView() {
         let layout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 10, left: 16, bottom: 70, right: 16)

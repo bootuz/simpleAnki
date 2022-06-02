@@ -24,7 +24,7 @@ extension UIButton {
         }
         return self
     }
-    
+
     func configureTintedButton(title: String, image: UIImage? = nil, color: UIColor? = .systemBlue) -> UIButton {
         self.configuration = .tinted()
         self.configuration?.baseBackgroundColor = color
@@ -34,9 +34,9 @@ extension UIButton {
         self.configuration?.titleAlignment = .center
         return self
     }
-    
-    
-    
+
+
+
     func configureIconButton(configuration: UIButton.Configuration, image: UIImage?) -> UIButton {
         self.configuration = configuration
         self.configuration?.cornerStyle = .large

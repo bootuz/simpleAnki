@@ -17,7 +17,7 @@ typealias CSVCard = APKGCard
 struct APKGModel: Codable {
     let id: Int
     var flds: [APKGField]
-    
+
     func getFieldsName() -> [String] {
         return flds.map { fields in
             fields.name
@@ -35,9 +35,9 @@ extension APKGField: Comparable {
     static func < (lhs: APKGField, rhs: APKGField) -> Bool {
         return lhs.ord < rhs.ord
     }
-    
+
     static func == (lhs: APKGField, rhs: APKGField) -> Bool {
         return lhs.ord == rhs.ord
     }
-    
+
 }

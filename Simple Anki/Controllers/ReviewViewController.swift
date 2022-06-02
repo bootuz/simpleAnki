@@ -11,13 +11,13 @@ import RealmSwift
 import AVFoundation
 
 class ReviewViewController: UIViewController {
-    
+
     var deckLenght: Int?
     var progress: Progress?
     var reviewManager: ReviewManager?
     var audioPlayer : AVAudioPlayer!
     var audioFilePath: URL?
-    
+
     let topWordLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: CGFloat(36))
@@ -28,7 +28,7 @@ class ReviewViewController: UIViewController {
         label.minimumScaleFactor = 0.6
         return label
     }()
-    
+
     let bottomWordLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: CGFloat(36))
@@ -39,7 +39,7 @@ class ReviewViewController: UIViewController {
         label.minimumScaleFactor = 0.6
         return label
     }()
-    
+
     let speakerButton: UIButton = {
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: 80, height: 80))
         let image = UIImage(systemName: "speaker.wave.2.circle", withConfiguration: UIImage.SymbolConfiguration(pointSize: CGFloat(64), weight: .thin))
@@ -47,13 +47,13 @@ class ReviewViewController: UIViewController {
         button.tintColor = .darkGray
         return button
     }()
-    
+
     let progressBar: UIProgressView = {
         let bar = UIProgressView(progressViewStyle: .bar)
         bar.trackTintColor = .systemGray5
         return bar
     }()
-    
+
     let finishLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: CGFloat(36))
@@ -63,7 +63,7 @@ class ReviewViewController: UIViewController {
         label.text = "Finished!\nWant to repeat?"
         return label
     }()
-    
+
     let repeatButton: UIButton = {
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: 50, height: 40))
         let image = UIImage(systemName: "repeat",
@@ -72,12 +72,12 @@ class ReviewViewController: UIViewController {
         button.tintColor = .darkGray
         return button
     }()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         speakerButton.addTarget(self, action: #selector(speakerButtonPressed), for: .touchUpInside)
         repeatButton.addTarget(self, action: #selector(repeatButtonPressed), for: .touchUpInside)
-        
+
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "xmark"),
                                                             style: .plain,
                                                             target: self,
@@ -91,7 +91,7 @@ class ReviewViewController: UIViewController {
         bottomWordLabel.text = nil
         setupSpeakerButton()
     }
-    
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         let width = view.frame.size.width - 32
@@ -138,13 +138,13 @@ class ReviewViewController: UIViewController {
         view.addSubview(progressBar)
         view.addSubview(finishLabel)
         view.addSubview(repeatButton)
-        
+
         let tap = UITapGestureRecognizer(target: self, action: #selector(screenTapped))
         view.isUserInteractionEnabled = true
         view.addGestureRecognizer(tap)
     }
-    
-    
+
+
     private func setupSpeakerButton() {
         if let _ = getAudioFilePathForCurrentCard() {
             speakerButton.isHidden = false
@@ -152,7 +152,7 @@ class ReviewViewController: UIViewController {
             speakerButton.isHidden = true
         }
     }
-    
+
     @objc func screenTapped() {
         if bottomWordLabel.text == nil {
             bottomWordLabel.text = reviewManager?.currentCard?.back
@@ -173,23 +173,23 @@ class ReviewViewController: UIViewController {
             }
         }
     }
-    
-    
+
+
     @objc func closeButtonTapped() {
         dismiss(animated: true)
     }
-    
-    
+
+
     @objc func repeatButtonPressed(_ sender: Any) {
         finishLabel.isHidden = true
         repeatButton.isHidden = true
         topWordLabel.isHidden = false
         bottomWordLabel.isHidden = false
-        
+
         progressBar.setProgress(0.0, animated: false)
         progress?.completedUnitCount = 0
         progressBar.tintColor = UIColor(named: "systemBlue")
-        
+
         reviewManager?.repeatReview()
         reviewManager?.pickCard()
         if let card = reviewManager?.currentCard {
@@ -198,8 +198,8 @@ class ReviewViewController: UIViewController {
             bottomWordLabel.text = nil
         }
     }
-    
-    
+
+
     @objc private func speakerButtonPressed() {
         if let audioName = reviewManager?.currentCard?.audioName {
             let audioFilePath = Utils.getAudioFilePath(with: audioName)
@@ -208,8 +208,8 @@ class ReviewViewController: UIViewController {
             }
         }
     }
-    
-    
+
+
     private func getAudioFilePathForCurrentCard() -> URL? {
         if let audioName = reviewManager?.currentCard?.audioName {
             let audioFilePath = Utils.getAudioFilePath(with: audioName)
@@ -219,13 +219,13 @@ class ReviewViewController: UIViewController {
         }
         return nil
     }
-    
+
     private func updateProgressBar() {
         progress?.completedUnitCount += 1
         guard let fractionCompleted = progress?.fractionCompleted else { return }
         let progressFloat = Float(fractionCompleted)
         progressBar.setProgress(progressFloat, animated: true)
-        
+
         if progress?.completedUnitCount == progress?.totalUnitCount {
             progressBar.tintColor = #colorLiteral(red: 0.2039215686, green: 0.7803921569, blue: 0.3490196078, alpha: 1)
         }

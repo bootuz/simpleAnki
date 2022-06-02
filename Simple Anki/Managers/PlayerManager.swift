@@ -9,9 +9,9 @@ import Foundation
 import AVFoundation
 
 class PlayerManager: NSObject, AVAudioPlayerDelegate {
-    
+
     var audioPlayer : AVAudioPlayer!
-    
+
     init(recordFilePath: URL) {
         super.init()
         do {
@@ -21,7 +21,7 @@ class PlayerManager: NSObject, AVAudioPlayerDelegate {
             print("error: \(error)")
         }
     }
-    
+
     func play(recordFilePath: URL) {
         audioPlayer.play()
     }

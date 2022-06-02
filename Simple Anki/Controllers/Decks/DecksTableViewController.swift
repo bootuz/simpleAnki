@@ -11,7 +11,7 @@ import SwiftCSV
 import FirebaseAnalytics
 
 class DecksTableViewController: UITableViewController {
-    
+
     var viewModel = DecksViewModel()
 
     override func viewDidLoad() {
@@ -21,13 +21,13 @@ class DecksTableViewController: UITableViewController {
         congigureBarButtonItems()
         configureTableView()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         let key = viewModel.getSortType() ?? .dateCreated
         viewModel.loadDecks(by: key)
     }
-    
+
     @objc func didTapImport() {
         let reminderVC = ImportViewController()
         let nav = UINavigationController(rootViewController: reminderVC)
@@ -38,11 +38,11 @@ class DecksTableViewController: UITableViewController {
         }
         present(nav, animated: true)
     }
-    
+
     @objc private func didTapPlus() {
         didTapCreateDeck()
     }
-    
+
     @objc func didTapCreateDeck() {
         let newDeckVC = NewDeckViewController()
         newDeckVC.reloadData = { [weak self] in
@@ -52,15 +52,15 @@ class DecksTableViewController: UITableViewController {
         navVC.modalPresentationStyle = .fullScreen
         present(navVC, animated: true)
     }
-    
+
     // MARK: - Configure UI
-    
+
     private func configureTableView() {
         tableView.tableFooterView = UIView()
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: K.deckCellIdentifier)
         viewModel.delegate = self
     }
-    
+
     private func congigureBarButtonItems() {
         let barButtonItems = [
             UIBarButtonItem(
@@ -78,7 +78,7 @@ class DecksTableViewController: UITableViewController {
         ]
         navigationItem.rightBarButtonItems = barButtonItems
     }
-    
+
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -98,17 +98,17 @@ class DecksTableViewController: UITableViewController {
         config.performsFirstActionWithFullSwipe = false
         return config
     }
-    
+
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 55
     }
-    
+
     override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let config = UISwipeActionsConfiguration(actions: [makeEditDeckNameContextualAction(forRowAt: indexPath)])
         config.performsFirstActionWithFullSwipe = false
         return config
     }
-    
+
     private func makeDeleteContextualAction(forRowAt indexPath: IndexPath) -> UIContextualAction {
         let deleteContextualAction = UIContextualAction(style: .destructive, title: "Delete") { (action, swipeButtonView, completion) in
             let deck = self.viewModel.decks[indexPath.row]
@@ -119,12 +119,12 @@ class DecksTableViewController: UITableViewController {
         deleteContextualAction.image = UIImage(systemName: "trash")
         return deleteContextualAction
     }
-    
+
     private func makeEditDeckNameContextualAction(forRowAt indexPath: IndexPath) -> UIContextualAction {
         let editContextualAction = UIContextualAction(style: .normal, title: "Edit") { (action, swipeButtonView, completion) in
             var textField = UITextField()
             let alert = UIAlertController(title: "Edit deck's name", message: "", preferredStyle: .alert)
-            
+
             let editAction = UIAlertAction(title: "Change", style: .default) { (action) in
                 let deckName = textField.text?.trimmingCharacters(in: .whitespacesAndNewlines)
                 if !deckName!.isEmpty {
@@ -133,10 +133,10 @@ class DecksTableViewController: UITableViewController {
                 self.tableView.reloadData()
             }
             alert.addAction(editAction)
-            
+
             let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
             alert.addAction(cancelAction)
-            
+
             alert.addTextField { [weak self] (deckTextField) in
                 NotificationCenter.default.addObserver(forName: UITextField.textDidChangeNotification, object: deckTextField, queue: OperationQueue.main) { _ in
                     let deckName = deckTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -148,19 +148,19 @@ class DecksTableViewController: UITableViewController {
                 textField.text = self?.viewModel.decks[indexPath.row].name
                 textField.clearButtonMode = .whileEditing
             }
-            
+
             DispatchQueue.main.async {
                 self.present(alert, animated: true, completion: nil)
             }
-            
+
             completion(true)
         }
-        
+
         editContextualAction.backgroundColor = .systemBlue
         editContextualAction.image = UIImage(systemName: "pencil")
         return editContextualAction
     }
-    
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: K.deckCellIdentifier, for: indexPath)
         var content = cell.defaultContentConfiguration()
@@ -175,12 +175,12 @@ class DecksTableViewController: UITableViewController {
             default:
                 content.secondaryText = "\(cardsCount) cards"
         }
-        
+
         cell.contentConfiguration = content
         cell.accessoryType = .disclosureIndicator
         return cell
     }
-    
+
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cardsVC = CardsTableViewController()
         if let indexPath = tableView.indexPathForSelectedRow {
@@ -207,8 +207,8 @@ extension DecksTableViewController: EmptyStateDelegate {
         imageView.bounds.size = CGSize(width: imageView.bounds.size.width * 5,
                                        height: imageView.bounds.size.height * 5)
         imageView.tintColor = .systemGray3
-        
-        
+
+
         let messageLabel = UILabel(frame: CGRect(x: 0, y: 0,
                                                  width: view.frame.width,
                                                  height: view.frame.height))
@@ -219,16 +219,16 @@ extension DecksTableViewController: EmptyStateDelegate {
         messageLabel.textAlignment = .center
         messageLabel.font = .systemFont(ofSize: 20)
         messageLabel.textColor = .systemGray
-        
+
         let button = UIButton().configureDefaultButton(title: "Create a deck")
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(didTapCreateDeck), for: .touchUpInside)
-        
+
         let emptyStateview = UIView()
         emptyStateview.addSubview(imageView)
         emptyStateview.addSubview(messageLabel)
         emptyStateview.addSubview(button)
-        
+
         button.widthAnchor.constraint(equalToConstant: 300).isActive = true
         button.heightAnchor.constraint(equalToConstant: 50).isActive = true
         button.centerXAnchor.constraint(equalTo: emptyStateview.centerXAnchor).isActive = true
@@ -237,7 +237,7 @@ extension DecksTableViewController: EmptyStateDelegate {
         tableView.backgroundView = emptyStateview
         tableView.isScrollEnabled = false
     }
-    
+
     func restore() {
         tableView.backgroundView = nil
         tableView.isScrollEnabled = true

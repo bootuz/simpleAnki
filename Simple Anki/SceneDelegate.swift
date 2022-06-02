@@ -17,7 +17,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window.rootViewController = MainTabBarViewController()
         window.makeKeyAndVisible()
         self.window = window
-        
+
         let darkModeIsOn = UserDefaults.standard.bool(forKey: K.UserDefaultsKeys.darkMode)
         if darkModeIsOn {
             self.window?.overrideUserInterfaceStyle = .dark

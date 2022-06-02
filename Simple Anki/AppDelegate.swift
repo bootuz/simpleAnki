@@ -23,14 +23,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                 newObject!["_id"] = ObjectId.generate()
                                 newObject!["memorized"] = false
                             }
-                            
+
                             migration.enumerateObjects(ofType: Deck.className()) { oldObject, newObject in
                                 newObject!["_id"] = ObjectId.generate()
                                 newObject!["autoplay"] = false
                             }
                         }
                 })
-                
+
         do {
             StorageManager.realm = try Realm(configuration: config)
         } catch {

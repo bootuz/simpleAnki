@@ -11,26 +11,26 @@ import AVFoundation
 import SPIndicator
 
 class NewCardViewController: UIViewController {
-    
+
     var selectedCard: Card?
     var selectedDeck: Deck?
-    
+
     var audioRecorder: AVAudioRecorder!
     var player: AVAudioPlayer!
     var recordingSession = AVAudioSession.sharedInstance()
     let indicatorView = SPIndicatorView(title: "Card added", preset: .done)
     var recordFilePath: URL?
-    
+
     var reloadData: (() -> Void)?
     var isRecording: Bool = false
-    
+
     private let cardView: UIView = {
         let view = UIView()
         view.backgroundColor = .systemBackground
         view.layer.cornerRadius = 10
         return view
     }()
-    
+
     private let frontField: UITextField = {
         let field = UITextField()
         field.placeholder = "Front word"
@@ -38,7 +38,7 @@ class NewCardViewController: UIViewController {
         field.returnKeyType = .next
         return field
     }()
-    
+
     private let backField: UITextField = {
         let field = UITextField()
         field.placeholder = "Back word"
@@ -46,35 +46,35 @@ class NewCardViewController: UIViewController {
         field.returnKeyType = .done
         return field
     }()
-    
+
     private let frontLabel: UILabel = {
         let label = UILabel()
         label.text = "Front"
         label.textColor = .systemGray
         return label
     }()
-    
+
     private let backLabel: UILabel = {
         let label = UILabel()
         label.text = "Back"
         label.textColor = .systemGray
         return label
     }()
-    
+
     private let separationLine: UIView = {
         let view = UIView()
         view.backgroundColor = .systemGray4
         return view
     }()
-    
+
     private let addAndNext = UIButton().configureDefaultButton(title: "Add")
-    
+
     private let recordButton = UIButton().configureIconButton(
         configuration: .tinted(),
         image: UIImage(systemName: "mic")
     )
 
-    
+
     private let playButton = UIButton().configureIconButton(
         configuration: .tinted(),
         image: UIImage(systemName: "speaker.wave.3")
@@ -85,31 +85,31 @@ class NewCardViewController: UIViewController {
         title = "New card"
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(didDoneTapped))
         navigationItem.setHidesBackButton(true, animated: false)
-        
+
         frontField.delegate = self
         backField.delegate = self
-        
+
         recordButton.addTarget(self, action: #selector(recordButtonTapped), for: .touchUpInside)
         addAndNext.addTarget(self, action: #selector(didSaveAndNextTapped), for: .touchUpInside)
         playButton.addTarget(self, action: #selector(playButtonTapped), for: .touchUpInside)
         frontField.addTarget(self, action: #selector(textFieldChanged), for: .editingChanged)
-        
+
         setupMenuForPlayButton()
-        
+
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tap)
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         setupUI()
     }
-    
+
     private func setupEditScreen() {
         if let card = selectedCard {
             navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Update", style: .done, target: self, action: #selector(didSaveTapped))
             recordButton.isEnabled = true
             title = selectedCard?.front
-            
+
             frontField.text = card.front
             backField.text = card.back
             if let name = card.audioName {
@@ -125,11 +125,11 @@ class NewCardViewController: UIViewController {
             frontField.becomeFirstResponder()
         }
     }
-    
+
     private func setupUI() {
         navigationItem.largeTitleDisplayMode = .never
         view.backgroundColor = .secondarySystemBackground
-        
+
         addAndNext.isEnabled = false
         recordButton.isEnabled = false
         playButton.isHidden = true
@@ -137,29 +137,29 @@ class NewCardViewController: UIViewController {
         view.addSubview(addAndNext)
         view.addSubview(recordButton)
         view.addSubview(playButton)
-        
+
         recordButton.translatesAutoresizingMaskIntoConstraints = false
         recordButton.safeTrailingAnchor.constraint(equalTo: view.safeTrailingAnchor, constant: -16).isActive = true
         recordButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
         recordButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        
+
         playButton.translatesAutoresizingMaskIntoConstraints = false
         playButton.safeTrailingAnchor.constraint(equalTo: view.safeTrailingAnchor, constant: -16).isActive = true
         playButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
         playButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        
+
         addAndNext.translatesAutoresizingMaskIntoConstraints = false
         addAndNext.safeLeadingAnchor.constraint(equalTo: view.safeLeadingAnchor, constant: 16).isActive = true
         addAndNext.trailingAnchor.constraint(equalTo: recordButton.leadingAnchor, constant: -16).isActive = true
         addAndNext.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        
+
         recordButton.safeBottomAnchor.constraint(equalTo: view.keyboardLayoutGuide.topAnchor, constant: -10).isActive = true
         playButton.safeBottomAnchor.constraint(equalTo: view.keyboardLayoutGuide.topAnchor, constant: -10).isActive = true
         addAndNext.safeBottomAnchor.constraint(equalTo: view.keyboardLayoutGuide.topAnchor, constant: -10).isActive = true
         configureCardView()
         setupEditScreen()
     }
-    
+
     private func configureCardView() {
         view.addSubview(cardView)
         cardView.addSubview(separationLine)
@@ -167,12 +167,12 @@ class NewCardViewController: UIViewController {
         cardView.addSubview(backLabel)
         cardView.addSubview(frontField)
         cardView.addSubview(backField)
-        
+
         let leftPadding = 16.0
         let rightPadding = leftPadding * 2.0
         let labelHeight = 15.0
         let labelWidth = 100.0
-        
+
         cardView.frame = CGRect(
             x: leftPadding,
             y: 100.0,
@@ -210,7 +210,7 @@ class NewCardViewController: UIViewController {
             height: 40.0
         )
     }
-    
+
     private func setupMenuForPlayButton() {
         let delete = UIAction(title: "Delete",
           image: UIImage(systemName: "trash")) { _ in
@@ -223,7 +223,7 @@ class NewCardViewController: UIViewController {
         }
         playButton.menu = UIMenu(title: "", options: .destructive, children: [delete])
     }
-    
+
     private func showSettingsAlert() {
         let alert = UIAlertController(
             title: "Microphone access required",
@@ -245,7 +245,7 @@ class NewCardViewController: UIViewController {
         alert.addAction(settingsAction)
         present(alert, animated: true, completion: nil)
     }
-    
+
     private func loadRecordingUI() {
         UIView.animate(withDuration: 0.2) {
             self.addAndNext.setTitle("Recording...", for: .normal)
@@ -255,7 +255,7 @@ class NewCardViewController: UIViewController {
         }
         addAndNext.isEnabled = false
     }
-    
+
     private func loadPlaybackUI() {
         guard let isEmpty = frontField.text?.isEmpty else { return }
         if !isEmpty {
@@ -267,9 +267,9 @@ class NewCardViewController: UIViewController {
         playButton.isHidden = false
         addAndNext.setTitle("Add", for: .normal)
     }
-    
+
     //MARK: - Button handlers
-    
+
     @objc func recordButtonTapped() {
         switch recordingSession.recordPermission {
             case .granted:
@@ -285,7 +285,7 @@ class NewCardViewController: UIViewController {
                     loadPlaybackUI()
                     isRecording = false
                 }
-                
+
             case .denied:
                 HapticManager.shared.vibrate(for: .error)
                 showSettingsAlert()
@@ -295,24 +295,24 @@ class NewCardViewController: UIViewController {
                 break
         }
     }
-    
+
     @objc func playButtonTapped() {
         guard let url = recordFilePath else { return }
         play(with: url)
         playButton.isEnabled = false
     }
-    
+
     @objc private func dismissKeyboard() {
         view.endEditing(true)
     }
-    
+
     @objc private func didDoneTapped() {
         if let audioFilePath = recordFilePath {
             Utils.deleteAudioFile(at: audioFilePath)
         }
         dismiss(animated: true)
     }
-    
+
     @objc private func didSaveTapped() {
         saveCard()
         recordFilePath = nil
@@ -320,7 +320,7 @@ class NewCardViewController: UIViewController {
         dismiss(animated: true)
         indicatorView.present(duration: 0.5, haptic: .success)
     }
-    
+
     @objc private func didSaveAndNextTapped() {
         saveCard()
         frontField.text?.removeAll()
@@ -334,7 +334,7 @@ class NewCardViewController: UIViewController {
         playButton.isHidden = true
         recordFilePath = nil
     }
-    
+
     func saveCard() {
         let newCard = Card()
         if let fronText = frontField.text {
@@ -359,7 +359,7 @@ class NewCardViewController: UIViewController {
 //MARK: - TextFieldDelegate Extension
 
 extension NewCardViewController: UITextFieldDelegate {
-    
+
     @objc func textFieldChanged() {
         if frontField.text?.isEmpty == false {
             addAndNext.isEnabled = true
@@ -369,7 +369,7 @@ extension NewCardViewController: UITextFieldDelegate {
             recordButton.isEnabled = false
         }
     }
-    
+
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         switch textField.returnKeyType {
             case .next:
@@ -394,7 +394,7 @@ extension NewCardViewController: AVAudioPlayerDelegate {
             print("error: \(error.localizedDescription)")
         }
     }
-    
+
     func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
         playButton.isEnabled = true
     }
