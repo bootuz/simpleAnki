@@ -296,7 +296,6 @@
 			isa = PBXGroup;
 			children = (
 				C0C9BA762848AE500020E555 /* .swiftlint.yml */,
-				C0C9BAA72848B9410020E555 /* APKG */,
 				C0C9BA702848AC300020E555 /* .github */,
 				C028C4C7280C852400F6894E /* .gitignore */,
 				C0B5FF7425E981A8001D8D83 /* Simple Anki */,
@@ -320,6 +319,7 @@
 		C0B5FF7425E981A8001D8D83 /* Simple Anki */ = {
 			isa = PBXGroup;
 			children = (
+				C0C9BAA72848B9410020E555 /* APKG */,
 				C0F4FD4427BD86BF00814BD6 /* Protocols */,
 				C0AF0E7B2614F1AD00853FA7 /* Managers */,
 				C0ADAD5625EC19D3005DE503 /* Extensions */,
