@@ -19,7 +19,7 @@ class SettingsViewController: UIViewController {
     var models = [Section]()
     
     let darkMode = UserDefaults.standard.bool(forKey: K.UserDefaultsKeys.darkMode)
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Settings"
@@ -49,7 +49,7 @@ class SettingsViewController: UIViewController {
             .staticCell(model: Option(title: K.Settings.shareThisApp, icon: UIImage(systemName: K.Icon.share)) {
                 self.showActivityViewController()
             }),
-
+            
         ]))
         
         models.append(Section(title: K.Settings.notifications, options: [
@@ -74,7 +74,7 @@ class SettingsViewController: UIViewController {
                 message: "Open settings to allow Simple Anki send you notifications.",
                 preferredStyle: .alert
             )
-
+            
             let settingsAction = UIAlertAction(title: "Settings", style: .default) { _ in
                 guard let appSettingsUrl = URL(string: UIApplication.openSettingsURLString) else { return }
                 if UIApplication.shared.canOpenURL(appSettingsUrl) {
@@ -83,7 +83,7 @@ class SettingsViewController: UIViewController {
                     }
                 }
             }
-
+            
             let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
             alert.addAction(cancelAction)
             alert.addAction(settingsAction)
@@ -150,22 +150,21 @@ extension SettingsViewController: UITableViewDataSource {
         switch model.self {
             case .staticCell(let model):
                 guard let cell = tableView.dequeueReusableCell(
-                        withIdentifier: SettingsTableViewCell.identifier,
-                        for: indexPath
+                    withIdentifier: SettingsTableViewCell.identifier,
+                    for: indexPath
                 ) as? SettingsTableViewCell else { return UITableViewCell() }
                 cell.configure(with: model)
                 return cell
-            
+                
             case .switchCell(let model):
                 guard let cell = tableView.dequeueReusableCell(
-                        withIdentifier: SwitchTableViewCell.identifier,
-                        for: indexPath
+                    withIdentifier: SwitchTableViewCell.identifier,
+                    for: indexPath
                 ) as? SwitchTableViewCell else { return UITableViewCell() }
                 cell.delegate = self
                 cell.selectionStyle = .none
                 cell.configure(with: model)
                 return cell
-            
             default:
                 return UITableViewCell()
         }
