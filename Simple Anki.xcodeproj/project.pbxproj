@@ -49,6 +49,9 @@
 		C0C9BABE2848BD460020E555 /* APKGDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C9BABD2848BD460020E555 /* APKGDatabase.swift */; };
 		C0C9BAC02848BE2F0020E555 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C0C9BABF2848BE2F0020E555 /* GoogleService-Info.plist */; };
 		C0C9BAC22848BE960020E555 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = C0C9BAC12848BE960020E555 /* .swiftlint.yml */; };
+		C0C9BA732848AC300020E555 /* swift.yml in Resources */ = {isa = PBXBuildFile; fileRef = C0C9BA722848AC300020E555 /* swift.yml */; };
+		C0C9BA772848AE500020E555 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = C0C9BA762848AE500020E555 /* .swiftlint.yml */; };
+		C0C9BAC52848F4590020E555 /* ios.yml in Resources */ = {isa = PBXBuildFile; fileRef = C0C9BAC42848F4590020E555 /* ios.yml */; };
 		C0CBE86E266AAA9A00B83253 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CBE86D266AAA9A00B83253 /* Utils.swift */; };
 		C0CBE870266B7A2900B83253 /* PlayerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CBE86F266B7A2900B83253 /* PlayerManager.swift */; };
 		C0CBE872266BA50900B83253 /* URLExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CBE871266BA50900B83253 /* URLExtension.swift */; };
@@ -143,6 +146,8 @@
 		C0C9BABD2848BD460020E555 /* APKGDatabase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APKGDatabase.swift; sourceTree = "<group>"; };
 		C0C9BABF2848BE2F0020E555 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C0C9BAC12848BE960020E555 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		C0C9BA762848AE500020E555 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		C0C9BAC42848F4590020E555 /* ios.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = ios.yml; sourceTree = "<group>"; };
 		C0CBE86D266AAA9A00B83253 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		C0CBE86F266B7A2900B83253 /* PlayerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerManager.swift; sourceTree = "<group>"; };
 		C0CBE871266BA50900B83253 /* URLExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLExtension.swift; sourceTree = "<group>"; };
@@ -362,6 +367,7 @@
 		C0C9BA712848AC300020E555 /* workflows */ = {
 			isa = PBXGroup;
 			children = (
+				C0C9BAC42848F4590020E555 /* ios.yml */,
 				C0C9BA722848AC300020E555 /* swift.yml */,
 			);
 			path = workflows;
@@ -577,6 +583,8 @@
 			files = (
 				C0C9BAC22848BE960020E555 /* .swiftlint.yml in Resources */,
 				C0C9BA672848A3B30020E555 /* (null) in Resources */,
+				C0C9BAC52848F4590020E555 /* ios.yml in Resources */,
+				C0C9BA772848AE500020E555 /* .swiftlint.yml in Resources */,
 				C028C4C8280C852400F6894E /* .gitignore in Resources */,
 				C0C9BAC02848BE2F0020E555 /* GoogleService-Info.plist in Resources */,
 				C0B5FF8225E981AF001D8D83 /* LaunchScreen.storyboard in Resources */,
