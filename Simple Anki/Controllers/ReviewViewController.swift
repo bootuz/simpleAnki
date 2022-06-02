@@ -53,7 +53,7 @@ class ReviewViewController: UIViewController {
         bar.trackTintColor = .systemGray5
         return bar
     }()
-
+    
     let finishLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: CGFloat(36))
@@ -77,7 +77,7 @@ class ReviewViewController: UIViewController {
         super.viewDidLoad()
         speakerButton.addTarget(self, action: #selector(speakerButtonPressed), for: .touchUpInside)
         repeatButton.addTarget(self, action: #selector(repeatButtonPressed), for: .touchUpInside)
-
+        
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "xmark"),
                                                             style: .plain,
                                                             target: self,
@@ -154,8 +154,6 @@ class ReviewViewController: UIViewController {
             } else {
                 finishLabel.isHidden = false
                 repeatButton.isHidden = false
-//                doneButton.isHidden = false
-//
                 topWordLabel.isHidden = true
                 bottomWordLabel.isHidden = true
                 speakerButton.isHidden = true
@@ -175,11 +173,11 @@ class ReviewViewController: UIViewController {
         repeatButton.isHidden = true
         topWordLabel.isHidden = false
         bottomWordLabel.isHidden = false
-
+        
         progressBar.setProgress(0.0, animated: false)
         progress?.completedUnitCount = 0
         progressBar.tintColor = UIColor(named: "systemBlue")
-
+        
         reviewManager?.repeatReview()
         reviewManager?.pickCard()
         if let card = reviewManager?.currentCard {
@@ -209,7 +207,6 @@ class ReviewViewController: UIViewController {
         }
         return nil
     }
-
     
     private func updateProgressBar() {
         progress?.completedUnitCount += 1
