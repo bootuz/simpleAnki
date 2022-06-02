@@ -39,6 +39,7 @@
 		C0C043E328206B1F00A8AC6D /* WeekdaysViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C043E228206B1F00A8AC6D /* WeekdaysViewController.swift */; };
 		C0C081B425ED379600DF1083 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C081B325ED379600DF1083 /* StorageManager.swift */; };
 		C0C9BA732848AC300020E555 /* swift.yml in Resources */ = {isa = PBXBuildFile; fileRef = C0C9BA722848AC300020E555 /* swift.yml */; };
+		C0C9BA772848AE500020E555 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = C0C9BA762848AE500020E555 /* .swiftlint.yml */; };
 		C0CBE86E266AAA9A00B83253 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CBE86D266AAA9A00B83253 /* Utils.swift */; };
 		C0CBE870266B7A2900B83253 /* PlayerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CBE86F266B7A2900B83253 /* PlayerManager.swift */; };
 		C0CBE872266BA50900B83253 /* URLExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CBE871266BA50900B83253 /* URLExtension.swift */; };
@@ -122,6 +123,7 @@
 		C0C043E228206B1F00A8AC6D /* WeekdaysViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekdaysViewController.swift; sourceTree = "<group>"; };
 		C0C081B325ED379600DF1083 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		C0C9BA722848AC300020E555 /* swift.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = swift.yml; sourceTree = "<group>"; };
+		C0C9BA762848AE500020E555 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		C0CBE86D266AAA9A00B83253 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		C0CBE86F266B7A2900B83253 /* PlayerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerManager.swift; sourceTree = "<group>"; };
 		C0CBE871266BA50900B83253 /* URLExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLExtension.swift; sourceTree = "<group>"; };
@@ -265,6 +267,7 @@
 		C0B5FF6925E981A8001D8D83 = {
 			isa = PBXGroup;
 			children = (
+				C0C9BA762848AE500020E555 /* .swiftlint.yml */,
 				C0C9BA702848AC300020E555 /* .github */,
 				C028C4C7280C852400F6894E /* .gitignore */,
 				C0B5FF7425E981A8001D8D83 /* Simple Anki */,
@@ -519,6 +522,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C0C9BA772848AE500020E555 /* .swiftlint.yml in Resources */,
 				C028C4C8280C852400F6894E /* .gitignore in Resources */,
 				C0B5FF8225E981AF001D8D83 /* LaunchScreen.storyboard in Resources */,
 				C0F4FD4027BD86AC00814BD6 /* TextTableViewCell.xib in Resources */,
