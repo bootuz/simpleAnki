@@ -74,7 +74,6 @@ class ReminderViewController: UIViewController {
         navigationController?.pushViewController(weekdaysVC, animated: true)
     }
 
-
     @objc private func doneButtonTapped() {
         let notifications = ReminderManager.shared.getNotificationsCredentials(weekdays: selectedDays)
         if ReminderManager.shared.isReminderOn() {
@@ -100,7 +99,6 @@ extension ReminderViewController: UITableViewDelegate {
         }
     }
 }
-
 
 extension ReminderViewController: UITableViewDataSource {
 
