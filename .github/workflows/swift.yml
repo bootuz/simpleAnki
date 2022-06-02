@@ -1,17 +1,16 @@
-name: Lint code
+name: Linter
 
 on:
+  push:
+    branches:
+      - master
   pull_request:
-    paths:
-      - '.github/workflows/swift.yml'
-      - '.swiftlint.yml'
-      - '**/*.swift'
-
+    branches:
+      - master
 jobs:
   SwiftLint:
-    runs-on: macos-11
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
-      
-      - name: Lint code using SwiftLint
-        run: swiftlint lint --reporter github-actions-logging
+    - uses: actions/checkout@v1
+    - name: GitHub Action for SwiftLint
+      uses: norio-nomura/action-swiftlint@3.0.1

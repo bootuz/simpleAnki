@@ -135,7 +135,7 @@
 		C0B8547A282ABA90009816D0 /* APKGModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APKGModel.swift; sourceTree = "<group>"; };
 		C0C043E228206B1F00A8AC6D /* WeekdaysViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekdaysViewController.swift; sourceTree = "<group>"; };
 		C0C081B325ED379600DF1083 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
-		C0C9BA662848A3B30020E555 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		C0C9BA722848AC300020E555 /* swift.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = swift.yml; sourceTree = "<group>"; };
 		C0CBE86D266AAA9A00B83253 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		C0CBE86F266B7A2900B83253 /* PlayerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerManager.swift; sourceTree = "<group>"; };
 		C0CBE871266BA50900B83253 /* URLExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLExtension.swift; sourceTree = "<group>"; };
@@ -283,7 +283,7 @@
 		C0B5FF6925E981A8001D8D83 = {
 			isa = PBXGroup;
 			children = (
-				C0C9BA662848A3B30020E555 /* .swiftlint.yml */,
+				C0C9BA702848AC300020E555 /* .github */,
 				C028C4C7280C852400F6894E /* .gitignore */,
 				C0B5FF7425E981A8001D8D83 /* Simple Anki */,
 				C0B5FF8B25E981AF001D8D83 /* Simple AnkiTests */,
@@ -344,24 +344,20 @@
 			path = "Simple AnkiUITests";
 			sourceTree = "<group>";
 		};
-		C0B8546E2829B436009816D0 /* Import */ = {
+		C0C9BA702848AC300020E555 /* .github */ = {
 			isa = PBXGroup;
 			children = (
-				C0DD10BC2826A89C0058F96B /* ImportViewController.swift */,
-				C0B8546C28295771009816D0 /* ImportedCardsCollectionViewController.swift */,
-				C0B8546A28295655009816D0 /* ImportedCardCollectionViewCell.swift */,
+				C0C9BA712848AC300020E555 /* workflows */,
 			);
-			path = Import;
+			path = .github;
 			sourceTree = "<group>";
 		};
-		C0B8546F282AAFF8009816D0 /* APKG */ = {
+		C0C9BA712848AC300020E555 /* workflows */ = {
 			isa = PBXGroup;
 			children = (
-				C0B85470282AB012009816D0 /* APKGManager.swift */,
-				C0B85478282ABA49009816D0 /* APKGDatabase.swift */,
-				C0B8547A282ABA90009816D0 /* APKGModel.swift */,
+				C0C9BA722848AC300020E555 /* swift.yml */,
 			);
-			path = APKG;
+			path = workflows;
 			sourceTree = "<group>";
 		};
 		C0CD246E25F168DB00D7191B /* Models */ = {
@@ -542,7 +538,9 @@
 				C028C4C8280C852400F6894E /* .gitignore in Resources */,
 				C0B5FF8225E981AF001D8D83 /* LaunchScreen.storyboard in Resources */,
 				C0B5FF7F25E981AF001D8D83 /* Assets.xcassets in Resources */,
-				C0DD10C128270D630058F96B /* GoogleService-Info.plist in Resources */,
+				C0F4FD4127BD86AC00814BD6 /* AudioTableViewCell.xib in Resources */,
+				C0D1C16D28156CF400350862 /* GoogleService-Info.plist in Resources */,
+				C0C9BA732848AC300020E555 /* swift.yml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
