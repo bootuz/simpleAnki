@@ -9,7 +9,7 @@ import UIKit
 
 class ImportedCardCollectionViewCell: UICollectionViewCell {
     static let identifier = "ImportedCardTableViewCell"
-
+    
     private let cardView: UIView = {
         let view = UIView()
         view.backgroundColor = .systemBackground
@@ -122,5 +122,4 @@ class ImportedCardCollectionViewCell: UICollectionViewCell {
         frontField.text = model?.front
         backField.text = model?.back
     }
-
 }

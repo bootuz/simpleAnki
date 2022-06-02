@@ -12,7 +12,7 @@ class ImportedCardsCollectionViewController: UIViewController {
     var collectionView: UICollectionView!
     var importedCards: [APKGCard]?
     var deckName: String?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Imported cards"

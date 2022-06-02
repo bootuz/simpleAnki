@@ -50,6 +50,9 @@
 		C0C9BA812848B2090020E555 /* APKGManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C9BA7E2848B2090020E555 /* APKGManager.swift */; };
 		C0C9BA822848B2090020E555 /* APKGDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C9BA7F2848B2090020E555 /* APKGDatabase.swift */; };
 		C0C9BA832848B2090020E555 /* APKGModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C9BA802848B2090020E555 /* APKGModel.swift */; };
+		C0C9BA872848B58F0020E555 /* ImportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C9BA842848B58F0020E555 /* ImportViewController.swift */; };
+		C0C9BA882848B58F0020E555 /* ImportedCardsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C9BA852848B58F0020E555 /* ImportedCardsCollectionViewController.swift */; };
+		C0C9BA892848B58F0020E555 /* ImportedCardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C9BA862848B58F0020E555 /* ImportedCardCollectionViewCell.swift */; };
 		C0CBE86E266AAA9A00B83253 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CBE86D266AAA9A00B83253 /* Utils.swift */; };
 		C0CBE870266B7A2900B83253 /* PlayerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CBE86F266B7A2900B83253 /* PlayerManager.swift */; };
 		C0CBE872266BA50900B83253 /* URLExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CBE871266BA50900B83253 /* URLExtension.swift */; };
@@ -142,6 +145,9 @@
 		C0C9BA7E2848B2090020E555 /* APKGManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APKGManager.swift; sourceTree = "<group>"; };
 		C0C9BA7F2848B2090020E555 /* APKGDatabase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APKGDatabase.swift; sourceTree = "<group>"; };
 		C0C9BA802848B2090020E555 /* APKGModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APKGModel.swift; sourceTree = "<group>"; };
+		C0C9BA842848B58F0020E555 /* ImportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImportViewController.swift; sourceTree = "<group>"; };
+		C0C9BA852848B58F0020E555 /* ImportedCardsCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImportedCardsCollectionViewController.swift; sourceTree = "<group>"; };
+		C0C9BA862848B58F0020E555 /* ImportedCardCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImportedCardCollectionViewCell.swift; sourceTree = "<group>"; };
 		C0CBE86D266AAA9A00B83253 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		C0CBE86F266B7A2900B83253 /* PlayerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerManager.swift; sourceTree = "<group>"; };
 		C0CBE871266BA50900B83253 /* URLExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLExtension.swift; sourceTree = "<group>"; };
@@ -280,6 +286,7 @@
 			children = (
 				C0B1275427C3F0E7008E412D /* DecksViewModel.swift */,
 				C0B1275327C3F0D4008E412D /* DecksTableViewController.swift */,
+				C0C9BA8A2848B5DB0020E555 /* Import */,
 				C028C4C92811C0F000F6894E /* NewDeckViewController.swift */,
 			);
 			path = Decks;
@@ -389,6 +396,16 @@
 			);
 			name = APKG;
 			path = "Simple Anki/APKG";
+			sourceTree = "<group>";
+		};
+		C0C9BA8A2848B5DB0020E555 /* Import */ = {
+			isa = PBXGroup;
+			children = (
+				C0C9BA862848B58F0020E555 /* ImportedCardCollectionViewCell.swift */,
+				C0C9BA852848B58F0020E555 /* ImportedCardsCollectionViewController.swift */,
+				C0C9BA842848B58F0020E555 /* ImportViewController.swift */,
+			);
+			path = Import;
 			sourceTree = "<group>";
 		};
 		C0CD246E25F168DB00D7191B /* Models */ = {
@@ -606,6 +623,7 @@
 				C02D41D028218E3C005E9835 /* SwitchTableViewCell.swift in Sources */,
 				C0B1275527C3F0E7008E412D /* DecksViewModel.swift in Sources */,
 				C034B16F2801984D00942E77 /* AudioViewController.swift in Sources */,
+				C0C9BA892848B58F0020E555 /* ImportedCardCollectionViewCell.swift in Sources */,
 				C0B8546B28295655009816D0 /* ImportedCardCollectionViewCell.swift in Sources */,
 				C0AF0E7D2614F1E000853FA7 /* ReviewManager.swift in Sources */,
 				C0F4FD3027BD855A00814BD6 /* SettingsTableViewController.swift in Sources */,
@@ -634,6 +652,8 @@
 				C05F7C4827E3A29700F4FAB4 /* BaseSettingsCell.swift in Sources */,
 				C0B5FF7625E981A8001D8D83 /* AppDelegate.swift in Sources */,
 				C00648AF2682140800265EB8 /* Options.swift in Sources */,
+				C0C9BA872848B58F0020E555 /* ImportViewController.swift in Sources */,
+				C0C9BA882848B58F0020E555 /* ImportedCardsCollectionViewController.swift in Sources */,
 				C078B5FE281EADB500DE5A86 /* DatePickerViewCellDelegate.swift in Sources */,
 				C0ADAD5825EC19F7005DE503 /* TableViewExtension.swift in Sources */,
 				C00D75CC282E68A7004E92B2 /* UIButtonExtension.swift in Sources */,
