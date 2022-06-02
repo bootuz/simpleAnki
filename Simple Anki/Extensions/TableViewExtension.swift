@@ -2,10 +2,6 @@ import UIKit
 
 extension UITableView {
     
-    /// This methods sets an empty state for tableView when there are no decks or cards
-    /// - Parameters:
-    ///   - message: message for empty state
-    ///   - imageName: image name for empty state
     func setEmptyState(_ message: String, imageName: String) {
         let imageView = UIImageView(image: UIImage(systemName: imageName))
         imageView.center = CGPoint(x: self.bounds.size.width / 2,
