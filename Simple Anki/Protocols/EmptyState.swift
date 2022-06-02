@@ -7,13 +7,12 @@
 
 import Foundation
 
-
-protocol EmptyStateDelegate {
+protocol EmptyState {
     func setEmptyState()
     func setEmptyStateForMemorizedCards()
     func restore()
 }
 
-extension EmptyStateDelegate {
+extension EmptyState {
     func setEmptyStateForMemorizedCards() {}
 }

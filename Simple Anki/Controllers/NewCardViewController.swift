@@ -74,7 +74,6 @@ class NewCardViewController: UIViewController {
         image: UIImage(systemName: "mic")
     )
 
-
     private let playButton = UIButton().configureIconButton(
         configuration: .tinted(),
         image: UIImage(systemName: "speaker.wave.3")
@@ -106,7 +105,12 @@ class NewCardViewController: UIViewController {
 
     private func setupEditScreen() {
         if let card = selectedCard {
-            navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Update", style: .done, target: self, action: #selector(didSaveTapped))
+            navigationItem.rightBarButtonItem = UIBarButtonItem(
+                title: "Update",
+                style: .done,
+                target: self,
+                action: #selector(didSaveTapped)
+            )
             recordButton.isEnabled = true
             title = selectedCard?.front
 
@@ -268,31 +272,31 @@ class NewCardViewController: UIViewController {
         addAndNext.setTitle("Add", for: .normal)
     }
 
-    //MARK: - Button handlers
+    // MARK: - Button handlers
 
     @objc func recordButtonTapped() {
         switch recordingSession.recordPermission {
-            case .granted:
-                HapticManager.shared.vibrate(for: .success)
-                if !self.isRecording {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.09) {
-                        self.isRecording = true
-                        self.loadRecordingUI()
-                        self.startRecording()
-                    }
-                } else {
-                    finishRecording()
-                    loadPlaybackUI()
-                    isRecording = false
+        case .granted:
+            HapticManager.shared.vibrate(for: .success)
+            if !self.isRecording {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.09) {
+                    self.isRecording = true
+                    self.loadRecordingUI()
+                    self.startRecording()
                 }
+            } else {
+                finishRecording()
+                loadPlaybackUI()
+                isRecording = false
+            }
 
-            case .denied:
-                HapticManager.shared.vibrate(for: .error)
-                showSettingsAlert()
-            case .undetermined:
-                recordingSession.requestRecordPermission { _ in }
-            default:
-                break
+        case .denied:
+            HapticManager.shared.vibrate(for: .error)
+            showSettingsAlert()
+        case .undetermined:
+            recordingSession.requestRecordPermission { _ in }
+        default:
+            break
         }
     }
 
@@ -356,7 +360,7 @@ class NewCardViewController: UIViewController {
     }
 }
 
-//MARK: - TextFieldDelegate Extension
+// MARK: - TextFieldDelegate Extension
 
 extension NewCardViewController: UITextFieldDelegate {
 
@@ -372,12 +376,12 @@ extension NewCardViewController: UITextFieldDelegate {
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         switch textField.returnKeyType {
-            case .next:
-                backField.becomeFirstResponder()
-            case .done:
-                backField.resignFirstResponder()
-            default:
-                break
+        case .next:
+            backField.becomeFirstResponder()
+        case .done:
+            backField.resignFirstResponder()
+        default:
+            break
         }
         return true
     }

@@ -8,7 +8,6 @@
 import Foundation
 import UIKit
 
-
 extension UIButton {
     func configureDefaultButton(title: String, image: UIImage? = nil) -> UIButton {
         self.configuration = .filled()
@@ -34,8 +33,6 @@ extension UIButton {
         self.configuration?.titleAlignment = .center
         return self
     }
-
-
 
     func configureIconButton(configuration: UIButton.Configuration, image: UIImage?) -> UIButton {
         self.configuration = configuration

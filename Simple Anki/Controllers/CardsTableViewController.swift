@@ -23,9 +23,9 @@ class CardsTableViewController: UIViewController, UITableViewDataSource, UITable
     }()
 
     private lazy var segmentedControl: UISegmentedControl = {
-        let sc = UISegmentedControl (items: ["Learning", "Memorized"])
-        sc.selectedSegmentIndex = 0
-        return sc
+        let segmentedControl = UISegmentedControl(items: ["Learning", "Memorized"])
+        segmentedControl.selectedSegmentIndex = 0
+        return segmentedControl
     }()
 
     var cards: Results<Card>?
@@ -70,7 +70,7 @@ class CardsTableViewController: UIViewController, UITableViewDataSource, UITable
         loadCards()
     }
 
-    //  MARK: - Private methods
+    // MARK: - Private methods
 
     private func configureToolbar() {
         let gearButton = UIButton().configureIconButton(
@@ -128,28 +128,31 @@ class CardsTableViewController: UIViewController, UITableViewDataSource, UITable
 
     @objc private func didLayoutTap() {
         let alert = UIAlertController(title: "Set layout", message: nil, preferredStyle: .actionSheet)
-        let frontToBack = UIAlertAction(title: "Front-to-Back", style: .default) { (action) in
-            try! StorageManager.realm.write {
-                self.selectedDeck?.layout = K.Layout.frontToBack
-            }
-            self.tableView.reloadData()
+        let frontToBack = UIAlertAction(title: "Front-to-Back", style: .default) { (_) in
+            do {
+                try StorageManager.realm.write {
+                    self.selectedDeck?.layout = K.Layout.frontToBack
+                }
+            } catch { print(error) }
         }
 
-        let backToFront = UIAlertAction(title: "Back-to-Front", style: .default) { (action) in
-            try! StorageManager.realm.write {
-                self.selectedDeck?.layout = K.Layout.backToFront
-            }
-            self.tableView.reloadData()
+        let backToFront = UIAlertAction(title: "Back-to-Front", style: .default) { (_) in
+            do {
+                try StorageManager.realm.write {
+                    self.selectedDeck?.layout = K.Layout.backToFront
+                }
+            } catch { print(error) }
         }
 
-        let all = UIAlertAction(title: "All", style: .default) { (action) in
-            try! StorageManager.realm.write {
-                self.selectedDeck?.layout = K.Layout.all
-            }
+        let all = UIAlertAction(title: "All", style: .default) { (_) in
+            do {
+                try StorageManager.realm.write {
+                    self.selectedDeck?.layout = K.Layout.all
+                }
+            } catch { print(error) }
         }
 
         let cancel = UIAlertAction(title: "Cancel", style: .cancel)
-
         let checked = "checked"
         switch selectedDeck?.layout {
         case K.Layout.frontToBack:
@@ -225,23 +228,30 @@ class CardsTableViewController: UIViewController, UITableViewDataSource, UITable
         return cell
     }
 
-
-    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+    func tableView(
+        _ tableView: UITableView,
+        leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath
+    ) -> UISwipeActionsConfiguration? {
         let config = UISwipeActionsConfiguration(actions: [makeCardMemorizedContextualAction(forRowAt: indexPath)])
         return config
     }
 
     private func makeCardMemorizedContextualAction(forRowAt indexPath: IndexPath) -> UIContextualAction {
-        let memorizedContextualAction = UIContextualAction(style: .normal, title: "Memorized") { (action, swipeButtonView, completion) in
+        let memorizedContextualAction = UIContextualAction(style: .normal, title: "Memorized") { (_, _, completion) in
             guard let cards = self.cardsToDisplay else { return }
             let card = cards[indexPath.row]
-            try! StorageManager.realm.write {
-                if card.memorized == false {
-                    card.memorized = true
-                } else {
-                    card.memorized = false
+            do {
+                try StorageManager.realm.write {
+                    if card.memorized == false {
+                        card.memorized = true
+                    } else {
+                        card.memorized = false
+                    }
                 }
+            } catch {
+                print(error)
             }
+
             self.tableView.deleteRows(at: [indexPath], with: .automatic)
             completion(true)
         }
@@ -250,12 +260,15 @@ class CardsTableViewController: UIViewController, UITableViewDataSource, UITable
         return memorizedContextualAction
     }
 
-    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+    func tableView(
+        _ tableView: UITableView,
+        trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath
+    ) -> UISwipeActionsConfiguration? {
         return UISwipeActionsConfiguration(actions: [makeDeleteContextualAction(forRowAt: indexPath)])
     }
 
     private func makeDeleteContextualAction(forRowAt indexPath: IndexPath) -> UIContextualAction {
-        let deleteContextualAction = UIContextualAction(style: .destructive, title: "Delete") { (action, swipeButtonView, completion) in
+        let deleteContextualAction = UIContextualAction(style: .destructive, title: "Delete") { (_, _, completion) in
             guard let cards = self.cardsToDisplay else { return }
             let card = cards[indexPath.row]
             StorageManager.delete(card)
@@ -265,7 +278,6 @@ class CardsTableViewController: UIViewController, UITableViewDataSource, UITable
         deleteContextualAction.image = UIImage(systemName: "trash")
         return deleteContextualAction
     }
-
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
@@ -296,7 +308,7 @@ extension CardsTableViewController: RefreshDataDelegate {
     }
 }
 
-extension CardsTableViewController: EmptyStateDelegate {
+extension CardsTableViewController: EmptyState {
     func setEmptyStateForMemorizedCards() {
         let imageView = UIImageView(image: UIImage(systemName: "brain"))
         imageView.tintColor = .systemGray3
@@ -363,4 +375,3 @@ extension CardsTableViewController: EmptyStateDelegate {
         tableView.isScrollEnabled = true
     }
 }
-

@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 struct K {
     static let deckCellIdentifier = "decks"
     static let cardCellIdentifier = "cardCell"

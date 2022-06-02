@@ -24,7 +24,6 @@ struct DatePickerOption {
     let date: String
 }
 
-
 enum OptionType {
     case staticCell(model: Option)
     case switchCell(model: SwitchOption)

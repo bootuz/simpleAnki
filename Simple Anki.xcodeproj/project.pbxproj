@@ -3,17 +3,17 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C00648AA2682060F00265EB8 /* UIApplicationExtemsion.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00648A92682060F00265EB8 /* UIApplicationExtemsion.swift */; };
+		C00648AA2682060F00265EB8 /* UIApplicationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00648A92682060F00265EB8 /* UIApplicationExtension.swift */; };
 		C00648AC2682070200265EB8 /* EmailManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00648AB2682070200265EB8 /* EmailManager.swift */; };
 		C00648AF2682140800265EB8 /* Options.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00648AE2682140800265EB8 /* Options.swift */; };
 		C00D75CC282E68A7004E92B2 /* UIButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00D75CB282E68A7004E92B2 /* UIButtonExtension.swift */; };
 		C028C4C8280C852400F6894E /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = C028C4C7280C852400F6894E /* .gitignore */; };
 		C028C4CA2811C0F000F6894E /* NewDeckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C028C4C92811C0F000F6894E /* NewDeckViewController.swift */; };
-		C028C4CC2811C71500F6894E /* EmptyStateDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C028C4CB2811C71500F6894E /* EmptyStateDelegate.swift */; };
+		C028C4CC2811C71500F6894E /* EmptyState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C028C4CB2811C71500F6894E /* EmptyState.swift */; };
 		C02D41C3282146BF005E9835 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02D41C2282146BF005E9835 /* DateExtension.swift */; };
 		C02D41D028218E3C005E9835 /* SwitchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02D41CF28218E3C005E9835 /* SwitchTableViewCell.swift */; };
 		C0460DF42819A6C000B6EBB2 /* SwitchViewCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0460DF32819A6C000B6EBB2 /* SwitchViewCellDelegate.swift */; };
@@ -94,13 +94,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		C00648A92682060F00265EB8 /* UIApplicationExtemsion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplicationExtemsion.swift; sourceTree = "<group>"; };
+		C00648A92682060F00265EB8 /* UIApplicationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplicationExtension.swift; sourceTree = "<group>"; };
 		C00648AB2682070200265EB8 /* EmailManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailManager.swift; sourceTree = "<group>"; };
 		C00648AE2682140800265EB8 /* Options.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Options.swift; sourceTree = "<group>"; };
 		C00D75CB282E68A7004E92B2 /* UIButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonExtension.swift; sourceTree = "<group>"; };
 		C028C4C7280C852400F6894E /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		C028C4C92811C0F000F6894E /* NewDeckViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDeckViewController.swift; sourceTree = "<group>"; };
-		C028C4CB2811C71500F6894E /* EmptyStateDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateDelegate.swift; sourceTree = "<group>"; };
+		C028C4CB2811C71500F6894E /* EmptyState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyState.swift; sourceTree = "<group>"; };
 		C02D41C2282146BF005E9835 /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		C02D41CF28218E3C005E9835 /* SwitchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchTableViewCell.swift; sourceTree = "<group>"; };
 		C0460DF32819A6C000B6EBB2 /* SwitchViewCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchViewCellDelegate.swift; sourceTree = "<group>"; };
@@ -250,7 +250,7 @@
 			children = (
 				C0ADAD5725EC19F7005DE503 /* TableViewExtension.swift */,
 				C0CBE871266BA50900B83253 /* URLExtension.swift */,
-				C00648A92682060F00265EB8 /* UIApplicationExtemsion.swift */,
+				C00648A92682060F00265EB8 /* UIApplicationExtension.swift */,
 				C0F4FD1427BD82DF00814BD6 /* UIViewExtension.swift */,
 				C02D41C2282146BF005E9835 /* DateExtension.swift */,
 				C00D75CB282E68A7004E92B2 /* UIButtonExtension.swift */,
@@ -413,7 +413,7 @@
 		C0F4FD4427BD86BF00814BD6 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				C028C4CB2811C71500F6894E /* EmptyStateDelegate.swift */,
+				C028C4CB2811C71500F6894E /* EmptyState.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -461,6 +461,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C0B5FF9C25E981B0001D8D83 /* Build configuration list for PBXNativeTarget "Simple Anki" */;
 			buildPhases = (
+				C0C9BAC32848C4310020E555 /* ShellScript */,
 				C0B5FF6E25E981A8001D8D83 /* Sources */,
 				C0B5FF6F25E981A8001D8D83 /* Frameworks */,
 				C0B5FF7025E981A8001D8D83 /* Resources */,
@@ -599,6 +600,27 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		C0C9BAC32848C4310020E555 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 12;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\n\nif which swiftlint; then\n    swiftlint autocorrect && swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		C0B5FF6E25E981A8001D8D83 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -623,7 +645,7 @@
 				C0CBE86E266AAA9A00B83253 /* Utils.swift in Sources */,
 				C0C9BAAB2848B9410020E555 /* APKGManager.swift in Sources */,
 				C028C4CA2811C0F000F6894E /* NewDeckViewController.swift in Sources */,
-				C00648AA2682060F00265EB8 /* UIApplicationExtemsion.swift in Sources */,
+				C00648AA2682060F00265EB8 /* UIApplicationExtension.swift in Sources */,
 				C0CBE870266B7A2900B83253 /* PlayerManager.swift in Sources */,
 				C0C9BAA52848B9120020E555 /* ImportedCardsCollectionViewController.swift in Sources */,
 				C070008E263E86E0006DF020 /* RateManager.swift in Sources */,
@@ -646,7 +668,7 @@
 				C0ADAD5825EC19F7005DE503 /* TableViewExtension.swift in Sources */,
 				C00D75CC282E68A7004E92B2 /* UIButtonExtension.swift in Sources */,
 				C0B5FF7825E981A8001D8D83 /* SceneDelegate.swift in Sources */,
-				C028C4CC2811C71500F6894E /* EmptyStateDelegate.swift in Sources */,
+				C028C4CC2811C71500F6894E /* EmptyState.swift in Sources */,
 				C0E8477527F9AEF4006AEED1 /* NewCardViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

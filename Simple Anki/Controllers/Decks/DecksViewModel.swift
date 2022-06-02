@@ -9,8 +9,8 @@ import Foundation
 import RealmSwift
 
 enum SortType: String {
-    case name = "name"
-    case dateCreated = "dateCreated"
+    case name
+    case dateCreated
 }
 
 protocol RefreshDataDelegate: AnyObject {
@@ -36,7 +36,7 @@ class DecksViewModel {
                 self.decks[index].name = text
             }
         } catch {
-            // TODO: log error
+            print(error)
         }
     }
 

@@ -21,7 +21,6 @@ class SwitchTableViewCell: BaseSettingsCell {
         accessoryType = .none
     }
 
-
     required init?(coder: NSCoder) {
         fatalError()
     }
@@ -53,5 +52,3 @@ class SwitchTableViewCell: BaseSettingsCell {
         delegate?.switchAction(with: self)
     }
 }
-
-

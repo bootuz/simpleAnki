@@ -1,10 +1,10 @@
-////
-////  AudioManager.swift
-////  Simple Anki
-////
-////  Created by Астемир Бозиев on 22.05.2021.
-////
 //
+//  AudioManager.swift
+//  Simple Anki
+//
+//  Created by Астемир Бозиев on 22.05.2021.
+//
+
 import Foundation
 import AVFoundation
 

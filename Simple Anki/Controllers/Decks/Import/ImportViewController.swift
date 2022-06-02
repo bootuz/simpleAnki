@@ -23,11 +23,11 @@ enum CSVDelimeterType: Character {
 class ImportViewController: UIViewController {
 
     let segmentedControl: UISegmentedControl = {
-        let sc = UISegmentedControl(items: ["APKG", "CSV"])
-        sc.selectedSegmentIndex = 0
-        sc.setWidth(100, forSegmentAt: 0)
-        sc.setWidth(100, forSegmentAt: 1)
-        return sc
+        let segmentControl = UISegmentedControl(items: ["APKG", "CSV"])
+        segmentControl.selectedSegmentIndex = 0
+        segmentControl.setWidth(100, forSegmentAt: 0)
+        segmentControl.setWidth(100, forSegmentAt: 1)
+        return segmentControl
     }()
     let closeButton = UIButton(type: .close)
     let importButton = UIButton().configureDefaultButton(title: "Choose file...")
@@ -187,25 +187,25 @@ extension ImportViewController: UIDocumentPickerDelegate {
     func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
         guard let url = urls.first else { return }
         switch selectedFile {
-            case .apkg:
-                let apkgManager = APKGManager(apkgURL: url)
-                do {
-                    try apkgManager.unzipApkg()
-                    try apkgManager.initializeDB()
-                    let apkgCards = try apkgManager.dbManager?.getCards()
-                    apkgManager.deleteTempFolderIfExists()
-                    presentImportedCards(deckName: url.lastPathComponent, apkgCards)
-                } catch {
-                    apkgManager.deleteTempFolderIfExists()
-                    print(error)
-                }
-            case .csv:
-                do {
-                    let _ = try CSV(url: url, delimiter: selectedCSVDelimeter.rawValue)
-                    print("test")
-                } catch {
-                    print(error)
-                }
+        case .apkg:
+            let apkgManager = APKGManager(apkgURL: url)
+            do {
+                try apkgManager.unzipApkg()
+                try apkgManager.initializeDB()
+                let apkgCards = try apkgManager.dbManager?.getCards()
+                apkgManager.deleteTempFolderIfExists()
+                presentImportedCards(deckName: url.lastPathComponent, apkgCards)
+            } catch {
+                apkgManager.deleteTempFolderIfExists()
+                print(error)
+            }
+        case .csv:
+            do {
+                _ = try CSV(url: url, delimiter: selectedCSVDelimeter.rawValue)
+                print("test")
+            } catch {
+                print(error)
+            }
         }
     }
 }

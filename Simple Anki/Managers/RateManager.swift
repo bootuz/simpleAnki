@@ -39,6 +39,3 @@ class RateManager {
         UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
 }
-
-
-

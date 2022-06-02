@@ -8,7 +8,6 @@
 import Foundation
 import UIKit
 
-
 class BaseSettingsCell: UITableViewCell {
     let iconContainer: UIView = {
         let view = UIView()

@@ -22,12 +22,11 @@ class WeekdaysViewController: UIViewController {
         view.addSubview(tableView)
         view.backgroundColor = .systemBackground
         tableView.frame = view.bounds
-        tableView.frame.origin.y = tableView.frame.origin.y - 20
+        tableView.frame.origin.y -= 20
         tableView.delegate = self
         tableView.dataSource = self
     }
 }
-
 
 extension WeekdaysViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

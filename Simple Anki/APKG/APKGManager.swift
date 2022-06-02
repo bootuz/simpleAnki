@@ -36,7 +36,7 @@ final class APKGManager {
                 self.dbManager = try APKGDatabase(dbPath: destionation.appendingPathComponent("collection.anki2").path)
             }
         } catch {
-            throw SQLiteError.OpenDatabase(message: "Could not initialize db")
+            throw SQLiteError.openDatabase(message: "Could not initialize db")
         }
 
     }

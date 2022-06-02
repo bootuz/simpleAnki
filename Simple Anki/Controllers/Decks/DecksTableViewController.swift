@@ -93,7 +93,10 @@ class DecksTableViewController: UITableViewController {
         return viewModel.decks?.count ?? 0
     }
 
-    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+    override func tableView(
+        _ tableView: UITableView,
+        trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath
+    ) -> UISwipeActionsConfiguration? {
         let config = UISwipeActionsConfiguration(actions: [makeDeleteContextualAction(forRowAt: indexPath)])
         config.performsFirstActionWithFullSwipe = false
         return config
@@ -103,14 +106,17 @@ class DecksTableViewController: UITableViewController {
         return 55
     }
 
-    override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+    override func tableView(
+        _ tableView: UITableView,
+        leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath
+    ) -> UISwipeActionsConfiguration? {
         let config = UISwipeActionsConfiguration(actions: [makeEditDeckNameContextualAction(forRowAt: indexPath)])
         config.performsFirstActionWithFullSwipe = false
         return config
     }
 
     private func makeDeleteContextualAction(forRowAt indexPath: IndexPath) -> UIContextualAction {
-        let deleteContextualAction = UIContextualAction(style: .destructive, title: "Delete") { (action, swipeButtonView, completion) in
+        let deleteContextualAction = UIContextualAction(style: .destructive, title: "Delete") { (_, _, completion) in
             let deck = self.viewModel.decks[indexPath.row]
             StorageManager.delete(deck)
             self.tableView.deleteRows(at: [indexPath], with: .automatic)
@@ -121,11 +127,11 @@ class DecksTableViewController: UITableViewController {
     }
 
     private func makeEditDeckNameContextualAction(forRowAt indexPath: IndexPath) -> UIContextualAction {
-        let editContextualAction = UIContextualAction(style: .normal, title: "Edit") { (action, swipeButtonView, completion) in
+        let editContextualAction = UIContextualAction(style: .normal, title: "Edit") { (_, _, completion) in
             var textField = UITextField()
             let alert = UIAlertController(title: "Edit deck's name", message: "", preferredStyle: .alert)
 
-            let editAction = UIAlertAction(title: "Change", style: .default) { (action) in
+            let editAction = UIAlertAction(title: "Change", style: .default) { (_) in
                 let deckName = textField.text?.trimmingCharacters(in: .whitespacesAndNewlines)
                 if !deckName!.isEmpty {
                     self.viewModel.saveDeck(at: indexPath.row, text: textField.text)
@@ -138,10 +144,13 @@ class DecksTableViewController: UITableViewController {
             alert.addAction(cancelAction)
 
             alert.addTextField { [weak self] (deckTextField) in
-                NotificationCenter.default.addObserver(forName: UITextField.textDidChangeNotification, object: deckTextField, queue: OperationQueue.main) { _ in
-                    let deckName = deckTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines)
-                    editAction.isEnabled = !deckName!.isEmpty
-                }
+                NotificationCenter.default.addObserver(
+                    forName: UITextField.textDidChangeNotification,
+                    object: deckTextField,
+                    queue: OperationQueue.main) { _ in
+                        let deckName = deckTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines)
+                        editAction.isEnabled = !deckName!.isEmpty
+                    }
                 deckTextField.autocapitalizationType = .sentences
                 deckTextField.placeholder = "Type new name"
                 textField = deckTextField
@@ -168,12 +177,12 @@ class DecksTableViewController: UITableViewController {
         content.text = deck.name
         let cardsCount = deck.cards.count
         switch cardsCount {
-            case 0:
-                content.secondaryText = "No cards yet"
-            case 1:
-                content.secondaryText = "\(cardsCount) card"
-            default:
-                content.secondaryText = "\(cardsCount) cards"
+        case 0:
+            content.secondaryText = "No cards yet"
+        case 1:
+            content.secondaryText = "\(cardsCount) card"
+        default:
+            content.secondaryText = "\(cardsCount) cards"
         }
 
         cell.contentConfiguration = content
@@ -199,7 +208,7 @@ extension DecksTableViewController: RefreshDataDelegate {
     }
 }
 
-extension DecksTableViewController: EmptyStateDelegate {
+extension DecksTableViewController: EmptyState {
     func setEmptyState() {
         let imageView = UIImageView(image: UIImage(systemName: "tray"))
         imageView.center = CGPoint(x: view.frame.width / 2,
@@ -207,7 +216,6 @@ extension DecksTableViewController: EmptyStateDelegate {
         imageView.bounds.size = CGSize(width: imageView.bounds.size.width * 5,
                                        height: imageView.bounds.size.height * 5)
         imageView.tintColor = .systemGray3
-
 
         let messageLabel = UILabel(frame: CGRect(x: 0, y: 0,
                                                  width: view.frame.width,

@@ -8,7 +8,6 @@
 import Foundation
 import UserNotifications
 
-
 struct Weekday {
     let id: Int
     let name: String

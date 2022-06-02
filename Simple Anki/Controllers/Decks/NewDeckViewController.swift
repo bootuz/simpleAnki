@@ -107,7 +107,6 @@ class NewDeckViewController: UIViewController {
         navigationController?.pushViewController(newCardVC, animated: true)
     }
 
-
     @objc func textFieldChanged() {
         if textField.text?.isEmpty == false {
             navigationItem.rightBarButtonItem?.isEnabled = true

@@ -9,12 +9,11 @@ import Foundation
 import ZIPFoundation
 import SQLite
 
-
 enum SQLiteError: Error {
-    case OpenDatabase(message: String)
-    case Prepare(message: String)
-    case Step(message: String)
-    case Bind(message: String)
+    case openDatabase(message: String)
+    case prepare(message: String)
+    case step(message: String)
+    case bind(message: String)
 }
 
 struct Queries {
@@ -26,20 +25,20 @@ struct Queries {
 }
 
 class APKGDatabase {
-    var db: Connection?
+    var dbConn: Connection?
 
     init(dbPath: String) throws {
         do {
-            self.db = try Connection(dbPath)
+            self.dbConn = try Connection(dbPath)
         } catch {
             print(error)
-            throw SQLiteError.OpenDatabase(message: "Could not initilize database")
+            throw SQLiteError.openDatabase(message: "Could not initilize database")
         }
     }
 
     private func fetch(table: Table) -> RowIterator? {
         do {
-            let rowIterator = try db?.prepareRowIterator(table)
+            let rowIterator = try dbConn?.prepareRowIterator(table)
             return rowIterator
         } catch {
             print(error.localizedDescription)
@@ -58,7 +57,6 @@ class APKGDatabase {
         return model?.values.first?.flds
     }
 
-
     private func decode<T>(data: String?) -> [String: T]? where T: Codable {
         guard let data = data?.data(using: .utf8) else { return nil }
         do {
@@ -74,15 +72,22 @@ class APKGDatabase {
         var cards = [APKGCard]()
         do {
             guard let rowIterator = fetch(table: Queries.notes) else {
-                throw SQLiteError.Prepare(message: "Could not get data from table")
+                throw SQLiteError.prepare(message: "Could not get data from table")
             }
             while let row = try rowIterator.failableNext() {
                 guard var fields = getFields() else { return [] }
                 fields.sort(by: <)
                 let headers = fields.map({ $0.name })
                 let data = fetch(col: Queries.flds, row: row)
-                let cleanedData = data.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)
-                    .replacingOccurrences(of: "[\\[].*?[\\]]", with: "", options: .regularExpression, range: nil).components(separatedBy: "\u{1F}")
+                let cleanedData = data.replacingOccurrences(
+                    of: "<[^>]+>",
+                    with: "",
+                    options: .regularExpression,
+                    range: nil).replacingOccurrences(
+                        of: "[\\[].*?[\\]]",
+                        with: "",
+                        options: .regularExpression,
+                        range: nil).components(separatedBy: "\u{1F}")
                 let result = Dictionary(uniqueKeysWithValues: zip(headers, cleanedData))
                 guard let front = result["Front"],
                       let back = result["Back"]
@@ -91,8 +96,7 @@ class APKGDatabase {
             }
             return cards
         } catch {
-            throw SQLiteError.Prepare(message: error.localizedDescription)
+            throw SQLiteError.prepare(message: error.localizedDescription)
         }
     }
 }
-

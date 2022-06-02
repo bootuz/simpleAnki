@@ -30,4 +30,3 @@ class MainTabBarViewController: UITabBarController {
         self.setViewControllers([decksVC, settingsVC], animated: false)
     }
 }
-

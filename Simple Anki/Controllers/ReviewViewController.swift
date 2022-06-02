@@ -42,7 +42,9 @@ class ReviewViewController: UIViewController {
 
     let speakerButton: UIButton = {
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: 80, height: 80))
-        let image = UIImage(systemName: "speaker.wave.2.circle", withConfiguration: UIImage.SymbolConfiguration(pointSize: CGFloat(64), weight: .thin))
+        let image = UIImage(
+            systemName: "speaker.wave.2.circle",
+            withConfiguration: UIImage.SymbolConfiguration(pointSize: CGFloat(64), weight: .thin))
         button.setImage(image, for: .normal)
         button.tintColor = .darkGray
         return button
@@ -96,34 +98,11 @@ class ReviewViewController: UIViewController {
         super.viewDidLayoutSubviews()
         let width = view.frame.size.width - 32
         let height = view.frame.size.height / 3 - 50
-        topWordLabel.frame = CGRect(
-            x: 16,
-            y: 150,
-            width: width,
-            height: height
-        )
-        bottomWordLabel.frame = CGRect(
-            x: 16,
-            y: view.frame.size.height / 2 - 40,
-            width: width,
-            height: height
-        )
-        speakerButton.frame = CGRect(
-            x: (view.frame.size.width - 70) / 2,
-            y: height * 2 + 180,
-            width: 70,
-            height: 70
-        )
-        progressBar.frame = CGRect(
-            x: 16,
-            y: view.frame.size.height - 32,
-            width: view.frame.size.width - 32,
-            height: 0
-        )
-        finishLabel.frame = CGRect(
-            x: 0,
-            y: view.frame.size.height / 2 - 100,
-            width: view.frame.size.width,
+        topWordLabel.frame = CGRect(x: 16, y: 150, width: width, height: height)
+        bottomWordLabel.frame = CGRect(x: 16, y: view.frame.size.height / 2 - 40, width: width, height: height)
+        speakerButton.frame = CGRect(x: (view.frame.size.width - 70) / 2, y: height * 2 + 180, width: 70, height: 70)
+        progressBar.frame = CGRect(x: 16, y: view.frame.size.height - 32, width: view.frame.size.width - 32, height: 0)
+        finishLabel.frame = CGRect(x: 0, y: view.frame.size.height / 2 - 100, width: view.frame.size.width,
             height: 100
         )
         repeatButton.frame = CGRect(
@@ -144,9 +123,8 @@ class ReviewViewController: UIViewController {
         view.addGestureRecognizer(tap)
     }
 
-
     private func setupSpeakerButton() {
-        if let _ = getAudioFilePathForCurrentCard() {
+        if getAudioFilePathForCurrentCard() != nil {
             speakerButton.isHidden = false
         } else {
             speakerButton.isHidden = true
@@ -174,11 +152,9 @@ class ReviewViewController: UIViewController {
         }
     }
 
-
     @objc func closeButtonTapped() {
         dismiss(animated: true)
     }
-
 
     @objc func repeatButtonPressed(_ sender: Any) {
         finishLabel.isHidden = true
@@ -199,7 +175,6 @@ class ReviewViewController: UIViewController {
         }
     }
 
-
     @objc private func speakerButtonPressed() {
         if let audioName = reviewManager?.currentCard?.audioName {
             let audioFilePath = Utils.getAudioFilePath(with: audioName)
@@ -208,7 +183,6 @@ class ReviewViewController: UIViewController {
             }
         }
     }
-
 
     private func getAudioFilePathForCurrentCard() -> URL? {
         if let audioName = reviewManager?.currentCard?.audioName {
@@ -232,7 +206,6 @@ class ReviewViewController: UIViewController {
     }
 }
 
-
 extension ReviewViewController: AVAudioPlayerDelegate {
     func play(recordFilePath: URL) {
         do {
@@ -244,4 +217,3 @@ extension ReviewViewController: AVAudioPlayerDelegate {
         }
     }
 }
-

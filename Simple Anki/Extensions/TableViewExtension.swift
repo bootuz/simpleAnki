@@ -10,7 +10,6 @@ extension UITableView {
                                        height: imageView.bounds.size.height * 4)
         imageView.tintColor = .systemGray3
 
-
         let messageLabel = UILabel(frame: CGRect(x: 0, y: 0,
                                                  width: self.bounds.size.width,
                                                  height: self.bounds.size.height))
@@ -48,4 +47,3 @@ extension UITableView {
         self.isScrollEnabled = true
     }
 }
-

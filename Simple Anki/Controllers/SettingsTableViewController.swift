@@ -33,7 +33,11 @@ class SettingsViewController: UIViewController {
 
     func configure() {
         models.append(Section(title: K.Settings.appearence, options: [
-            .switchCell(model: SwitchOption(title: K.Settings.darkMode, icon: UIImage(systemName: K.Icon.lefthalf), isOn: darkMode, handler: nil))
+            .switchCell(model: SwitchOption(
+                title: K.Settings.darkMode,
+                icon: UIImage(systemName: K.Icon.lefthalf),
+                isOn: darkMode,
+                handler: nil))
         ]))
 
         models.append(Section(title: K.Settings.support, options: [
@@ -48,7 +52,7 @@ class SettingsViewController: UIViewController {
             }),
             .staticCell(model: Option(title: K.Settings.shareThisApp, icon: UIImage(systemName: K.Icon.share)) {
                 self.showActivityViewController()
-            }),
+            })
 
         ]))
 
@@ -111,7 +115,6 @@ class SettingsViewController: UIViewController {
     }
 }
 
-
 extension SettingsViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -119,14 +122,13 @@ extension SettingsViewController: UITableViewDelegate {
         let type = models[indexPath.section].options[indexPath.row]
 
         switch type.self {
-            case .staticCell(let model):
-                model.handler?()
-            default:
-                break
+        case .staticCell(let model):
+            model.handler?()
+        default:
+            break
         }
     }
 }
-
 
 extension SettingsViewController: UITableViewDataSource {
 
@@ -139,7 +141,6 @@ extension SettingsViewController: UITableViewDataSource {
         return model.title
     }
 
-
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return models[section].options.count
     }
@@ -148,25 +149,25 @@ extension SettingsViewController: UITableViewDataSource {
         let model = models[indexPath.section].options[indexPath.row]
 
         switch model.self {
-            case .staticCell(let model):
-                guard let cell = tableView.dequeueReusableCell(
-                    withIdentifier: SettingsTableViewCell.identifier,
-                    for: indexPath
-                ) as? SettingsTableViewCell else { return UITableViewCell() }
-                cell.configure(with: model)
-                return cell
+        case .staticCell(let model):
+            guard let cell = tableView.dequeueReusableCell(
+                withIdentifier: SettingsTableViewCell.identifier,
+                for: indexPath
+            ) as? SettingsTableViewCell else { return UITableViewCell() }
+            cell.configure(with: model)
+            return cell
 
-            case .switchCell(let model):
-                guard let cell = tableView.dequeueReusableCell(
-                    withIdentifier: SwitchTableViewCell.identifier,
-                    for: indexPath
-                ) as? SwitchTableViewCell else { return UITableViewCell() }
-                cell.delegate = self
-                cell.selectionStyle = .none
-                cell.configure(with: model)
-                return cell
-            default:
-                return UITableViewCell()
+        case .switchCell(let model):
+            guard let cell = tableView.dequeueReusableCell(
+                withIdentifier: SwitchTableViewCell.identifier,
+                for: indexPath
+            ) as? SwitchTableViewCell else { return UITableViewCell() }
+            cell.delegate = self
+            cell.selectionStyle = .none
+            cell.configure(with: model)
+            return cell
+        default:
+            return UITableViewCell()
         }
     }
 }
@@ -188,4 +189,3 @@ extension SettingsViewController: SwitchViewCellDelegate {
         }
     }
 }
-

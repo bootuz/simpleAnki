@@ -33,7 +33,7 @@ class ReminderViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.frame = view.bounds
-        tableView.frame.origin.y = tableView.frame.origin.y - 20
+        tableView.frame.origin.y -= 20
         navigationItem.rightBarButtonItem = UIBarButtonItem(
             title: "Done",
             style: .done,
@@ -92,10 +92,10 @@ extension ReminderViewController: UITableViewDelegate {
         let type = models[indexPath.section].options[indexPath.row]
 
         switch type.self {
-            case .staticCell(let model):
-                model.handler?()
-            default:
-                break
+        case .staticCell(let model):
+            model.handler?()
+        default:
+            break
         }
     }
 }
@@ -114,10 +114,10 @@ extension ReminderViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let model = models[indexPath.section].options[indexPath.row]
         switch model.self {
-            case .datePickerCell:
-                return 200
-            default:
-                break
+        case .datePickerCell:
+            return 200
+        default:
+            break
         }
         return UITableViewCell().frame.height
     }
@@ -129,33 +129,33 @@ extension ReminderViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let model = models[indexPath.section].options[indexPath.row]
         switch model.self {
-            case .staticCell(let model):
-                guard let cell = tableView.dequeueReusableCell(
-                    withIdentifier: SettingsTableViewCell.identifier,
-                    for: indexPath
-                ) as? SettingsTableViewCell else { return UITableViewCell() }
-                cell.configure(with: model)
-                return cell
+        case .staticCell(let model):
+            guard let cell = tableView.dequeueReusableCell(
+                withIdentifier: SettingsTableViewCell.identifier,
+                for: indexPath
+            ) as? SettingsTableViewCell else { return UITableViewCell() }
+            cell.configure(with: model)
+            return cell
 
-            case .switchCell(let model):
-                guard let cell = tableView.dequeueReusableCell(
-                    withIdentifier: SwitchTableViewCell.identifier,
-                    for: indexPath
-                ) as? SwitchTableViewCell else { return UITableViewCell() }
-                cell.delegate = self
-                cell.selectionStyle = .none
-                cell.configure(with: model)
-                return cell
+        case .switchCell(let model):
+            guard let cell = tableView.dequeueReusableCell(
+                withIdentifier: SwitchTableViewCell.identifier,
+                for: indexPath
+            ) as? SwitchTableViewCell else { return UITableViewCell() }
+            cell.delegate = self
+            cell.selectionStyle = .none
+            cell.configure(with: model)
+            return cell
 
-            case .datePickerCell(let model):
-                guard let cell = tableView.dequeueReusableCell(
-                    withIdentifier: DatePickerViewCell.identifier,
-                    for: indexPath
-                ) as? DatePickerViewCell else { return UITableViewCell() }
-                cell.delegate = self
-                cell.selectionStyle = .none
-                cell.configure(with: model)
-                return cell
+        case .datePickerCell(let model):
+            guard let cell = tableView.dequeueReusableCell(
+                withIdentifier: DatePickerViewCell.identifier,
+                for: indexPath
+            ) as? DatePickerViewCell else { return UITableViewCell() }
+            cell.delegate = self
+            cell.selectionStyle = .none
+            cell.configure(with: model)
+            return cell
         }
     }
 }
