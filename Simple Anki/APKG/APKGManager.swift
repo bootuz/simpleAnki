@@ -1,10 +1,10 @@
 import Foundation
 
 enum ZIPError: Error {
-    case Unzip(message: String)
-    case Prepare(message: String)
-    case Step(message: String)
-    case Bind(message: String)
+    case unzip(message: String)
+    case prepare(message: String)
+    case step(message: String)
+    case bind(message: String)
 }
 
 final class APKGManager {
@@ -24,7 +24,7 @@ final class APKGManager {
             try FileManager().unzipItem(at: apkgURL, to: destionation)
             try initializeDB()
         } catch {
-            throw ZIPError.Unzip(message: "Could not unzip apkg file")
+            throw ZIPError.unzip(message: "Could not unzip apkg file")
         }
     }
     
