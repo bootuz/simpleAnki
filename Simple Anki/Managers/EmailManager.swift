@@ -12,7 +12,8 @@ class EmailManager {
     private static var emailUrl: URL!
 
     static func prepareEmailForBugReport() {
-        let subject = "Bug report. App version: \(String(describing: UIApplication.version))".addingPercentEncoding(
+        let appVersion = String(describing: UIApplication.version)
+        let subject = "Bug report. App version: \(appVersion)".addingPercentEncoding(
             withAllowedCharacters: .urlQueryAllowed)!
         prepareEmailUrl(with: subject)
         UIApplication.shared.open(emailUrl, options: [:], completionHandler: nil)

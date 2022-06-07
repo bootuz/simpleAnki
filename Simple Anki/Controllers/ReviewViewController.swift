@@ -68,8 +68,9 @@ class ReviewViewController: UIViewController {
 
     let repeatButton: UIButton = {
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: 50, height: 40))
+        let config = UIImage.SymbolConfiguration(pointSize: CGFloat(64), weight: .regular)
         let image = UIImage(systemName: "repeat",
-                            withConfiguration: UIImage.SymbolConfiguration(pointSize: CGFloat(64), weight: .regular))
+                            withConfiguration: config)
         button.setImage(image, for: .normal)
         button.tintColor = .darkGray
         return button
