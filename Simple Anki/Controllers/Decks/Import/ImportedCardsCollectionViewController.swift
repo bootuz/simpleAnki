@@ -12,10 +12,11 @@ class ImportedCardsCollectionViewController: UIViewController {
     var collectionView: UICollectionView!
     var importedCards: [APKGCard]?
     var deckName: String?
+    var reloadData: (() -> Void)?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Imported cards"
+        title = "Preview imported cards"
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(didSaveTapped))
         configureCollectionView()
         setupUI()
@@ -30,7 +31,20 @@ class ImportedCardsCollectionViewController: UIViewController {
     }
 
     @objc private func didSaveTapped() {
-        print(deckName!)
+        guard let deckName = deckName, let apkgCards = importedCards else {
+            return
+        }
+        let newDeck = Deck()
+        newDeck.name = deckName
+        for card in apkgCards {
+            let newCard = Card()
+            newCard.front = card.front
+            newCard.back = card.back
+            newDeck.cards.append(newCard)
+        }
+        StorageManager.save(newDeck)
+        reloadData?()
+        self.view.window?.rootViewController?.dismiss(animated: true)
     }
 
     private func configureCollectionView() {

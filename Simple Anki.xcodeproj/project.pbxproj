@@ -36,6 +36,9 @@
 		C0B5FF8D25E981AF001D8D83 /* Simple_AnkiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B5FF8C25E981AF001D8D83 /* Simple_AnkiTests.swift */; };
 		C0B5FFAA25E98362001D8D83 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C0B5FFA925E98362001D8D83 /* RealmSwift */; };
 		C0B5FFAC25E98362001D8D83 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = C0B5FFAB25E98362001D8D83 /* Realm */; };
+		C0B6D151285DE01A00E354BA /* OnboardingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B6D150285DE01A00E354BA /* OnboardingManager.swift */; };
+		C0B6D153285DE18900E354BA /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B6D152285DE18900E354BA /* OnboardingViewController.swift */; };
+		C0B6D156285E2DFD00E354BA /* FeatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B6D155285E2DFD00E354BA /* FeatureView.swift */; };
 		C0B85474282AB18F009816D0 /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = C0B85473282AB18F009816D0 /* SQLite */; };
 		C0B85477282ABA14009816D0 /* ZIPFoundation in Frameworks */ = {isa = PBXBuildFile; productRef = C0B85476282ABA14009816D0 /* ZIPFoundation */; };
 		C0C043E328206B1F00A8AC6D /* WeekdaysViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C043E228206B1F00A8AC6D /* WeekdaysViewController.swift */; };
@@ -128,6 +131,9 @@
 		C0B5FF8E25E981AF001D8D83 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C0B5FF9325E981B0001D8D83 /* Simple AnkiUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Simple AnkiUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0B5FF9925E981B0001D8D83 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C0B6D150285DE01A00E354BA /* OnboardingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingManager.swift; sourceTree = "<group>"; };
+		C0B6D152285DE18900E354BA /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		C0B6D155285E2DFD00E354BA /* FeatureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureView.swift; sourceTree = "<group>"; };
 		C0B8546A28295655009816D0 /* ImportedCardCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportedCardCollectionViewCell.swift; sourceTree = "<group>"; };
 		C0B8546C28295771009816D0 /* ImportedCardsCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportedCardsCollectionViewController.swift; sourceTree = "<group>"; };
 		C0B85470282AB012009816D0 /* APKGManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APKGManager.swift; sourceTree = "<group>"; };
@@ -221,12 +227,13 @@
 			children = (
 				C00648A62681F26000265EB8 /* Cells */,
 				C078B5FA281EA8B300DE5A86 /* Settings */,
-				C0F4FD2827BD855A00814BD6 /* SettingsTableViewController.swift */,
 				C0B1275227C3F0CB008E412D /* Decks */,
+				C0F4FD2827BD855A00814BD6 /* SettingsTableViewController.swift */,
 				C0B1275627C3FB7A008E412D /* CardsTableViewController.swift */,
 				C0F4FD2927BD855A00814BD6 /* MainTabBarViewController.swift */,
 				C0B1275C27C3FB91008E412D /* ReviewViewController.swift */,
 				C0E8477427F9AEF4006AEED1 /* NewCardViewController.swift */,
+				C0B6D152285DE18900E354BA /* OnboardingViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -273,6 +280,7 @@
 				C0DBE8312673E9E00074DC13 /* HapticManager.swift */,
 				C00648AB2682070200265EB8 /* EmailManager.swift */,
 				C0A70E5F28211E620020D533 /* ReminderManager.swift */,
+				C0B6D150285DE01A00E354BA /* OnboardingManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -280,9 +288,9 @@
 		C0B1275227C3F0CB008E412D /* Decks */ = {
 			isa = PBXGroup;
 			children = (
+				C0C9BA8B2848B73C0020E555 /* Import */,
 				C0B1275427C3F0E7008E412D /* DecksViewModel.swift */,
 				C0B1275327C3F0D4008E412D /* DecksTableViewController.swift */,
-				C0C9BA8B2848B73C0020E555 /* Import */,
 				C028C4C92811C0F000F6894E /* NewDeckViewController.swift */,
 			);
 			path = Decks;
@@ -320,6 +328,7 @@
 				C0AF0E7B2614F1AD00853FA7 /* Managers */,
 				C0ADAD5625EC19D3005DE503 /* Extensions */,
 				C0CD246E25F168DB00D7191B /* Models */,
+				C0B6D154285E2DD100E354BA /* UIComponents */,
 				C05AA2B025E9891E00E40346 /* Controllers */,
 				C0B5FF7525E981A8001D8D83 /* AppDelegate.swift */,
 				C0B5FF7725E981A8001D8D83 /* SceneDelegate.swift */,
@@ -352,6 +361,14 @@
 				C0B5FF9925E981B0001D8D83 /* Info.plist */,
 			);
 			path = "Simple AnkiUITests";
+			sourceTree = "<group>";
+		};
+		C0B6D154285E2DD100E354BA /* UIComponents */ = {
+			isa = PBXGroup;
+			children = (
+				C0B6D155285E2DFD00E354BA /* FeatureView.swift */,
+			);
+			path = UIComponents;
 			sourceTree = "<group>";
 		};
 		C0C9BA702848AC300020E555 /* .github */ = {
@@ -659,9 +676,11 @@
 				C0B1275727C3FB7A008E412D /* CardsTableViewController.swift in Sources */,
 				C00648AC2682070200265EB8 /* EmailManager.swift in Sources */,
 				C0C081B425ED379600DF1083 /* StorageManager.swift in Sources */,
+				C0B6D153285DE18900E354BA /* OnboardingViewController.swift in Sources */,
 				C0F4FD1527BD82DF00814BD6 /* UIViewExtension.swift in Sources */,
 				C0DDE0F32658608C0051059B /* RecorderManager.swift in Sources */,
 				C0B1275D27C3FB91008E412D /* ReviewViewController.swift in Sources */,
+				C0B6D156285E2DFD00E354BA /* FeatureView.swift in Sources */,
 				C0C9BABE2848BD460020E555 /* APKGDatabase.swift in Sources */,
 				C0ADAD4725EC0E62005DE503 /* Card.swift in Sources */,
 				C0F4FD3127BD855A00814BD6 /* MainTabBarViewController.swift in Sources */,
@@ -674,6 +693,7 @@
 				C0ADAD5825EC19F7005DE503 /* TableViewExtension.swift in Sources */,
 				C00D75CC282E68A7004E92B2 /* UIButtonExtension.swift in Sources */,
 				C0B5FF7825E981A8001D8D83 /* SceneDelegate.swift in Sources */,
+				C0B6D151285DE01A00E354BA /* OnboardingManager.swift in Sources */,
 				C028C4CC2811C71500F6894E /* EmptyState.swift in Sources */,
 				C0E8477527F9AEF4006AEED1 /* NewCardViewController.swift in Sources */,
 			);
@@ -853,7 +873,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = KHNA6PF8QV;
 				INFOPLIST_FILE = "Simple Anki/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -876,7 +896,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = KHNA6PF8QV;
 				INFOPLIST_FILE = "Simple Anki/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (

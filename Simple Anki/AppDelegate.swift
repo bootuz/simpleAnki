@@ -32,7 +32,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                 newObject!["autoplay"] = false
                             }
                         }
-                })
+                    }
+        )
 
         do {
             StorageManager.realm = try Realm(configuration: config)

@@ -320,7 +320,7 @@ class NewCardViewController: UIViewController {
     @objc private func didSaveTapped() {
         saveCard()
         recordFilePath = nil
-        self.reloadData?()
+        reloadData?()
         dismiss(animated: true)
         indicatorView.present(duration: 0.5, haptic: .success)
     }

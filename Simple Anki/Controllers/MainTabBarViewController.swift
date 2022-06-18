@@ -29,4 +29,15 @@ class MainTabBarViewController: UITabBarController {
         settingsVC.tabBarItem = settingsItem
         self.setViewControllers([decksVC, settingsVC], animated: false)
     }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+
+        if OnboardingManager.shared.isNewUser() {
+            let onboardingVC = OnboardingViewController()
+            onboardingVC.modalPresentationStyle = .popover
+            onboardingVC.isModalInPresentation = true
+            present(onboardingVC, animated: true)
+        }
+    }
 }

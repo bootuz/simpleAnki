@@ -71,13 +71,14 @@ class APKGDatabase {
     func getCards() throws -> [APKGCard] {
         var cards = [APKGCard]()
         do {
-            guard let rowIterator = fetch(table: Queries.notes) else {
-                throw SQLiteError.prepare(message: "Could not get data from table")
+            guard let rowIterator = fetch(table: Queries.notes),
+                  var fields = getFields()
+            else {
+                throw SQLiteError.prepare(message: "Could not get data apkg")
             }
+            fields.sort(by: <)
+            let headers = fields.map { $0.name }
             while let row = try rowIterator.failableNext() {
-                guard var fields = getFields() else { return [] }
-                fields.sort(by: <)
-                let headers = fields.map({ $0.name })
                 let data = fetch(col: Queries.flds, row: row)
                 let cleanedData = data.replacingOccurrences(
                     of: "<[^>]+>",
@@ -90,7 +91,7 @@ class APKGDatabase {
                         range: nil).components(separatedBy: "\u{1F}")
                 let result = Dictionary(uniqueKeysWithValues: zip(headers, cleanedData))
                 guard let front = result["Front"],
-                      let back = result["Back"]
+                        let back = result["Back"]
                 else { break }
                 cards.append(APKGCard(front: front, back: back))
             }

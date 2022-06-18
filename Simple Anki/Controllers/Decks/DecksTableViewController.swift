@@ -29,8 +29,11 @@ class DecksTableViewController: UITableViewController {
     }
 
     @objc func didTapImport() {
-        let reminderVC = ImportViewController()
-        let nav = UINavigationController(rootViewController: reminderVC)
+        let importVC = ImportViewController()
+        importVC.reloadData = { [weak self] in
+            self?.reload()
+        }
+        let nav = UINavigationController(rootViewController: importVC)
         nav.isModalInPresentation = true
         if let sheetController = nav.sheetPresentationController {
             sheetController.detents = [.medium()]

@@ -1,6 +1,6 @@
 import Foundation
 
-enum ZIPError: Error {
+enum ImportError: Error {
     case unzip(message: String)
     case prepare(message: String)
     case step(message: String)
@@ -8,27 +8,27 @@ enum ZIPError: Error {
 }
 
 final class APKGManager {
-    var dbManager: APKGDatabase?
-    let destionation: URL = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent("temp")
+    private var dbManager: APKGDatabase?
+    private let destionation: URL = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent("temp")
 
-    let apkgURL: URL
+    private let apkgURL: URL
 
     init(apkgURL: URL) {
         self.apkgURL = apkgURL
 
     }
 
-    func unzipApkg() throws {
+    private func unzipApkg() throws {
         deleteTempFolderIfExists()
         do {
             try FileManager().unzipItem(at: apkgURL, to: destionation)
             try initializeDB()
         } catch {
-            throw ZIPError.unzip(message: "Could not unzip apkg file")
+            throw ImportError.unzip(message: "Could not unzip apkg file")
         }
     }
 
-    func initializeDB() throws {
+    private func initializeDB() throws {
         do {
             if FileManager().fileExists(atPath: destionation.appendingPathComponent("collection.anki21").path) {
                 self.dbManager = try APKGDatabase(dbPath: destionation.appendingPathComponent("collection.anki21").path)
@@ -41,7 +41,7 @@ final class APKGManager {
 
     }
 
-    func deleteTempFolderIfExists() {
+    private func deleteTempFolderIfExists() {
         var isDir: ObjCBool = true
         if FileManager().fileExists(atPath: destionation.path, isDirectory: &isDir) {
             do {
@@ -49,6 +49,21 @@ final class APKGManager {
             } catch {
                 print(error.localizedDescription)
             }
+        }
+    }
+
+    func prepareAPKGCards() throws -> [APKGCard] {
+        do {
+            try unzipApkg()
+            try initializeDB()
+            guard let apkgCards = try dbManager?.getCards() else {
+                deleteTempFolderIfExists()
+                throw ImportError.prepare(message: "Could not get cards")
+            }
+            return apkgCards
+        } catch {
+            deleteTempFolderIfExists()
+            throw ImportError.prepare(message: "Could not get cards")
         }
     }
 }

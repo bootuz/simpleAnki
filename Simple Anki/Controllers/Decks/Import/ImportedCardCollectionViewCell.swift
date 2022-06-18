@@ -61,6 +61,8 @@ class ImportedCardCollectionViewCell: UICollectionViewCell {
         cardView.addSubview(frontField)
         cardView.addSubview(backField)
         contentView.addSubview(cardView)
+        frontField.isEnabled = false
+        backField.isEnabled = false
     }
 
     required init?(coder: NSCoder) {
