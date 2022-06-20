@@ -15,10 +15,13 @@ class OnboardingManager {
 
     func isNewUser() -> Bool {
         return !UserDefaults.standard.bool(forKey: "isNewUser")
-
     }
 
     func setIsNotNewUser() {
         UserDefaults.standard.set(true, forKey: "isNewUser")
+    }
+
+    func setUserIsNew() {
+        UserDefaults.standard.set(false, forKey: "isNewUser")
     }
 }

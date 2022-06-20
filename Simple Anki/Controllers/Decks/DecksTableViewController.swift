@@ -28,7 +28,7 @@ class DecksTableViewController: UITableViewController {
         viewModel.loadDecks(by: key)
     }
 
-    @objc func didTapImport() {
+    @objc private func didTapImport() {
         let importVC = ImportViewController()
         importVC.reloadData = { [weak self] in
             self?.reload()
@@ -46,7 +46,7 @@ class DecksTableViewController: UITableViewController {
         didTapCreateDeck()
     }
 
-    @objc func didTapCreateDeck() {
+    @objc private func didTapCreateDeck() {
         let newDeckVC = NewDeckViewController()
         newDeckVC.reloadData = { [weak self] in
             self?.reload()
@@ -54,6 +54,10 @@ class DecksTableViewController: UITableViewController {
         let navVC = UINavigationController(rootViewController: newDeckVC)
         navVC.modalPresentationStyle = .fullScreen
         present(navVC, animated: true)
+    }
+
+    @objc private func buyButtonTapped() {
+        
     }
 
     // MARK: - Configure UI
@@ -80,6 +84,14 @@ class DecksTableViewController: UITableViewController {
             )
         ]
         navigationItem.rightBarButtonItems = barButtonItems
+        let button = UIButton()
+        button.setTitle("PRO", for: .normal)
+        button.configuration = .filled()
+        button.configuration?.cornerStyle = .capsule
+        button.configuration?.titleAlignment = .center
+        button.addTarget(self, action: #selector(buyButtonTapped), for: .touchUpInside)
+
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: button)
     }
 
     // MARK: - Table view data source

@@ -11,23 +11,23 @@ class OnboardingViewController: UIViewController {
 
     let models: [Feature] = [
         Feature(
-            title: "Create decks and cards",
-            desription: "The most simple and user friendly way to create decks and cards",
+            title: "Create collections",
+            desription: "Add decks and cards with minimum taps",
             image: UIImage(systemName: "tray.full")
         ),
         Feature(
-            title: "Import existing decks",
-            desription: "Simple Anki supports popular deck formats: .apkg and .csv",
+            title: "Import collections",
+            desription: "Upload other anki decks in .apkg and .csv formats",
             image: UIImage(systemName: "tray.and.arrow.down")
         ),
         Feature(
-            title: "Record pronounciation",
-            desription: "Simple Anki supports popular deck formats: .apkg and .csv",
+            title: "Record pronunciation",
+            desription: "Add voice recording of the words you want to learn",
             image: UIImage(systemName: "mic")
         ),
         Feature(
             title: "Set up reminders",
-            desription: "You can set up your schedule and review vocabulary",
+            desription: "Turn on notifications and study according to your schedule",
             image: UIImage(systemName: "bell")
         )
     ]
@@ -41,10 +41,9 @@ class OnboardingViewController: UIViewController {
         let label = UILabel()
         label.frame = CGRect(x: 44, y: 0, width: 300, height: 300)
         label.numberOfLines = 0
-        label.textColor = .black
         label.textAlignment = .left
         label.font = UIFont.systemFont(ofSize: 42, weight: .bold)
-        let attrString = NSMutableAttributedString(string: "Welcome to\nSimple Anki")
+        let attrString = NSMutableAttributedString(string: "Welcome to Simple Anki")
         let attributes: [NSAttributedString.Key: Any] = [
             .foregroundColor : UIColor.systemBlue
         ]
@@ -53,7 +52,7 @@ class OnboardingViewController: UIViewController {
         return label
     }()
 
-    lazy var getStartedButton = UIButton().configureTintedButton(title: "Get started")
+    lazy var getStartedButton = UIButton().configureDefaultButton(title: "Get started")
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -84,24 +83,24 @@ class OnboardingViewController: UIViewController {
         view.addSubview(getStartedButton)
 
         createFeature.frame = CGRect(
-            x: 0,
+            x: 44,
             y: 260,
             width: view.bounds.width,
             height: 30
         )
         importFeature.frame = CGRect(
-            x: 0,
+            x: 44,
             y: createFeature.frame.origin.y + createFeature.frame.height + 50,
             width: view.bounds.width,
             height: 30)
         recordFeature.frame = CGRect(
-            x: 0,
+            x: 44,
             y: importFeature.frame.origin.y + importFeature.frame.height + 50,
             width: view.bounds.width,
             height: 30
         )
         reminderFeature.frame = CGRect(
-            x: 0,
+            x: 44,
             y: recordFeature.frame.origin.y + recordFeature.frame.height + 50,
             width: view.bounds.width,
             height: 30

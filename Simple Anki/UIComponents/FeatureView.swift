@@ -50,16 +50,20 @@ class FeatureView: UIView {
 
     override func layoutSubviews() {
         super.layoutSubviews()
-
-        imageView.frame = CGRect(x: 44, y: 10, width: 60, height: 50)
+        imageView.frame = CGRect(
+            x: 0,
+            y: 10,
+            width: 60,
+            height: 50
+        )
         featureTitle.frame = CGRect(
-            x: imageView.frame.width + 50,
+            x: 70,
             y: 0,
             width: 210,
             height: 32
         )
         featureDescription.frame = CGRect(
-            x: imageView.frame.width + 50,
+            x: 70,
             y: featureTitle.frame.origin.y + 14,
             width: 230,
             height: 64

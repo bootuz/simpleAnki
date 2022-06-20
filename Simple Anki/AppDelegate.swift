@@ -18,25 +18,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     ) -> Bool {
         FirebaseApp.configure()
         RateManager.incrementLaunchCount()
-        let config = Realm.Configuration(
-                    schemaVersion: 3,
-                    migrationBlock: { migration, oldSchemaVersion in
-                        if (oldSchemaVersion < 3) {
-                            migration.enumerateObjects(ofType: Card.className()) { _, newObject in
-                                newObject!["_id"] = ObjectId.generate()
-                                newObject!["memorized"] = false
-                            }
-
-                            migration.enumerateObjects(ofType: Deck.className()) { _, newObject in
-                                newObject!["_id"] = ObjectId.generate()
-                                newObject!["autoplay"] = false
-                            }
-                        }
-                    }
-        )
+//        let config = Realm.Configuration(
+//                    schemaVersion: 3,
+//                    migrationBlock: { migration, oldSchemaVersion in
+//                        if (oldSchemaVersion < 3) {
+//                            migration.enumerateObjects(ofType: Card.className()) { _, newObject in
+//                                newObject!["_id"] = ObjectId.generate()
+//                                newObject!["memorized"] = false
+//                            }
+//
+//                            migration.enumerateObjects(ofType: Deck.className()) { _, newObject in
+//                                newObject!["_id"] = ObjectId.generate()
+//                                newObject!["autoplay"] = false
+//                            }
+//                        }
+//                    }
+//        )
 
         do {
-            StorageManager.realm = try Realm(configuration: config)
+            StorageManager.realm = try Realm()
         } catch {
             print(error.localizedDescription)
         }
