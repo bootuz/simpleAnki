@@ -57,7 +57,7 @@ class DecksTableViewController: UITableViewController {
     }
 
     @objc private func buyButtonTapped() {
-        
+
     }
 
     // MARK: - Configure UI
