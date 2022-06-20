@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>1086128649503-9sh6805pqdrels1hpej5ak8psj9d7hjv.apps.googleusercontent.com</string>
+	<string>592209129003-hlno590ddsr1q5oobc2tmnpor9og4nof.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.1086128649503-9sh6805pqdrels1hpej5ak8psj9d7hjv</string>
+	<string>com.googleusercontent.apps.592209129003-hlno590ddsr1q5oobc2tmnpor9og4nof</string>
 	<key>API_KEY</key>
-	<string>AIzaSyB1WBRDmc-FrOo9BNVUwImRbCv80eGgnVs</string>
+	<string>AIzaSyCi4oR1kvtqg8KSeBCpZChhYuTHrxds6cQ</string>
 	<key>GCM_SENDER_ID</key>
-	<string>1086128649503</string>
+	<string>592209129003</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>nart.Simple-Anki</string>
+	<string>nart.SimpleAnki</string>
 	<key>PROJECT_ID</key>
-	<string>simple-anki-7ff51</string>
+	<string>simple-anki-166ea</string>
 	<key>STORAGE_BUCKET</key>
-	<string>simple-anki-7ff51.appspot.com</string>
+	<string>simple-anki-166ea.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:1086128649503:ios:b14a23e8d03c9aaf1d6c2a</string>
+	<string>1:592209129003:ios:bd6a5413b089da9568446e</string>
 </dict>
 </plist>

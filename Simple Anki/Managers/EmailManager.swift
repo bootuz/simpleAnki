@@ -7,22 +7,24 @@
 
 import UIKit
 
-
 class EmailManager {
+
     private static var emailUrl: URL!
-    
+
     static func prepareEmailForBugReport() {
-        let subject = "Bug report. App version: \(String(describing: UIApplication.version))".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+        let appVersion = String(describing: UIApplication.version)
+        let subject = "Bug report. App version: \(appVersion)".addingPercentEncoding(
+            withAllowedCharacters: .urlQueryAllowed)!
         prepareEmailUrl(with: subject)
         UIApplication.shared.open(emailUrl, options: [:], completionHandler: nil)
     }
-    
+
     static func prepareEmailForFeatureSuggestion() {
         let subject = "Feature request".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
         prepareEmailUrl(with: subject)
         UIApplication.shared.open(emailUrl, options: [:], completionHandler: nil)
     }
-    
+
     private static func prepareEmailUrl(with subject: String) {
         emailUrl = URL(string: "mailto:\(K.email)?subject=\(subject)")!
     }

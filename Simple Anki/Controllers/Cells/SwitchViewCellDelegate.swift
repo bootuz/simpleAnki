@@ -8,7 +8,6 @@
 import Foundation
 import UIKit
 
-
 protocol SwitchViewCellDelegate: AnyObject {
     func switchAction(with cell: UITableViewCell)
 }

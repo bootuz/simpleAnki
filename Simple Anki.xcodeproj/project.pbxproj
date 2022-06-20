@@ -3,19 +3,19 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C00648AA2682060F00265EB8 /* UIApplicationExtemsion.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00648A92682060F00265EB8 /* UIApplicationExtemsion.swift */; };
+		C00648AA2682060F00265EB8 /* UIApplicationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00648A92682060F00265EB8 /* UIApplicationExtension.swift */; };
 		C00648AC2682070200265EB8 /* EmailManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00648AB2682070200265EB8 /* EmailManager.swift */; };
 		C00648AF2682140800265EB8 /* Options.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00648AE2682140800265EB8 /* Options.swift */; };
+		C00D75CC282E68A7004E92B2 /* UIButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00D75CB282E68A7004E92B2 /* UIButtonExtension.swift */; };
 		C028C4C8280C852400F6894E /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = C028C4C7280C852400F6894E /* .gitignore */; };
 		C028C4CA2811C0F000F6894E /* NewDeckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C028C4C92811C0F000F6894E /* NewDeckViewController.swift */; };
-		C028C4CC2811C71500F6894E /* EmptyStateDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C028C4CB2811C71500F6894E /* EmptyStateDelegate.swift */; };
+		C028C4CC2811C71500F6894E /* EmptyState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C028C4CB2811C71500F6894E /* EmptyState.swift */; };
 		C02D41C3282146BF005E9835 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02D41C2282146BF005E9835 /* DateExtension.swift */; };
 		C02D41D028218E3C005E9835 /* SwitchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02D41CF28218E3C005E9835 /* SwitchTableViewCell.swift */; };
-		C034B16F2801984D00942E77 /* AudioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C034B16E2801984D00942E77 /* AudioViewController.swift */; };
 		C0460DF42819A6C000B6EBB2 /* SwitchViewCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0460DF32819A6C000B6EBB2 /* SwitchViewCellDelegate.swift */; };
 		C05F7C4827E3A29700F4FAB4 /* BaseSettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05F7C4727E3A29700F4FAB4 /* BaseSettingsCell.swift */; };
 		C070008E263E86E0006DF020 /* RateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C070008D263E86E0006DF020 /* RateManager.swift */; };
@@ -36,19 +36,31 @@
 		C0B5FF8D25E981AF001D8D83 /* Simple_AnkiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B5FF8C25E981AF001D8D83 /* Simple_AnkiTests.swift */; };
 		C0B5FFAA25E98362001D8D83 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C0B5FFA925E98362001D8D83 /* RealmSwift */; };
 		C0B5FFAC25E98362001D8D83 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = C0B5FFAB25E98362001D8D83 /* Realm */; };
+		C0B6D151285DE01A00E354BA /* OnboardingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B6D150285DE01A00E354BA /* OnboardingManager.swift */; };
+		C0B6D153285DE18900E354BA /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B6D152285DE18900E354BA /* OnboardingViewController.swift */; };
+		C0B6D156285E2DFD00E354BA /* FeatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B6D155285E2DFD00E354BA /* FeatureView.swift */; };
+		C0B85474282AB18F009816D0 /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = C0B85473282AB18F009816D0 /* SQLite */; };
+		C0B85477282ABA14009816D0 /* ZIPFoundation in Frameworks */ = {isa = PBXBuildFile; productRef = C0B85476282ABA14009816D0 /* ZIPFoundation */; };
 		C0C043E328206B1F00A8AC6D /* WeekdaysViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C043E228206B1F00A8AC6D /* WeekdaysViewController.swift */; };
 		C0C081B425ED379600DF1083 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C081B325ED379600DF1083 /* StorageManager.swift */; };
-		C0C9BA732848AC300020E555 /* swift.yml in Resources */ = {isa = PBXBuildFile; fileRef = C0C9BA722848AC300020E555 /* swift.yml */; };
-		C0C9BA772848AE500020E555 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = C0C9BA762848AE500020E555 /* .swiftlint.yml */; };
+		C0C9BA672848A3B30020E555 /* (null) in Resources */ = {isa = PBXBuildFile; };
+		C0C9BAA42848B9120020E555 /* ImportedCardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C9BAA12848B9120020E555 /* ImportedCardCollectionViewCell.swift */; };
+		C0C9BAA52848B9120020E555 /* ImportedCardsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C9BAA22848B9120020E555 /* ImportedCardsCollectionViewController.swift */; };
+		C0C9BAAB2848B9410020E555 /* APKGManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C9BAA82848B9410020E555 /* APKGManager.swift */; };
+		C0C9BAB62848B9F20020E555 /* APKGModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C9BAB52848B9F20020E555 /* APKGModel.swift */; };
+		C0C9BAB82848BA160020E555 /* ImportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C9BAB72848BA160020E555 /* ImportViewController.swift */; };
+		C0C9BABE2848BD460020E555 /* APKGDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C9BABD2848BD460020E555 /* APKGDatabase.swift */; };
+		C0C9BAC02848BE2F0020E555 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C0C9BABF2848BE2F0020E555 /* GoogleService-Info.plist */; };
+		C0C9BAC22848BE960020E555 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = C0C9BAC12848BE960020E555 /* .swiftlint.yml */; };
 		C0C9BAC52848F4590020E555 /* ios.yml in Resources */ = {isa = PBXBuildFile; fileRef = C0C9BAC42848F4590020E555 /* ios.yml */; };
 		C0CBE86E266AAA9A00B83253 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CBE86D266AAA9A00B83253 /* Utils.swift */; };
 		C0CBE870266B7A2900B83253 /* PlayerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CBE86F266B7A2900B83253 /* PlayerManager.swift */; };
 		C0CBE872266BA50900B83253 /* URLExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CBE871266BA50900B83253 /* URLExtension.swift */; };
-		C0D1C16D28156CF400350862 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C0D1C16C28156CF400350862 /* GoogleService-Info.plist */; };
 		C0D1C1702815757A00350862 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = C0D1C16F2815757A00350862 /* FirebaseAnalytics */; };
 		C0D1C1722815A57600350862 /* ReminderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D1C1712815A57600350862 /* ReminderViewController.swift */; };
 		C0D1C1742815CB9100350862 /* DatePickerViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D1C1732815CB9100350862 /* DatePickerViewCell.swift */; };
 		C0DBE8322673E9E00074DC13 /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DBE8312673E9E00074DC13 /* HapticManager.swift */; };
+		C0DD10BB2823F6D10058F96B /* SwiftCSV in Frameworks */ = {isa = PBXBuildFile; productRef = C0DD10BA2823F6D10058F96B /* SwiftCSV */; };
 		C0DDE0F32658608C0051059B /* RecorderManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DDE0F22658608C0051059B /* RecorderManager.swift */; };
 		C0E8477527F9AEF4006AEED1 /* NewCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E8477427F9AEF4006AEED1 /* NewCardViewController.swift */; };
 		C0E8477827F9C9EA006AEED1 /* SPIndicator in Frameworks */ = {isa = PBXBuildFile; productRef = C0E8477727F9C9EA006AEED1 /* SPIndicator */; };
@@ -58,8 +70,6 @@
 		C0F4FD3127BD855A00814BD6 /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F4FD2927BD855A00814BD6 /* MainTabBarViewController.swift */; };
 		C0F4FD3727BD862E00814BD6 /* Simple_AnkiUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F4FD3227BD862D00814BD6 /* Simple_AnkiUITestsLaunchTests.swift */; };
 		C0F4FD3927BD862E00814BD6 /* Simple_AnkiUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F4FD3427BD862E00814BD6 /* Simple_AnkiUITests.swift */; };
-		C0F4FD4027BD86AC00814BD6 /* TextTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0F4FD3E27BD86AC00814BD6 /* TextTableViewCell.xib */; };
-		C0F4FD4127BD86AC00814BD6 /* AudioTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0F4FD3F27BD86AC00814BD6 /* AudioTableViewCell.xib */; };
 		C0F4FD4727BD877600814BD6 /* BaseScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F4FD4627BD877600814BD6 /* BaseScreen.swift */; };
 		C0F4FD4927BD877B00814BD6 /* DecksScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F4FD4827BD877B00814BD6 /* DecksScreen.swift */; };
 		C0F4FD4C27BD878B00814BD6 /* AddNewDeckAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F4FD4B27BD878B00814BD6 /* AddNewDeckAlert.swift */; };
@@ -88,15 +98,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		C00648A92682060F00265EB8 /* UIApplicationExtemsion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplicationExtemsion.swift; sourceTree = "<group>"; };
+		C00648A92682060F00265EB8 /* UIApplicationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplicationExtension.swift; sourceTree = "<group>"; };
 		C00648AB2682070200265EB8 /* EmailManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailManager.swift; sourceTree = "<group>"; };
 		C00648AE2682140800265EB8 /* Options.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Options.swift; sourceTree = "<group>"; };
+		C00D75CB282E68A7004E92B2 /* UIButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonExtension.swift; sourceTree = "<group>"; };
 		C028C4C7280C852400F6894E /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		C028C4C92811C0F000F6894E /* NewDeckViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDeckViewController.swift; sourceTree = "<group>"; };
-		C028C4CB2811C71500F6894E /* EmptyStateDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateDelegate.swift; sourceTree = "<group>"; };
+		C028C4CB2811C71500F6894E /* EmptyState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyState.swift; sourceTree = "<group>"; };
 		C02D41C2282146BF005E9835 /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		C02D41CF28218E3C005E9835 /* SwitchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchTableViewCell.swift; sourceTree = "<group>"; };
-		C034B16E2801984D00942E77 /* AudioViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioViewController.swift; sourceTree = "<group>"; };
 		C0460DF32819A6C000B6EBB2 /* SwitchViewCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchViewCellDelegate.swift; sourceTree = "<group>"; };
 		C05F7C4727E3A29700F4FAB4 /* BaseSettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseSettingsCell.swift; sourceTree = "<group>"; };
 		C070008D263E86E0006DF020 /* RateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateManager.swift; sourceTree = "<group>"; };
@@ -121,18 +131,34 @@
 		C0B5FF8E25E981AF001D8D83 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C0B5FF9325E981B0001D8D83 /* Simple AnkiUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Simple AnkiUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0B5FF9925E981B0001D8D83 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C0B6D150285DE01A00E354BA /* OnboardingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingManager.swift; sourceTree = "<group>"; };
+		C0B6D152285DE18900E354BA /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		C0B6D155285E2DFD00E354BA /* FeatureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureView.swift; sourceTree = "<group>"; };
+		C0B8546A28295655009816D0 /* ImportedCardCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportedCardCollectionViewCell.swift; sourceTree = "<group>"; };
+		C0B8546C28295771009816D0 /* ImportedCardsCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportedCardsCollectionViewController.swift; sourceTree = "<group>"; };
+		C0B85470282AB012009816D0 /* APKGManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APKGManager.swift; sourceTree = "<group>"; };
+		C0B85478282ABA49009816D0 /* APKGDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APKGDatabase.swift; sourceTree = "<group>"; };
+		C0B8547A282ABA90009816D0 /* APKGModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APKGModel.swift; sourceTree = "<group>"; };
 		C0C043E228206B1F00A8AC6D /* WeekdaysViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekdaysViewController.swift; sourceTree = "<group>"; };
 		C0C081B325ED379600DF1083 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		C0C9BA722848AC300020E555 /* swift.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = swift.yml; sourceTree = "<group>"; };
 		C0C9BA762848AE500020E555 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		C0C9BAA12848B9120020E555 /* ImportedCardCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImportedCardCollectionViewCell.swift; sourceTree = "<group>"; };
+		C0C9BAA22848B9120020E555 /* ImportedCardsCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImportedCardsCollectionViewController.swift; sourceTree = "<group>"; };
+		C0C9BAA82848B9410020E555 /* APKGManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APKGManager.swift; sourceTree = "<group>"; };
+		C0C9BAB52848B9F20020E555 /* APKGModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APKGModel.swift; sourceTree = "<group>"; };
+		C0C9BAB72848BA160020E555 /* ImportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportViewController.swift; sourceTree = "<group>"; };
+		C0C9BABD2848BD460020E555 /* APKGDatabase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APKGDatabase.swift; sourceTree = "<group>"; };
+		C0C9BABF2848BE2F0020E555 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		C0C9BAC12848BE960020E555 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		C0C9BAC42848F4590020E555 /* ios.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = ios.yml; sourceTree = "<group>"; };
 		C0CBE86D266AAA9A00B83253 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		C0CBE86F266B7A2900B83253 /* PlayerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerManager.swift; sourceTree = "<group>"; };
 		C0CBE871266BA50900B83253 /* URLExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLExtension.swift; sourceTree = "<group>"; };
-		C0D1C16C28156CF400350862 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C0D1C1712815A57600350862 /* ReminderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderViewController.swift; sourceTree = "<group>"; };
 		C0D1C1732815CB9100350862 /* DatePickerViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerViewCell.swift; sourceTree = "<group>"; };
 		C0DBE8312673E9E00074DC13 /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
+		C0DD10BC2826A89C0058F96B /* ImportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportViewController.swift; sourceTree = "<group>"; };
 		C0DDE0F22658608C0051059B /* RecorderManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecorderManager.swift; sourceTree = "<group>"; };
 		C0E8477427F9AEF4006AEED1 /* NewCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCardViewController.swift; sourceTree = "<group>"; };
 		C0F4FD1427BD82DF00814BD6 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
@@ -141,8 +167,6 @@
 		C0F4FD2927BD855A00814BD6 /* MainTabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
 		C0F4FD3227BD862D00814BD6 /* Simple_AnkiUITestsLaunchTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Simple_AnkiUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		C0F4FD3427BD862E00814BD6 /* Simple_AnkiUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Simple_AnkiUITests.swift; path = "../../../ZBS/Simple Anki/Simple AnkiUITests/Simple_AnkiUITests.swift"; sourceTree = "<group>"; };
-		C0F4FD3E27BD86AC00814BD6 /* TextTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextTableViewCell.xib; sourceTree = "<group>"; };
-		C0F4FD3F27BD86AC00814BD6 /* AudioTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AudioTableViewCell.xib; sourceTree = "<group>"; };
 		C0F4FD4627BD877600814BD6 /* BaseScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseScreen.swift; sourceTree = "<group>"; };
 		C0F4FD4827BD877B00814BD6 /* DecksScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecksScreen.swift; sourceTree = "<group>"; };
 		C0F4FD4B27BD878B00814BD6 /* AddNewDeckAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewDeckAlert.swift; sourceTree = "<group>"; };
@@ -158,10 +182,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C0B85474282AB18F009816D0 /* SQLite in Frameworks */,
+				C0DD10BB2823F6D10058F96B /* SwiftCSV in Frameworks */,
 				C0B5FFAC25E98362001D8D83 /* Realm in Frameworks */,
 				C0B5FFAA25E98362001D8D83 /* RealmSwift in Frameworks */,
 				C0D1C1702815757A00350862 /* FirebaseAnalytics in Frameworks */,
 				C0E8477827F9C9EA006AEED1 /* SPIndicator in Frameworks */,
+				C0B85477282ABA14009816D0 /* ZIPFoundation in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -198,14 +225,15 @@
 		C05AA2B025E9891E00E40346 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				C00648A62681F26000265EB8 /* Cells */,
 				C078B5FA281EA8B300DE5A86 /* Settings */,
-				C0F4FD2827BD855A00814BD6 /* SettingsTableViewController.swift */,
 				C0B1275227C3F0CB008E412D /* Decks */,
+				C0F4FD2827BD855A00814BD6 /* SettingsTableViewController.swift */,
 				C0B1275627C3FB7A008E412D /* CardsTableViewController.swift */,
 				C0F4FD2927BD855A00814BD6 /* MainTabBarViewController.swift */,
 				C0B1275C27C3FB91008E412D /* ReviewViewController.swift */,
 				C0E8477427F9AEF4006AEED1 /* NewCardViewController.swift */,
-				C034B16E2801984D00942E77 /* AudioViewController.swift */,
+				C0B6D152285DE18900E354BA /* OnboardingViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -222,7 +250,6 @@
 		C078B5FA281EA8B300DE5A86 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				C00648A62681F26000265EB8 /* Cells */,
 				C078B5F9281EA89500DE5A86 /* Reminder */,
 			);
 			path = Settings;
@@ -233,9 +260,10 @@
 			children = (
 				C0ADAD5725EC19F7005DE503 /* TableViewExtension.swift */,
 				C0CBE871266BA50900B83253 /* URLExtension.swift */,
-				C00648A92682060F00265EB8 /* UIApplicationExtemsion.swift */,
+				C00648A92682060F00265EB8 /* UIApplicationExtension.swift */,
 				C0F4FD1427BD82DF00814BD6 /* UIViewExtension.swift */,
 				C02D41C2282146BF005E9835 /* DateExtension.swift */,
+				C00D75CB282E68A7004E92B2 /* UIButtonExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -252,6 +280,7 @@
 				C0DBE8312673E9E00074DC13 /* HapticManager.swift */,
 				C00648AB2682070200265EB8 /* EmailManager.swift */,
 				C0A70E5F28211E620020D533 /* ReminderManager.swift */,
+				C0B6D150285DE01A00E354BA /* OnboardingManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -259,6 +288,7 @@
 		C0B1275227C3F0CB008E412D /* Decks */ = {
 			isa = PBXGroup;
 			children = (
+				C0C9BA8B2848B73C0020E555 /* Import */,
 				C0B1275427C3F0E7008E412D /* DecksViewModel.swift */,
 				C0B1275327C3F0D4008E412D /* DecksTableViewController.swift */,
 				C028C4C92811C0F000F6894E /* NewDeckViewController.swift */,
@@ -269,13 +299,14 @@
 		C0B5FF6925E981A8001D8D83 = {
 			isa = PBXGroup;
 			children = (
-				C0C9BA762848AE500020E555 /* .swiftlint.yml */,
+				C0C9BAC12848BE960020E555 /* .swiftlint.yml */,
 				C0C9BA702848AC300020E555 /* .github */,
 				C028C4C7280C852400F6894E /* .gitignore */,
 				C0B5FF7425E981A8001D8D83 /* Simple Anki */,
 				C0B5FF8B25E981AF001D8D83 /* Simple AnkiTests */,
 				C0B5FF9625E981B0001D8D83 /* Simple AnkiUITests */,
 				C0B5FF7325E981A8001D8D83 /* Products */,
+				C0C9BA7C2848B09F0020E555 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -292,18 +323,19 @@
 		C0B5FF7425E981A8001D8D83 /* Simple Anki */ = {
 			isa = PBXGroup;
 			children = (
+				C0C9BAA72848B9410020E555 /* APKG */,
 				C0F4FD4427BD86BF00814BD6 /* Protocols */,
 				C0AF0E7B2614F1AD00853FA7 /* Managers */,
 				C0ADAD5625EC19D3005DE503 /* Extensions */,
 				C0CD246E25F168DB00D7191B /* Models */,
+				C0B6D154285E2DD100E354BA /* UIComponents */,
 				C05AA2B025E9891E00E40346 /* Controllers */,
-				C0CD246F25F168F600D7191B /* Views */,
 				C0B5FF7525E981A8001D8D83 /* AppDelegate.swift */,
 				C0B5FF7725E981A8001D8D83 /* SceneDelegate.swift */,
 				C0B5FF7E25E981AF001D8D83 /* Assets.xcassets */,
 				C0B5FF8025E981AF001D8D83 /* LaunchScreen.storyboard */,
 				C0B5FF8325E981AF001D8D83 /* Info.plist */,
-				C0D1C16C28156CF400350862 /* GoogleService-Info.plist */,
+				C0C9BABF2848BE2F0020E555 /* GoogleService-Info.plist */,
 				C0FA7EA925F511FE00710F0D /* Constants.swift */,
 			);
 			path = "Simple Anki";
@@ -331,6 +363,14 @@
 			path = "Simple AnkiUITests";
 			sourceTree = "<group>";
 		};
+		C0B6D154285E2DD100E354BA /* UIComponents */ = {
+			isa = PBXGroup;
+			children = (
+				C0B6D155285E2DFD00E354BA /* FeatureView.swift */,
+			);
+			path = UIComponents;
+			sourceTree = "<group>";
+		};
 		C0C9BA702848AC300020E555 /* .github */ = {
 			isa = PBXGroup;
 			children = (
@@ -348,6 +388,40 @@
 			path = workflows;
 			sourceTree = "<group>";
 		};
+		C0C9BA7C2848B09F0020E555 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				C0B85478282ABA49009816D0 /* APKGDatabase.swift */,
+				C0B8546A28295655009816D0 /* ImportedCardCollectionViewCell.swift */,
+				C0B8546C28295771009816D0 /* ImportedCardsCollectionViewController.swift */,
+				C0B85470282AB012009816D0 /* APKGManager.swift */,
+				C0B8547A282ABA90009816D0 /* APKGModel.swift */,
+				C0DD10BC2826A89C0058F96B /* ImportViewController.swift */,
+				C0C9BA762848AE500020E555 /* .swiftlint.yml */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
+		C0C9BA8B2848B73C0020E555 /* Import */ = {
+			isa = PBXGroup;
+			children = (
+				C0C9BAA12848B9120020E555 /* ImportedCardCollectionViewCell.swift */,
+				C0C9BAA22848B9120020E555 /* ImportedCardsCollectionViewController.swift */,
+				C0C9BAB72848BA160020E555 /* ImportViewController.swift */,
+			);
+			path = Import;
+			sourceTree = "<group>";
+		};
+		C0C9BAA72848B9410020E555 /* APKG */ = {
+			isa = PBXGroup;
+			children = (
+				C0C9BABD2848BD460020E555 /* APKGDatabase.swift */,
+				C0C9BAA82848B9410020E555 /* APKGManager.swift */,
+				C0C9BAB52848B9F20020E555 /* APKGModel.swift */,
+			);
+			path = APKG;
+			sourceTree = "<group>";
+		};
 		C0CD246E25F168DB00D7191B /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -358,19 +432,10 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		C0CD246F25F168F600D7191B /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				C0F4FD3F27BD86AC00814BD6 /* AudioTableViewCell.xib */,
-				C0F4FD3E27BD86AC00814BD6 /* TextTableViewCell.xib */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
 		C0F4FD4427BD86BF00814BD6 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				C028C4CB2811C71500F6894E /* EmptyStateDelegate.swift */,
+				C028C4CB2811C71500F6894E /* EmptyState.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -418,6 +483,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C0B5FF9C25E981B0001D8D83 /* Build configuration list for PBXNativeTarget "Simple Anki" */;
 			buildPhases = (
+				C0C9BAC32848C4310020E555 /* ShellScript */,
 				C0B5FF6E25E981A8001D8D83 /* Sources */,
 				C0B5FF6F25E981A8001D8D83 /* Frameworks */,
 				C0B5FF7025E981A8001D8D83 /* Resources */,
@@ -432,6 +498,9 @@
 				C0B5FFAB25E98362001D8D83 /* Realm */,
 				C0E8477727F9C9EA006AEED1 /* SPIndicator */,
 				C0D1C16F2815757A00350862 /* FirebaseAnalytics */,
+				C0DD10BA2823F6D10058F96B /* SwiftCSV */,
+				C0B85473282AB18F009816D0 /* SQLite */,
+				C0B85476282ABA14009816D0 /* ZIPFoundation */,
 			);
 			productName = "Simple Anki";
 			productReference = C0B5FF7225E981A8001D8D83 /* Simple Anki.app */;
@@ -480,7 +549,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1240;
-				LastUpgradeCheck = 1240;
+				LastUpgradeCheck = 1340;
 				TargetAttributes = {
 					C0B5FF7125E981A8001D8D83 = {
 						CreatedOnToolsVersion = 12.4;
@@ -508,6 +577,9 @@
 				C0B5FFA825E98362001D8D83 /* XCRemoteSwiftPackageReference "realm-cocoa" */,
 				C0E8477627F9C9EA006AEED1 /* XCRemoteSwiftPackageReference "SPIndicator" */,
 				C0D1C16E2815757A00350862 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				C0DD10B92823F6D10058F96B /* XCRemoteSwiftPackageReference "SwiftCSV" */,
+				C0B85472282AB18F009816D0 /* XCRemoteSwiftPackageReference "SQLite.swift" */,
+				C0B85475282ABA14009816D0 /* XCRemoteSwiftPackageReference "ZIPFoundation" */,
 			);
 			productRefGroup = C0B5FF7325E981A8001D8D83 /* Products */;
 			projectDirPath = "";
@@ -525,15 +597,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C0C9BAC22848BE960020E555 /* .swiftlint.yml in Resources */,
+				C0C9BA672848A3B30020E555 /* (null) in Resources */,
 				C0C9BAC52848F4590020E555 /* ios.yml in Resources */,
-				C0C9BA772848AE500020E555 /* .swiftlint.yml in Resources */,
 				C028C4C8280C852400F6894E /* .gitignore in Resources */,
+				C0C9BAC02848BE2F0020E555 /* GoogleService-Info.plist in Resources */,
 				C0B5FF8225E981AF001D8D83 /* LaunchScreen.storyboard in Resources */,
-				C0F4FD4027BD86AC00814BD6 /* TextTableViewCell.xib in Resources */,
 				C0B5FF7F25E981AF001D8D83 /* Assets.xcassets in Resources */,
-				C0F4FD4127BD86AC00814BD6 /* AudioTableViewCell.xib in Resources */,
-				C0D1C16D28156CF400350862 /* GoogleService-Info.plist in Resources */,
-				C0C9BA732848AC300020E555 /* swift.yml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -553,12 +623,34 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		C0C9BAC32848C4310020E555 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 12;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\n\nif which swiftlint; then\n    swiftlint --fix && swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		C0B5FF6E25E981A8001D8D83 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				C0ADAD4225EC0E0B005DE503 /* Deck.swift in Sources */,
+				C0C9BAB62848B9F20020E555 /* APKGModel.swift in Sources */,
 				C02D41C3282146BF005E9835 /* DateExtension.swift in Sources */,
 				C0A70E6028211E620020D533 /* ReminderManager.swift in Sources */,
 				C0CBE872266BA50900B83253 /* URLExtension.swift in Sources */,
@@ -568,33 +660,41 @@
 				C0460DF42819A6C000B6EBB2 /* SwitchViewCellDelegate.swift in Sources */,
 				C02D41D028218E3C005E9835 /* SwitchTableViewCell.swift in Sources */,
 				C0B1275527C3F0E7008E412D /* DecksViewModel.swift in Sources */,
-				C034B16F2801984D00942E77 /* AudioViewController.swift in Sources */,
 				C0AF0E7D2614F1E000853FA7 /* ReviewManager.swift in Sources */,
 				C0F4FD3027BD855A00814BD6 /* SettingsTableViewController.swift in Sources */,
 				C0D1C1722815A57600350862 /* ReminderViewController.swift in Sources */,
 				C0DBE8322673E9E00074DC13 /* HapticManager.swift in Sources */,
 				C0B1275E27C3FC4A008E412D /* DecksTableViewController.swift in Sources */,
 				C0CBE86E266AAA9A00B83253 /* Utils.swift in Sources */,
+				C0C9BAAB2848B9410020E555 /* APKGManager.swift in Sources */,
 				C028C4CA2811C0F000F6894E /* NewDeckViewController.swift in Sources */,
-				C00648AA2682060F00265EB8 /* UIApplicationExtemsion.swift in Sources */,
+				C00648AA2682060F00265EB8 /* UIApplicationExtension.swift in Sources */,
 				C0CBE870266B7A2900B83253 /* PlayerManager.swift in Sources */,
+				C0C9BAA52848B9120020E555 /* ImportedCardsCollectionViewController.swift in Sources */,
 				C070008E263E86E0006DF020 /* RateManager.swift in Sources */,
+				C0C9BAA42848B9120020E555 /* ImportedCardCollectionViewCell.swift in Sources */,
 				C0B1275727C3FB7A008E412D /* CardsTableViewController.swift in Sources */,
 				C00648AC2682070200265EB8 /* EmailManager.swift in Sources */,
 				C0C081B425ED379600DF1083 /* StorageManager.swift in Sources */,
+				C0B6D153285DE18900E354BA /* OnboardingViewController.swift in Sources */,
 				C0F4FD1527BD82DF00814BD6 /* UIViewExtension.swift in Sources */,
 				C0DDE0F32658608C0051059B /* RecorderManager.swift in Sources */,
 				C0B1275D27C3FB91008E412D /* ReviewViewController.swift in Sources */,
+				C0B6D156285E2DFD00E354BA /* FeatureView.swift in Sources */,
+				C0C9BABE2848BD460020E555 /* APKGDatabase.swift in Sources */,
 				C0ADAD4725EC0E62005DE503 /* Card.swift in Sources */,
 				C0F4FD3127BD855A00814BD6 /* MainTabBarViewController.swift in Sources */,
 				C0D1C1742815CB9100350862 /* DatePickerViewCell.swift in Sources */,
 				C05F7C4827E3A29700F4FAB4 /* BaseSettingsCell.swift in Sources */,
+				C0C9BAB82848BA160020E555 /* ImportViewController.swift in Sources */,
 				C0B5FF7625E981A8001D8D83 /* AppDelegate.swift in Sources */,
 				C00648AF2682140800265EB8 /* Options.swift in Sources */,
 				C078B5FE281EADB500DE5A86 /* DatePickerViewCellDelegate.swift in Sources */,
 				C0ADAD5825EC19F7005DE503 /* TableViewExtension.swift in Sources */,
+				C00D75CC282E68A7004E92B2 /* UIButtonExtension.swift in Sources */,
 				C0B5FF7825E981A8001D8D83 /* SceneDelegate.swift in Sources */,
-				C028C4CC2811C71500F6894E /* EmptyStateDelegate.swift in Sources */,
+				C0B6D151285DE01A00E354BA /* OnboardingManager.swift in Sources */,
+				C028C4CC2811C71500F6894E /* EmptyState.swift in Sources */,
 				C0E8477527F9AEF4006AEED1 /* NewCardViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -773,7 +873,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 18;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = KHNA6PF8QV;
 				INFOPLIST_FILE = "Simple Anki/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -796,7 +896,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 18;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = KHNA6PF8QV;
 				INFOPLIST_FILE = "Simple Anki/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -950,12 +1050,36 @@
 				minimumVersion = 10.7.0;
 			};
 		};
+		C0B85472282AB18F009816D0 /* XCRemoteSwiftPackageReference "SQLite.swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/stephencelis/SQLite.swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.9.2;
+			};
+		};
+		C0B85475282ABA14009816D0 /* XCRemoteSwiftPackageReference "ZIPFoundation" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/weichsel/ZIPFoundation";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.9.9;
+			};
+		};
 		C0D1C16E2815757A00350862 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 8.0.0;
+			};
+		};
+		C0DD10B92823F6D10058F96B /* XCRemoteSwiftPackageReference "SwiftCSV" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/swiftcsv/SwiftCSV.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.6.1;
 			};
 		};
 		C0E8477627F9C9EA006AEED1 /* XCRemoteSwiftPackageReference "SPIndicator" */ = {
@@ -979,10 +1103,25 @@
 			package = C0B5FFA825E98362001D8D83 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
 			productName = Realm;
 		};
+		C0B85473282AB18F009816D0 /* SQLite */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C0B85472282AB18F009816D0 /* XCRemoteSwiftPackageReference "SQLite.swift" */;
+			productName = SQLite;
+		};
+		C0B85476282ABA14009816D0 /* ZIPFoundation */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C0B85475282ABA14009816D0 /* XCRemoteSwiftPackageReference "ZIPFoundation" */;
+			productName = ZIPFoundation;
+		};
 		C0D1C16F2815757A00350862 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = C0D1C16E2815757A00350862 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAnalytics;
+		};
+		C0DD10BA2823F6D10058F96B /* SwiftCSV */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C0DD10B92823F6D10058F96B /* XCRemoteSwiftPackageReference "SwiftCSV" */;
+			productName = SwiftCSV;
 		};
 		C0E8477727F9C9EA006AEED1 /* SPIndicator */ = {
 			isa = XCSwiftPackageProductDependency;

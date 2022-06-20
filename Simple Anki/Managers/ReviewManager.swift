@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import RealmSwift
 
 struct ReviewCard {
     let front: String
@@ -15,14 +14,13 @@ struct ReviewCard {
 }
 
 class ReviewManager {
-    
     let layout: String!
     let autoPlay: Bool!
     var cardsForReview = [ReviewCard]()
     var alreadyReviewed = [ReviewCard]()
     var numberOfCards: Int64?
     var currentCard: ReviewCard?
-    
+
     init(layout: String, autoPlay: Bool, cards: [Card]) {
         self.layout = layout
         self.autoPlay = autoPlay
@@ -30,7 +28,7 @@ class ReviewManager {
         pickCard()
         cardsForReview.shuffle()
     }
-    
+
     func prepareCards(cards: [Card]) {
         if layout == K.Layout.all {
             for card in cards {
@@ -47,20 +45,20 @@ class ReviewManager {
         }
         numberOfCards = Int64(cardsForReview.count)
     }
-    
+
     private func all(with card: Card) {
-        cardsForReview.append(ReviewCard(front: card.front, back: card.back, audioName: card.audioName))
-        cardsForReview.append(ReviewCard(front: card.back, back: card.front, audioName: card.audioName))
+        frontToBack(with: card)
+        backToFront(with: card)
     }
-    
+
     private func backToFront(with card: Card) {
         cardsForReview.append(ReviewCard(front: card.back, back: card.front, audioName: card.audioName))
     }
-    
+
     private func frontToBack(with card: Card) {
         cardsForReview.append(ReviewCard(front: card.front, back: card.back, audioName: card.audioName))
     }
-    
+
     func pickCard() {
         if !cardsForReview.isEmpty {
             currentCard = cardsForReview.popLast()
@@ -69,7 +67,7 @@ class ReviewManager {
             currentCard = nil
         }
     }
-    
+
     func repeatReview() {
         alreadyReviewed.shuffle()
         cardsForReview.append(contentsOf: alreadyReviewed)

@@ -12,4 +12,3 @@ extension URL {
         return FileManager.default.fileExists(atPath: self.path)
     }
 }
-

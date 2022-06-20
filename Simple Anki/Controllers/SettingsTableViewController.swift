@@ -8,16 +8,16 @@
 import UIKit
 
 class SettingsViewController: UIViewController {
-    
+
     private let tableView: UITableView = {
         let table = UITableView(frame: .zero, style: .insetGrouped)
         table.register(SettingsTableViewCell.self, forCellReuseIdentifier: SettingsTableViewCell.identifier)
         table.register(SwitchTableViewCell.self, forCellReuseIdentifier: SwitchTableViewCell.identifier)
         return table
     }()
-    
+
     var models = [Section]()
-    
+
     let darkMode = UserDefaults.standard.bool(forKey: K.UserDefaultsKeys.darkMode)
 
     override func viewDidLoad() {
@@ -30,12 +30,16 @@ class SettingsViewController: UIViewController {
         tableView.dataSource = self
         tableView.frame = view.bounds
     }
-    
+
     func configure() {
         models.append(Section(title: K.Settings.appearence, options: [
-            .switchCell(model: SwitchOption(title: K.Settings.darkMode, icon: UIImage(systemName: K.Icon.lefthalf), isOn: darkMode, handler: nil))
+            .switchCell(model: SwitchOption(
+                title: K.Settings.darkMode,
+                icon: UIImage(systemName: K.Icon.lefthalf),
+                isOn: darkMode,
+                handler: nil))
         ]))
-        
+
         models.append(Section(title: K.Settings.support, options: [
             .staticCell(model: Option(title: K.Settings.rateThisApp, icon: UIImage(systemName: K.Icon.star)) {
                 RateManager.rateApp()
@@ -48,10 +52,10 @@ class SettingsViewController: UIViewController {
             }),
             .staticCell(model: Option(title: K.Settings.shareThisApp, icon: UIImage(systemName: K.Icon.share)) {
                 self.showActivityViewController()
-            }),
+            })
 
         ]))
-        
+
         models.append(Section(title: K.Settings.notifications, options: [
             .staticCell(model: Option(title: "Reminder", icon: UIImage(systemName: K.Icon.bell), handler: {
                 ReminderManager.shared.notificationCenter.requestAuthorization(options: [.alert, .sound]) { permissionGranted, error in
@@ -66,11 +70,11 @@ class SettingsViewController: UIViewController {
             }))
         ]))
     }
-    
+
     private func showSettingsAlert() {
         DispatchQueue.main.async {
             let alert = UIAlertController(
-                title: "Notifications Are Turn Off",
+                title: "You turned off notifications :(",
                 message: "Open settings to allow Simple Anki send you notifications.",
                 preferredStyle: .alert
             )
@@ -90,7 +94,7 @@ class SettingsViewController: UIViewController {
             self.present(alert, animated: true, completion: nil)
         }
     }
-    
+
     private func presentReminderViewController() {
         DispatchQueue.main.async {
             let reminderVC = ReminderViewController()
@@ -103,7 +107,7 @@ class SettingsViewController: UIViewController {
             self.present(nav, animated: true)
         }
     }
-    
+
     private func showActivityViewController() {
         let items: [Any] = ["Check this out!", URL(string: K.appURL)!]
         let avc = UIActivityViewController(activityItems: items, applicationActivities: nil)
@@ -111,63 +115,59 @@ class SettingsViewController: UIViewController {
     }
 }
 
-
 extension SettingsViewController: UITableViewDelegate {
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let type = models[indexPath.section].options[indexPath.row]
-        
+
         switch type.self {
-            case .staticCell(let model):
-                model.handler?()
-            default:
-                break
+        case .staticCell(let model):
+            model.handler?()
+        default:
+            break
         }
     }
 }
 
-
 extension SettingsViewController: UITableViewDataSource {
-    
+
     func numberOfSections(in tableView: UITableView) -> Int {
         return models.count
     }
-    
+
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         let model = models[section]
         return model.title
     }
-    
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return models[section].options.count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let model = models[indexPath.section].options[indexPath.row]
-        
+
         switch model.self {
-            case .staticCell(let model):
-                guard let cell = tableView.dequeueReusableCell(
-                        withIdentifier: SettingsTableViewCell.identifier,
-                        for: indexPath
-                ) as? SettingsTableViewCell else { return UITableViewCell() }
-                cell.configure(with: model)
-                return cell
-            
-            case .switchCell(let model):
-                guard let cell = tableView.dequeueReusableCell(
-                        withIdentifier: SwitchTableViewCell.identifier,
-                        for: indexPath
-                ) as? SwitchTableViewCell else { return UITableViewCell() }
-                cell.delegate = self
-                cell.selectionStyle = .none
-                cell.configure(with: model)
-                return cell
-            
-            default:
-                return UITableViewCell()
+        case .staticCell(let model):
+            guard let cell = tableView.dequeueReusableCell(
+                withIdentifier: SettingsTableViewCell.identifier,
+                for: indexPath
+            ) as? SettingsTableViewCell else { return UITableViewCell() }
+            cell.configure(with: model)
+            return cell
+
+        case .switchCell(let model):
+            guard let cell = tableView.dequeueReusableCell(
+                withIdentifier: SwitchTableViewCell.identifier,
+                for: indexPath
+            ) as? SwitchTableViewCell else { return UITableViewCell() }
+            cell.delegate = self
+            cell.selectionStyle = .none
+            cell.configure(with: model)
+            return cell
+        default:
+            return UITableViewCell()
         }
     }
 }
@@ -189,4 +189,3 @@ extension SettingsViewController: SwitchViewCellDelegate {
         }
     }
 }
-
