@@ -73,17 +73,17 @@ class CardsTableViewController: UIViewController, UITableViewDataSource, UITable
     // MARK: - Private methods
 
     private func configureToolbar() {
-        let gearButton = UIButton().configureIconButton(
-            configuration: .tinted(),
-            image: UIImage(systemName: "gearshape")
-        )
+        let gearButton = UIButton()
+        let gearImage = UIImage(systemName: "gearshape")
+        gearButton.configureIconButton(configuration: .tinted(), image: gearImage)
         gearButton.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
         gearButton.addTarget(self, action: #selector(didLayoutTap), for: .touchUpInside)
         let gear = UIBarButtonItem(customView: gearButton)
 
         let flexible = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
 
-        let reviewButton = UIButton().configureDefaultButton(title: "Review")
+        let reviewButton = UIButton()
+        reviewButton.configureDefaultButton(title: "Review")
         reviewButton.frame = CGRect(x: 0, y: 0, width: view.frame.width - 98, height: 50)
         reviewButton.addTarget(self, action: #selector(reviewButtonTouchUpInside), for: .touchUpInside)
         let review = UIBarButtonItem(customView: reviewButton)
@@ -353,7 +353,8 @@ extension CardsTableViewController: EmptyState {
         stackView.axis = .vertical
         stackView.alignment = .center
 
-        let button = UIButton().configureDefaultButton(title: "Add a card")
+        let button = UIButton()
+        button.configureDefaultButton(title: "Add a card")
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(didTapPlus), for: .touchUpInside)
 

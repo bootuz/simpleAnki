@@ -57,7 +57,10 @@ class DecksTableViewController: UITableViewController {
     }
 
     @objc private func buyButtonTapped() {
-
+        let paywallVC = PaywallViewController()
+        let navVC = UINavigationController(rootViewController: paywallVC)
+        navVC.modalPresentationStyle = .fullScreen
+        present(navVC, animated: true)
     }
 
     // MARK: - Configure UI
@@ -84,13 +87,11 @@ class DecksTableViewController: UITableViewController {
             )
         ]
         navigationItem.rightBarButtonItems = barButtonItems
-        let button = UIButton()
-        button.setTitle("PRO", for: .normal)
-        button.configuration = .filled()
-        button.configuration?.cornerStyle = .capsule
-        button.configuration?.titleAlignment = .center
-        button.addTarget(self, action: #selector(buyButtonTapped), for: .touchUpInside)
 
+        let button = UIButton()
+        button.setTitle("Upgrade", for: .normal)
+        button.configuration = .plain()
+        button.addTarget(self, action: #selector(buyButtonTapped), for: .touchUpInside)
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: button)
     }
 
@@ -243,7 +244,8 @@ extension DecksTableViewController: EmptyState {
         messageLabel.font = .systemFont(ofSize: 20)
         messageLabel.textColor = .systemGray
 
-        let button = UIButton().configureDefaultButton(title: "Create a deck")
+        let button = UIButton()
+        button.configureDefaultButton(title: "Create a deck")
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(didTapCreateDeck), for: .touchUpInside)
 

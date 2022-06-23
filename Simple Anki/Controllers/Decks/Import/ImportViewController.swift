@@ -34,7 +34,11 @@ class ImportViewController: UIViewController {
         return segmentControl
     }()
     let closeButton = UIButton(type: .close)
-    let importButton = UIButton().configureDefaultButton(title: "Choose file...")
+    let importButton: UIButton = {
+        let button = UIButton()
+        button.configureDefaultButton(title: "Choose file...")
+        return button
+    }()
     let dontCloseAppLabel: UILabel = {
         let label = UILabel()
         label.text = "Importing deck. Please don't close the app!"
@@ -72,9 +76,23 @@ class ImportViewController: UIViewController {
     var selectedFile: ImportFileType = .apkg
     var selectedCSVDelimeter: CSVDelimeterType = .semiColon
 
-    var semiColonButton = UIButton().configureTintedButton(title: ";")
-    var commaButton = UIButton().configureTintedButton(title: ",")
-    var tabButton = UIButton().configureTintedButton(title: "\\t")
+    var semiColonButton: UIButton = {
+        let button = UIButton()
+        button.configureTintedButton(title: ";")
+        return button
+    }()
+
+    var commaButton: UIButton = {
+        let button = UIButton()
+        button.configureTintedButton(title: ",")
+        return button
+    }()
+
+    var tabButton: UIButton = {
+        let button = UIButton()
+        button.configureTintedButton(title: "\\t")
+        return button
+    }()
 
     let stackView: UIStackView = {
         let stack = UIStackView()

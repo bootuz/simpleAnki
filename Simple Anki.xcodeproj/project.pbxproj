@@ -11,6 +11,11 @@
 		C00648AC2682070200265EB8 /* EmailManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00648AB2682070200265EB8 /* EmailManager.swift */; };
 		C00648AF2682140800265EB8 /* Options.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00648AE2682140800265EB8 /* Options.swift */; };
 		C00D75CC282E68A7004E92B2 /* UIButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00D75CB282E68A7004E92B2 /* UIButtonExtension.swift */; };
+		C02348CB2861F47E002FFBDF /* UILabelExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02348CA2861F47E002FFBDF /* UILabelExtension.swift */; };
+		C02348CD2862135D002FFBDF /* PaywallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02348CC2862135D002FFBDF /* PaywallViewController.swift */; };
+		C02348D0286247C5002FFBDF /* Qonversion in Frameworks */ = {isa = PBXBuildFile; productRef = C02348CF286247C5002FFBDF /* Qonversion */; };
+		C02348D3286343F4002FFBDF /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C02348D2286343F4002FFBDF /* StoreKit.framework */; };
+		C02348D52863443F002FFBDF /* IAPManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02348D42863443F002FFBDF /* IAPManager.swift */; };
 		C028C4C8280C852400F6894E /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = C028C4C7280C852400F6894E /* .gitignore */; };
 		C028C4CA2811C0F000F6894E /* NewDeckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C028C4C92811C0F000F6894E /* NewDeckViewController.swift */; };
 		C028C4CC2811C71500F6894E /* EmptyState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C028C4CB2811C71500F6894E /* EmptyState.swift */; };
@@ -102,6 +107,10 @@
 		C00648AB2682070200265EB8 /* EmailManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailManager.swift; sourceTree = "<group>"; };
 		C00648AE2682140800265EB8 /* Options.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Options.swift; sourceTree = "<group>"; };
 		C00D75CB282E68A7004E92B2 /* UIButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonExtension.swift; sourceTree = "<group>"; };
+		C02348CA2861F47E002FFBDF /* UILabelExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabelExtension.swift; sourceTree = "<group>"; };
+		C02348CC2862135D002FFBDF /* PaywallViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaywallViewController.swift; sourceTree = "<group>"; };
+		C02348D2286343F4002FFBDF /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		C02348D42863443F002FFBDF /* IAPManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPManager.swift; sourceTree = "<group>"; };
 		C028C4C7280C852400F6894E /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		C028C4C92811C0F000F6894E /* NewDeckViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDeckViewController.swift; sourceTree = "<group>"; };
 		C028C4CB2811C71500F6894E /* EmptyState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyState.swift; sourceTree = "<group>"; };
@@ -182,12 +191,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C02348D3286343F4002FFBDF /* StoreKit.framework in Frameworks */,
 				C0B85474282AB18F009816D0 /* SQLite in Frameworks */,
 				C0DD10BB2823F6D10058F96B /* SwiftCSV in Frameworks */,
 				C0B5FFAC25E98362001D8D83 /* Realm in Frameworks */,
 				C0B5FFAA25E98362001D8D83 /* RealmSwift in Frameworks */,
 				C0D1C1702815757A00350862 /* FirebaseAnalytics in Frameworks */,
 				C0E8477827F9C9EA006AEED1 /* SPIndicator in Frameworks */,
+				C02348D0286247C5002FFBDF /* Qonversion in Frameworks */,
 				C0B85477282ABA14009816D0 /* ZIPFoundation in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -222,6 +233,14 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		C02348D1286343F4002FFBDF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C02348D2286343F4002FFBDF /* StoreKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		C05AA2B025E9891E00E40346 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -234,6 +253,7 @@
 				C0B1275C27C3FB91008E412D /* ReviewViewController.swift */,
 				C0E8477427F9AEF4006AEED1 /* NewCardViewController.swift */,
 				C0B6D152285DE18900E354BA /* OnboardingViewController.swift */,
+				C02348CC2862135D002FFBDF /* PaywallViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -264,6 +284,7 @@
 				C0F4FD1427BD82DF00814BD6 /* UIViewExtension.swift */,
 				C02D41C2282146BF005E9835 /* DateExtension.swift */,
 				C00D75CB282E68A7004E92B2 /* UIButtonExtension.swift */,
+				C02348CA2861F47E002FFBDF /* UILabelExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -281,6 +302,7 @@
 				C00648AB2682070200265EB8 /* EmailManager.swift */,
 				C0A70E5F28211E620020D533 /* ReminderManager.swift */,
 				C0B6D150285DE01A00E354BA /* OnboardingManager.swift */,
+				C02348D42863443F002FFBDF /* IAPManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -307,6 +329,7 @@
 				C0B5FF9625E981B0001D8D83 /* Simple AnkiUITests */,
 				C0B5FF7325E981A8001D8D83 /* Products */,
 				C0C9BA7C2848B09F0020E555 /* Recovered References */,
+				C02348D1286343F4002FFBDF /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -501,6 +524,7 @@
 				C0DD10BA2823F6D10058F96B /* SwiftCSV */,
 				C0B85473282AB18F009816D0 /* SQLite */,
 				C0B85476282ABA14009816D0 /* ZIPFoundation */,
+				C02348CF286247C5002FFBDF /* Qonversion */,
 			);
 			productName = "Simple Anki";
 			productReference = C0B5FF7225E981A8001D8D83 /* Simple Anki.app */;
@@ -580,6 +604,7 @@
 				C0DD10B92823F6D10058F96B /* XCRemoteSwiftPackageReference "SwiftCSV" */,
 				C0B85472282AB18F009816D0 /* XCRemoteSwiftPackageReference "SQLite.swift" */,
 				C0B85475282ABA14009816D0 /* XCRemoteSwiftPackageReference "ZIPFoundation" */,
+				C02348CE286247C5002FFBDF /* XCRemoteSwiftPackageReference "qonversion-ios-sdk" */,
 			);
 			productRefGroup = C0B5FF7325E981A8001D8D83 /* Products */;
 			projectDirPath = "";
@@ -655,6 +680,7 @@
 				C0A70E6028211E620020D533 /* ReminderManager.swift in Sources */,
 				C0CBE872266BA50900B83253 /* URLExtension.swift in Sources */,
 				C0FA7EAA25F511FE00710F0D /* Constants.swift in Sources */,
+				C02348D52863443F002FFBDF /* IAPManager.swift in Sources */,
 				C0C043E328206B1F00A8AC6D /* WeekdaysViewController.swift in Sources */,
 				C0F4FD1F27BD84DA00814BD6 /* SettingsViewCell.swift in Sources */,
 				C0460DF42819A6C000B6EBB2 /* SwitchViewCellDelegate.swift in Sources */,
@@ -667,6 +693,7 @@
 				C0B1275E27C3FC4A008E412D /* DecksTableViewController.swift in Sources */,
 				C0CBE86E266AAA9A00B83253 /* Utils.swift in Sources */,
 				C0C9BAAB2848B9410020E555 /* APKGManager.swift in Sources */,
+				C02348CD2862135D002FFBDF /* PaywallViewController.swift in Sources */,
 				C028C4CA2811C0F000F6894E /* NewDeckViewController.swift in Sources */,
 				C00648AA2682060F00265EB8 /* UIApplicationExtension.swift in Sources */,
 				C0CBE870266B7A2900B83253 /* PlayerManager.swift in Sources */,
@@ -677,6 +704,7 @@
 				C00648AC2682070200265EB8 /* EmailManager.swift in Sources */,
 				C0C081B425ED379600DF1083 /* StorageManager.swift in Sources */,
 				C0B6D153285DE18900E354BA /* OnboardingViewController.swift in Sources */,
+				C02348CB2861F47E002FFBDF /* UILabelExtension.swift in Sources */,
 				C0F4FD1527BD82DF00814BD6 /* UIViewExtension.swift in Sources */,
 				C0DDE0F32658608C0051059B /* RecorderManager.swift in Sources */,
 				C0B1275D27C3FB91008E412D /* ReviewViewController.swift in Sources */,
@@ -873,7 +901,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = KHNA6PF8QV;
 				INFOPLIST_FILE = "Simple Anki/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -896,7 +924,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = KHNA6PF8QV;
 				INFOPLIST_FILE = "Simple Anki/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1042,6 +1070,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		C02348CE286247C5002FFBDF /* XCRemoteSwiftPackageReference "qonversion-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/qonversion/qonversion-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 		C0B5FFA825E98362001D8D83 /* XCRemoteSwiftPackageReference "realm-cocoa" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/realm/realm-cocoa";
@@ -1093,6 +1129,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		C02348CF286247C5002FFBDF /* Qonversion */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C02348CE286247C5002FFBDF /* XCRemoteSwiftPackageReference "qonversion-ios-sdk" */;
+			productName = Qonversion;
+		};
 		C0B5FFA925E98362001D8D83 /* RealmSwift */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = C0B5FFA825E98362001D8D83 /* XCRemoteSwiftPackageReference "realm-cocoa" */;

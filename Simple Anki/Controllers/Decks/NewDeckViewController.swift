@@ -19,10 +19,12 @@ class NewDeckViewController: UIViewController {
         return view
     }()
 
-    private let addCardsButton = UIButton().configureDefaultButton(
-        title: "Add cards",
-        image: UIImage(systemName: "arrow.forward")
-    )
+    private lazy var addCardsButton: UIButton = {
+        let button = UIButton()
+        let image = UIImage(systemName: "arrow.forward")
+        button.configureDefaultButton(title: "Add cards", image: image)
+        return button
+    }()
 
     private let textField: UITextField = {
         let field = UITextField()
