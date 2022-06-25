@@ -16,6 +16,7 @@
 		C02348D0286247C5002FFBDF /* Qonversion in Frameworks */ = {isa = PBXBuildFile; productRef = C02348CF286247C5002FFBDF /* Qonversion */; };
 		C02348D3286343F4002FFBDF /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C02348D2286343F4002FFBDF /* StoreKit.framework */; };
 		C02348D52863443F002FFBDF /* IAPManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02348D42863443F002FFBDF /* IAPManager.swift */; };
+		C02348D728671E16002FFBDF /* LaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02348D628671E16002FFBDF /* LaunchScreenViewController.swift */; };
 		C028C4C8280C852400F6894E /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = C028C4C7280C852400F6894E /* .gitignore */; };
 		C028C4CA2811C0F000F6894E /* NewDeckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C028C4C92811C0F000F6894E /* NewDeckViewController.swift */; };
 		C028C4CC2811C71500F6894E /* EmptyState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C028C4CB2811C71500F6894E /* EmptyState.swift */; };
@@ -28,7 +29,6 @@
 		C0A70E6028211E620020D533 /* ReminderManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A70E5F28211E620020D533 /* ReminderManager.swift */; };
 		C0ADAD4225EC0E0B005DE503 /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0ADAD4125EC0E0B005DE503 /* Deck.swift */; };
 		C0ADAD4725EC0E62005DE503 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0ADAD4625EC0E62005DE503 /* Card.swift */; };
-		C0ADAD5825EC19F7005DE503 /* TableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0ADAD5725EC19F7005DE503 /* TableViewExtension.swift */; };
 		C0AF0E7D2614F1E000853FA7 /* ReviewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0AF0E7C2614F1E000853FA7 /* ReviewManager.swift */; };
 		C0B1275527C3F0E7008E412D /* DecksViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B1275427C3F0E7008E412D /* DecksViewModel.swift */; };
 		C0B1275727C3FB7A008E412D /* CardsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B1275627C3FB7A008E412D /* CardsTableViewController.swift */; };
@@ -111,6 +111,7 @@
 		C02348CC2862135D002FFBDF /* PaywallViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaywallViewController.swift; sourceTree = "<group>"; };
 		C02348D2286343F4002FFBDF /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		C02348D42863443F002FFBDF /* IAPManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPManager.swift; sourceTree = "<group>"; };
+		C02348D628671E16002FFBDF /* LaunchScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenViewController.swift; sourceTree = "<group>"; };
 		C028C4C7280C852400F6894E /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		C028C4C92811C0F000F6894E /* NewDeckViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDeckViewController.swift; sourceTree = "<group>"; };
 		C028C4CB2811C71500F6894E /* EmptyState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyState.swift; sourceTree = "<group>"; };
@@ -123,7 +124,6 @@
 		C0A70E5F28211E620020D533 /* ReminderManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderManager.swift; sourceTree = "<group>"; };
 		C0ADAD4125EC0E0B005DE503 /* Deck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deck.swift; sourceTree = "<group>"; };
 		C0ADAD4625EC0E62005DE503 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
-		C0ADAD5725EC19F7005DE503 /* TableViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewExtension.swift; sourceTree = "<group>"; };
 		C0AF0E7C2614F1E000853FA7 /* ReviewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewManager.swift; sourceTree = "<group>"; };
 		C0B1275327C3F0D4008E412D /* DecksTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecksTableViewController.swift; sourceTree = "<group>"; };
 		C0B1275427C3F0E7008E412D /* DecksViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecksViewModel.swift; sourceTree = "<group>"; };
@@ -247,13 +247,13 @@
 				C00648A62681F26000265EB8 /* Cells */,
 				C078B5FA281EA8B300DE5A86 /* Settings */,
 				C0B1275227C3F0CB008E412D /* Decks */,
-				C0F4FD2827BD855A00814BD6 /* SettingsTableViewController.swift */,
 				C0B1275627C3FB7A008E412D /* CardsTableViewController.swift */,
 				C0F4FD2927BD855A00814BD6 /* MainTabBarViewController.swift */,
 				C0B1275C27C3FB91008E412D /* ReviewViewController.swift */,
 				C0E8477427F9AEF4006AEED1 /* NewCardViewController.swift */,
 				C0B6D152285DE18900E354BA /* OnboardingViewController.swift */,
 				C02348CC2862135D002FFBDF /* PaywallViewController.swift */,
+				C02348D628671E16002FFBDF /* LaunchScreenViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -270,6 +270,7 @@
 		C078B5FA281EA8B300DE5A86 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				C0F4FD2827BD855A00814BD6 /* SettingsTableViewController.swift */,
 				C078B5F9281EA89500DE5A86 /* Reminder */,
 			);
 			path = Settings;
@@ -278,7 +279,6 @@
 		C0ADAD5625EC19D3005DE503 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				C0ADAD5725EC19F7005DE503 /* TableViewExtension.swift */,
 				C0CBE871266BA50900B83253 /* URLExtension.swift */,
 				C00648A92682060F00265EB8 /* UIApplicationExtension.swift */,
 				C0F4FD1427BD82DF00814BD6 /* UIViewExtension.swift */,
@@ -692,6 +692,7 @@
 				C0DBE8322673E9E00074DC13 /* HapticManager.swift in Sources */,
 				C0B1275E27C3FC4A008E412D /* DecksTableViewController.swift in Sources */,
 				C0CBE86E266AAA9A00B83253 /* Utils.swift in Sources */,
+				C02348D728671E16002FFBDF /* LaunchScreenViewController.swift in Sources */,
 				C0C9BAAB2848B9410020E555 /* APKGManager.swift in Sources */,
 				C02348CD2862135D002FFBDF /* PaywallViewController.swift in Sources */,
 				C028C4CA2811C0F000F6894E /* NewDeckViewController.swift in Sources */,
@@ -718,7 +719,6 @@
 				C0B5FF7625E981A8001D8D83 /* AppDelegate.swift in Sources */,
 				C00648AF2682140800265EB8 /* Options.swift in Sources */,
 				C078B5FE281EADB500DE5A86 /* DatePickerViewCellDelegate.swift in Sources */,
-				C0ADAD5825EC19F7005DE503 /* TableViewExtension.swift in Sources */,
 				C00D75CC282E68A7004E92B2 /* UIButtonExtension.swift in Sources */,
 				C0B5FF7825E981A8001D8D83 /* SceneDelegate.swift in Sources */,
 				C0B6D151285DE01A00E354BA /* OnboardingManager.swift in Sources */,
@@ -901,7 +901,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = "3 ";
 				DEVELOPMENT_TEAM = KHNA6PF8QV;
 				INFOPLIST_FILE = "Simple Anki/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -924,7 +924,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = "3 ";
 				DEVELOPMENT_TEAM = KHNA6PF8QV;
 				INFOPLIST_FILE = "Simple Anki/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (

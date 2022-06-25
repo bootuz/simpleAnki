@@ -57,7 +57,8 @@ class DecksTableViewController: UITableViewController {
     }
 
     @objc private func buyButtonTapped() {
-        let paywallVC = PaywallViewController()
+//        let paywallVC = PaywallViewController()
+        let paywallVC = LaunchScreenViewController()
         let navVC = UINavigationController(rootViewController: paywallVC)
         navVC.modalPresentationStyle = .fullScreen
         present(navVC, animated: true)

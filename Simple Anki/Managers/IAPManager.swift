@@ -9,7 +9,9 @@ import Foundation
 import Qonversion
 
 class IAPManager {
+
     static let shared = IAPManager()
+    var isActive: Bool = false
 
     private init() {}
 
@@ -35,13 +37,22 @@ class IAPManager {
         }
     }
 
-    func checkPermissions() {
-        Qonversion.checkPermissions { permissions, _ in
+    func checkPermissions(completion: @escaping (Bool) -> Void) {
+        Qonversion.checkPermissions { permissions, error in
+            guard error == nil else {
+                completion(false)
+                return
+            }
             print(permissions)
+            if let premium = permissions["Premium"], premium.isActive {
+                completion(true)
+            } else {
+                completion(false)
+            }
         }
     }
 
-    func purchase(productID: String = "year", completion: @escaping (Bool) -> Void) {
+    func purchase(productID: String = "monthly", completion: @escaping (Bool) -> Void) {
         Qonversion.purchase(productID) { _, error, cancelled in
             guard error == nil else {
                 completion(false)

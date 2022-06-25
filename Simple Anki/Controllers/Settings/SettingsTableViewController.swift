@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import StoreKit
 
 class SettingsViewController: UIViewController {
 
@@ -69,30 +70,54 @@ class SettingsViewController: UIViewController {
                 }
             }))
         ]))
+
+        models.append(Section(title: "Subscription", options: [
+            .staticCell(model: Option(title: "Upgrade", icon: UIImage(systemName: "bag.badge.plus"), handler: {
+                self.presentPaywallViewController()
+            }))
+        ]))
+    }
+
+    func manageSubscriptionsPage() async {
+        if let scene = view.window?.windowScene {
+            do {
+                try await AppStore.showManageSubscriptions(in: scene)
+            } catch {
+                print("Error:(error)")
+            }
+        }
     }
 
     private func showSettingsAlert() {
-        DispatchQueue.main.async {
-            let alert = UIAlertController(
-                title: "You turned off notifications :(",
-                message: "Open settings to allow Simple Anki send you notifications.",
-                preferredStyle: .alert
-            )
+        let alert = UIAlertController(
+            title: "You turned off notifications :(",
+            message: "Open settings to allow Simple Anki send you notifications.",
+            preferredStyle: .alert
+        )
 
-            let settingsAction = UIAlertAction(title: "Settings", style: .default) { _ in
-                guard let appSettingsUrl = URL(string: UIApplication.openSettingsURLString) else { return }
-                if UIApplication.shared.canOpenURL(appSettingsUrl) {
-                    UIApplication.shared.open(appSettingsUrl) { (success) in
-                        print("Settings opened: \(success)")
-                    }
+        let settingsAction = UIAlertAction(title: "Settings", style: .default) { _ in
+            guard let appSettingsUrl = URL(string: UIApplication.openSettingsURLString) else { return }
+            if UIApplication.shared.canOpenURL(appSettingsUrl) {
+                UIApplication.shared.open(appSettingsUrl) { (success) in
+                    print("Settings opened: \(success)")
                 }
             }
+        }
 
-            let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
-            alert.addAction(cancelAction)
-            alert.addAction(settingsAction)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+        alert.addAction(cancelAction)
+        alert.addAction(settingsAction)
+
+        DispatchQueue.main.async {
             self.present(alert, animated: true, completion: nil)
         }
+    }
+
+    private func presentPaywallViewController() {
+        let paywallVC = PaywallViewController()
+        let navVC = UINavigationController(rootViewController: paywallVC)
+        navVC.modalPresentationStyle = .fullScreen
+        present(navVC, animated: true)
     }
 
     private func presentReminderViewController() {

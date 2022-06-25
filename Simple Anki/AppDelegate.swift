@@ -21,7 +21,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         IAPManager.shared.configure { success in
             if success {
                 print("Success")
-                IAPManager.shared.checkPermissions()
+                IAPManager.shared.checkPermissions { isActive in
+                    IAPManager.shared.isActive = isActive
+                }
             }
         }
 

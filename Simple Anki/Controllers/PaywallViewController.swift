@@ -176,7 +176,7 @@ class PaywallViewController: UIViewController {
     }
 
     @objc private func closeButtonTapped() {
-        dismiss(animated: true)
+        dismiss(animated: false)
     }
 
     private static func createStackViewWith(text: String) -> UIStackView {

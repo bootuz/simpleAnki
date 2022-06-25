@@ -38,5 +38,4 @@ extension APKGField: Comparable {
     static func == (lhs: APKGField, rhs: APKGField) -> Bool {
         return lhs.ord == rhs.ord
     }
-
 }
