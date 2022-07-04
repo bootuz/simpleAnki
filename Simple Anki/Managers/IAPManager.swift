@@ -11,7 +11,8 @@ import Qonversion
 class IAPManager {
 
     static let shared = IAPManager()
-    var isActive: Bool = false
+
+    var products: [Qonversion.Product] = []
 
     private init() {}
 
@@ -25,14 +26,15 @@ class IAPManager {
         }
     }
 
-    func getOfferings(completion: @escaping (Qonversion.Offering?) -> Void) {
+    func getOfferings(completion: @escaping ([Qonversion.Product]?) -> Void) {
         Qonversion.offerings { offerings, error in
             guard error == nil else {
                 completion(nil)
                 return
             }
-            if let offering = offerings?.offering(forIdentifier: "main") {
-                completion(offering)
+            if let products = offerings?.main?.products {
+                self.products = products
+                completion(products)
             }
         }
     }
@@ -43,16 +45,21 @@ class IAPManager {
                 completion(false)
                 return
             }
-            print(permissions)
-            if let premium = permissions["Premium"], premium.isActive {
+            self.checkPremiumPermission(permissions: permissions, completion: completion)
+        }
+    }
+
+    func checkPremiumPermission(
+        permissions: [String: Qonversion.Permission],
+        completion: @escaping (Bool) -> Void) {
+            if let premium: Qonversion.Permission = permissions["Premium"], premium.isActive {
                 completion(true)
             } else {
                 completion(false)
             }
         }
-    }
 
-    func purchase(productID: String = "monthly", completion: @escaping (Bool) -> Void) {
+    func purchase(productID: String, completion: @escaping (Bool) -> Void) {
         Qonversion.purchase(productID) { _, error, cancelled in
             guard error == nil else {
                 completion(false)
@@ -66,24 +73,26 @@ class IAPManager {
         }
     }
 
-    func restorePurchases(completion: @escaping (Bool) -> Void) {
-        Qonversion.restore { _, error in
-            guard error == nil else {
-                completion(false)
+    func restorePurchases(completion: @escaping (Result<Bool, Error>) -> Void) {
+        Qonversion.restore { permissions, error in
+            if let err = error {
+                completion(.failure(err))
                 return
+            }
+            self.checkPremiumPermission(permissions: permissions) { success in
+                completion(.success(success))
             }
         }
     }
 
     func checkTrial(completion: @escaping (Bool) -> Void) {
-        Qonversion.checkTrialIntroEligibility(forProductIds: ["six_months", "year", "monthly"]) { (result, error) in
+        Qonversion.checkTrialIntroEligibility(forProductIds: ["annual", "monthly"]) { (result, error) in
             guard error == nil else {
                 completion(false)
                 return
             }
-            if let productIntroEligibility = result.first?.value,
-               productIntroEligibility.status == .eligible {
-                completion(true)
+            if let intro = result["annual"], intro.status == .eligible {
+                 completion(true)
             } else {
                 completion(false)
             }
@@ -105,14 +114,14 @@ extension Qonversion.Product {
         case .duration6Months:
             return  "6 months"
         case .durationAnnual:
-            return "year"
+            return "annual"
         case .durationLifetime:
             return "Lifetime"
         case .durationMonthly:
             return "monthly"
         case .durationUnknown:
             return "Unknown"
-        @unknown default:
+        default:
             return ""
         }
     }

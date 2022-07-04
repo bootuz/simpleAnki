@@ -80,15 +80,10 @@ class APKGDatabase {
             let headers = fields.map { $0.name }
             while let row = try rowIterator.failableNext() {
                 let data = fetch(col: Queries.flds, row: row)
-                let cleanedData = data.replacingOccurrences(
-                    of: "<[^>]+>",
-                    with: "",
-                    options: .regularExpression,
-                    range: nil).replacingOccurrences(
-                        of: "[\\[].*?[\\]]",
-                        with: "",
-                        options: .regularExpression,
-                        range: nil).components(separatedBy: "\u{1F}")
+                let cleanedData = data
+                    .replaceOccurrences(of: "<[^>]+>", with: "")
+                    .replaceOccurrences(of: "[\\[].*?[\\]]", with: "")
+                    .components(separatedBy: "\u{1F}")
                 let result = Dictionary(uniqueKeysWithValues: zip(headers, cleanedData))
                 guard let front = result["Front"],
                         let back = result["Back"]

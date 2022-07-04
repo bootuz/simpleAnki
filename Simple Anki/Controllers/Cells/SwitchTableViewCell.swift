@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol SwitchViewCellDelegate: AnyObject {
+    func switchAction(with cell: UITableViewCell)
+}
+
 class SwitchTableViewCell: BaseSettingsCell {
     static let identifier = "SwitchTableViewCell"
     weak var delegate: SwitchViewCellDelegate?

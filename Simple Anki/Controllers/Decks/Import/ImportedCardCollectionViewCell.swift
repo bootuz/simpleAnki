@@ -120,7 +120,7 @@ class ImportedCardCollectionViewCell: UICollectionViewCell {
         backField.text = nil
     }
 
-    public func configure(with model: APKGCard?) {
+    public func configure(with model: Cards?) {
         frontField.text = model?.front
         backField.text = model?.back
     }

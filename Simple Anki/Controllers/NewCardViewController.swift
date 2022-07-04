@@ -142,8 +142,13 @@ class NewCardViewController: UIViewController {
         navigationItem.largeTitleDisplayMode = .never
         view.backgroundColor = .secondarySystemBackground
 
-        addAndNext.isEnabled = false
-        recordButton.isEnabled = false
+        if frontField.text!.isEmpty {
+            addAndNext.isEnabled = false
+            recordButton.isEnabled = false
+        } else {
+            addAndNext.isEnabled = true
+            recordButton.isEnabled = true
+        }
         playButton.isHidden = true
 
         view.addSubview(addAndNext)
@@ -283,28 +288,33 @@ class NewCardViewController: UIViewController {
     // MARK: - Button handlers
 
     @objc func recordButtonTapped() {
-        switch recordingSession.recordPermission {
-        case .granted:
-            HapticManager.shared.vibrate(for: .success)
-            if !self.isRecording {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.09) {
-                    self.isRecording = true
-                    self.loadRecordingUI()
-                    self.startRecording()
+        IAPManager.shared.checkPermissions { [weak self] isActive in
+            if isActive {
+                switch self?.recordingSession.recordPermission {
+                case .granted:
+                    HapticManager.shared.vibrate(for: .success)
+                    if !self!.isRecording {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.09) {
+                            self?.isRecording = true
+                            self?.loadRecordingUI()
+                            self?.startRecording()
+                        }
+                    } else {
+                        self?.finishRecording()
+                        self?.loadPlaybackUI()
+                        self?.isRecording = false
+                    }
+                case .denied:
+                    HapticManager.shared.vibrate(for: .error)
+                    self?.showSettingsAlert()
+                case .undetermined:
+                    self?.recordingSession.requestRecordPermission { _ in }
+                default:
+                    break
                 }
             } else {
-                finishRecording()
-                loadPlaybackUI()
-                isRecording = false
+                self?.present(PaywallViewController.paywallVC(), animated: true)
             }
-
-        case .denied:
-            HapticManager.shared.vibrate(for: .error)
-            showSettingsAlert()
-        case .undetermined:
-            recordingSession.requestRecordPermission { _ in }
-        default:
-            break
         }
     }
 
@@ -334,6 +344,10 @@ class NewCardViewController: UIViewController {
     }
 
     @objc private func didSaveAndNextTapped() {
+        updateUIafterAddCard()
+    }
+
+    private func updateUIafterAddCard() {
         saveCard()
         frontField.text?.removeAll()
         backField.text?.removeAll()

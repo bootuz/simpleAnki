@@ -20,7 +20,7 @@ struct K {
     struct Settings {
         static let rateThisApp = "Rate this app"
         static let reportBug = "Report a bug"
-        static let suggestFeature = "Feature suggestion"
+        static let suggestFeature = "Suggest a feature"
         static let darkMode = "Dark mode"
         static let shareThisApp = "Share this app"
         static let reminderOn = "Turn on"

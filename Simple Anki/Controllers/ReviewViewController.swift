@@ -76,6 +76,7 @@ class ReviewViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .systemBackground
         speakerButton.addTarget(self, action: #selector(speakerButtonPressed), for: .touchUpInside)
         repeatButton.addTarget(self, action: #selector(repeatButtonPressed), for: .touchUpInside)
         let rightButton = UIBarButtonItem(

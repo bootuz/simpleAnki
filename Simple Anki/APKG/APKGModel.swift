@@ -7,12 +7,20 @@
 
 import Foundation
 
-struct APKGCard {
-    let front: String
-    let back: String
+protocol Cards {
+    var front: String { get set }
+    var back: String { get set }
 }
 
-typealias CSVCard = APKGCard
+struct APKGCard: Cards {
+    var front: String
+    var back: String
+}
+
+struct CSVCard: Cards {
+    var front: String
+    var back: String
+}
 
 struct APKGModel: Codable {
     let id: Int

@@ -73,7 +73,6 @@ class OnboardingViewController: UIViewController {
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-
         createFeature.configure(model: models[0])
         importFeature.configure(model: models[1])
         recordFeature.configure(model: models[2])

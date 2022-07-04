@@ -7,6 +7,7 @@
 
 import UIKit
 import RealmSwift
+import FirebaseAnalytics
 
 class CardsTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     private lazy var tableView: UITableView = {
@@ -115,13 +116,14 @@ class CardsTableViewController: UIViewController, UITableViewDataSource, UITable
 
     @objc private func reviewButtonTouchUpInside() {
         let reviewVC = ReviewViewController()
-        guard let deck = selectedDeck else { return }
+        guard let deck = cards?[0].parentDeck.first else { return }
         guard let cardsToReview = cards?.where({ $0.memorized == false }) else { return }
-        reviewVC.reviewManager = ReviewManager(layout: deck.layout,
-                                               autoPlay: deck.autoplay,
-                                               cards: cardsToReview.shuffled())
+        reviewVC.reviewManager = ReviewManager(
+            layout: deck.layout,
+            autoPlay: deck.autoplay,
+            cards: cardsToReview.shuffled()
+        )
         let navVC = UINavigationController(rootViewController: reviewVC)
-        navVC.view.backgroundColor = UIColor.systemBackground
         navVC.modalPresentationStyle = .fullScreen
         present(navVC, animated: true)
     }
@@ -170,15 +172,26 @@ class CardsTableViewController: UIViewController, UITableViewDataSource, UITable
         default:
             break
         }
+        if let deck = selectedDeck {
+            Analytics.logEvent("deck_layout", parameters: [
+                "layout": deck.layout as NSObject,
+                "name": deck.name
+            ])
+        }
 
         alert.addAction(frontToBack)
         alert.addAction(backToFront)
         alert.addAction(all)
         alert.addAction(cancel)
         present(alert, animated: true)
+
     }
 
     @objc private func didTapPlus() {
+        presentNewCardViewController()
+    }
+
+    private func presentNewCardViewController() {
         let newCardVC = NewCardViewController()
         let navVC = UINavigationController(rootViewController: newCardVC)
         navVC.modalPresentationStyle = .fullScreen

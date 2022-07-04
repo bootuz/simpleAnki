@@ -14,12 +14,20 @@ class DecksTableViewController: UITableViewController {
 
     var viewModel = DecksViewModel()
 
+    var isActive: Bool = false
+
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Decks"
         navigationController?.navigationBar.prefersLargeTitles = true
         congigureBarButtonItems()
         configureTableView()
+//        Analytics.logEvent(AnalyticsEvent, parameters: [
+//          AnalyticsParameterItemID: "id-\(title!)",
+//          AnalyticsParameterItemName: title!,
+//          AnalyticsParameterContentType: "cont",
+//        ])
+
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -29,6 +37,7 @@ class DecksTableViewController: UITableViewController {
     }
 
     @objc private func didTapImport() {
+        Analytics.logEvent("import_deck_tapped", parameters: nil)
         let importVC = ImportViewController()
         importVC.reloadData = { [weak self] in
             self?.reload()
@@ -39,7 +48,7 @@ class DecksTableViewController: UITableViewController {
             sheetController.detents = [.medium()]
             sheetController.prefersScrollingExpandsWhenScrolledToEdge = false
         }
-        present(nav, animated: true)
+        self.present(nav, animated: true)
     }
 
     @objc private func didTapPlus() {
@@ -52,14 +61,6 @@ class DecksTableViewController: UITableViewController {
             self?.reload()
         }
         let navVC = UINavigationController(rootViewController: newDeckVC)
-        navVC.modalPresentationStyle = .fullScreen
-        present(navVC, animated: true)
-    }
-
-    @objc private func buyButtonTapped() {
-//        let paywallVC = PaywallViewController()
-        let paywallVC = LaunchScreenViewController()
-        let navVC = UINavigationController(rootViewController: paywallVC)
         navVC.modalPresentationStyle = .fullScreen
         present(navVC, animated: true)
     }
@@ -88,12 +89,6 @@ class DecksTableViewController: UITableViewController {
             )
         ]
         navigationItem.rightBarButtonItems = barButtonItems
-
-        let button = UIButton()
-        button.setTitle("Upgrade", for: .normal)
-        button.configuration = .plain()
-        button.addTarget(self, action: #selector(buyButtonTapped), for: .touchUpInside)
-        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: button)
     }
 
     // MARK: - Table view data source
@@ -201,7 +196,6 @@ class DecksTableViewController: UITableViewController {
         default:
             content.secondaryText = "\(cardsCount) cards"
         }
-
         cell.contentConfiguration = content
         cell.accessoryType = .disclosureIndicator
         return cell

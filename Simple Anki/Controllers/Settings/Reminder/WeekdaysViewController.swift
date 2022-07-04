@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAnalytics
 
 class WeekdaysViewController: UIViewController {
 
@@ -49,9 +50,11 @@ extension WeekdaysViewController: UITableViewDelegate, UITableViewDataSource {
         if !ReminderManager.shared.isDayInReminder(index: indexPath.row) {
             ReminderManager.shared.addWeekdayToReminder(index: indexPath.row)
             cell.accessoryType = .checkmark
+            Analytics.logEvent("weekday_\(indexPath.row)", parameters: ["on" : true as NSObject])
         } else {
             ReminderManager.shared.deleteDayFromReminder(index: indexPath.row)
             cell.accessoryType = .none
+            Analytics.logEvent("weekday_\(indexPath.row)", parameters: ["off" : true as NSObject])
         }
         tableView.deselectRow(at: indexPath, animated: true)
     }

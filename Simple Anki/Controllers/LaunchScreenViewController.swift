@@ -41,21 +41,13 @@ class LaunchScreenViewController: UIViewController {
         return label
     }()
 
-    lazy var activityIndicator: UIActivityIndicatorView = {
-        let indicator = UIActivityIndicatorView(style: .large)
-        indicator.color = .systemBlue
-        return indicator
-    }()
-
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
-//        activityIndicator.startAnimating()
     }
 
     override func viewDidAppear(_ animated: Bool) {
-        IAPManager.shared.checkPermissions { [weak self] isActive in
-            print(isActive)
+        IAPManager.shared.checkPermissions { [weak self] _ in
             self?.dismiss(animated: false, completion: {
                 self?.delegate?.vewController(isDismissed: true)
             })
@@ -67,14 +59,10 @@ class LaunchScreenViewController: UIViewController {
         stackView.addArrangedSubview(simpleLabel)
         stackView.addArrangedSubview(ankiLabel)
         view.addSubview(stackView)
-        view.addSubview(activityIndicator)
-        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         stackView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            activityIndicator.bottomAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 80)
+            stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
     }
 }

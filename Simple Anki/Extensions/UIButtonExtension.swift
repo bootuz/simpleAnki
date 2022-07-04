@@ -14,6 +14,10 @@ extension UIButton {
         self.configuration?.title = title
     }
 
+    func configureDefaultButton() {
+        defaultConfiguration()
+    }
+
     func configureDefaultButton(title: String, image: UIImage?) {
         defaultConfiguration()
         self.configuration?.title = title
@@ -39,11 +43,12 @@ extension UIButton {
         self.configuration?.titleAlignment = .center
     }
 
-    func configureIconButton(configuration: UIButton.Configuration, image: UIImage?) {
+    func configureIconButton(configuration: Configuration, image: UIImage?) {
         self.configuration = configuration
         self.configuration?.cornerStyle = .large
         self.configuration?.image = image
         self.configuration?.titleAlignment = .center
         self.configuration?.baseForegroundColor = .systemBlue
     }
+
 }

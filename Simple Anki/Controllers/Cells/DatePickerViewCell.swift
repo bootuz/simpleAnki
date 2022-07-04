@@ -8,6 +8,10 @@
 import Foundation
 import UIKit
 
+protocol DatePickerViewCellDelegate: AnyObject {
+    func datePicker(with cell: UITableViewCell)
+}
+
 class DatePickerViewCell: UITableViewCell {
     static let identifier = "DatePickerViewCell"
     weak var delegate: DatePickerViewCellDelegate?
