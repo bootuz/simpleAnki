@@ -140,7 +140,6 @@ class PaywallViewController: UIViewController {
         view.addSubview(unlockLabel)
         view.addSubview(monthButton)
 
-        tosButton.addTarget(self, action: #selector(didTapTOSButton), for: .touchUpInside)
         privacyPolicyButton.addTarget(self, action: #selector(didTapPPButton), for: .touchUpInside)
         monthButton.addTarget(self, action: #selector(didTapMonthSubscription(sender:)), for: .touchUpInside)
         annualButton.addTarget(self, action: #selector(didTapAnnualSubscription(sender:)), for: .touchUpInside)
@@ -160,7 +159,7 @@ class PaywallViewController: UIViewController {
 
             IAPManager.shared.getOfferings { [weak self] products in
                 guard let products = products else {
-                    self?.showAlert(with: "Error", message: "Could not load offerings")
+                    self?.showAlert(with: "Error", message: "Could not load products")
                     return
                 }
                 self?.annualButton.configuration?.subtitle = "Save 50%"
@@ -271,12 +270,8 @@ class PaywallViewController: UIViewController {
         ])
     }
 
-    @objc private func didTapTOSButton() {
-        openURL(link: "https://www.hackingwithswift.com")
-    }
-
     @objc private func didTapPPButton() {
-        openURL(link: "https://www.hackingwithswift.com")
+        openURL(link: "https://simpleanki.com/privacy/")
     }
 
     private func openURL(link: String) {

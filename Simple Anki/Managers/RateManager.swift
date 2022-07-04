@@ -10,7 +10,7 @@ import StoreKit
 
 class RateManager {
     private static let count = UserDefaults.standard.integer(forKey: "run_count")
-    private static let appID = "id1562385336"
+    private static let appID = "id1625870857"
     private static let urlString = "https://itunes.apple.com/app/\(appID)?action=write-review"
 
     class func incrementLaunchCount() {
