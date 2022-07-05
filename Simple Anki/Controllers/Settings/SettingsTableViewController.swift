@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import StoreKit
+import FirebaseAnalytics
 
 class SettingsViewController: UIViewController {
 
@@ -58,39 +60,47 @@ class SettingsViewController: UIViewController {
 
         models.append(Section(title: K.Settings.notifications, options: [
             .staticCell(model: Option(title: "Reminder", icon: UIImage(systemName: K.Icon.bell), handler: {
-                ReminderManager.shared.notificationCenter.requestAuthorization(options: [.alert, .sound]) { permissionGranted, error in
-                    if let error = error {
-                        print(error.localizedDescription)
-                    } else if permissionGranted {
-                        self.presentReminderViewController()
+                IAPManager.shared.checkPermissions { [weak self] isActive in
+                    if isActive {
+                        ReminderManager.shared.notificationCenter.requestAuthorization(options: [.alert, .sound]) {  permissionGranted, error in
+                            if let error = error {
+                                print(error.localizedDescription)
+                            } else if permissionGranted {
+                                self?.presentReminderViewController()
+                            } else {
+                                self?.showSettingsAlert()
+                            }
+                        }
                     } else {
-                        self.showSettingsAlert()
+                        self?.present(PaywallViewController.paywallVC(), animated: true)
                     }
                 }
+
             }))
         ]))
     }
 
     private func showSettingsAlert() {
-        DispatchQueue.main.async {
-            let alert = UIAlertController(
-                title: "You turned off notifications :(",
-                message: "Open settings to allow Simple Anki send you notifications.",
-                preferredStyle: .alert
-            )
+        let alert = UIAlertController(
+            title: "You turned off notifications :(",
+            message: "Open settings to allow Simple Anki send you notifications.",
+            preferredStyle: .alert
+        )
 
-            let settingsAction = UIAlertAction(title: "Settings", style: .default) { _ in
-                guard let appSettingsUrl = URL(string: UIApplication.openSettingsURLString) else { return }
-                if UIApplication.shared.canOpenURL(appSettingsUrl) {
-                    UIApplication.shared.open(appSettingsUrl) { (success) in
-                        print("Settings opened: \(success)")
-                    }
+        let settingsAction = UIAlertAction(title: "Settings", style: .default) { _ in
+            guard let appSettingsUrl = URL(string: UIApplication.openSettingsURLString) else { return }
+            if UIApplication.shared.canOpenURL(appSettingsUrl) {
+                UIApplication.shared.open(appSettingsUrl) { (success) in
+                    print("Settings opened: \(success)")
                 }
             }
+        }
 
-            let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
-            alert.addAction(cancelAction)
-            alert.addAction(settingsAction)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+        alert.addAction(cancelAction)
+        alert.addAction(settingsAction)
+
+        DispatchQueue.main.async {
             self.present(alert, animated: true, completion: nil)
         }
     }
@@ -123,6 +133,7 @@ extension SettingsViewController: UITableViewDelegate {
 
         switch type.self {
         case .staticCell(let model):
+            Analytics.logEvent(model.title, parameters: nil)
             model.handler?()
         default:
             break
@@ -172,20 +183,26 @@ extension SettingsViewController: UITableViewDataSource {
     }
 }
 
+extension SettingsViewController: DoneDelegate {
+    func vewController(isDismissed: Bool) {
+        if isDismissed {
+            tableView.reloadData()
+        }
+    }
+}
+
 extension SettingsViewController: SwitchViewCellDelegate {
     func switchAction(with cell: UITableViewCell) {
         guard let switchCell = cell as? SwitchTableViewCell else { return }
-        let wdws = UIApplication.shared.connectedScenes.flatMap { ($0 as? UIWindowScene)?.windows ?? [] }
         if switchCell.mySwitch.isOn {
             UserDefaults.standard.set(true, forKey: K.UserDefaultsKeys.darkMode)
-            wdws.forEach { window in
-                window.overrideUserInterfaceStyle = .dark
-            }
+            view.window?.overrideUserInterfaceStyle = .dark
         } else {
             UserDefaults.standard.set(false, forKey: K.UserDefaultsKeys.darkMode)
-            wdws.forEach { window in
-                window.overrideUserInterfaceStyle = .light
-            }
+            view.window?.overrideUserInterfaceStyle = .light
         }
+        Analytics.logEvent("dark_mode", parameters: [
+            "is_on" : switchCell.mySwitch.isOn as NSObject
+        ])
     }
 }

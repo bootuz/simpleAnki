@@ -42,9 +42,8 @@ class ReviewViewController: UIViewController {
 
     let speakerButton: UIButton = {
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: 80, height: 80))
-        let image = UIImage(
-            systemName: "speaker.wave.2.circle",
-            withConfiguration: UIImage.SymbolConfiguration(pointSize: CGFloat(64), weight: .thin))
+        let config = UIImage.SymbolConfiguration(pointSize: CGFloat(64), weight: .thin)
+        let image = UIImage(systemName: "speaker.wave.2.circle", withConfiguration: config)
         button.setImage(image, for: .normal)
         button.tintColor = .darkGray
         return button
@@ -69,8 +68,7 @@ class ReviewViewController: UIViewController {
     let repeatButton: UIButton = {
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: 50, height: 40))
         let config = UIImage.SymbolConfiguration(pointSize: CGFloat(64), weight: .regular)
-        let image = UIImage(systemName: "repeat",
-                            withConfiguration: config)
+        let image = UIImage(systemName: "repeat", withConfiguration: config)
         button.setImage(image, for: .normal)
         button.tintColor = .darkGray
         return button
@@ -78,13 +76,16 @@ class ReviewViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .systemBackground
         speakerButton.addTarget(self, action: #selector(speakerButtonPressed), for: .touchUpInside)
         repeatButton.addTarget(self, action: #selector(repeatButtonPressed), for: .touchUpInside)
-
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "xmark"),
-                                                            style: .plain,
-                                                            target: self,
-                                                            action: #selector(closeButtonTapped))
+        let rightButton = UIBarButtonItem(
+            image: UIImage(systemName: "xmark"),
+            style: .plain,
+            target: self,
+            action: #selector(closeButtonTapped)
+        )
+        navigationItem.rightBarButtonItem = rightButton
         navigationItem.rightBarButtonItem?.tintColor = .lightGray
         finishLabel.isHidden = true
         repeatButton.isHidden = true

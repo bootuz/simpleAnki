@@ -52,7 +52,11 @@ class OnboardingViewController: UIViewController {
         return label
     }()
 
-    lazy var getStartedButton = UIButton().configureDefaultButton(title: "Get started")
+    lazy var getStartedButton: UIButton = {
+        let button = UIButton()
+        button.configureDefaultButton(title: "Get started")
+        return button
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,13 +67,12 @@ class OnboardingViewController: UIViewController {
 
     @objc private func didTapContinue() {
         dismiss(animated: true) {
-//            OnboardingManager.shared.setIsNotNewUser()
+            OnboardingManager.shared.setIsNotNewUser()
         }
     }
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-
         createFeature.configure(model: models[0])
         importFeature.configure(model: models[1])
         recordFeature.configure(model: models[2])

@@ -24,14 +24,14 @@ class NewCardViewController: UIViewController {
     var reloadData: (() -> Void)?
     var isRecording: Bool = false
 
-    private let cardView: UIView = {
+    private lazy var cardView: UIView = {
         let view = UIView()
         view.backgroundColor = .systemBackground
         view.layer.cornerRadius = 10
         return view
     }()
 
-    private let frontField: UITextField = {
+    private lazy var frontField: UITextField = {
         let field = UITextField()
         field.placeholder = "Front word"
         field.font = .systemFont(ofSize: 26, weight: .bold)
@@ -39,7 +39,7 @@ class NewCardViewController: UIViewController {
         return field
     }()
 
-    private let backField: UITextField = {
+    private lazy var backField: UITextField = {
         let field = UITextField()
         field.placeholder = "Back word"
         field.font = .systemFont(ofSize: 26, weight: .bold)
@@ -47,37 +47,45 @@ class NewCardViewController: UIViewController {
         return field
     }()
 
-    private let frontLabel: UILabel = {
+    private lazy var frontLabel: UILabel = {
         let label = UILabel()
         label.text = "Front"
         label.textColor = .systemGray
         return label
     }()
 
-    private let backLabel: UILabel = {
+    private lazy var backLabel: UILabel = {
         let label = UILabel()
         label.text = "Back"
         label.textColor = .systemGray
         return label
     }()
 
-    private let separationLine: UIView = {
+    private lazy var separationLine: UIView = {
         let view = UIView()
         view.backgroundColor = .systemGray4
         return view
     }()
 
-    private let addAndNext = UIButton().configureDefaultButton(title: "Add")
+    private lazy var addAndNext: UIButton = {
+        let button = UIButton()
+        button.configureDefaultButton(title: "Add")
+        return button
+    }()
 
-    private let recordButton = UIButton().configureIconButton(
-        configuration: .tinted(),
-        image: UIImage(systemName: "mic")
-    )
+    private lazy var recordButton: UIButton = {
+        let button = UIButton()
+        let image = UIImage(systemName: "mic")
+        button.configureIconButton(configuration: .tinted(), image: image)
+        return button
+    }()
 
-    private let playButton = UIButton().configureIconButton(
-        configuration: .tinted(),
-        image: UIImage(systemName: "speaker.wave.3")
-    )
+    private lazy var playButton: UIButton = {
+        let button = UIButton()
+        let image = UIImage(systemName: "speaker.wave.3")
+        button.configureIconButton(configuration: .tinted(), image: image)
+        return button
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -134,8 +142,13 @@ class NewCardViewController: UIViewController {
         navigationItem.largeTitleDisplayMode = .never
         view.backgroundColor = .secondarySystemBackground
 
-        addAndNext.isEnabled = false
-        recordButton.isEnabled = false
+        if frontField.text!.isEmpty {
+            addAndNext.isEnabled = false
+            recordButton.isEnabled = false
+        } else {
+            addAndNext.isEnabled = true
+            recordButton.isEnabled = true
+        }
         playButton.isHidden = true
 
         view.addSubview(addAndNext)
@@ -275,28 +288,33 @@ class NewCardViewController: UIViewController {
     // MARK: - Button handlers
 
     @objc func recordButtonTapped() {
-        switch recordingSession.recordPermission {
-        case .granted:
-            HapticManager.shared.vibrate(for: .success)
-            if !self.isRecording {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.09) {
-                    self.isRecording = true
-                    self.loadRecordingUI()
-                    self.startRecording()
+        IAPManager.shared.checkPermissions { [weak self] isActive in
+            if isActive {
+                switch self?.recordingSession.recordPermission {
+                case .granted:
+                    HapticManager.shared.vibrate(for: .success)
+                    if !self!.isRecording {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.09) {
+                            self?.isRecording = true
+                            self?.loadRecordingUI()
+                            self?.startRecording()
+                        }
+                    } else {
+                        self?.finishRecording()
+                        self?.loadPlaybackUI()
+                        self?.isRecording = false
+                    }
+                case .denied:
+                    HapticManager.shared.vibrate(for: .error)
+                    self?.showSettingsAlert()
+                case .undetermined:
+                    self?.recordingSession.requestRecordPermission { _ in }
+                default:
+                    break
                 }
             } else {
-                finishRecording()
-                loadPlaybackUI()
-                isRecording = false
+                self?.present(PaywallViewController.paywallVC(), animated: true)
             }
-
-        case .denied:
-            HapticManager.shared.vibrate(for: .error)
-            showSettingsAlert()
-        case .undetermined:
-            recordingSession.requestRecordPermission { _ in }
-        default:
-            break
         }
     }
 
@@ -326,6 +344,10 @@ class NewCardViewController: UIViewController {
     }
 
     @objc private func didSaveAndNextTapped() {
+        updateUIafterAddCard()
+    }
+
+    private func updateUIafterAddCard() {
         saveCard()
         frontField.text?.removeAll()
         backField.text?.removeAll()

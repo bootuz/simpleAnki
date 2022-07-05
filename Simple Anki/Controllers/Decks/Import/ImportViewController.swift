@@ -8,8 +8,7 @@
 import UIKit
 import UniformTypeIdentifiers
 import SwiftCSV
-import RealmSwift
-import ZIPFoundation
+import FirebaseAnalytics
 
 enum ImportFileType: String {
     case csv
@@ -34,13 +33,24 @@ class ImportViewController: UIViewController {
         return segmentControl
     }()
     let closeButton = UIButton(type: .close)
-    let importButton = UIButton().configureDefaultButton(title: "Choose file...")
+    let chooseFileButton: UIButton = {
+        let button = UIButton()
+        button.configureDefaultButton(title: "Choose file...")
+        return button
+    }()
+    let importingDeckLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Importing deck..."
+        label.numberOfLines = 1
+        label.textAlignment = .center
+        return label
+    }()
     let dontCloseAppLabel: UILabel = {
         let label = UILabel()
-        label.text = "Importing deck. Please don't close the app!"
-        label.numberOfLines = 0
+        label.text = "Please don't close the app."
+        label.numberOfLines = 1
         label.textAlignment = .center
-        label.textColor = .systemGreen
+        label.font = UIFont.systemFont(ofSize: 20, weight: .bold)
         return label
     }()
     let apkgInfoLabel: UILabel = {
@@ -50,7 +60,7 @@ class ImportViewController: UIViewController {
         label.textAlignment = .center
         let attrString = NSMutableAttributedString(string: "By now Simple Anki\nsupports only Front - Back layout.\nMake sure your apkg file contains those fields.")
         let attributes: [NSAttributedString.Key: Any] = [
-            .font : UIFont.boldSystemFont(ofSize: UIFont.systemFontSize)
+            .font : UIFont.boldSystemFont(ofSize: 17)
         ]
         attrString.addAttributes(attributes, range: NSRange(location: 32, length: 13))
         label.attributedText = attrString
@@ -63,7 +73,7 @@ class ImportViewController: UIViewController {
         label.textAlignment = .center
         let attrString = NSMutableAttributedString(string: "CSV file should contain two colums:\nFront1 : Back1\nFront2 : Back2\n...\nChoose delimeter below:")
         let attributes: [NSAttributedString.Key: Any] = [
-            .font : UIFont.boldSystemFont(ofSize: UIFont.systemFontSize)
+            .font : UIFont.boldSystemFont(ofSize: 17)
         ]
         attrString.addAttributes(attributes, range: NSRange(location: 35, length: 35))
         label.attributedText = attrString
@@ -72,11 +82,25 @@ class ImportViewController: UIViewController {
     var selectedFile: ImportFileType = .apkg
     var selectedCSVDelimeter: CSVDelimeterType = .semiColon
 
-    var semiColonButton = UIButton().configureTintedButton(title: ";")
-    var commaButton = UIButton().configureTintedButton(title: ",")
-    var tabButton = UIButton().configureTintedButton(title: "\\t")
+    var semiColonButton: UIButton = {
+        let button = UIButton()
+        button.configureTintedButton(title: ";")
+        return button
+    }()
 
-    let stackView: UIStackView = {
+    var commaButton: UIButton = {
+        let button = UIButton()
+        button.configureTintedButton(title: ",")
+        return button
+    }()
+
+    var tabButton: UIButton = {
+        let button = UIButton()
+        button.configureTintedButton(title: "\\t")
+        return button
+    }()
+
+    let delimeterStackView: UIStackView = {
         let stack = UIStackView()
         stack.sizeToFit()
         stack.spacing = 20
@@ -91,7 +115,7 @@ class ImportViewController: UIViewController {
         view.backgroundColor = .systemBackground
         navigationItem.titleView = segmentedControl
         closeButton.addTarget(self, action: #selector(didTapCloseButton), for: .touchUpInside)
-        importButton.addTarget(self, action: #selector(didTapImportDeckButton), for: .touchUpInside)
+        chooseFileButton.addTarget(self, action: #selector(didTapChooseFileButton), for: .touchUpInside)
         segmentedControl.addTarget(self, action: #selector(didChangeSegmentedControl), for: .valueChanged)
 
         tabButton.addTarget(self, action: #selector(didTapTabButton), for: .touchUpInside)
@@ -99,25 +123,28 @@ class ImportViewController: UIViewController {
         semiColonButton.addTarget(self, action: #selector(didTapSemiColonButton), for: .touchUpInside)
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: closeButton)
 
-        stackView.addArrangedSubview(semiColonButton)
-        stackView.addArrangedSubview(commaButton)
-        stackView.addArrangedSubview(tabButton)
+        delimeterStackView.addArrangedSubview(semiColonButton)
+        delimeterStackView.addArrangedSubview(commaButton)
+        delimeterStackView.addArrangedSubview(tabButton)
         semiColonButton.isSelected = true
         semiColonButton.configuration?.baseForegroundColor = .white
 
-        view.addSubview(stackView)
-        view.addSubview(importButton)
+        view.addSubview(delimeterStackView)
+        view.addSubview(chooseFileButton)
         view.addSubview(apkgInfoLabel)
         view.addSubview(csvInfoLabel)
         view.addSubview(activityView)
+        view.addSubview(importingDeckLabel)
         view.addSubview(dontCloseAppLabel)
         csvInfoLabel.isHidden = true
-        stackView.isHidden = true
+        delimeterStackView.isHidden = true
+        importingDeckLabel.isHidden = true
         dontCloseAppLabel.isHidden = true
     }
 
     @objc func didTapCloseButton() {
         dismiss(animated: true)
+        Analytics.logEvent("close_import", parameters: nil)
     }
 
     @objc func didTapSemiColonButton() {
@@ -152,13 +179,13 @@ class ImportViewController: UIViewController {
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        stackView.frame.size = CGSize(width: 300, height: 50)
-        stackView.center = view.center
-        stackView.frame.origin.y += 25
+        delimeterStackView.frame.size = CGSize(width: 300, height: 50)
+        delimeterStackView.center = view.center
+        delimeterStackView.frame.origin.y += 25
 
-        importButton.frame.size = CGSize(width: 300, height: 50)
-        importButton.center = view.center
-        importButton.frame.origin.y += 100
+        chooseFileButton.frame.size = CGSize(width: 300, height: 50)
+        chooseFileButton.center = view.center
+        chooseFileButton.frame.origin.y += 100
 
         csvInfoLabel.frame.size = CGSize(width: 300, height: 300)
         csvInfoLabel.center = view.center
@@ -168,38 +195,55 @@ class ImportViewController: UIViewController {
         apkgInfoLabel.center = view.center
         apkgInfoLabel.frame.origin.y -= 50
 
-        dontCloseAppLabel.frame.size = CGSize(width: 300, height: 300)
-        dontCloseAppLabel.center = view.center
-//        dontCloseAppLabel.frame.origin.y += 100
+        dontCloseAppLabel.translatesAutoresizingMaskIntoConstraints = false
+        importingDeckLabel.translatesAutoresizingMaskIntoConstraints = false
+
+        NSLayoutConstraint.activate([
+            importingDeckLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 190),
+            importingDeckLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40),
+            importingDeckLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
+
+            dontCloseAppLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 220),
+            dontCloseAppLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40),
+            dontCloseAppLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40)
+        ])
 
         activityView.center = view.center
         activityView.frame.origin.y -= 50
 
     }
 
-    @objc private func didTapImportDeckButton() {
-        presentDocumentPicker(with: selectedFile)
+    @objc private func didTapChooseFileButton() {
+        IAPManager.shared.checkPermissions { [weak self] isActive in
+            if isActive {
+                self?.presentDocumentPicker()
+            } else {
+                self?.present(PaywallViewController.paywallVC(), animated: true)
+            }
+            // MARK: Log event
+            Analytics.logEvent("import_deck_tapped", parameters: [
+                "premium" : isActive as NSObject,
+                "file_type" : self!.selectedFile.rawValue as NSObject
+
+            ])
+        }
     }
 
     @objc private func didChangeSegmentedControl() {
         if segmentedControl.selectedSegmentIndex == 0 {
             selectedFile = .apkg
-            stackView.isHidden = true
+            delimeterStackView.isHidden = true
             csvInfoLabel.isHidden = true
             apkgInfoLabel.isHidden = false
         } else {
             selectedFile = .csv
-            stackView.isHidden = false
+            delimeterStackView.isHidden = false
             csvInfoLabel.isHidden = false
             apkgInfoLabel.isHidden = true
         }
     }
 
-    func presentImportedCards(deckName: String, _ cards: [APKGCard]?) {
-        guard let cards = cards else {
-            // TODO: show error
-            return
-        }
+    func presentImportedCards(deckName: String, _ cards: [Cards]) {
         let importedCardsCV = ImportedCardsCollectionViewController()
         importedCardsCV.importedCards = cards
         importedCardsCV.deckName = deckName
@@ -210,8 +254,8 @@ class ImportViewController: UIViewController {
         present(navVC, animated: true)
     }
 
-    private func presentDocumentPicker(with type: ImportFileType) {
-        guard let fileType = UTType(filenameExtension: type.rawValue) else { return }
+    private func presentDocumentPicker() {
+        guard let fileType = UTType(filenameExtension: selectedFile.rawValue) else { return }
         let documentPicker = UIDocumentPickerViewController(forOpeningContentTypes: [fileType], asCopy: true)
         documentPicker.delegate = self
         documentPicker.allowsMultipleSelection = false
@@ -220,8 +264,11 @@ class ImportViewController: UIViewController {
 
     func showActivityIndicator() {
         activityView.startAnimating()
-        importButton.isHidden = true
+        chooseFileButton.isHidden = true
         apkgInfoLabel.isHidden = true
+        csvInfoLabel.isHidden = true
+        delimeterStackView.isHidden = true
+        importingDeckLabel.isHidden = false
         dontCloseAppLabel.isHidden = false
     }
 
@@ -235,15 +282,16 @@ class ImportViewController: UIViewController {
 extension ImportViewController: UIDocumentPickerDelegate {
     func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
         guard let url = urls.first else { return }
+        showActivityIndicator()
         switch selectedFile {
         case .apkg:
-            showActivityIndicator()
-            var apkgCards: [APKGCard]?
+            var apkgCards: [Cards] = []
             let apkgManager = APKGManager(apkgURL: url)
             DispatchQueue.global(qos: .userInitiated).async {
                 do {
                     apkgCards = try apkgManager.prepareAPKGCards()
                 } catch {
+                    self.showAlert(with: "Error", message: "Could not import deck")
                     print(error)
                 }
                 DispatchQueue.main.async {
@@ -252,14 +300,44 @@ extension ImportViewController: UIDocumentPickerDelegate {
                 }
             }
         case .csv:
-            do {
-                let csv = try CSV(url: url, delimiter: selectedCSVDelimeter.rawValue)
-                print(csv)
-                hideActivityIndicator()
-            } catch {
-                hideActivityIndicator()
-                print(error)
+            var csvCards: [Cards] = []
+            DispatchQueue.global(qos: .userInitiated).async {
+                do {
+                    let csv = try CSV(url: url, delimiter: self.selectedCSVDelimeter.rawValue)
+                    for row in csv.enumeratedRows {
+                        guard !row.isEmpty, row.count >= 2 else { continue }
+                        let front = self.cleanString(row[0])
+                        let back = self.cleanString(row[1])
+                        csvCards.append(CSVCard(front: front, back: back))
+                    }
+                } catch {
+                    self.showAlert(with: "Error", message: "Could not import deck")
+                    print(error)
+                }
+                DispatchQueue.main.async {
+                    self.hideActivityIndicator()
+                    self.presentImportedCards(deckName: url.lastPathComponent, csvCards)
+                }
             }
         }
+    }
+
+    private func showAlert(with title: String, message: String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .cancel) { [weak self] _ in
+            self?.dismiss(animated: true, completion: nil)
+        }
+        alertController.addAction(action)
+        present(alertController, animated: true, completion: nil)
+      }
+
+    private func cleanString(_ data: String) -> String {
+        return data.replaceOccurrences(of: "<[^>]+>", with: "").replaceOccurrences(of: "[\\[].*?[\\]]", with: "")
+    }
+}
+
+extension String {
+    func replaceOccurrences(of this: String, with that: String) -> String {
+        return self.replacingOccurrences(of: this, with: that, options: .regularExpression, range: nil)
     }
 }

@@ -19,10 +19,12 @@ class NewDeckViewController: UIViewController {
         return view
     }()
 
-    private let addCardsButton = UIButton().configureDefaultButton(
-        title: "Add cards",
-        image: UIImage(systemName: "arrow.forward")
-    )
+    private lazy var addCardsButton: UIButton = {
+        let button = UIButton()
+        let image = UIImage(systemName: "arrow.forward")
+        button.configureDefaultButton(title: "Add cards", image: image)
+        return button
+    }()
 
     private let textField: UITextField = {
         let field = UITextField()
@@ -50,7 +52,6 @@ class NewDeckViewController: UIViewController {
         textField.addTarget(self, action: #selector(textFieldChanged), for: .editingChanged)
         addCardsButton.addTarget(self, action: #selector(addCardsButtonTapped), for: .touchUpInside)
         setupUI()
-
     }
 
     private func setupUI() {
@@ -75,10 +76,12 @@ class NewDeckViewController: UIViewController {
                                  height: 40.0)
 
         addCardsButton.translatesAutoresizingMaskIntoConstraints = false
-        addCardsButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
-        addCardsButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16).isActive = true
-        addCardsButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        addCardsButton.safeBottomAnchor.constraint(equalTo: view.keyboardLayoutGuide.topAnchor, constant: -10).isActive = true
+        NSLayoutConstraint.activate([
+            addCardsButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16),
+            addCardsButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16),
+            addCardsButton.heightAnchor.constraint(equalToConstant: 50),
+            addCardsButton.safeBottomAnchor.constraint(equalTo: view.keyboardLayoutGuide.topAnchor, constant: -10)
+        ])
     }
 
     @objc func didCancelTapped() {

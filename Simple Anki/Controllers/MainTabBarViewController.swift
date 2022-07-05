@@ -11,6 +11,17 @@ class MainTabBarViewController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureTabBar()
+
+//        showOnboardingScreen()
+    }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        showLoadingScreen()
+    }
+
+    private func configureTabBar() {
         let decksVC = UINavigationController(rootViewController: DecksTableViewController())
         let settingsVC = UINavigationController(rootViewController: SettingsViewController())
 
@@ -30,14 +41,26 @@ class MainTabBarViewController: UITabBarController {
         self.setViewControllers([decksVC, settingsVC], animated: false)
     }
 
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
+    private func showLoadingScreen() {
+        let loadingScreen = LaunchScreenViewController()
+        loadingScreen.delegate = self
+        loadingScreen.modalPresentationStyle = .fullScreen
+        present(loadingScreen, animated: false)
+    }
+}
 
-        if OnboardingManager.shared.isNewUser() {
-            let onboardingVC = OnboardingViewController()
-            onboardingVC.modalPresentationStyle = .popover
-            onboardingVC.isModalInPresentation = true
-            present(onboardingVC, animated: true)
+extension MainTabBarViewController: DoneDelegate {
+    func vewController(isDismissed: Bool) {
+        if isDismissed && OnboardingManager.shared.isNewUser() {
+            showOnboardingScreen()
         }
+    }
+
+    private func showOnboardingScreen() {
+        let onboardingVC = OnboardingViewController()
+        let navVC = UINavigationController(rootViewController: onboardingVC)
+        onboardingVC.modalPresentationStyle = .popover
+        onboardingVC.isModalInPresentation = true
+        present(navVC, animated: true)
     }
 }

@@ -6,11 +6,12 @@
 //
 
 import UIKit
+import FirebaseAnalytics
 
 class ImportedCardsCollectionViewController: UIViewController {
 
     var collectionView: UICollectionView!
-    var importedCards: [APKGCard]?
+    var importedCards: [Cards]?
     var deckName: String?
     var reloadData: (() -> Void)?
 
@@ -31,17 +32,21 @@ class ImportedCardsCollectionViewController: UIViewController {
     }
 
     @objc private func didSaveTapped() {
-        guard let deckName = deckName, let apkgCards = importedCards else {
+        guard let deckName = deckName, let cards = importedCards else {
             return
         }
         let newDeck = Deck()
         newDeck.name = deckName
-        for card in apkgCards {
+        for card in cards {
             let newCard = Card()
             newCard.front = card.front
             newCard.back = card.back
             newDeck.cards.append(newCard)
         }
+        Analytics.logEvent("impored_deck", parameters: [
+            "name" : deckName as NSObject,
+            "cards_number" : cards.count as NSObject
+        ])
         StorageManager.save(newDeck)
         reloadData?()
         self.view.window?.rootViewController?.dismiss(animated: true)

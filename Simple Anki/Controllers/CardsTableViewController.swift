@@ -7,6 +7,7 @@
 
 import UIKit
 import RealmSwift
+import FirebaseAnalytics
 
 class CardsTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     private lazy var tableView: UITableView = {
@@ -73,17 +74,17 @@ class CardsTableViewController: UIViewController, UITableViewDataSource, UITable
     // MARK: - Private methods
 
     private func configureToolbar() {
-        let gearButton = UIButton().configureIconButton(
-            configuration: .tinted(),
-            image: UIImage(systemName: "gearshape")
-        )
+        let gearButton = UIButton()
+        let gearImage = UIImage(systemName: "gearshape")
+        gearButton.configureIconButton(configuration: .tinted(), image: gearImage)
         gearButton.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
         gearButton.addTarget(self, action: #selector(didLayoutTap), for: .touchUpInside)
         let gear = UIBarButtonItem(customView: gearButton)
 
         let flexible = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
 
-        let reviewButton = UIButton().configureDefaultButton(title: "Review")
+        let reviewButton = UIButton()
+        reviewButton.configureDefaultButton(title: "Review")
         reviewButton.frame = CGRect(x: 0, y: 0, width: view.frame.width - 98, height: 50)
         reviewButton.addTarget(self, action: #selector(reviewButtonTouchUpInside), for: .touchUpInside)
         let review = UIBarButtonItem(customView: reviewButton)
@@ -115,13 +116,14 @@ class CardsTableViewController: UIViewController, UITableViewDataSource, UITable
 
     @objc private func reviewButtonTouchUpInside() {
         let reviewVC = ReviewViewController()
-        guard let deck = selectedDeck else { return }
+        guard let deck = cards?[0].parentDeck.first else { return }
         guard let cardsToReview = cards?.where({ $0.memorized == false }) else { return }
-        reviewVC.reviewManager = ReviewManager(layout: deck.layout,
-                                               autoPlay: deck.autoplay,
-                                               cards: cardsToReview.shuffled())
+        reviewVC.reviewManager = ReviewManager(
+            layout: deck.layout,
+            autoPlay: deck.autoplay,
+            cards: cardsToReview.shuffled()
+        )
         let navVC = UINavigationController(rootViewController: reviewVC)
-        navVC.view.backgroundColor = UIColor.systemBackground
         navVC.modalPresentationStyle = .fullScreen
         present(navVC, animated: true)
     }
@@ -170,15 +172,26 @@ class CardsTableViewController: UIViewController, UITableViewDataSource, UITable
         default:
             break
         }
+        if let deck = selectedDeck {
+            Analytics.logEvent("deck_layout", parameters: [
+                "layout": deck.layout as NSObject,
+                "name": deck.name
+            ])
+        }
 
         alert.addAction(frontToBack)
         alert.addAction(backToFront)
         alert.addAction(all)
         alert.addAction(cancel)
         present(alert, animated: true)
+
     }
 
     @objc private func didTapPlus() {
+        presentNewCardViewController()
+    }
+
+    private func presentNewCardViewController() {
         let newCardVC = NewCardViewController()
         let navVC = UINavigationController(rootViewController: newCardVC)
         navVC.modalPresentationStyle = .fullScreen
@@ -353,7 +366,8 @@ extension CardsTableViewController: EmptyState {
         stackView.axis = .vertical
         stackView.alignment = .center
 
-        let button = UIButton().configureDefaultButton(title: "Add a card")
+        let button = UIButton()
+        button.configureDefaultButton(title: "Add a card")
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(didTapPlus), for: .touchUpInside)
 

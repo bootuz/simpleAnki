@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAnalytics
 
 class ReminderViewController: UIViewController {
 
@@ -170,6 +171,9 @@ extension ReminderViewController: SwitchViewCellDelegate {
             ReminderManager.shared.setReminderOff()
             switchCell.iconImageView.image = UIImage(systemName: "bell.slash")
         }
+        Analytics.logEvent("reminder", parameters: [
+            "is_on" : switchCell.mySwitch.isOn as NSObject
+        ])
     }
 }
 
@@ -180,5 +184,8 @@ extension ReminderViewController: DatePickerViewCellDelegate {
         dateFormatter.dateFormat = "HH:mm"
         let timeString = dateFormatter.string(from: datePickerCell.datePicker.date)
         UserDefaults.standard.set(timeString, forKey: K.UserDefaultsKeys.reminderTime)
+        Analytics.logEvent("reminder_time", parameters: [
+            "time" : timeString as NSObject
+        ])
     }
 }
