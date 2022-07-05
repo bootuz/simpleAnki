@@ -7,7 +7,6 @@
 
 import UIKit
 import RealmSwift
-import SwiftCSV
 import FirebaseAnalytics
 
 class DecksTableViewController: UITableViewController {
@@ -261,21 +260,5 @@ extension DecksTableViewController: EmptyState {
     func restore() {
         tableView.backgroundView = nil
         tableView.isScrollEnabled = true
-    }
-}
-
-extension DecksTableViewController: UIDocumentPickerDelegate {
-    func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
-        guard let url = urls.first else {
-            return
-        }
-        do {
-            let data = try CSV(url: url)
-            for row in data.enumeratedColumns {
-                print(row)
-            }
-        } catch {
-            print(error.localizedDescription)
-        }
     }
 }

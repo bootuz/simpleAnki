@@ -15,12 +15,6 @@ enum ImportFileType: String {
     case apkg
 }
 
-enum CSVDelimeterType: Character {
-    case semiColon = ";"
-    case comma = ","
-    case tab = "\t"
-}
-
 class ImportViewController: UIViewController {
 
     let activityView = UIActivityIndicatorView(style: .medium)
@@ -80,7 +74,7 @@ class ImportViewController: UIViewController {
         return label
     }()
     var selectedFile: ImportFileType = .apkg
-    var selectedCSVDelimeter: CSVDelimeterType = .semiColon
+    var selectedCSVDelimeter: CSVDelimiter = .semicolon
 
     var semiColonButton: UIButton = {
         let button = UIButton()
@@ -148,7 +142,7 @@ class ImportViewController: UIViewController {
     }
 
     @objc func didTapSemiColonButton() {
-        selectedCSVDelimeter = .semiColon
+        selectedCSVDelimeter = .semicolon
         semiColonButton.isSelected = true
         commaButton.isSelected = false
         tabButton.isSelected = false
@@ -303,8 +297,8 @@ extension ImportViewController: UIDocumentPickerDelegate {
             var csvCards: [Cards] = []
             DispatchQueue.global(qos: .userInitiated).async {
                 do {
-                    let csv = try CSV(url: url, delimiter: self.selectedCSVDelimeter.rawValue)
-                    for row in csv.enumeratedRows {
+                    let csv = try CSV<Enumerated>(url: url, delimiter: self.selectedCSVDelimeter)
+                    for row in csv.rows {
                         guard !row.isEmpty, row.count >= 2 else { continue }
                         let front = self.cleanString(row[0])
                         let back = self.cleanString(row[1])
