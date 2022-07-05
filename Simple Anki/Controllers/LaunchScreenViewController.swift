@@ -24,6 +24,13 @@ class LaunchScreenViewController: UIViewController {
         return stackView
     }()
 
+    lazy var imageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "Image.png")
+        imageView.contentMode = .scaleAspectFit
+        return imageView
+    }()
+
     lazy var simpleLabel: UILabel = {
         let label = UILabel()
         label.text = "Simple"
@@ -44,6 +51,7 @@ class LaunchScreenViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
+        stackView.isHidden = true
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -58,11 +66,13 @@ class LaunchScreenViewController: UIViewController {
         super.viewDidLayoutSubviews()
         stackView.addArrangedSubview(simpleLabel)
         stackView.addArrangedSubview(ankiLabel)
-        view.addSubview(stackView)
-        stackView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(imageView)
+        imageView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+            imageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            imageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            imageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            imageView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
     }
 }

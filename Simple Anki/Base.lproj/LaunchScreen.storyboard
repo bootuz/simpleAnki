@@ -16,29 +16,37 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="iUr-Y2-1hG">
-                                <rect key="frame" x="71" y="418" width="272.5" height="60"/>
+                            <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="iUr-Y2-1hG">
+                                <rect key="frame" x="70" y="418" width="274" height="60"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Simple" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VAH-VM-Otl" userLabel="Simple">
-                                        <rect key="frame" x="0.0" y="0.0" width="158.5" height="60"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Simple" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VAH-VM-Otl" userLabel="Simple">
+                                        <rect key="frame" x="0.0" y="0.0" width="160" height="60"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="50"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Anki" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3RL-HG-Xh8">
-                                        <rect key="frame" x="168.5" y="0.0" width="104" height="60"/>
+                                        <rect key="frame" x="170" y="0.0" width="104" height="60"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="50"/>
                                         <color key="textColor" systemColor="systemBlueColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                             </stackView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Image" translatesAutoresizingMaskIntoConstraints="NO" id="ZPb-rd-iby">
+                                <rect key="frame" x="0.0" y="261.5" width="414" height="373"/>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="iUr-Y2-1hG" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="epr-r6-bNb"/>
-                            <constraint firstItem="iUr-Y2-1hG" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="oGW-4l-f7u"/>
+                            <constraint firstItem="ZPb-rd-iby" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="9oC-du-4lU"/>
+                            <constraint firstItem="ZPb-rd-iby" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="BfE-jL-rOw"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="iUr-Y2-1hG" secondAttribute="trailing" constant="70" id="GKQ-It-7qb"/>
+                            <constraint firstItem="iUr-Y2-1hG" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="70" id="L23-9C-Rwv"/>
+                            <constraint firstItem="ZPb-rd-iby" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="ORE-Ha-HNo"/>
+                            <constraint firstItem="ZPb-rd-iby" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="Ypf-Tu-WYD"/>
+                            <constraint firstItem="iUr-Y2-1hG" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="n6v-vE-LHy"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -48,6 +56,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Image" width="1181" height="373"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
