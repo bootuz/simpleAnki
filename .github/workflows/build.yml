@@ -17,6 +17,7 @@ jobs:
         uses: sparkfabrik/ios-build-action@v2.0.0
         with:
           project-path: "Simple Anki.xcodeproj"
+          scheme: "Simple Anki"
           upload-to-testflight: true
           increment-build-number: true
           apple-key-id: ${{ secrets.APPLE_KEY_ID }}
