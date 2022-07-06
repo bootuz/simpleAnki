@@ -23,4 +23,5 @@ jobs:
           apple-key-content: ${{ secrets.APPLE_KEY_CONTENT }}
           team-id: ${{ secrets.TEAM_ID }}
           team-name: ${{ secrets.TEAM_NAME }}
+          match-build-type: 'appstore'
 
