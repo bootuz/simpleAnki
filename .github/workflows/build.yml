@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    name: Build default scheme using any available iPhone simulator
+    name: Build Simple Anki
     runs-on: macos-latest
 
     steps:
