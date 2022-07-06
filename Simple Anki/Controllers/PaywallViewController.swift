@@ -93,6 +93,17 @@ class PaywallViewController: UIViewController {
         return label
     }()
 
+    lazy var termsOfUseButton: UIButton = {
+        let button = UIButton()
+        button.configuration = .plain()
+        button.configuration?.titleAlignment = .center
+        button.configuration?.baseForegroundColor = .link
+        let container = AttributeContainer([.font : UIFont.systemFont(ofSize: 14)])
+        let attrStr = AttributedString("Terms of Use", attributes: container)
+        button.configuration?.attributedTitle = attrStr
+        return button
+    }()
+
     lazy var tosAndPpStackView: UIStackView = {
         let stack = UIStackView()
         stack.axis = .horizontal
@@ -132,6 +143,8 @@ class PaywallViewController: UIViewController {
         leftButton.tintColor = .systemGray
         navigationItem.leftBarButtonItem = leftButton
         navigationItem.rightBarButtonItem = rightButton
+        tosAndPpStackView.addArrangedSubview(termsOfUseButton)
+        tosAndPpStackView.addArrangedSubview(andLabel)
         tosAndPpStackView.addArrangedSubview(privacyPolicyButton)
         view.addSubview(tosAndPpStackView)
         view.addSubview(stackView)
@@ -141,6 +154,7 @@ class PaywallViewController: UIViewController {
         view.addSubview(monthButton)
 
         privacyPolicyButton.addTarget(self, action: #selector(didTapPPButton), for: .touchUpInside)
+        termsOfUseButton.addTarget(self, action: #selector(didTapTOSButton), for: .touchUpInside)
         monthButton.addTarget(self, action: #selector(didTapMonthSubscription(sender:)), for: .touchUpInside)
         annualButton.addTarget(self, action: #selector(didTapAnnualSubscription(sender:)), for: .touchUpInside)
 
@@ -272,6 +286,10 @@ class PaywallViewController: UIViewController {
 
     @objc private func didTapPPButton() {
         openURL(link: "https://simpleanki.com/privacy/")
+    }
+
+    @objc private func didTapTOSButton() {
+        openURL(link: "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/")
     }
 
     private func openURL(link: String) {
