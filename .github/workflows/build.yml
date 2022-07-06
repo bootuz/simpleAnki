@@ -24,4 +24,5 @@ jobs:
           team-id: ${{ secrets.TEAM_ID }}
           team-name: ${{ secrets.TEAM_NAME }}
           match-build-type: 'appstore'
+          match-git-url: ${{ secrets.MATCH_GIT_URL }}
 
