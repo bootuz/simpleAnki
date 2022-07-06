@@ -18,8 +18,6 @@ jobs:
         with:
           project-path: "Simple Anki.xcodeproj"
           scheme: "Simple Anki"
-          upload-to-testflight: true
-          increment-build-number: true
           apple-key-id: ${{ secrets.APPLE_KEY_ID }}
           apple-key-issuer-id: ${{ secrets.APPLE_KEY_ISSUER_ID }}
           apple-key-content: ${{ secrets.APPLE_KEY_CONTENT }}
