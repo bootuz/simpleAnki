@@ -12,13 +12,11 @@ class MainTabBarViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTabBar()
-
 //        showOnboardingScreen()
     }
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        showLoadingScreen()
     }
 
     private func configureTabBar() {

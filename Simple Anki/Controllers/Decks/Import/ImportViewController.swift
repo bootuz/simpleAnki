@@ -208,19 +208,11 @@ class ImportViewController: UIViewController {
     }
 
     @objc private func didTapChooseFileButton() {
-        IAPManager.shared.checkPermissions { [weak self] isActive in
-            if isActive {
-                self?.presentDocumentPicker()
-            } else {
-                self?.present(PaywallViewController.paywallVC(), animated: true)
-            }
-            // MARK: Log event
-            Analytics.logEvent("import_deck_tapped", parameters: [
-                "premium" : isActive as NSObject,
-                "file_type" : self!.selectedFile.rawValue as NSObject
-
-            ])
-        }
+        self.presentDocumentPicker()
+        // MARK: Log event
+        Analytics.logEvent("import_deck_tapped", parameters: [
+            "file_type" : self.selectedFile.rawValue as NSObject
+        ])
     }
 
     @objc private func didChangeSegmentedControl() {

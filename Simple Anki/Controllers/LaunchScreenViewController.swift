@@ -55,11 +55,9 @@ class LaunchScreenViewController: UIViewController {
     }
 
     override func viewDidAppear(_ animated: Bool) {
-        IAPManager.shared.checkPermissions { [weak self] _ in
-            self?.dismiss(animated: false, completion: {
-                self?.delegate?.vewController(isDismissed: true)
-            })
-        }
+        self.dismiss(animated: false, completion: {
+            self.delegate?.vewController(isDismissed: true)
+        })
     }
 
     override func viewDidLayoutSubviews() {

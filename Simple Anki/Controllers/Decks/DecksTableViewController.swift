@@ -21,12 +21,6 @@ class DecksTableViewController: UITableViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
         congigureBarButtonItems()
         configureTableView()
-//        Analytics.logEvent(AnalyticsEvent, parameters: [
-//          AnalyticsParameterItemID: "id-\(title!)",
-//          AnalyticsParameterItemName: title!,
-//          AnalyticsParameterContentType: "cont",
-//        ])
-
     }
 
     override func viewWillAppear(_ animated: Bool) {

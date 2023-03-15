@@ -288,33 +288,27 @@ class NewCardViewController: UIViewController {
     // MARK: - Button handlers
 
     @objc func recordButtonTapped() {
-        IAPManager.shared.checkPermissions { [weak self] isActive in
-            if isActive {
-                switch self?.recordingSession.recordPermission {
-                case .granted:
-                    HapticManager.shared.vibrate(for: .success)
-                    if !self!.isRecording {
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.09) {
-                            self?.isRecording = true
-                            self?.loadRecordingUI()
-                            self?.startRecording()
-                        }
-                    } else {
-                        self?.finishRecording()
-                        self?.loadPlaybackUI()
-                        self?.isRecording = false
-                    }
-                case .denied:
-                    HapticManager.shared.vibrate(for: .error)
-                    self?.showSettingsAlert()
-                case .undetermined:
-                    self?.recordingSession.requestRecordPermission { _ in }
-                default:
-                    break
+        switch self.recordingSession.recordPermission {
+        case .granted:
+            HapticManager.shared.vibrate(for: .success)
+            if !self.isRecording {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.09) {
+                    self.isRecording = true
+                    self.loadRecordingUI()
+                    self.startRecording()
                 }
             } else {
-                self?.present(PaywallViewController.paywallVC(), animated: true)
+                self.finishRecording()
+                self.loadPlaybackUI()
+                self.isRecording = false
             }
+        case .denied:
+            HapticManager.shared.vibrate(for: .error)
+            self.showSettingsAlert()
+        case .undetermined:
+            self.recordingSession.requestRecordPermission { _ in }
+        default:
+            break
         }
     }
 
@@ -437,7 +431,7 @@ extension NewCardViewController: AVAudioRecorderDelegate {
             AVEncoderAudioQualityKey: AVAudioQuality.max.rawValue
         ]
         do {
-            try recordingSession.setCategory(.record, mode: .spokenAudio)
+            try recordingSession.setCategory(.playAndRecord, mode: .spokenAudio, options: .defaultToSpeaker)
             try recordingSession.setActive(true)
             let url = Utils.generateNewRecordName()
             audioRecorder = try AVAudioRecorder(url: url, settings: recordSettings)

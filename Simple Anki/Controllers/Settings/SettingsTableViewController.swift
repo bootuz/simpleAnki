@@ -60,22 +60,15 @@ class SettingsViewController: UIViewController {
 
         models.append(Section(title: K.Settings.notifications, options: [
             .staticCell(model: Option(title: "Reminder", icon: UIImage(systemName: K.Icon.bell), handler: {
-                IAPManager.shared.checkPermissions { [weak self] isActive in
-                    if isActive {
-                        ReminderManager.shared.notificationCenter.requestAuthorization(options: [.alert, .sound]) {  permissionGranted, error in
-                            if let error = error {
-                                print(error.localizedDescription)
-                            } else if permissionGranted {
-                                self?.presentReminderViewController()
-                            } else {
-                                self?.showSettingsAlert()
-                            }
-                        }
+                ReminderManager.shared.notificationCenter.requestAuthorization(options: [.alert, .sound]) {  permissionGranted, error in
+                    if let error = error {
+                        print(error.localizedDescription)
+                    } else if permissionGranted {
+                        self.presentReminderViewController()
                     } else {
-                        self?.present(PaywallViewController.paywallVC(), animated: true)
+                        self.showSettingsAlert()
                     }
                 }
-
             }))
         ]))
     }
@@ -179,14 +172,6 @@ extension SettingsViewController: UITableViewDataSource {
             return cell
         default:
             return UITableViewCell()
-        }
-    }
-}
-
-extension SettingsViewController: DoneDelegate {
-    func vewController(isDismissed: Bool) {
-        if isDismissed {
-            tableView.reloadData()
         }
     }
 }
