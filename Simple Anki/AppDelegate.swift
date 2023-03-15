@@ -18,7 +18,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
     ) -> Bool {
-        IAPManager.shared.configure { _ in }
         FirebaseApp.configure()
         RateManager.incrementLaunchCount()
 //        let config = Realm.Configuration(
