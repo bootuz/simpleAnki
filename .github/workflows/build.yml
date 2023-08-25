@@ -1,16 +1,13 @@
 name: Build
 
 on:
-  push:
-    branches:
-      - master
   pull_request:
     branches:
       - master
 
 jobs:
   build:
-    name: Build default scheme using any available iPhone simulator
+    name: Build Simple Anki
     runs-on: macos-latest
 
     steps:
@@ -18,3 +15,15 @@ jobs:
         uses: actions/checkout@v3
       - name: Build iOS Action
         uses: sparkfabrik/ios-build-action@v2.0.0
+        with:
+          project-path: "Simple Anki.xcodeproj"
+          scheme: "Simple Anki"
+          apple-key-id: ${{ secrets.APPLE_KEY_ID }}
+          apple-key-issuer-id: ${{ secrets.APPLE_KEY_ISSUER_ID }}
+          apple-key-content: ${{ secrets.APPLE_KEY_CONTENT }}
+          team-id: ${{ secrets.TEAM_ID }}
+          team-name: ${{ secrets.TEAM_NAME }}
+          match-git-url: ${{ secrets.MATCH_GIT_URL }}
+          match-password: ${{ secrets.MATCH_PASSWORD }}
+          match-git-basic-authorization: ${{ secrets.MATCH_GIT_BASIC_AUTHORIZATION }}
+          match-build-type: 'appstore'
