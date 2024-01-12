@@ -8,12 +8,17 @@
 import SwiftUI
 
 struct MainView: View {
-    @StateObject var realmManager = RealmManager()
+
+    init() {
+        let appearance = UITabBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        UITabBar.appearance().standardAppearance = appearance
+        UITabBar.appearance().scrollEdgeAppearance = appearance
+    }
 
     var body: some View {
         TabView {
             DecksView()
-                .environmentObject(realmManager)
                 .tabItem {
                     Image(systemName: "tray.full")
                     Text("Decks")

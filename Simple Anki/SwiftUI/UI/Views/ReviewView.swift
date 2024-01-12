@@ -20,10 +20,10 @@ struct ReviewView: View {
                 VStack {
                     if reviewManager.isReviewing {
                         Text(reviewManager.currentCard?.front ?? "")
-                        
+
                         if isShowAnswer {
                             Divider()
-                            Text(reviewManager.currentCard?.back ?? "")
+                            Text(reviewManager.currentCard?.back ?? "No back text")
                         }
                     } else {
                         Text("Finished!")
@@ -34,12 +34,17 @@ struct ReviewView: View {
                 .minimumScaleFactor(0.5)
                 .multilineTextAlignment(.center)
                 .onTapGesture {
-                    SoundManager.shared.play(sound: reviewManager.currentCard?.audioName ?? "")
+                    if reviewManager.isReviewing {
+                        SoundManager.shared.play(sound: reviewManager.currentCard?.audioName ?? "")
+                    }
                 }
                 .font(.system(size: 40, weight: .medium))
                 .padding()
                 .onAppear {
                     reviewManager.startReview()
+                }
+                .onChange(of: reviewManager.currentCard) { _ in
+                    playPronunciation()
                 }
 
                 VStack {
@@ -67,7 +72,7 @@ struct ReviewView: View {
                     }
                 }
                 .font(.system(size: 70))
-                .foregroundColor(.gray.opacity(0.7))
+                .foregroundColor(.gray.opacity(0.6))
                 .padding(.bottom)
             }
             .toolbar {
@@ -79,9 +84,25 @@ struct ReviewView: View {
                             .foregroundColor(.gray)
                     }
                 }
+
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Menu {
+                        Text("Tap on front word to play a sound")
+                    } label: {
+                        Image(systemName: "questionmark.circle")
+                            .foregroundColor(.gray)
+                    }
+                }
             }
         }
     }
+
+    private func playPronunciation() {
+        if let audioName = reviewManager.currentCard?.audioName {
+            SoundManager.shared.play(sound: audioName)
+        }
+    }
+
 }
 
 struct ReviewView_Previews: PreviewProvider {

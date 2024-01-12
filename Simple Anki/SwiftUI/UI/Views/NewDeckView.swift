@@ -6,57 +6,65 @@
 //
 
 import SwiftUI
+import RealmSwift
 
 struct NewDeckView: View {
+    @Environment(\.dismiss) private var dismiss
+
+    @EnvironmentObject private var userSettings: UserSettings
+    @ObservedResults(Deck.self) var decks
     @State private var deckNameText: String = ""
     @FocusState private var isTextFieldFocused: Bool
-    @Binding var isPopoverPresented: Bool
 
     var body: some View {
         NavigationView {
             VStack {
-                TextField("Deck name", text: $deckNameText)
-                    .background()
+                TextField("Name", text: $deckNameText)
                     .font(.system(size: 35, weight: .bold))
                     .padding(.top, 160)
                     .focused($isTextFieldFocused)
+                Divider()
                 Spacer()
-                NavigationLink {
-                    NewCardView(isPopoverPresented: $isPopoverPresented)
+
+                Button {
+                    $decks.append(Deck(name: deckNameText.trimmingCharacters(in: .whitespacesAndNewlines)))
+                    HapticManagerSUI.shared.impact(style: .heavy)
+                    dismiss()
                 } label: {
                     HStack {
-                        Text("Add cards")
-                        Image(systemName: "arrow.right")
+                        Text("Create")
                     }
                     .padding(8)
-                    .frame(maxWidth: 280)
+                    .frame(maxWidth: .infinity)
                 }
-                .disabled(deckNameText.isEmpty)
                 .buttonStyle(.borderedProminent)
             }
             .onAppear {
                 isTextFieldFocused.toggle()
             }
-            .navigationTitle(deckNameText)
+            .navigationTitle("New deck")
             .navigationBarTitleDisplayMode(.inline)
             .padding()
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
-                    Button("Done") {
-                        if !deckNameText.isEmpty {
-
-                        }
-                        isPopoverPresented.toggle()
+                    Button {
+                        dismiss()
+                    } label: {
+                        Image(systemName: "xmark")
+                            .foregroundColor(.gray)
                     }
                 }
             }
         }
+        .preferredColorScheme(userSettings.colorScheme ? .dark : .light)
     }
 }
 
 struct NewDeckView_Previews: PreviewProvider {
     @State static var isPresented: Bool = true
+
     static var previews: some View {
-        NewDeckView(isPopoverPresented: $isPresented)
+        NewDeckView()
+            .environmentObject(UserSettings())
     }
 }
