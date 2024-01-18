@@ -27,7 +27,7 @@ struct NewDeckView: View {
                 Spacer()
 
                 Button {
-                    $decks.append(Deck(name: deckNameText.trimmingCharacters(in: .whitespacesAndNewlines)))
+                    addDeck()
                     HapticManagerSUI.shared.impact(style: .heavy)
                     dismiss()
                 } label: {
@@ -57,6 +57,11 @@ struct NewDeckView: View {
             }
         }
         .preferredColorScheme(userSettings.colorScheme ? .dark : .light)
+    }
+
+    private func addDeck() {
+        let deck = Deck(name: deckNameText.trimmingCharacters(in: .whitespacesAndNewlines))
+        $decks.append(deck)
     }
 }
 

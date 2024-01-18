@@ -9,8 +9,7 @@ import SwiftUI
 
 struct ReviewView: View {
     @Environment(\.dismiss) var dismiss
-    @State private var frontText: String = ""
-    @State private var backText: String = ""
+
     @State private var isShowAnswer: Bool = false
     @StateObject var reviewManager: ReviewManagerSUI
 
@@ -21,10 +20,11 @@ struct ReviewView: View {
                     if reviewManager.isReviewing {
                         Text(reviewManager.currentCard?.front ?? "")
 
-                        if isShowAnswer {
+                        Group {
                             Divider()
                             Text(reviewManager.currentCard?.back ?? "No back text")
                         }
+                        .opacity(isShowAnswer ? 1 : 0)
                     } else {
                         Text("Finished!")
                             .font(.system(size: 60, weight: .bold))
@@ -43,7 +43,7 @@ struct ReviewView: View {
                 .onAppear {
                     reviewManager.startReview()
                 }
-                .onChange(of: reviewManager.currentCard) { _ in
+                .onChange(of: reviewManager.currentCard) {
                     playPronunciation()
                 }
 
@@ -107,6 +107,6 @@ struct ReviewView: View {
 
 struct ReviewView_Previews: PreviewProvider {
     static var previews: some View {
-        ReviewView(reviewManager: ReviewManagerSUI(deck: Deck.deck2))
+        ReviewView(reviewManager: ReviewManagerSUI(cards: Deck.deck2.cards))
     }
 }

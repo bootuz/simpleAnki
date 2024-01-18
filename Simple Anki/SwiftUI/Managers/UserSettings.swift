@@ -6,3 +6,8 @@
 //
 
 import Foundation
+import SwiftUI
+
+class UserSettings: ObservableObject {
+    @AppStorage("colorScheme") var colorScheme: Bool = false
+}

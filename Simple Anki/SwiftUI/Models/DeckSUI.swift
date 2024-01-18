@@ -27,3 +27,16 @@ class Deck: Object, ObjectKeyIdentifiable {
         self.name = name
     }
 }
+
+extension Deck {
+    static let deck1 = Deck(name: "Test")
+    static let deck2 = Deck(value: [
+        "name": "Greetings",
+        "cards": [
+            Card(front: "Hello", back: "Привет"),
+            Card(front: "Good day", back: "Добрый день")
+        ]
+    ] as [String : Any])
+
+    static let decks = [deck1, deck2]
+}

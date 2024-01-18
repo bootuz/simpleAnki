@@ -7,18 +7,15 @@
 
 import SwiftUI
 import RealmSwift
-import SPIndicator
 import PhotosUI
 
 struct CardView: View {
-    @ObservedRealmObject var card: Card
+    @State var viewModel: CardViewModel
+    @ObservedRealmObject var deck: Deck
 
-    @State private var recordingButtonSize: CGFloat = 18
-    @State private(set) var image: UIImage?
     @State private var selectedImage: PhotosPickerItem?
-    @State private var frontText: String = ""
-    @State private var backText: String = ""
     @State private var isPreviewPresented: Bool = false
+    @State private var showAlert: Bool = false
 
     private var transaction: Transaction {
         var transaction = Transaction()
@@ -28,7 +25,6 @@ struct CardView: View {
 
     @FocusState private var isTextFieldFocused: Bool
     @Environment(\.dismiss) private var dismiss
-
     @EnvironmentObject private var audioRecorder: AudioRecorder
 
     var body: some View {
@@ -37,10 +33,10 @@ struct CardView: View {
             Spacer()
 
             VStack {
-                TextField("Front word", text: $frontText)
+                TextField("Front word", text: $viewModel.frontWord)
                     .padding(.bottom)
                 Divider()
-                TextField("Back word", text: $backText)
+                TextField("Back word", text: $viewModel.backWord)
                     .padding(.top)
             }
             .focused($isTextFieldFocused)
@@ -48,10 +44,7 @@ struct CardView: View {
             .multilineTextAlignment(.center)
             .padding()
             .onAppear {
-                frontText = card.front
-                backText = card.back
                 isTextFieldFocused.toggle()
-                print(card)
             }
 
             Spacer()
@@ -61,19 +54,23 @@ struct CardView: View {
                 // MARK: HSTACK START
                 HStack {
                     Group {
-                        ImagePickerButton(image: $image)
+                        ImagePickerButton(image: $viewModel.image)
 
                         Spacer()
 
                         Button {
-                            guard let image = image else { return }
-                            guard !frontText.isEmpty else { return }
-                            writeToDisk(image: image, imageName: frontText + UUID().uuidString)
+                            guard !viewModel.frontWord.isEmpty else { return }
+                            if viewModel.updating {
+                                 update()
+                            } else {
+                                addCard()
+                                viewModel.clear()
+                            }
+//                            writeToDisk(image: image, imageName: viewModel.frontWord + UUID().uuidString)
                         } label: {
                             Image(systemName: "plus.circle.fill")
                                 .font(.system(size: 35))
                         }
-                        .disabled(frontText.isEmpty)
                     }
                     .opacity(audioRecorder.isRecording ? 0 : 1)
                     .offset(x: audioRecorder.isRecording ? -200 : 0)
@@ -81,21 +78,51 @@ struct CardView: View {
 
                     Spacer()
 
-                    Button {
-                        audioRecorder.isRecording.toggle()
-                        HapticManagerSUI.shared.impact(style: .heavy)
-                    } label: {
-                        Image(systemName: audioRecorder.isRecording ? "stop.circle.fill" : "waveform.badge.mic")
-                            .foregroundStyle(audioRecorder.isRecording ? .red : .blue)
-                            .font(.system(size: audioRecorder.isRecording ? 35 : 18))
-                            .contentTransition(.symbolEffect(.replace.offUp.wholeSymbol))
-                    }
-                    .contextMenu {
+                    if let fileName = viewModel.audioName {
                         Button {
-                            print("delete audio")
+                            Task {
+                                SoundManager.shared.play(sound: fileName)
+                            }
                         } label: {
-                            Label("Delete", systemImage: "trash")
+                            Image(systemName: "play.circle")
+                                .font(.system(size: 18))
                         }
+                        .contextMenu {
+                            Button(role: .destructive) {
+                                audioRecorder.deleteRecording()
+                            } label: {
+                                Label("Delete", systemImage: "trash")
+                            }
+                        }
+                    } else {
+                        Button {
+                            HapticManagerSUI.shared.impact(style: .heavy)
+
+                            if audioRecorder.isRecording {
+                                audioRecorder.stopRecording { fileName in
+                                    viewModel.audioName = fileName
+                                }
+                            } else {
+                                audioRecorder.checkRecordPermission { granted in
+                                    if granted {
+                                        audioRecorder.startRecording()
+                                    } else {
+                                        showAlert.toggle()
+                                    }
+                                }
+                            }
+                        } label: {
+                            Image(systemName: audioRecorder.isRecording ? "stop.circle.fill" : "waveform.badge.mic")
+                                .foregroundStyle(audioRecorder.isRecording ? .red : .blue)
+                                .font(.system(size: audioRecorder.isRecording ? 35 : 18))
+                                .contentTransition(.symbolEffect(.replace.offUp.wholeSymbol))
+                        }
+                        .alert("No access", isPresented: $showAlert, actions: {
+                            Button("Cancel", role: .cancel, action: {})
+                            Button("Open settings", role: .none) {
+
+                            }
+                        })
                     }
                 } // MARK: HSTACK END
                 .padding(.horizontal)
@@ -113,7 +140,7 @@ struct CardView: View {
         .onChange(of: selectedImage) {
             Task {
                 let data = try? await selectedImage?.loadTransferable(type: Data.self)
-                self.image = UIImage(data: data ?? Data())
+                viewModel.image = UIImage(data: data ?? Data())
             }
         }
         .toolbar {
@@ -123,10 +150,12 @@ struct CardView: View {
                         isPreviewPresented.toggle()
                     }
                 }
+                .disabled(viewModel.incomplete)
                 .fullScreenCover(isPresented: $isPreviewPresented) {
-                    CardPreviewView(front: frontText, back: backText, image: image, audio: card.audioName, isPreviewPresented: $isPreviewPresented)
+                    CardPreviewView(front: viewModel.frontWord, back: viewModel.backWord, image: viewModel.image, audio: viewModel.audioName, isPreviewPresented: $isPreviewPresented)
                 }
             }
+
             ToolbarItem(placement: .cancellationAction) {
                 Button {
                     dismiss()
@@ -136,6 +165,32 @@ struct CardView: View {
                 }
             }
         }
+    }
+
+    private func update() {
+        guard let cardID = viewModel.id else { return }
+        guard let card = deck.cards.first(where: {$0._id == cardID }) else { return }
+
+        do {
+            let realm = try Realm()
+            try realm.write {
+                card.thaw()?.front = viewModel.frontWord
+                card.thaw()?.back = viewModel.backWord
+                card.thaw()?.audioName = viewModel.audioName
+                card.thaw()?.memorized = viewModel.memorized
+            }
+        } catch {
+            print("Error: \(error)")
+        }
+    }
+
+    private func addCard() {
+        let card = Card(
+            front: viewModel.frontWord,
+            back: viewModel.backWord,
+            audioName: viewModel.audioName
+        )
+        $deck.cards.append(card)
     }
 
     private func writeToDisk(image: UIImage, imageName: String) {
@@ -150,7 +205,7 @@ struct CardView: View {
 struct CardView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            CardView(card: Card.card)
+            CardView(viewModel: CardViewModel(), deck: Deck.deck1)
                 .environmentObject(AudioRecorder())
         }
     }

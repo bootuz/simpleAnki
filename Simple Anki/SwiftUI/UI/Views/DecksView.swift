@@ -10,32 +10,28 @@ import RealmSwift
 
 struct DecksView: View {
     @ObservedResults(Deck.self, sortDescriptor: SortDescriptor(keyPath: "dateCreated", ascending: false)) var decks
-    @State private var isPopoverPresented: Bool = false
+    @State private var isNewDeckViewPresented: Bool = false
 
     var body: some View {
         NavigationView {
             VStack {
                 if decks.isEmpty {
-                    Spacer()
-                    VStack(spacing: 10) {
-                        Image(systemName: "tray")
-                            .font(.system(size: 100, weight: .light))
-                        Text("There are no decks yet")
-                    }
-                    .foregroundColor(.gray.opacity(0.7))
-                    Spacer()
-                    Button {
-                        isPopoverPresented.toggle()
-                        HapticManagerSUI.shared.impact(style: .heavy)
-                    } label: {
-                        Text("Create deck")
-                            .padding(8)
-                            .frame(maxWidth: 280)
-                    }
-                    .buttonStyle(.borderedProminent)
-                    .padding(.bottom, 40)
-                    .sheet(isPresented: $isPopoverPresented, content: {
-                        NewDeckView()
+                    ContentUnavailableView(label: {
+                        Label("No decks", systemImage: "tray")
+                    }, description: {
+                        Text("Your decks will appear here.")
+                    }, actions: {
+                        Button {
+                            isNewDeckViewPresented.toggle()
+                            HapticManagerSUI.shared.impact(style: .heavy)
+                        } label: {
+                            Text("Add deck")
+                        }
+                        .controlSize(.regular)
+                        .buttonStyle(.borderedProminent)
+                        .sheet(isPresented: $isNewDeckViewPresented, content: {
+                            NewDeckView()
+                        })
                     })
                 } else {
                     List {
@@ -51,7 +47,7 @@ struct DecksView: View {
                             }
                             .swipeActions(edge: .trailing, allowsFullSwipe: true) {
                                 Button {
-                                    $decks.remove(deck)
+                                    remove(deck)
                                 } label: {
                                     Image(systemName: "trash")
                                 }
@@ -70,12 +66,12 @@ struct DecksView: View {
                         Image(systemName: "tray.and.arrow.down")
                     }
                     Button {
-                        isPopoverPresented.toggle()
+                        isNewDeckViewPresented.toggle()
                         HapticManagerSUI.shared.impact(style: .heavy)
                     } label: {
                         Image(systemName: "plus.circle.fill")
                     }
-                    .popover(isPresented: $isPopoverPresented) {
+                    .sheet(isPresented: $isNewDeckViewPresented) {
                         NewDeckView()
                     }
                 }
@@ -86,10 +82,24 @@ struct DecksView: View {
 
     @ViewBuilder private func cardsCount(of deck: Deck) -> some View {
         let cardCount = deck.cards.count
-        if cardCount == 0 {
-            Text("No cards")
-        } else {
-            Text("^[\(cardCount) card](inflect: true)")
+        Text(cardCount == 0 ? "No cards" : "^[\(cardCount) card](inflect: true)")
+    }
+
+    private func remove(_ deck: Deck) {
+
+        do {
+            let realm = try Realm()
+            guard let deckToDelete = realm.objects(Deck.self).first(where: { $0._id == deck._id }) else { return }
+            deckToDelete.cards.forEach { card in
+                LocalFileManager.shared.delete(card.audioName)
+            }
+
+            try realm.write {
+                realm.delete(deckToDelete.cards)
+                realm.delete(deckToDelete)
+            }
+        } catch {
+            print("Error: \(error)")
         }
     }
 }

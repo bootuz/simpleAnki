@@ -8,12 +8,19 @@
 import Foundation
 import AVFoundation
 
-class AudioRecorder: ObservableObject {
-    private var audioRecorder: AVAudioRecorder?
-
+class AudioRecorder: NSObject, ObservableObject, AVAudioRecorderDelegate, AVAudioPlayerDelegate {
+    @Published var isPlaybackReady = false
     @Published var isRecording = false
-    @Published var audioURL: URL?
-    private var audioName: String?
+
+    private var audioRecorder: AVAudioRecorder?
+    private var audioPlayer: AVAudioPlayer?
+    private var fileName: String?
+
+    init(fileName: String? = nil) {
+        self.fileName = fileName ?? UUID().uuidString + ".m4a"
+        super.init()
+        setupRecorder()
+    }
 
     private var settings: [String: Any] = [
         AVFormatIDKey: kAudioFormatMPEG4AAC,
@@ -22,71 +29,82 @@ class AudioRecorder: ObservableObject {
         AVNumberOfChannelsKey: 2
     ]
 
-    private func setupAudioRecorder() {
+    private func setupRecorder() {
         let audioSession = AVAudioSession.sharedInstance()
         do {
             try audioSession.setCategory(.record, mode: .default)
             try audioSession.setActive(true)
+            guard let fileName = fileName else { return }
+            let fileURL = getDocumentsDirectory().appendingPathComponent("\(fileName)")
 
-            let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-            guard let audioName = audioName else { return }
-            let audioFileURL = documentsDirectory.appendingPathComponent("\(audioName).m4a")
-
-            audioRecorder = try AVAudioRecorder(url: audioFileURL, settings: settings)
-            audioRecorder?.prepareToRecord()
+            audioRecorder = try AVAudioRecorder(url: fileURL, settings: settings)
+            audioRecorder?.delegate = self
         } catch {
             print("Error setting up audio recorder: \(error.localizedDescription)")
         }
     }
 
+    private func getDocumentsDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        return paths[0]
+    }
+
     func startRecording() {
-        self.setupAudioRecorder()
-        guard let audioRecorder = audioRecorder else { return }
+        audioRecorder?.record()
+        isRecording = true
+    }
 
-        if !audioRecorder.isRecording {
-            do {
-                try AVAudioSession.sharedInstance().setActive(true)
-                audioRecorder.record()
-                isRecording = true
-            } catch {
-                print("Error starting recording: \(error.localizedDescription)")
-            }
+    func stopRecording(completion: @escaping (String?) -> Void) {
+        audioRecorder?.stop()
+        isRecording = false
+        isPlaybackReady = true
+        completion(fileName ?? nil)
+    }
+
+    func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
+        if flag {
+            isPlaybackReady = true
         }
     }
 
-    func stopRecording() {
-        if let audioRecorder = audioRecorder, audioRecorder.isRecording {
-            audioRecorder.stop()
-            isRecording = false
-            audioURL = audioRecorder.url
-        }
-    }
-
-    func isMicAccessGranted() -> Bool {
-        var permissionCheck: Bool = false
-        switch AVAudioSession.sharedInstance().recordPermission {
+    func checkRecordPermission(completion: @escaping (Bool) -> Void) {
+        switch AVAudioApplication.shared.recordPermission {
         case .granted:
-            permissionCheck = true
+            completion(true)
         case .denied:
-            permissionCheck = false
+            completion(false)
         case .undetermined:
-            AVAudioSession.sharedInstance().requestRecordPermission { granted in
-                permissionCheck = granted
+                AVAudioApplication.requestRecordPermission { granted in
+                DispatchQueue.main.async {
+                    completion(granted)
+                }
             }
-        @unknown default:
-            break
+        default:
+            completion(false)
         }
-        return permissionCheck
-    }
-}
-
-extension AudioRecorder {
-
-    func generateAudioName() {
-        self.audioName = UUID().uuidString
     }
 
-    func setAudioName(_ name: String) {
-        self.audioName = name
+    func playRecording() {
+        guard isPlaybackReady, let url = audioRecorder?.url else { return }
+
+        do {
+            audioPlayer = try AVAudioPlayer(contentsOf: url)
+            audioPlayer?.delegate = self
+            audioPlayer?.play()
+        } catch {
+            print("Failed to initialize the audio player: \(error.localizedDescription)")
+        }
+    }
+
+    func deleteRecording() {
+        guard let fileName = fileName else { return }
+
+        let url = getDocumentsDirectory().appendingPathComponent("\(fileName)")
+
+        do {
+            try FileManager.default.removeItem(at: url)
+        } catch {
+            print(error)
+        }
     }
 }

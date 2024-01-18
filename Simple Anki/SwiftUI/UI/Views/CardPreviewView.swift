@@ -53,12 +53,13 @@ struct CardPreviewView: View {
                         Text(back ?? "")
                     }
                 }
+                .lineLimit(2)
                 .minimumScaleFactor(0.5)
                 .multilineTextAlignment(.center)
                 .onTapGesture {
                     SoundManager.shared.play(sound: audio ?? "")
                 }
-                .font(.system(size: 40, weight: .medium))
+                .font(.system(size: 35, weight: .medium))
                 .padding()
 
                 if let audio {

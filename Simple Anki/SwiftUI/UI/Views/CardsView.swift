@@ -9,80 +9,77 @@ import SwiftUI
 import RealmSwift
 
 struct CardsView: View {
-    @State private var isNewCardPresented: Bool = false
+    @State private var isCardViewPresented: Bool = false
     @State private var isReviewPresented: Bool = false
     @ObservedRealmObject var deck: Deck
 
     var body: some View {
-        VStack {
+        ZStack {
             if deck.cards.isEmpty {
-                Spacer()
-                VStack(spacing: 10) {
-                    Image(systemName: "rectangle.portrait.on.rectangle.portrait.angled")
-                        .font(.system(size: 100, weight: .light))
-                    Text("There are no cards yet")
-                }
-                .foregroundColor(.gray.opacity(0.7))
-                Spacer()
-                Button {
-                    isNewCardPresented.toggle()
-                    HapticManagerSUI.shared.impact(style: .heavy)
-                } label: {
-                    Text("Add card")
-                        .padding(8)
-                        .frame(maxWidth: 280)
-                }
-                .buttonStyle(.borderedProminent)
-                .padding(.bottom, 40)
-                .sheet(isPresented: $isNewCardPresented, content: {
-                    NavigationView {
-                        NewCardView(deck: deck)
-                            .environmentObject(AudioRecorder())
+                ContentUnavailableView(label: {
+                    Label("No cards", systemImage: "rectangle.portrait.on.rectangle.portrait.angled")
+                }, description: {
+                    Text("Cards will appear here.")
+                }, actions: {
+                    Button {
+                        isCardViewPresented.toggle()
+                        HapticManagerSUI.shared.impact(style: .heavy)
+                    } label: {
+                        Text("Add card")
                     }
+                    .controlSize(.regular)
+                    .buttonStyle(.borderedProminent)
                 })
             } else {
-                ZStack {
-                    List {
-                        ForEach(deck.cards) { card in
-                            NavigationLink {
-                                CardView(card: card)
-                                    .environmentObject(AudioRecorder())
-                            } label: {
-                                Text(card.front)
-                            }
-                            .swipeActions(edge: .trailing) {
-                                Button {
-                                    guard let item = deck.thaw() else { return }
-                                    guard item.isInvalidated else { return }
-                                    item.realm?.delete(card)
-                                } label: {
-                                    Image(systemName: "trash")
-                                }
-                                .tint(.red)
-                            }
+                List {
+                    ForEach(deck.cards) { card in
+                        NavigationLink {
+                            CardView(viewModel: CardViewModel(card: card), deck: deck)
+                                .environmentObject(AudioRecorder(fileName: card.audioName))
+                                .navigationBarBackButtonHidden()
+                        } label: {
+                            Text(card.front)
                         }
-                        .onMove(perform: $deck.cards.move)
-                    }
-                    VStack {
-                        Spacer()
-                        HStack {
-                            Spacer()
+                        .swipeActions(edge: .trailing) {
                             Button {
-                                isReviewPresented.toggle()
-                                HapticManagerSUI.shared.impact(style: .heavy)
+                                remove(card)
                             } label: {
-                                Image(systemName: "rectangle.stack.badge.play.fill")
-                                    .font(.system(size: 30))
-                                    .padding(8)
+                                Image(systemName: "trash")
                             }
-                            .padding()
-                            .padding(.bottom)
-                            .buttonStyle(CircleButton())
-                            .fullScreenCover(isPresented: $isReviewPresented) {
-                                ReviewView(reviewManager: ReviewManagerSUI(deck: deck))
-                            }
+                            .tint(.red)
                         }
                     }
+                    .onMove(perform: $deck.cards.move)
+                }
+                VStack {
+                    Spacer()
+                    HStack {
+                        Button {
+                            
+                        } label: {
+                            Image(systemName: "gearshape")
+                                .padding(.vertical, 8)
+                        }
+                        .tint(.blue)
+                        .buttonStyle(.bordered)
+//                        .confirmationDialog("Test", isPresented: .constant(true)) {
+//
+//                        }
+
+                        Button {
+                            isReviewPresented.toggle()
+                            HapticManagerSUI.shared.impact(style: .heavy)
+                        } label: {
+                            Text("Review")
+                                .padding(.vertical, 8)
+                                .frame(maxWidth: .infinity)
+                        }
+                        .buttonStyle(.borderedProminent)
+                        .fullScreenCover(isPresented: $isReviewPresented) {
+                            ReviewView(reviewManager: ReviewManagerSUI(cards: deck.cards))
+                        }
+                    }
+                    .padding()
 
                 }
             }
@@ -90,19 +87,32 @@ struct CardsView: View {
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button {
-                    isNewCardPresented.toggle()
+                    isCardViewPresented.toggle()
                 } label: {
                     Image(systemName: "plus.circle.fill")
                 }
-                .popover(isPresented: $isNewCardPresented) {
+                .sheet(isPresented: $isCardViewPresented) {
                     NavigationView {
-                        NewCardView(deck: deck)
+                        CardView(viewModel: CardViewModel(), deck: deck)
                             .environmentObject(AudioRecorder())
                     }
                 }
             }
         }
+        .toolbar(.hidden, for: .tabBar)
         .navigationTitle(deck.name)
+    }
+
+    private func remove(_ card: Card) {
+        guard let index = findIndex(of: card) else { return }
+        let audioName = deck.cards[index].audioName
+
+        $deck.cards.remove(at: index)
+        LocalFileManager.shared.delete(audioName)
+    }
+
+    private func findIndex(of card: Card) -> Int? {
+        return deck.cards.firstIndex(of: card)
     }
 }
 

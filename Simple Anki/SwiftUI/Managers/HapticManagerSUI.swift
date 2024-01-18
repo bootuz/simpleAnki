@@ -8,10 +8,11 @@
 import Foundation
 import SwiftUI
 
-
 class HapticManagerSUI {
 
     static let shared = HapticManagerSUI()
+
+    private init() { }
 
     func notification(type: UINotificationFeedbackGenerator.FeedbackType) {
         let generator = UINotificationFeedbackGenerator()

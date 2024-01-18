@@ -72,9 +72,9 @@ struct NewCardView: View {
                         }
                     }
                     Spacer()
-                    RecordingButton(audioRecorder: AudioRecorder()) { audioURL in
-                        audioName = audioURL?.lastPathComponent
-                    }
+//                    RecordingButton(audioRecorder: AudioRecorder()) { audioURL in
+//                        audioName = audioURL?.lastPathComponent
+//                    }
                 }
                 .padding(.top, 8)
                 .font(.system(size: 20, weight: .bold))

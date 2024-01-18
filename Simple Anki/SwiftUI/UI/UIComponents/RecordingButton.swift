@@ -11,42 +11,26 @@ import AVFoundation
 
 struct RecordingButton: View {
     @ObservedObject var audioRecorder: AudioRecorder
-    var audioName: String?
-    var perform: (URL?) -> Void
     @State private var showAlert: Bool = false
 
     var body: some View {
         Button {
-            switch AVAudioSession.sharedInstance().recordPermission {
-            case .granted:
-                if audioRecorder.isRecording {
-                    audioRecorder.stopRecording()
-                    perform(audioRecorder.audioURL)
-                } else {
-                    if let audioName {
-                        audioRecorder.setAudioName(audioName)
+            if audioRecorder.isRecording {
+//                audioRecorder.stopRecording()
+            } else {
+                audioRecorder.checkRecordPermission { granted in
+                    if granted {
+                        audioRecorder.startRecording()
                     } else {
-                        audioRecorder.generateAudioName()
+                        showAlert.toggle()
                     }
-                    audioRecorder.startRecording()
                 }
-            case .denied:
-                    showAlert.toggle()
-            case .undetermined:
-                AVAudioSession.sharedInstance().requestRecordPermission { _ in }
-            @unknown default:
-                break
             }
         } label: {
-            if audioRecorder.isRecording {
-                Image(systemName: "stop.circle")
-                    .symbolRenderingMode(.palette)
-                    .foregroundStyle(.red, .blue)
-            } else {
-                Image(systemName: "mic.fill.badge.plus")
-                    .symbolRenderingMode(.palette)
-                    .foregroundStyle(.green, .blue)
-            }
+            Image(systemName: audioRecorder.isRecording ? "stop.circle.fill" : "waveform.badge.mic")
+                .foregroundStyle(audioRecorder.isRecording ? .red : .blue)
+                .font(.system(size: audioRecorder.isRecording ? 35 : 18))
+                .contentTransition(.symbolEffect(.replace.offUp.wholeSymbol))
         }
         .alert("No access", isPresented: $showAlert, actions: {
             Button("Cancel", role: .cancel, action: {})
@@ -59,6 +43,6 @@ struct RecordingButton: View {
 
 struct RecordingButton_Previews: PreviewProvider {
     static var previews: some View {
-        RecordingButton(audioRecorder: AudioRecorder(), perform: { _ in })
+        RecordingButton(audioRecorder: AudioRecorder())
     }
 }
