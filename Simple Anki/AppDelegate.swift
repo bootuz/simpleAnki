@@ -7,18 +7,14 @@
 
 import UIKit
 import RealmSwift
-import FirebaseCore
-import Firebase
-import FirebaseAnalytics
 
-@main
+// @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
     ) -> Bool {
-        FirebaseApp.configure()
         RateManager.incrementLaunchCount()
 //        let config = Realm.Configuration(
 //                    schemaVersion: 3,
@@ -61,4 +57,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     }
 
-}
+ }

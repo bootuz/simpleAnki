@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import FirebaseAnalytics
 
 class ReminderViewController: UIViewController {
 
@@ -19,7 +18,7 @@ class ReminderViewController: UIViewController {
         return table
     }()
 
-    var models = [Section]()
+    var models = [SectionOld]()
     let remonderOn = UserDefaults.standard.bool(forKey: K.UserDefaultsKeys.reminder)
     let reminderTime = UserDefaults.standard.string(forKey: K.UserDefaultsKeys.reminderTime) ?? "00:00"
     let reminderIcon = ReminderManager.shared.isReminderOn() ? UIImage(systemName: "bell") : UIImage(systemName: "bell.slash")
@@ -51,7 +50,7 @@ class ReminderViewController: UIViewController {
     }
 
     private func configure() {
-        models.append(Section(title: "", options: [
+        models.append(SectionOld(title: "", options: [
             .switchCell(model: SwitchOption(
                 title: K.Settings.reminderOn,
                 icon: reminderIcon,
@@ -171,9 +170,6 @@ extension ReminderViewController: SwitchViewCellDelegate {
             ReminderManager.shared.setReminderOff()
             switchCell.iconImageView.image = UIImage(systemName: "bell.slash")
         }
-        Analytics.logEvent("reminder", parameters: [
-            "is_on" : switchCell.mySwitch.isOn as NSObject
-        ])
     }
 }
 
@@ -184,8 +180,5 @@ extension ReminderViewController: DatePickerViewCellDelegate {
         dateFormatter.dateFormat = "HH:mm"
         let timeString = dateFormatter.string(from: datePickerCell.datePicker.date)
         UserDefaults.standard.set(timeString, forKey: K.UserDefaultsKeys.reminderTime)
-        Analytics.logEvent("reminder_time", parameters: [
-            "time" : timeString as NSObject
-        ])
     }
 }

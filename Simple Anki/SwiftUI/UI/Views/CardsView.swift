@@ -34,9 +34,8 @@ struct CardsView: View {
                 List {
                     ForEach(deck.cards) { card in
                         NavigationLink {
-                            CardView(viewModel: CardViewModel(card: card), deck: deck)
-                                .environmentObject(AudioRecorder(fileName: card.audioName))
-                                .navigationBarBackButtonHidden()
+                            CardView(viewModel: CardViewModel(card: card, repository: CardRepository(deck: deck)), recorder: AudioRecorder(fileName: card.audioName != nil ? card.audioName! : UUID().uuidString + ".m4a"))
+                            .navigationBarBackButtonHidden()
                         } label: {
                             Text(card.front)
                         }
@@ -51,37 +50,7 @@ struct CardsView: View {
                     }
                     .onMove(perform: $deck.cards.move)
                 }
-                VStack {
-                    Spacer()
-                    HStack {
-                        Button {
-                            
-                        } label: {
-                            Image(systemName: "gearshape")
-                                .padding(.vertical, 8)
-                        }
-                        .tint(.blue)
-                        .buttonStyle(.bordered)
-//                        .confirmationDialog("Test", isPresented: .constant(true)) {
-//
-//                        }
-
-                        Button {
-                            isReviewPresented.toggle()
-                            HapticManagerSUI.shared.impact(style: .heavy)
-                        } label: {
-                            Text("Review")
-                                .padding(.vertical, 8)
-                                .frame(maxWidth: .infinity)
-                        }
-                        .buttonStyle(.borderedProminent)
-                        .fullScreenCover(isPresented: $isReviewPresented) {
-                            ReviewView(reviewManager: ReviewManagerSUI(cards: deck.cards))
-                        }
-                    }
-                    .padding()
-
-                }
+                .listStyle(.plain)
             }
         }
         .toolbar {
@@ -93,8 +62,34 @@ struct CardsView: View {
                 }
                 .sheet(isPresented: $isCardViewPresented) {
                     NavigationView {
-                        CardView(viewModel: CardViewModel(), deck: deck)
-                            .environmentObject(AudioRecorder())
+                        CardView(viewModel: CardViewModel(repositry: CardRepository(deck: deck)), recorder: AudioRecorder(fileName: UUID().uuidString + ".m4a"))
+                    }
+                }
+            }
+        }
+        .toolbar {
+            ToolbarItemGroup(placement: .bottomBar) {
+                HStack {
+                    Button {
+
+                    } label: {
+                        Image(systemName: "gearshape")
+                            .padding(.vertical, 8)
+                    }
+                    .tint(.blue)
+                    .buttonStyle(.bordered)
+
+                    Button {
+                        isReviewPresented.toggle()
+                        HapticManagerSUI.shared.impact(style: .heavy)
+                    } label: {
+                        Text("Review")
+                            .padding(.vertical, 8)
+                            .frame(maxWidth: .infinity)
+                    }
+                    .buttonStyle(.borderedProminent)
+                    .fullScreenCover(isPresented: $isReviewPresented) {
+                        ReviewView(reviewManager: ReviewManagerSUI(cards: deck.cards))
                     }
                 }
             }

@@ -15,10 +15,6 @@ class MainTabBarViewController: UITabBarController {
 //        showOnboardingScreen()
     }
 
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-    }
-
     private func configureTabBar() {
         let decksVC = UINavigationController(rootViewController: DecksTableViewController())
         let settingsVC = UINavigationController(rootViewController: SettingsViewController())

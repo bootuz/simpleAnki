@@ -14,7 +14,6 @@ struct SimpleAnkiApp: SwiftUI.App {
 
     var body: some Scene {
         WindowGroup {
-//            ContentView()
             MainView()
                 .environment(\.realmConfiguration, Realm.Configuration(schemaVersion: 1))
                 .preferredColorScheme(userSettings.colorScheme ? .dark : .light)

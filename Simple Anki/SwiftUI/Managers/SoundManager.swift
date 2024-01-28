@@ -12,10 +12,19 @@ class SoundManager {
 
     static let shared = SoundManager()
     private var player: AVAudioPlayer?
+    private var audioSession = AVAudioSession.sharedInstance()
 
     private init() {
-        try? AVAudioSession.sharedInstance().setCategory(.playback)
-        try? AVAudioSession.sharedInstance().setActive(true, options: .notifyOthersOnDeactivation)
+        setupPlayer()
+    }
+
+    private func setupPlayer() {
+        do {
+            try audioSession.setCategory(.playback)
+            try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
+        } catch {
+            print(error.localizedDescription)
+        }
     }
 
     func play(sound: String) {

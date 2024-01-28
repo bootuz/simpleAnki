@@ -7,7 +7,6 @@
 
 import UIKit
 import StoreKit
-import FirebaseAnalytics
 
 class SettingsViewController: UIViewController {
 
@@ -18,7 +17,7 @@ class SettingsViewController: UIViewController {
         return table
     }()
 
-    var models = [Section]()
+    var models = [SectionOld]()
 
     let darkMode = UserDefaults.standard.bool(forKey: K.UserDefaultsKeys.darkMode)
 
@@ -34,7 +33,7 @@ class SettingsViewController: UIViewController {
     }
 
     func configure() {
-        models.append(Section(title: K.Settings.appearence, options: [
+        models.append(SectionOld(title: K.Settings.appearence, options: [
             .switchCell(model: SwitchOption(
                 title: K.Settings.darkMode,
                 icon: UIImage(systemName: K.Icon.lefthalf),
@@ -42,7 +41,7 @@ class SettingsViewController: UIViewController {
                 handler: nil))
         ]))
 
-        models.append(Section(title: K.Settings.support, options: [
+        models.append(SectionOld(title: K.Settings.support, options: [
             .staticCell(model: Option(title: K.Settings.rateThisApp, icon: UIImage(systemName: K.Icon.star)) {
                 RateManager.rateApp()
             }),
@@ -58,7 +57,7 @@ class SettingsViewController: UIViewController {
 
         ]))
 
-        models.append(Section(title: K.Settings.notifications, options: [
+        models.append(SectionOld(title: K.Settings.notifications, options: [
             .staticCell(model: Option(title: "Reminder", icon: UIImage(systemName: K.Icon.bell), handler: {
                 ReminderManager.shared.notificationCenter.requestAuthorization(options: [.alert, .sound]) {  permissionGranted, error in
                     if let error = error {
@@ -126,7 +125,6 @@ extension SettingsViewController: UITableViewDelegate {
 
         switch type.self {
         case .staticCell(let model):
-            Analytics.logEvent(model.title, parameters: nil)
             model.handler?()
         default:
             break
@@ -186,8 +184,5 @@ extension SettingsViewController: SwitchViewCellDelegate {
             UserDefaults.standard.set(false, forKey: K.UserDefaultsKeys.darkMode)
             view.window?.overrideUserInterfaceStyle = .light
         }
-        Analytics.logEvent("dark_mode", parameters: [
-            "is_on" : switchCell.mySwitch.isOn as NSObject
-        ])
     }
 }

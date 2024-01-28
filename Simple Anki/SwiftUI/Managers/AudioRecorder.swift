@@ -8,16 +8,18 @@
 import Foundation
 import AVFoundation
 
-class AudioRecorder: NSObject, ObservableObject, AVAudioRecorderDelegate, AVAudioPlayerDelegate {
-    @Published var isPlaybackReady = false
-    @Published var isRecording = false
+@Observable
+class AudioRecorder: NSObject, AVAudioRecorderDelegate, AVAudioPlayerDelegate {
+    var isPlaybackReady = false
+    var isRecording = false
 
     private var audioRecorder: AVAudioRecorder?
-    private var audioPlayer: AVAudioPlayer?
-    private var fileName: String?
+    private var player: AVAudioPlayer?
+    private var fileName: String
+    private var audioSession = AVAudioSession.sharedInstance()
 
-    init(fileName: String? = nil) {
-        self.fileName = fileName ?? UUID().uuidString + ".m4a"
+    init(fileName: String) {
+        self.fileName = fileName
         super.init()
         setupRecorder()
     }
@@ -30,12 +32,12 @@ class AudioRecorder: NSObject, ObservableObject, AVAudioRecorderDelegate, AVAudi
     ]
 
     private func setupRecorder() {
-        let audioSession = AVAudioSession.sharedInstance()
+
         do {
-            try audioSession.setCategory(.record, mode: .default)
-            try audioSession.setActive(true)
-            guard let fileName = fileName else { return }
-            let fileURL = getDocumentsDirectory().appendingPathComponent("\(fileName)")
+            try audioSession.setCategory(.playAndRecord, mode: .default, options: [.defaultToSpeaker, .allowBluetooth])
+            try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
+
+            let fileURL = FileManager.documentsDirectory.appendingPathComponent(fileName)
 
             audioRecorder = try AVAudioRecorder(url: fileURL, settings: settings)
             audioRecorder?.delegate = self
@@ -44,21 +46,23 @@ class AudioRecorder: NSObject, ObservableObject, AVAudioRecorderDelegate, AVAudi
         }
     }
 
-    private func getDocumentsDirectory() -> URL {
-        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-        return paths[0]
-    }
-
     func startRecording() {
         audioRecorder?.record()
         isRecording = true
     }
 
-    func stopRecording(completion: @escaping (String?) -> Void) {
+    func stopRecording(completion: @escaping (String) -> Void) {
         audioRecorder?.stop()
+
+        do {
+            try audioSession.setActive(false)
+        } catch {
+            print(error.localizedDescription)
+        }
+
         isRecording = false
         isPlaybackReady = true
-        completion(fileName ?? nil)
+        completion(fileName)
     }
 
     func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
@@ -84,27 +88,31 @@ class AudioRecorder: NSObject, ObservableObject, AVAudioRecorderDelegate, AVAudi
         }
     }
 
-    func playRecording() {
-        guard isPlaybackReady, let url = audioRecorder?.url else { return }
-
-        do {
-            audioPlayer = try AVAudioPlayer(contentsOf: url)
-            audioPlayer?.delegate = self
-            audioPlayer?.play()
-        } catch {
-            print("Failed to initialize the audio player: \(error.localizedDescription)")
-        }
-    }
-
     func deleteRecording() {
-        guard let fileName = fileName else { return }
-
-        let url = getDocumentsDirectory().appendingPathComponent("\(fileName)")
+        let url = FileManager.documentsDirectory.appendingPathComponent(fileName)
 
         do {
             try FileManager.default.removeItem(at: url)
         } catch {
             print(error)
+        }
+    }
+
+    func setName(_ name: String) {
+        fileName = name
+    }
+
+    func play(sound: String) {
+        let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let fullUrl = documentDirectory.appendingPathComponent(sound)
+
+        do {
+            self.player = try AVAudioPlayer(contentsOf: fullUrl)
+            self.player?.prepareToPlay()
+            self.player?.play()
+        } catch let error {
+            print("Error playing sound: \(error.localizedDescription)")
+            print("Error playing sound: \(error)")
         }
     }
 }

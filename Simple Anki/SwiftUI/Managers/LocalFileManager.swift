@@ -44,4 +44,27 @@ extension FileManager {
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         return paths[0]
     }
+
+    func delete(_ fileName: String?) {
+
+        guard let fileName = fileName else { return }
+        let path = Self.documentsDirectory.appendingPathComponent(fileName)
+
+        do {
+            try Self.default.removeItem(at: path)
+        } catch {
+            print(error)
+        }
+    }
+
+    func delete(at path: URL?) {
+
+        guard let path = path else { return }
+
+        do {
+            try Self.default.removeItem(at: path)
+        } catch {
+            print(error)
+        }
+    }
 }

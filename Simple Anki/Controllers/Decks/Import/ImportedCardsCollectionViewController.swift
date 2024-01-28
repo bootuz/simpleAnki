@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import FirebaseAnalytics
 
 class ImportedCardsCollectionViewController: UIViewController {
 
@@ -43,10 +42,6 @@ class ImportedCardsCollectionViewController: UIViewController {
             newCard.back = card.back
             newDeck.cards.append(newCard)
         }
-        Analytics.logEvent("impored_deck", parameters: [
-            "name" : deckName as NSObject,
-            "cards_number" : cards.count as NSObject
-        ])
         StorageManager.save(newDeck)
         reloadData?()
         self.view.window?.rootViewController?.dismiss(animated: true)

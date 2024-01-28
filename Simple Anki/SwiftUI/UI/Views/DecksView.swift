@@ -11,6 +11,7 @@ import RealmSwift
 struct DecksView: View {
     @ObservedResults(Deck.self, sortDescriptor: SortDescriptor(keyPath: "dateCreated", ascending: false)) var decks
     @State private var isNewDeckViewPresented: Bool = false
+    @State private var deckName: String = ""
 
     var body: some View {
         NavigationView {
@@ -29,9 +30,6 @@ struct DecksView: View {
                         }
                         .controlSize(.regular)
                         .buttonStyle(.borderedProminent)
-                        .sheet(isPresented: $isNewDeckViewPresented, content: {
-                            NewDeckView()
-                        })
                     })
                 } else {
                     List {
@@ -55,6 +53,7 @@ struct DecksView: View {
                             }
                         }
                     }
+                    .listStyle(.plain)
                 }
             }
             .navigationTitle("Decks")
@@ -71,13 +70,25 @@ struct DecksView: View {
                     } label: {
                         Image(systemName: "plus.circle.fill")
                     }
-                    .sheet(isPresented: $isNewDeckViewPresented) {
-                        NewDeckView()
+                    .alert("New deck", isPresented: $isNewDeckViewPresented) {
+                        TextField("Enter deck name", text: $deckName)
+                        Button("Add") {
+                            addDeck()
+                            deckName = ""
+                        }
+                        Button("Cancel", role: .cancel) {}
+                    } message: {
+
                     }
                 }
             }
         }
         .navigationViewStyle(.stack)
+    }
+
+    private func addDeck() {
+        let deck = Deck(name: deckName.trimmingCharacters(in: .whitespacesAndNewlines))
+        $decks.append(deck)
     }
 
     @ViewBuilder private func cardsCount(of deck: Deck) -> some View {
@@ -104,8 +115,6 @@ struct DecksView: View {
     }
 }
 
-struct DecksView_Previews: PreviewProvider {
-    static var previews: some View {
-        DecksView()
-    }
+#Preview {
+    DecksView()
 }

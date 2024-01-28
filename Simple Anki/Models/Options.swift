@@ -35,7 +35,7 @@ enum SwitchType {
     case reminder
 }
 
-struct Section {
+struct SectionOld {
     let title: String
     let options: [OptionType]
 }

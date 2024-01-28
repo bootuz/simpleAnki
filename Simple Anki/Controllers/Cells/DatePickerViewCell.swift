@@ -34,10 +34,6 @@ class DatePickerViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    override func prepareForReuse() {
-        super.prepareForReuse()
-    }
-
     override func layoutSubviews() {
         super.layoutSubviews()
         datePicker.frame = CGRect(x: 0, y: 0, width: contentView.frame.size.width, height: 200)

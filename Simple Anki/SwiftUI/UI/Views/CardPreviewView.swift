@@ -62,20 +62,21 @@ struct CardPreviewView: View {
                 .font(.system(size: 35, weight: .medium))
                 .padding()
 
-                if let audio {
-                    VStack {
-                        Spacer()
+                VStack {
+                    Spacer()
 
-                        Button(action: {
-
-                        }, label: {
-                            Image(systemName: "speaker.wave.2.circle")
-                                .font(.system(size: 60, weight: .light))
-                                .foregroundStyle(.black)
-                        })
-                        .padding(.bottom, 140)
-                    }
+                    Button(action: {
+                        Task {
+                            SoundManager.shared.play(sound: audio ?? "")
+                        }
+                    }, label: {
+                        Image(systemName: "speaker.wave.2.circle")
+                            .font(.system(size: 60, weight: .light))
+                            .foregroundStyle(.black)
+                    })
+                    .padding(.bottom, 140)
                 }
+                .opacity(audio != nil ? 1 : 0)
             }
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {

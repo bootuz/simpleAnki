@@ -7,7 +7,6 @@
 
 import UIKit
 import RealmSwift
-import FirebaseAnalytics
 
 class DecksTableViewController: UITableViewController {
 
@@ -30,7 +29,6 @@ class DecksTableViewController: UITableViewController {
     }
 
     @objc private func didTapImport() {
-        Analytics.logEvent("import_deck_tapped", parameters: nil)
         let importVC = ImportViewController()
         importVC.reloadData = { [weak self] in
             self?.reload()

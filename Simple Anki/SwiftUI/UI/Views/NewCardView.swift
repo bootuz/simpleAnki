@@ -8,11 +8,6 @@
 import SwiftUI
 import RealmSwift
 
-enum FocusableField: Hashable {
-    case frontField
-    case backField
-}
-
 struct NewCardView: View {
     @ObservedRealmObject var deck: Deck
 
@@ -138,7 +133,6 @@ struct NewCardView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
             NewCardView(deck: Deck.deck1)
-                .environmentObject(AudioRecorder())
         }
     }
 }

@@ -8,7 +8,6 @@
 import UIKit
 import UniformTypeIdentifiers
 import SwiftCSV
-import FirebaseAnalytics
 
 enum ImportFileType: String {
     case csv
@@ -138,7 +137,6 @@ class ImportViewController: UIViewController {
 
     @objc func didTapCloseButton() {
         dismiss(animated: true)
-        Analytics.logEvent("close_import", parameters: nil)
     }
 
     @objc func didTapSemiColonButton() {
@@ -209,10 +207,6 @@ class ImportViewController: UIViewController {
 
     @objc private func didTapChooseFileButton() {
         self.presentDocumentPicker()
-        // MARK: Log event
-        Analytics.logEvent("import_deck_tapped", parameters: [
-            "file_type" : self.selectedFile.rawValue as NSObject
-        ])
     }
 
     @objc private func didChangeSegmentedControl() {

@@ -9,13 +9,19 @@ import SwiftUI
 import RealmSwift
 import PhotosUI
 
+enum FocusableField: Hashable {
+    case frontField
+    case backField
+}
+
 struct CardView: View {
     @State var viewModel: CardViewModel
-    @ObservedRealmObject var deck: Deck
+    @State var recorder: AudioRecorder
 
     @State private var selectedImage: PhotosPickerItem?
     @State private var isPreviewPresented: Bool = false
     @State private var showAlert: Bool = false
+    @FocusState private var focusedField: FocusableField?
 
     private var transaction: Transaction {
         var transaction = Transaction()
@@ -23,9 +29,7 @@ struct CardView: View {
         return transaction
     }
 
-    @FocusState private var isTextFieldFocused: Bool
     @Environment(\.dismiss) private var dismiss
-    @EnvironmentObject private var audioRecorder: AudioRecorder
 
     var body: some View {
         // MARK: VSTACK START
@@ -35,16 +39,22 @@ struct CardView: View {
             VStack {
                 TextField("Front word", text: $viewModel.frontWord)
                     .padding(.bottom)
+                    .submitLabel(.next)
+                    .focused($focusedField, equals: .frontField)
+                    .onSubmit {
+                        focusedField = .backField
+                    }
                 Divider()
                 TextField("Back word", text: $viewModel.backWord)
                     .padding(.top)
+                    .submitLabel(.done)
+                    .focused($focusedField, equals: .backField)
             }
-            .focused($isTextFieldFocused)
             .font(.system(size: 35, weight: .medium))
             .multilineTextAlignment(.center)
             .padding()
             .onAppear {
-                isTextFieldFocused.toggle()
+                focusedField = .frontField
             }
 
             Spacer()
@@ -61,35 +71,35 @@ struct CardView: View {
                         Button {
                             guard !viewModel.frontWord.isEmpty else { return }
                             if viewModel.updating {
-                                 update()
+                                viewModel.updateCard()
                             } else {
-                                addCard()
+                                viewModel.addCard()
                                 viewModel.clear()
+                                recorder.setName(UUID().uuidString + ".m4a")
                             }
-//                            writeToDisk(image: image, imageName: viewModel.frontWord + UUID().uuidString)
+                            HapticManagerSUI.shared.impact(style: .heavy)
                         } label: {
-                            Image(systemName: "plus.circle.fill")
-                                .font(.system(size: 35))
+                            Text(viewModel.updating ? "Update" : "Save")
                         }
+                        .controlSize(.extraLarge)
+                        .buttonStyle(.borderedProminent)
                     }
-                    .opacity(audioRecorder.isRecording ? 0 : 1)
-                    .offset(x: audioRecorder.isRecording ? -200 : 0)
-                    .animation(.easeInOut(duration: 0.3), value: audioRecorder.isRecording)
+                    .opacity(recorder.isRecording ? 0 : 1)
+                    .offset(x: recorder.isRecording ? -200 : 0)
+                    .animation(.easeInOut(duration: 0.3), value: recorder.isRecording)
 
                     Spacer()
 
                     if let fileName = viewModel.audioName {
                         Button {
-                            Task {
-                                SoundManager.shared.play(sound: fileName)
-                            }
+                            SoundManager.shared.play(sound: fileName)
                         } label: {
                             Image(systemName: "play.circle")
                                 .font(.system(size: 18))
                         }
                         .contextMenu {
                             Button(role: .destructive) {
-                                audioRecorder.deleteRecording()
+                                deleteAudioAndUpdateCard()
                             } label: {
                                 Label("Delete", systemImage: "trash")
                             }
@@ -98,23 +108,23 @@ struct CardView: View {
                         Button {
                             HapticManagerSUI.shared.impact(style: .heavy)
 
-                            if audioRecorder.isRecording {
-                                audioRecorder.stopRecording { fileName in
+                            if recorder.isRecording {
+                                recorder.stopRecording { fileName in
                                     viewModel.audioName = fileName
                                 }
                             } else {
-                                audioRecorder.checkRecordPermission { granted in
+                                recorder.checkRecordPermission { granted in
                                     if granted {
-                                        audioRecorder.startRecording()
+                                        recorder.startRecording()
                                     } else {
                                         showAlert.toggle()
                                     }
                                 }
                             }
                         } label: {
-                            Image(systemName: audioRecorder.isRecording ? "stop.circle.fill" : "waveform.badge.mic")
-                                .foregroundStyle(audioRecorder.isRecording ? .red : .blue)
-                                .font(.system(size: audioRecorder.isRecording ? 35 : 18))
+                            Image(systemName: recorder.isRecording ? "stop.circle.fill" : "waveform.badge.mic")
+                                .foregroundStyle(recorder.isRecording ? .red : .blue)
+                                .font(.system(size: recorder.isRecording ? 35 : 18))
                                 .contentTransition(.symbolEffect(.replace.offUp.wholeSymbol))
                         }
                         .alert("No access", isPresented: $showAlert, actions: {
@@ -132,9 +142,9 @@ struct CardView: View {
                 Text("Recording...")
                     .padding(.bottom, 3)
                     .foregroundStyle(.gray)
-                    .offset(x: audioRecorder.isRecording ? 0 : 100)
-                    .opacity(audioRecorder.isRecording ? 1 : 0)
-                    .animation(.easeInOut(duration: 0.3), value: audioRecorder.isRecording)
+                    .offset(x: recorder.isRecording ? 0 : 100)
+                    .opacity(recorder.isRecording ? 1 : 0)
+                    .animation(.easeInOut(duration: 0.3), value: recorder.isRecording)
             } // MARK: ZSTACK END
         } // MARK: VSTACK END
         .onChange(of: selectedImage) {
@@ -167,32 +177,6 @@ struct CardView: View {
         }
     }
 
-    private func update() {
-        guard let cardID = viewModel.id else { return }
-        guard let card = deck.cards.first(where: {$0._id == cardID }) else { return }
-
-        do {
-            let realm = try Realm()
-            try realm.write {
-                card.thaw()?.front = viewModel.frontWord
-                card.thaw()?.back = viewModel.backWord
-                card.thaw()?.audioName = viewModel.audioName
-                card.thaw()?.memorized = viewModel.memorized
-            }
-        } catch {
-            print("Error: \(error)")
-        }
-    }
-
-    private func addCard() {
-        let card = Card(
-            front: viewModel.frontWord,
-            back: viewModel.backWord,
-            audioName: viewModel.audioName
-        )
-        $deck.cards.append(card)
-    }
-
     private func writeToDisk(image: UIImage, imageName: String) {
         let savePath = FileManager.documentsDirectory.appendingPathComponent("\(imageName).jpg")
         if let jpegData = image.jpegData(compressionQuality: 0.5) {
@@ -200,13 +184,18 @@ struct CardView: View {
             print("Image saved")
         }
     }
+
+    private func deleteAudioAndUpdateCard() {
+        viewModel.audioName = nil
+        recorder.deleteRecording()
+        viewModel.updateCard()
+    }
 }
 
 struct CardView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            CardView(viewModel: CardViewModel(), deck: Deck.deck1)
-                .environmentObject(AudioRecorder())
+            CardView(viewModel: CardViewModel(repositry: CardRepository(deck: Deck.deck1)), recorder: AudioRecorder(fileName: UUID().uuidString + ".m4a"))
         }
     }
 }

@@ -7,7 +7,6 @@
 
 import UIKit
 import RealmSwift
-import FirebaseAnalytics
 
 class CardsTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     private lazy var tableView: UITableView = {
@@ -116,7 +115,7 @@ class CardsTableViewController: UIViewController, UITableViewDataSource, UITable
 
     @objc private func reviewButtonTouchUpInside() {
         let reviewVC = ReviewViewController()
-        guard let deck = cards?[0].parentDeck.first else { return }
+        guard let deck = cards?[0].deck.first else { return }
         guard let cardsToReview = cards?.where({ $0.memorized == false }) else { return }
         reviewVC.reviewManager = ReviewManager(
             layout: deck.layout,
@@ -171,12 +170,6 @@ class CardsTableViewController: UIViewController, UITableViewDataSource, UITable
             all.setValue(true, forKey: checked)
         default:
             break
-        }
-        if let deck = selectedDeck {
-            Analytics.logEvent("deck_layout", parameters: [
-                "layout": deck.layout as NSObject,
-                "name": deck.name
-            ])
         }
 
         alert.addAction(frontToBack)

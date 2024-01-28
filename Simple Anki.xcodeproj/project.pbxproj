@@ -11,8 +11,8 @@
 		C00648AA2682060F00265EB8 /* UIApplicationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00648A92682060F00265EB8 /* UIApplicationExtension.swift */; };
 		C00648AC2682070200265EB8 /* EmailManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00648AB2682070200265EB8 /* EmailManager.swift */; };
 		C00648AF2682140800265EB8 /* Options.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00648AE2682140800265EB8 /* Options.swift */; };
+		C00BD2642B5A8EA900ACD977 /* CardRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00BD2632B5A8EA900ACD977 /* CardRepository.swift */; };
 		C00D75CC282E68A7004E92B2 /* UIButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00D75CB282E68A7004E92B2 /* UIButtonExtension.swift */; };
-		C01290752A920A9700ECF9D7 /* NewDeckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01290742A920A9700ECF9D7 /* NewDeckView.swift */; };
 		C02348CB2861F47E002FFBDF /* UILabelExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02348CA2861F47E002FFBDF /* UILabelExtension.swift */; };
 		C02348D3286343F4002FFBDF /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C02348D2286343F4002FFBDF /* StoreKit.framework */; };
 		C02348D728671E16002FFBDF /* LaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02348D628671E16002FFBDF /* LaunchScreenViewController.swift */; };
@@ -126,8 +126,8 @@
 		C00648A92682060F00265EB8 /* UIApplicationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplicationExtension.swift; sourceTree = "<group>"; };
 		C00648AB2682070200265EB8 /* EmailManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailManager.swift; sourceTree = "<group>"; };
 		C00648AE2682140800265EB8 /* Options.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Options.swift; sourceTree = "<group>"; };
+		C00BD2632B5A8EA900ACD977 /* CardRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardRepository.swift; sourceTree = "<group>"; };
 		C00D75CB282E68A7004E92B2 /* UIButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonExtension.swift; sourceTree = "<group>"; };
-		C01290742A920A9700ECF9D7 /* NewDeckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDeckView.swift; sourceTree = "<group>"; };
 		C02348CA2861F47E002FFBDF /* UILabelExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabelExtension.swift; sourceTree = "<group>"; };
 		C02348D2286343F4002FFBDF /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		C02348D628671E16002FFBDF /* LaunchScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenViewController.swift; sourceTree = "<group>"; };
@@ -262,6 +262,14 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		C00BD2622B5A8E9400ACD977 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				C00BD2632B5A8EA900ACD977 /* CardRepository.swift */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
 		C01290712A8F822700ECF9D7 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
@@ -294,6 +302,7 @@
 		C025748B2B4B1CFB00F8EE29 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				C00BD2622B5A8E9400ACD977 /* Repositories */,
 				C07458262A939F800046F39D /* UIComponents */,
 				C0750ED92AA492BD00089B29 /* Views */,
 			);
@@ -348,7 +357,6 @@
 				C067B6882A8C139A000AF881 /* DecksView.swift */,
 				C074581E2A9293AA0046F39D /* CardsView.swift */,
 				C067B68A2A8C13A5000AF881 /* SettingsView.swift */,
-				C01290742A920A9700ECF9D7 /* NewDeckView.swift */,
 				C074581C2A924A0B0046F39D /* NewCardView.swift */,
 				C07458242A93943E0046F39D /* Constants.swift */,
 				C0750ED32AA3C01800089B29 /* ReviewView.swift */,
@@ -772,7 +780,6 @@
 				C067B6892A8C139A000AF881 /* DecksView.swift in Sources */,
 				C0FA7EAA25F511FE00710F0D /* ConstantsOld.swift in Sources */,
 				C0C043E328206B1F00A8AC6D /* WeekdaysViewController.swift in Sources */,
-				C01290752A920A9700ECF9D7 /* NewDeckView.swift in Sources */,
 				C09479502B518EFC00C44BCF /* ImagePickerButton.swift in Sources */,
 				C025748D2B4B1D4000F8EE29 /* CardViewModel.swift in Sources */,
 				C0F4FD1F27BD84DA00814BD6 /* SettingsViewCell.swift in Sources */,
@@ -806,6 +813,7 @@
 				C0B1275727C3FB7A008E412D /* CardsTableViewController.swift in Sources */,
 				C00648AC2682070200265EB8 /* EmailManager.swift in Sources */,
 				C0C081B425ED379600DF1083 /* StorageManager.swift in Sources */,
+				C00BD2642B5A8EA900ACD977 /* CardRepository.swift in Sources */,
 				C0B6D153285DE18900E354BA /* OnboardingViewController.swift in Sources */,
 				C03A02612B5299EF00576543 /* CardViewState.swift in Sources */,
 				C02348CB2861F47E002FFBDF /* UILabelExtension.swift in Sources */,
