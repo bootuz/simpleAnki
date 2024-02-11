@@ -11,7 +11,7 @@ import XCTest
 
 class DecksScreen: BaseScreen {
 
-    private lazy var addButton = app.navigationBars["Decks"]/*@START_MENU_TOKEN@*/.buttons["addButton"]/*[[".buttons[\"add\"]",".buttons[\"addButton\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
+    private lazy var addButton = app.navigationBars["Decks"].buttons["addButton"]
     private lazy var noDecksStaticText = app.staticTexts["There are no decks yet"]
     private lazy var addNewDeckAlert = AddNewDeckAlert()
     lazy var baseElement = addButton

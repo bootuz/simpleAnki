@@ -7,67 +7,60 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C00648AA2682060F00265EB8 /* UIApplicationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00648A92682060F00265EB8 /* UIApplicationExtension.swift */; };
-		C00648AC2682070200265EB8 /* EmailManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00648AB2682070200265EB8 /* EmailManager.swift */; };
-		C00648AF2682140800265EB8 /* Options.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00648AE2682140800265EB8 /* Options.swift */; };
-		C00D75CC282E68A7004E92B2 /* UIButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00D75CB282E68A7004E92B2 /* UIButtonExtension.swift */; };
-		C02348CB2861F47E002FFBDF /* UILabelExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02348CA2861F47E002FFBDF /* UILabelExtension.swift */; };
+		C00513FB2B517E91005F5815 /* CardPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00513FA2B517E91005F5815 /* CardPreviewView.swift */; };
+		C00BD2642B5A8EA900ACD977 /* CardRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00BD2632B5A8EA900ACD977 /* CardRepository.swift */; };
 		C02348D3286343F4002FFBDF /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C02348D2286343F4002FFBDF /* StoreKit.framework */; };
-		C02348D728671E16002FFBDF /* LaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02348D628671E16002FFBDF /* LaunchScreenViewController.swift */; };
+		C02404082B6835930017EF2E /* TabItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02404072B6835930017EF2E /* TabItemView.swift */; };
+		C025748D2B4B1D4000F8EE29 /* CardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C025748C2B4B1D4000F8EE29 /* CardViewModel.swift */; };
 		C028C4C8280C852400F6894E /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = C028C4C7280C852400F6894E /* .gitignore */; };
-		C028C4CA2811C0F000F6894E /* NewDeckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C028C4C92811C0F000F6894E /* NewDeckViewController.swift */; };
-		C028C4CC2811C71500F6894E /* EmptyState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C028C4CB2811C71500F6894E /* EmptyState.swift */; };
-		C02D41C3282146BF005E9835 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02D41C2282146BF005E9835 /* DateExtension.swift */; };
-		C02D41D028218E3C005E9835 /* SwitchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02D41CF28218E3C005E9835 /* SwitchTableViewCell.swift */; };
-		C05F7C4827E3A29700F4FAB4 /* BaseSettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05F7C4727E3A29700F4FAB4 /* BaseSettingsCell.swift */; };
+		C03A02612B5299EF00576543 /* CardViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03A02602B5299EF00576543 /* CardViewState.swift */; };
+		C03B91C82B6FA60500EA483F /* DeckSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03B91C72B6FA60500EA483F /* DeckSettingsView.swift */; };
+		C03B91CA2B6FA82400EA483F /* LayoutButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03B91C92B6FA82400EA483F /* LayoutButton.swift */; };
+		C05695D42B501AAA00033AF2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05695D32B501AAA00033AF2 /* ContentView.swift */; };
+		C05BCFF02B78CD3F0076CAD9 /* CreateDeckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05BCFEF2B78CD3F0076CAD9 /* CreateDeckView.swift */; };
+		C05BCFF22B78CF4D0076CAD9 /* ImportDeckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05BCFF12B78CF4D0076CAD9 /* ImportDeckView.swift */; };
+		C05BCFF42B78D04D0076CAD9 /* DelimeterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05BCFF32B78D04D0076CAD9 /* DelimeterButton.swift */; };
+		C05BCFF62B78D12C0076CAD9 /* ImportedDeckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05BCFF52B78D12C0076CAD9 /* ImportedDeckView.swift */; };
+		C067B6852A8C1235000AF881 /* SimpleAnkiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C067B6842A8C1235000AF881 /* SimpleAnkiApp.swift */; };
+		C067B6872A8C1251000AF881 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C067B6862A8C1251000AF881 /* MainView.swift */; };
+		C067B6892A8C139A000AF881 /* DecksListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C067B6882A8C139A000AF881 /* DecksListView.swift */; };
+		C067B68B2A8C13A5000AF881 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C067B68A2A8C13A5000AF881 /* SettingsView.swift */; };
 		C070008E263E86E0006DF020 /* RateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C070008D263E86E0006DF020 /* RateManager.swift */; };
-		C0A70E6028211E620020D533 /* ReminderManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A70E5F28211E620020D533 /* ReminderManager.swift */; };
-		C0ADAD4225EC0E0B005DE503 /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0ADAD4125EC0E0B005DE503 /* Deck.swift */; };
-		C0ADAD4725EC0E62005DE503 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0ADAD4625EC0E62005DE503 /* Card.swift */; };
-		C0AF0E7D2614F1E000853FA7 /* ReviewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0AF0E7C2614F1E000853FA7 /* ReviewManager.swift */; };
-		C0B1275527C3F0E7008E412D /* DecksViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B1275427C3F0E7008E412D /* DecksViewModel.swift */; };
-		C0B1275727C3FB7A008E412D /* CardsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B1275627C3FB7A008E412D /* CardsTableViewController.swift */; };
-		C0B1275D27C3FB91008E412D /* ReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B1275C27C3FB91008E412D /* ReviewViewController.swift */; };
-		C0B1275E27C3FC4A008E412D /* DecksTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B1275327C3F0D4008E412D /* DecksTableViewController.swift */; };
-		C0B5FF7625E981A8001D8D83 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B5FF7525E981A8001D8D83 /* AppDelegate.swift */; };
-		C0B5FF7825E981A8001D8D83 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B5FF7725E981A8001D8D83 /* SceneDelegate.swift */; };
+		C0730B172B77F26A00B43D42 /* NewDeckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0730B162B77F26A00B43D42 /* NewDeckView.swift */; };
+		C074581F2A9293AA0046F39D /* CardsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C074581E2A9293AA0046F39D /* CardsListView.swift */; };
+		C07458232A938CF90046F39D /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07458222A938CF90046F39D /* UserSettings.swift */; };
+		C07458252A93943E0046F39D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07458242A93943E0046F39D /* Constants.swift */; };
+		C07458282A939FA40046F39D /* LinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07458272A939FA40046F39D /* LinkView.swift */; };
+		C0750ECE2A9E9B8F00089B29 /* HapticManagerSUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0750ECD2A9E9B8F00089B29 /* HapticManagerSUI.swift */; };
+		C0750ED02AA3A60400089B29 /* AudioRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0750ECF2AA3A60400089B29 /* AudioRecorder.swift */; };
+		C0750ED42AA3C01800089B29 /* ReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0750ED32AA3C01800089B29 /* ReviewView.swift */; };
+		C0750ED62AA3C39400089B29 /* CircleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0750ED52AA3C39400089B29 /* CircleButton.swift */; };
+		C0750ED82AA3D4AC00089B29 /* ReviewManagerSUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0750ED72AA3D4AC00089B29 /* ReviewManagerSUI.swift */; };
+		C08903252A8D444F00EFC51C /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = C08903242A8D444F00EFC51C /* Deck.swift */; };
+		C08903272A8D474900EFC51C /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = C08903262A8D474900EFC51C /* Card.swift */; };
+		C09479502B518EFC00C44BCF /* ImagePickerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C094794F2B518EFC00C44BCF /* ImagePickerButton.swift */; };
+		C09AE07E2B6A726B00DB3E28 /* Pow in Frameworks */ = {isa = PBXBuildFile; productRef = C09AE07D2B6A726B00DB3E28 /* Pow */; };
+		C0A0C64A2A9DFC210015C65E /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A0C6492A9DFC210015C65E /* SoundManager.swift */; };
 		C0B5FF7F25E981AF001D8D83 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C0B5FF7E25E981AF001D8D83 /* Assets.xcassets */; };
 		C0B5FF8225E981AF001D8D83 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0B5FF8025E981AF001D8D83 /* LaunchScreen.storyboard */; };
 		C0B5FF8D25E981AF001D8D83 /* Simple_AnkiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B5FF8C25E981AF001D8D83 /* Simple_AnkiTests.swift */; };
 		C0B5FFAA25E98362001D8D83 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C0B5FFA925E98362001D8D83 /* RealmSwift */; };
 		C0B5FFAC25E98362001D8D83 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = C0B5FFAB25E98362001D8D83 /* Realm */; };
 		C0B6D151285DE01A00E354BA /* OnboardingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B6D150285DE01A00E354BA /* OnboardingManager.swift */; };
-		C0B6D153285DE18900E354BA /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B6D152285DE18900E354BA /* OnboardingViewController.swift */; };
-		C0B6D156285E2DFD00E354BA /* FeatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B6D155285E2DFD00E354BA /* FeatureView.swift */; };
 		C0B85474282AB18F009816D0 /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = C0B85473282AB18F009816D0 /* SQLite */; };
 		C0B85477282ABA14009816D0 /* ZIPFoundation in Frameworks */ = {isa = PBXBuildFile; productRef = C0B85476282ABA14009816D0 /* ZIPFoundation */; };
-		C0C043E328206B1F00A8AC6D /* WeekdaysViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C043E228206B1F00A8AC6D /* WeekdaysViewController.swift */; };
-		C0C081B425ED379600DF1083 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C081B325ED379600DF1083 /* StorageManager.swift */; };
 		C0C9BA672848A3B30020E555 /* (null) in Resources */ = {isa = PBXBuildFile; };
-		C0C9BAA42848B9120020E555 /* ImportedCardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C9BAA12848B9120020E555 /* ImportedCardCollectionViewCell.swift */; };
-		C0C9BAA52848B9120020E555 /* ImportedCardsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C9BAA22848B9120020E555 /* ImportedCardsCollectionViewController.swift */; };
 		C0C9BAAB2848B9410020E555 /* APKGManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C9BAA82848B9410020E555 /* APKGManager.swift */; };
 		C0C9BAB62848B9F20020E555 /* APKGModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C9BAB52848B9F20020E555 /* APKGModel.swift */; };
-		C0C9BAB82848BA160020E555 /* ImportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C9BAB72848BA160020E555 /* ImportViewController.swift */; };
 		C0C9BABE2848BD460020E555 /* APKGDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C9BABD2848BD460020E555 /* APKGDatabase.swift */; };
-		C0C9BAC02848BE2F0020E555 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C0C9BABF2848BE2F0020E555 /* GoogleService-Info.plist */; };
 		C0C9BAC22848BE960020E555 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = C0C9BAC12848BE960020E555 /* .swiftlint.yml */; };
 		C0C9BAC52848F4590020E555 /* build.yml in Resources */ = {isa = PBXBuildFile; fileRef = C0C9BAC42848F4590020E555 /* build.yml */; };
-		C0CBE86E266AAA9A00B83253 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CBE86D266AAA9A00B83253 /* Utils.swift */; };
-		C0CBE870266B7A2900B83253 /* PlayerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CBE86F266B7A2900B83253 /* PlayerManager.swift */; };
-		C0CBE872266BA50900B83253 /* URLExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CBE871266BA50900B83253 /* URLExtension.swift */; };
-		C0D1C1702815757A00350862 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = C0D1C16F2815757A00350862 /* FirebaseAnalytics */; };
-		C0D1C1722815A57600350862 /* ReminderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D1C1712815A57600350862 /* ReminderViewController.swift */; };
-		C0D1C1742815CB9100350862 /* DatePickerViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D1C1732815CB9100350862 /* DatePickerViewCell.swift */; };
-		C0DBE8322673E9E00074DC13 /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DBE8312673E9E00074DC13 /* HapticManager.swift */; };
+		C0CC42532B5052C000F683CE /* CardToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CC42522B5052C000F683CE /* CardToolbarView.swift */; };
+		C0CD12532AA9069400FE3BB6 /* LocalFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CD12522AA9069400FE3BB6 /* LocalFileManager.swift */; };
+		C0CD12552AAB3F2700FE3BB6 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CD12542AAB3F2700FE3BB6 /* CardView.swift */; };
 		C0DD10BB2823F6D10058F96B /* SwiftCSV in Frameworks */ = {isa = PBXBuildFile; productRef = C0DD10BA2823F6D10058F96B /* SwiftCSV */; };
-		C0DDE0F32658608C0051059B /* RecorderManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0DDE0F22658608C0051059B /* RecorderManager.swift */; };
-		C0E8477527F9AEF4006AEED1 /* NewCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E8477427F9AEF4006AEED1 /* NewCardViewController.swift */; };
+		C0E5546D2AB59C9C000A3CA4 /* RecordingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E5546C2AB59C9C000A3CA4 /* RecordingButton.swift */; };
 		C0E8477827F9C9EA006AEED1 /* SPIndicator in Frameworks */ = {isa = PBXBuildFile; productRef = C0E8477727F9C9EA006AEED1 /* SPIndicator */; };
-		C0F4FD1527BD82DF00814BD6 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F4FD1427BD82DF00814BD6 /* UIViewExtension.swift */; };
-		C0F4FD1F27BD84DA00814BD6 /* SettingsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F4FD1B27BD84DA00814BD6 /* SettingsViewCell.swift */; };
-		C0F4FD3027BD855A00814BD6 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F4FD2827BD855A00814BD6 /* SettingsTableViewController.swift */; };
-		C0F4FD3127BD855A00814BD6 /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F4FD2927BD855A00814BD6 /* MainTabBarViewController.swift */; };
 		C0F4FD3727BD862E00814BD6 /* Simple_AnkiUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F4FD3227BD862D00814BD6 /* Simple_AnkiUITestsLaunchTests.swift */; };
 		C0F4FD3927BD862E00814BD6 /* Simple_AnkiUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F4FD3427BD862E00814BD6 /* Simple_AnkiUITests.swift */; };
 		C0F4FD4727BD877600814BD6 /* BaseScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F4FD4627BD877600814BD6 /* BaseScreen.swift */; };
@@ -77,7 +70,9 @@
 		C0F4FD5127BD87CE00814BD6 /* DecksScrenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F4FD4F27BD87CE00814BD6 /* DecksScrenTests.swift */; };
 		C0F4FD5527BD87EB00814BD6 /* WaitUtillities.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F4FD5327BD87EB00814BD6 /* WaitUtillities.swift */; };
 		C0F4FD5627BD87EB00814BD6 /* RandomGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F4FD5427BD87EB00814BD6 /* RandomGenerator.swift */; };
-		C0FA7EAA25F511FE00710F0D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0FA7EA925F511FE00710F0D /* Constants.swift */; };
+		C0F730C22B7424D900127CB4 /* ReminderManagerSUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F730C12B7424D900127CB4 /* ReminderManagerSUI.swift */; };
+		C0F730C42B752F7100127CB4 /* ReminderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F730C32B752F7100127CB4 /* ReminderView.swift */; };
+		C0FA7EAA25F511FE00710F0D /* ConstantsOld.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0FA7EA925F511FE00710F0D /* ConstantsOld.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,31 +93,40 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		C00648A92682060F00265EB8 /* UIApplicationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplicationExtension.swift; sourceTree = "<group>"; };
-		C00648AB2682070200265EB8 /* EmailManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailManager.swift; sourceTree = "<group>"; };
-		C00648AE2682140800265EB8 /* Options.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Options.swift; sourceTree = "<group>"; };
-		C00D75CB282E68A7004E92B2 /* UIButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonExtension.swift; sourceTree = "<group>"; };
-		C02348CA2861F47E002FFBDF /* UILabelExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabelExtension.swift; sourceTree = "<group>"; };
+		C00513FA2B517E91005F5815 /* CardPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardPreviewView.swift; sourceTree = "<group>"; };
+		C00BD2632B5A8EA900ACD977 /* CardRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardRepository.swift; sourceTree = "<group>"; };
 		C02348D2286343F4002FFBDF /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
-		C02348D628671E16002FFBDF /* LaunchScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenViewController.swift; sourceTree = "<group>"; };
+		C02404072B6835930017EF2E /* TabItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabItemView.swift; sourceTree = "<group>"; };
+		C025748C2B4B1D4000F8EE29 /* CardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewModel.swift; sourceTree = "<group>"; };
 		C028C4C7280C852400F6894E /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
-		C028C4C92811C0F000F6894E /* NewDeckViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDeckViewController.swift; sourceTree = "<group>"; };
-		C028C4CB2811C71500F6894E /* EmptyState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyState.swift; sourceTree = "<group>"; };
-		C02D41C2282146BF005E9835 /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
-		C02D41CF28218E3C005E9835 /* SwitchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchTableViewCell.swift; sourceTree = "<group>"; };
-		C05F7C4727E3A29700F4FAB4 /* BaseSettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseSettingsCell.swift; sourceTree = "<group>"; };
+		C03A02602B5299EF00576543 /* CardViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewState.swift; sourceTree = "<group>"; };
+		C03B91C72B6FA60500EA483F /* DeckSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckSettingsView.swift; sourceTree = "<group>"; };
+		C03B91C92B6FA82400EA483F /* LayoutButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutButton.swift; sourceTree = "<group>"; };
+		C05695D32B501AAA00033AF2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		C05BCFEF2B78CD3F0076CAD9 /* CreateDeckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDeckView.swift; sourceTree = "<group>"; };
+		C05BCFF12B78CF4D0076CAD9 /* ImportDeckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportDeckView.swift; sourceTree = "<group>"; };
+		C05BCFF32B78D04D0076CAD9 /* DelimeterButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DelimeterButton.swift; sourceTree = "<group>"; };
+		C05BCFF52B78D12C0076CAD9 /* ImportedDeckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportedDeckView.swift; sourceTree = "<group>"; };
+		C067B6842A8C1235000AF881 /* SimpleAnkiApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleAnkiApp.swift; sourceTree = "<group>"; };
+		C067B6862A8C1251000AF881 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		C067B6882A8C139A000AF881 /* DecksListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecksListView.swift; sourceTree = "<group>"; };
+		C067B68A2A8C13A5000AF881 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		C070008D263E86E0006DF020 /* RateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateManager.swift; sourceTree = "<group>"; };
-		C0A70E5F28211E620020D533 /* ReminderManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderManager.swift; sourceTree = "<group>"; };
-		C0ADAD4125EC0E0B005DE503 /* Deck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deck.swift; sourceTree = "<group>"; };
-		C0ADAD4625EC0E62005DE503 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
-		C0AF0E7C2614F1E000853FA7 /* ReviewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewManager.swift; sourceTree = "<group>"; };
-		C0B1275327C3F0D4008E412D /* DecksTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecksTableViewController.swift; sourceTree = "<group>"; };
-		C0B1275427C3F0E7008E412D /* DecksViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecksViewModel.swift; sourceTree = "<group>"; };
-		C0B1275627C3FB7A008E412D /* CardsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsTableViewController.swift; sourceTree = "<group>"; };
-		C0B1275C27C3FB91008E412D /* ReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewController.swift; sourceTree = "<group>"; };
+		C0730B162B77F26A00B43D42 /* NewDeckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDeckView.swift; sourceTree = "<group>"; };
+		C074581E2A9293AA0046F39D /* CardsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsListView.swift; sourceTree = "<group>"; };
+		C07458222A938CF90046F39D /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
+		C07458242A93943E0046F39D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		C07458272A939FA40046F39D /* LinkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkView.swift; sourceTree = "<group>"; };
+		C0750ECD2A9E9B8F00089B29 /* HapticManagerSUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManagerSUI.swift; sourceTree = "<group>"; };
+		C0750ECF2AA3A60400089B29 /* AudioRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecorder.swift; sourceTree = "<group>"; };
+		C0750ED32AA3C01800089B29 /* ReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewView.swift; sourceTree = "<group>"; };
+		C0750ED52AA3C39400089B29 /* CircleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleButton.swift; sourceTree = "<group>"; };
+		C0750ED72AA3D4AC00089B29 /* ReviewManagerSUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewManagerSUI.swift; sourceTree = "<group>"; };
+		C08903242A8D444F00EFC51C /* Deck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deck.swift; sourceTree = "<group>"; };
+		C08903262A8D474900EFC51C /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		C094794F2B518EFC00C44BCF /* ImagePickerButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerButton.swift; sourceTree = "<group>"; };
+		C0A0C6492A9DFC210015C65E /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
 		C0B5FF7225E981A8001D8D83 /* Simple Anki.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Simple Anki.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		C0B5FF7525E981A8001D8D83 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		C0B5FF7725E981A8001D8D83 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		C0B5FF7E25E981AF001D8D83 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C0B5FF8125E981AF001D8D83 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C0B5FF8325E981AF001D8D83 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -132,32 +136,16 @@
 		C0B5FF9325E981B0001D8D83 /* Simple AnkiUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Simple AnkiUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0B5FF9925E981B0001D8D83 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C0B6D150285DE01A00E354BA /* OnboardingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingManager.swift; sourceTree = "<group>"; };
-		C0B6D152285DE18900E354BA /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
-		C0B6D155285E2DFD00E354BA /* FeatureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureView.swift; sourceTree = "<group>"; };
-		C0C043E228206B1F00A8AC6D /* WeekdaysViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekdaysViewController.swift; sourceTree = "<group>"; };
-		C0C081B325ED379600DF1083 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		C0C9BA722848AC300020E555 /* linter.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = linter.yml; sourceTree = "<group>"; };
-		C0C9BAA12848B9120020E555 /* ImportedCardCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImportedCardCollectionViewCell.swift; sourceTree = "<group>"; };
-		C0C9BAA22848B9120020E555 /* ImportedCardsCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImportedCardsCollectionViewController.swift; sourceTree = "<group>"; };
 		C0C9BAA82848B9410020E555 /* APKGManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APKGManager.swift; sourceTree = "<group>"; };
 		C0C9BAB52848B9F20020E555 /* APKGModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APKGModel.swift; sourceTree = "<group>"; };
-		C0C9BAB72848BA160020E555 /* ImportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportViewController.swift; sourceTree = "<group>"; };
 		C0C9BABD2848BD460020E555 /* APKGDatabase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APKGDatabase.swift; sourceTree = "<group>"; };
-		C0C9BABF2848BE2F0020E555 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C0C9BAC12848BE960020E555 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		C0C9BAC42848F4590020E555 /* build.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = build.yml; sourceTree = "<group>"; };
-		C0CBE86D266AAA9A00B83253 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
-		C0CBE86F266B7A2900B83253 /* PlayerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerManager.swift; sourceTree = "<group>"; };
-		C0CBE871266BA50900B83253 /* URLExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLExtension.swift; sourceTree = "<group>"; };
-		C0D1C1712815A57600350862 /* ReminderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderViewController.swift; sourceTree = "<group>"; };
-		C0D1C1732815CB9100350862 /* DatePickerViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerViewCell.swift; sourceTree = "<group>"; };
-		C0DBE8312673E9E00074DC13 /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
-		C0DDE0F22658608C0051059B /* RecorderManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecorderManager.swift; sourceTree = "<group>"; };
-		C0E8477427F9AEF4006AEED1 /* NewCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCardViewController.swift; sourceTree = "<group>"; };
-		C0F4FD1427BD82DF00814BD6 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
-		C0F4FD1B27BD84DA00814BD6 /* SettingsViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewCell.swift; sourceTree = "<group>"; };
-		C0F4FD2827BD855A00814BD6 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
-		C0F4FD2927BD855A00814BD6 /* MainTabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
+		C0CC42522B5052C000F683CE /* CardToolbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardToolbarView.swift; sourceTree = "<group>"; };
+		C0CD12522AA9069400FE3BB6 /* LocalFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalFileManager.swift; sourceTree = "<group>"; };
+		C0CD12542AAB3F2700FE3BB6 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		C0E5546C2AB59C9C000A3CA4 /* RecordingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingButton.swift; sourceTree = "<group>"; };
 		C0F4FD3227BD862D00814BD6 /* Simple_AnkiUITestsLaunchTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Simple_AnkiUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		C0F4FD3427BD862E00814BD6 /* Simple_AnkiUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Simple_AnkiUITests.swift; path = "../../../ZBS/Simple Anki/Simple AnkiUITests/Simple_AnkiUITests.swift"; sourceTree = "<group>"; };
 		C0F4FD4627BD877600814BD6 /* BaseScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseScreen.swift; sourceTree = "<group>"; };
@@ -167,7 +155,9 @@
 		C0F4FD4F27BD87CE00814BD6 /* DecksScrenTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DecksScrenTests.swift; sourceTree = "<group>"; };
 		C0F4FD5327BD87EB00814BD6 /* WaitUtillities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaitUtillities.swift; sourceTree = "<group>"; };
 		C0F4FD5427BD87EB00814BD6 /* RandomGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomGenerator.swift; sourceTree = "<group>"; };
-		C0FA7EA925F511FE00710F0D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		C0F730C12B7424D900127CB4 /* ReminderManagerSUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderManagerSUI.swift; sourceTree = "<group>"; };
+		C0F730C32B752F7100127CB4 /* ReminderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderView.swift; sourceTree = "<group>"; };
+		C0FA7EA925F511FE00710F0D /* ConstantsOld.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstantsOld.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,11 +166,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				C02348D3286343F4002FFBDF /* StoreKit.framework in Frameworks */,
+				C09AE07E2B6A726B00DB3E28 /* Pow in Frameworks */,
 				C0B85474282AB18F009816D0 /* SQLite in Frameworks */,
 				C0DD10BB2823F6D10058F96B /* SwiftCSV in Frameworks */,
 				C0B5FFAC25E98362001D8D83 /* Realm in Frameworks */,
 				C0B5FFAA25E98362001D8D83 /* RealmSwift in Frameworks */,
-				C0D1C1702815757A00350862 /* FirebaseAnalytics in Frameworks */,
 				C0E8477827F9C9EA006AEED1 /* SPIndicator in Frameworks */,
 				C0B85477282ABA14009816D0 /* ZIPFoundation in Frameworks */,
 			);
@@ -203,15 +193,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		C00648A62681F26000265EB8 /* Cells */ = {
+		C00BD2622B5A8E9400ACD977 /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
-				C05F7C4727E3A29700F4FAB4 /* BaseSettingsCell.swift */,
-				C0F4FD1B27BD84DA00814BD6 /* SettingsViewCell.swift */,
-				C0D1C1732815CB9100350862 /* DatePickerViewCell.swift */,
-				C02D41CF28218E3C005E9835 /* SwitchTableViewCell.swift */,
+				C00BD2632B5A8EA900ACD977 /* CardRepository.swift */,
 			);
-			path = Cells;
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		C01290712A8F822700ECF9D7 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				C070008D263E86E0006DF020 /* RateManager.swift */,
+				C0B6D150285DE01A00E354BA /* OnboardingManager.swift */,
+				C07458222A938CF90046F39D /* UserSettings.swift */,
+				C0A0C6492A9DFC210015C65E /* SoundManager.swift */,
+				C0750ECD2A9E9B8F00089B29 /* HapticManagerSUI.swift */,
+				C0750ECF2AA3A60400089B29 /* AudioRecorder.swift */,
+				C0750ED72AA3D4AC00089B29 /* ReviewManagerSUI.swift */,
+				C0CD12522AA9069400FE3BB6 /* LocalFileManager.swift */,
+				C0F730C12B7424D900127CB4 /* ReminderManagerSUI.swift */,
+			);
+			path = Managers;
 			sourceTree = "<group>";
 		};
 		C02348D1286343F4002FFBDF /* Frameworks */ = {
@@ -222,79 +225,105 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		C05AA2B025E9891E00E40346 /* Controllers */ = {
+		C025748A2B4B1CE900F8EE29 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				C00648A62681F26000265EB8 /* Cells */,
-				C078B5FA281EA8B300DE5A86 /* Settings */,
-				C0B1275227C3F0CB008E412D /* Decks */,
-				C0B1275627C3FB7A008E412D /* CardsTableViewController.swift */,
-				C0F4FD2927BD855A00814BD6 /* MainTabBarViewController.swift */,
-				C0B1275C27C3FB91008E412D /* ReviewViewController.swift */,
-				C0E8477427F9AEF4006AEED1 /* NewCardViewController.swift */,
-				C0B6D152285DE18900E354BA /* OnboardingViewController.swift */,
-				C02348D628671E16002FFBDF /* LaunchScreenViewController.swift */,
+				C025748C2B4B1D4000F8EE29 /* CardViewModel.swift */,
 			);
-			path = Controllers;
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
-		C078B5F9281EA89500DE5A86 /* Reminder */ = {
+		C025748B2B4B1CFB00F8EE29 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				C0C043E228206B1F00A8AC6D /* WeekdaysViewController.swift */,
-				C0D1C1712815A57600350862 /* ReminderViewController.swift */,
+				C00BD2622B5A8E9400ACD977 /* Repositories */,
+				C07458262A939F800046F39D /* UIComponents */,
+				C0750ED92AA492BD00089B29 /* Views */,
 			);
-			path = Reminder;
+			path = UI;
 			sourceTree = "<group>";
 		};
-		C078B5FA281EA8B300DE5A86 /* Settings */ = {
+		C067B6822A8C10D0000AF881 /* SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
-				C0F4FD2827BD855A00814BD6 /* SettingsTableViewController.swift */,
-				C078B5F9281EA89500DE5A86 /* Reminder */,
+				C025748B2B4B1CFB00F8EE29 /* UI */,
+				C025748A2B4B1CE900F8EE29 /* ViewModels */,
+				C01290712A8F822700ECF9D7 /* Managers */,
+				C08903232A8D443900EFC51C /* Models */,
+				C067B6842A8C1235000AF881 /* SimpleAnkiApp.swift */,
+			);
+			path = SwiftUI;
+			sourceTree = "<group>";
+		};
+		C0730B182B77F28900B43D42 /* Deck */ = {
+			isa = PBXGroup;
+			children = (
+				C03B91C72B6FA60500EA483F /* DeckSettingsView.swift */,
+				C0730B162B77F26A00B43D42 /* NewDeckView.swift */,
+				C067B6882A8C139A000AF881 /* DecksListView.swift */,
+				C05BCFEF2B78CD3F0076CAD9 /* CreateDeckView.swift */,
+				C05BCFF12B78CF4D0076CAD9 /* ImportDeckView.swift */,
+				C05BCFF52B78D12C0076CAD9 /* ImportedDeckView.swift */,
+			);
+			path = Deck;
+			sourceTree = "<group>";
+		};
+		C0730B192B77F2A200B43D42 /* Card */ = {
+			isa = PBXGroup;
+			children = (
+				C00513FA2B517E91005F5815 /* CardPreviewView.swift */,
+				C0CD12542AAB3F2700FE3BB6 /* CardView.swift */,
+				C074581E2A9293AA0046F39D /* CardsListView.swift */,
+			);
+			path = Card;
+			sourceTree = "<group>";
+		};
+		C0730B1A2B77F2B700B43D42 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				C0F730C32B752F7100127CB4 /* ReminderView.swift */,
+				C067B68A2A8C13A5000AF881 /* SettingsView.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
 		};
-		C0ADAD5625EC19D3005DE503 /* Extensions */ = {
+		C07458262A939F800046F39D /* UIComponents */ = {
 			isa = PBXGroup;
 			children = (
-				C0CBE871266BA50900B83253 /* URLExtension.swift */,
-				C00648A92682060F00265EB8 /* UIApplicationExtension.swift */,
-				C0F4FD1427BD82DF00814BD6 /* UIViewExtension.swift */,
-				C02D41C2282146BF005E9835 /* DateExtension.swift */,
-				C00D75CB282E68A7004E92B2 /* UIButtonExtension.swift */,
-				C02348CA2861F47E002FFBDF /* UILabelExtension.swift */,
+				C0750ED52AA3C39400089B29 /* CircleButton.swift */,
+				C07458272A939FA40046F39D /* LinkView.swift */,
+				C0E5546C2AB59C9C000A3CA4 /* RecordingButton.swift */,
+				C0CC42522B5052C000F683CE /* CardToolbarView.swift */,
+				C094794F2B518EFC00C44BCF /* ImagePickerButton.swift */,
+				C03A02602B5299EF00576543 /* CardViewState.swift */,
+				C02404072B6835930017EF2E /* TabItemView.swift */,
+				C03B91C92B6FA82400EA483F /* LayoutButton.swift */,
+				C05BCFF32B78D04D0076CAD9 /* DelimeterButton.swift */,
 			);
-			path = Extensions;
+			path = UIComponents;
 			sourceTree = "<group>";
 		};
-		C0AF0E7B2614F1AD00853FA7 /* Managers */ = {
+		C0750ED92AA492BD00089B29 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				C0CBE86D266AAA9A00B83253 /* Utils.swift */,
-				C0CBE86F266B7A2900B83253 /* PlayerManager.swift */,
-				C0C081B325ED379600DF1083 /* StorageManager.swift */,
-				C0AF0E7C2614F1E000853FA7 /* ReviewManager.swift */,
-				C070008D263E86E0006DF020 /* RateManager.swift */,
-				C0DDE0F22658608C0051059B /* RecorderManager.swift */,
-				C0DBE8312673E9E00074DC13 /* HapticManager.swift */,
-				C00648AB2682070200265EB8 /* EmailManager.swift */,
-				C0A70E5F28211E620020D533 /* ReminderManager.swift */,
-				C0B6D150285DE01A00E354BA /* OnboardingManager.swift */,
+				C0730B1A2B77F2B700B43D42 /* Settings */,
+				C0730B192B77F2A200B43D42 /* Card */,
+				C0730B182B77F28900B43D42 /* Deck */,
+				C067B6862A8C1251000AF881 /* MainView.swift */,
+				C07458242A93943E0046F39D /* Constants.swift */,
+				C0750ED32AA3C01800089B29 /* ReviewView.swift */,
+				C05695D32B501AAA00033AF2 /* ContentView.swift */,
 			);
-			path = Managers;
+			path = Views;
 			sourceTree = "<group>";
 		};
-		C0B1275227C3F0CB008E412D /* Decks */ = {
+		C08903232A8D443900EFC51C /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				C0C9BA8B2848B73C0020E555 /* Import */,
-				C0B1275427C3F0E7008E412D /* DecksViewModel.swift */,
-				C0B1275327C3F0D4008E412D /* DecksTableViewController.swift */,
-				C028C4C92811C0F000F6894E /* NewDeckViewController.swift */,
+				C08903242A8D444F00EFC51C /* Deck.swift */,
+				C08903262A8D474900EFC51C /* Card.swift */,
 			);
-			path = Decks;
+			path = Models;
 			sourceTree = "<group>";
 		};
 		C0B5FF6925E981A8001D8D83 = {
@@ -324,20 +353,12 @@
 		C0B5FF7425E981A8001D8D83 /* Simple Anki */ = {
 			isa = PBXGroup;
 			children = (
+				C067B6822A8C10D0000AF881 /* SwiftUI */,
 				C0C9BAA72848B9410020E555 /* APKG */,
-				C0F4FD4427BD86BF00814BD6 /* Protocols */,
-				C0AF0E7B2614F1AD00853FA7 /* Managers */,
-				C0ADAD5625EC19D3005DE503 /* Extensions */,
-				C0CD246E25F168DB00D7191B /* Models */,
-				C0B6D154285E2DD100E354BA /* UIComponents */,
-				C05AA2B025E9891E00E40346 /* Controllers */,
-				C0B5FF7525E981A8001D8D83 /* AppDelegate.swift */,
-				C0B5FF7725E981A8001D8D83 /* SceneDelegate.swift */,
 				C0B5FF7E25E981AF001D8D83 /* Assets.xcassets */,
 				C0B5FF8025E981AF001D8D83 /* LaunchScreen.storyboard */,
 				C0B5FF8325E981AF001D8D83 /* Info.plist */,
-				C0C9BABF2848BE2F0020E555 /* GoogleService-Info.plist */,
-				C0FA7EA925F511FE00710F0D /* Constants.swift */,
+				C0FA7EA925F511FE00710F0D /* ConstantsOld.swift */,
 			);
 			path = "Simple Anki";
 			sourceTree = "<group>";
@@ -364,14 +385,6 @@
 			path = "Simple AnkiUITests";
 			sourceTree = "<group>";
 		};
-		C0B6D154285E2DD100E354BA /* UIComponents */ = {
-			isa = PBXGroup;
-			children = (
-				C0B6D155285E2DFD00E354BA /* FeatureView.swift */,
-			);
-			path = UIComponents;
-			sourceTree = "<group>";
-		};
 		C0C9BA702848AC300020E555 /* .github */ = {
 			isa = PBXGroup;
 			children = (
@@ -389,16 +402,6 @@
 			path = workflows;
 			sourceTree = "<group>";
 		};
-		C0C9BA8B2848B73C0020E555 /* Import */ = {
-			isa = PBXGroup;
-			children = (
-				C0C9BAA12848B9120020E555 /* ImportedCardCollectionViewCell.swift */,
-				C0C9BAA22848B9120020E555 /* ImportedCardsCollectionViewController.swift */,
-				C0C9BAB72848BA160020E555 /* ImportViewController.swift */,
-			);
-			path = Import;
-			sourceTree = "<group>";
-		};
 		C0C9BAA72848B9410020E555 /* APKG */ = {
 			isa = PBXGroup;
 			children = (
@@ -407,24 +410,6 @@
 				C0C9BAB52848B9F20020E555 /* APKGModel.swift */,
 			);
 			path = APKG;
-			sourceTree = "<group>";
-		};
-		C0CD246E25F168DB00D7191B /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				C00648AE2682140800265EB8 /* Options.swift */,
-				C0ADAD4125EC0E0B005DE503 /* Deck.swift */,
-				C0ADAD4625EC0E62005DE503 /* Card.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		C0F4FD4427BD86BF00814BD6 /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				C028C4CB2811C71500F6894E /* EmptyState.swift */,
-			);
-			path = Protocols;
 			sourceTree = "<group>";
 		};
 		C0F4FD4527BD876600814BD6 /* Screens */ = {
@@ -484,10 +469,10 @@
 				C0B5FFA925E98362001D8D83 /* RealmSwift */,
 				C0B5FFAB25E98362001D8D83 /* Realm */,
 				C0E8477727F9C9EA006AEED1 /* SPIndicator */,
-				C0D1C16F2815757A00350862 /* FirebaseAnalytics */,
 				C0DD10BA2823F6D10058F96B /* SwiftCSV */,
 				C0B85473282AB18F009816D0 /* SQLite */,
 				C0B85476282ABA14009816D0 /* ZIPFoundation */,
+				C09AE07D2B6A726B00DB3E28 /* Pow */,
 			);
 			productName = "Simple Anki";
 			productReference = C0B5FF7225E981A8001D8D83 /* Simple Anki.app */;
@@ -535,8 +520,9 @@
 		C0B5FF6A25E981A8001D8D83 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 1240;
-				LastUpgradeCheck = 1340;
+				LastUpgradeCheck = 1430;
 				TargetAttributes = {
 					C0B5FF7125E981A8001D8D83 = {
 						CreatedOnToolsVersion = 12.4;
@@ -563,10 +549,10 @@
 			packageReferences = (
 				C0B5FFA825E98362001D8D83 /* XCRemoteSwiftPackageReference "realm-cocoa" */,
 				C0E8477627F9C9EA006AEED1 /* XCRemoteSwiftPackageReference "SPIndicator" */,
-				C0D1C16E2815757A00350862 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				C0DD10B92823F6D10058F96B /* XCRemoteSwiftPackageReference "SwiftCSV" */,
 				C0B85472282AB18F009816D0 /* XCRemoteSwiftPackageReference "SQLite.swift" */,
 				C0B85475282ABA14009816D0 /* XCRemoteSwiftPackageReference "ZIPFoundation" */,
+				C09AE07C2B6A726B00DB3E28 /* XCRemoteSwiftPackageReference "Pow" */,
 			);
 			productRefGroup = C0B5FF7325E981A8001D8D83 /* Products */;
 			projectDirPath = "";
@@ -588,7 +574,6 @@
 				C0C9BA672848A3B30020E555 /* (null) in Resources */,
 				C0C9BAC52848F4590020E555 /* build.yml in Resources */,
 				C028C4C8280C852400F6894E /* .gitignore in Resources */,
-				C0C9BAC02848BE2F0020E555 /* GoogleService-Info.plist in Resources */,
 				C0B5FF8225E981AF001D8D83 /* LaunchScreen.storyboard in Resources */,
 				C0B5FF7F25E981AF001D8D83 /* Assets.xcassets in Resources */,
 			);
@@ -636,52 +621,48 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C0ADAD4225EC0E0B005DE503 /* Deck.swift in Sources */,
 				C0C9BAB62848B9F20020E555 /* APKGModel.swift in Sources */,
-				C02D41C3282146BF005E9835 /* DateExtension.swift in Sources */,
-				C0A70E6028211E620020D533 /* ReminderManager.swift in Sources */,
-				C0CBE872266BA50900B83253 /* URLExtension.swift in Sources */,
-				C0FA7EAA25F511FE00710F0D /* Constants.swift in Sources */,
-				C0C043E328206B1F00A8AC6D /* WeekdaysViewController.swift in Sources */,
-				C0F4FD1F27BD84DA00814BD6 /* SettingsViewCell.swift in Sources */,
-				C02D41D028218E3C005E9835 /* SwitchTableViewCell.swift in Sources */,
-				C0B1275527C3F0E7008E412D /* DecksViewModel.swift in Sources */,
-				C0AF0E7D2614F1E000853FA7 /* ReviewManager.swift in Sources */,
-				C0F4FD3027BD855A00814BD6 /* SettingsTableViewController.swift in Sources */,
-				C0D1C1722815A57600350862 /* ReminderViewController.swift in Sources */,
-				C0DBE8322673E9E00074DC13 /* HapticManager.swift in Sources */,
-				C0B1275E27C3FC4A008E412D /* DecksTableViewController.swift in Sources */,
-				C0CBE86E266AAA9A00B83253 /* Utils.swift in Sources */,
-				C02348D728671E16002FFBDF /* LaunchScreenViewController.swift in Sources */,
+				C0F730C42B752F7100127CB4 /* ReminderView.swift in Sources */,
+				C0F730C22B7424D900127CB4 /* ReminderManagerSUI.swift in Sources */,
+				C07458252A93943E0046F39D /* Constants.swift in Sources */,
+				C067B6892A8C139A000AF881 /* DecksListView.swift in Sources */,
+				C0FA7EAA25F511FE00710F0D /* ConstantsOld.swift in Sources */,
+				C09479502B518EFC00C44BCF /* ImagePickerButton.swift in Sources */,
+				C05BCFF22B78CF4D0076CAD9 /* ImportDeckView.swift in Sources */,
+				C025748D2B4B1D4000F8EE29 /* CardViewModel.swift in Sources */,
+				C0CC42532B5052C000F683CE /* CardToolbarView.swift in Sources */,
+				C0750ED82AA3D4AC00089B29 /* ReviewManagerSUI.swift in Sources */,
+				C05BCFF42B78D04D0076CAD9 /* DelimeterButton.swift in Sources */,
+				C0750ED02AA3A60400089B29 /* AudioRecorder.swift in Sources */,
+				C067B68B2A8C13A5000AF881 /* SettingsView.swift in Sources */,
+				C0750ED62AA3C39400089B29 /* CircleButton.swift in Sources */,
 				C0C9BAAB2848B9410020E555 /* APKGManager.swift in Sources */,
-				C028C4CA2811C0F000F6894E /* NewDeckViewController.swift in Sources */,
-				C00648AA2682060F00265EB8 /* UIApplicationExtension.swift in Sources */,
-				C0CBE870266B7A2900B83253 /* PlayerManager.swift in Sources */,
-				C0C9BAA52848B9120020E555 /* ImportedCardsCollectionViewController.swift in Sources */,
+				C0CD12532AA9069400FE3BB6 /* LocalFileManager.swift in Sources */,
+				C03B91C82B6FA60500EA483F /* DeckSettingsView.swift in Sources */,
+				C0E5546D2AB59C9C000A3CA4 /* RecordingButton.swift in Sources */,
 				C070008E263E86E0006DF020 /* RateManager.swift in Sources */,
-				C0C9BAA42848B9120020E555 /* ImportedCardCollectionViewCell.swift in Sources */,
-				C0B1275727C3FB7A008E412D /* CardsTableViewController.swift in Sources */,
-				C00648AC2682070200265EB8 /* EmailManager.swift in Sources */,
-				C0C081B425ED379600DF1083 /* StorageManager.swift in Sources */,
-				C0B6D153285DE18900E354BA /* OnboardingViewController.swift in Sources */,
-				C02348CB2861F47E002FFBDF /* UILabelExtension.swift in Sources */,
-				C0F4FD1527BD82DF00814BD6 /* UIViewExtension.swift in Sources */,
-				C0DDE0F32658608C0051059B /* RecorderManager.swift in Sources */,
-				C0B1275D27C3FB91008E412D /* ReviewViewController.swift in Sources */,
-				C0B6D156285E2DFD00E354BA /* FeatureView.swift in Sources */,
+				C0A0C64A2A9DFC210015C65E /* SoundManager.swift in Sources */,
+				C067B6852A8C1235000AF881 /* SimpleAnkiApp.swift in Sources */,
+				C067B6872A8C1251000AF881 /* MainView.swift in Sources */,
+				C00BD2642B5A8EA900ACD977 /* CardRepository.swift in Sources */,
+				C03A02612B5299EF00576543 /* CardViewState.swift in Sources */,
+				C05695D42B501AAA00033AF2 /* ContentView.swift in Sources */,
+				C07458232A938CF90046F39D /* UserSettings.swift in Sources */,
 				C0C9BABE2848BD460020E555 /* APKGDatabase.swift in Sources */,
-				C0ADAD4725EC0E62005DE503 /* Card.swift in Sources */,
-				C0F4FD3127BD855A00814BD6 /* MainTabBarViewController.swift in Sources */,
-				C0D1C1742815CB9100350862 /* DatePickerViewCell.swift in Sources */,
-				C05F7C4827E3A29700F4FAB4 /* BaseSettingsCell.swift in Sources */,
-				C0C9BAB82848BA160020E555 /* ImportViewController.swift in Sources */,
-				C0B5FF7625E981A8001D8D83 /* AppDelegate.swift in Sources */,
-				C00648AF2682140800265EB8 /* Options.swift in Sources */,
-				C00D75CC282E68A7004E92B2 /* UIButtonExtension.swift in Sources */,
-				C0B5FF7825E981A8001D8D83 /* SceneDelegate.swift in Sources */,
+				C05BCFF02B78CD3F0076CAD9 /* CreateDeckView.swift in Sources */,
+				C074581F2A9293AA0046F39D /* CardsListView.swift in Sources */,
+				C08903272A8D474900EFC51C /* Card.swift in Sources */,
+				C0730B172B77F26A00B43D42 /* NewDeckView.swift in Sources */,
 				C0B6D151285DE01A00E354BA /* OnboardingManager.swift in Sources */,
-				C028C4CC2811C71500F6894E /* EmptyState.swift in Sources */,
-				C0E8477527F9AEF4006AEED1 /* NewCardViewController.swift in Sources */,
+				C0750ED42AA3C01800089B29 /* ReviewView.swift in Sources */,
+				C03B91CA2B6FA82400EA483F /* LayoutButton.swift in Sources */,
+				C00513FB2B517E91005F5815 /* CardPreviewView.swift in Sources */,
+				C08903252A8D444F00EFC51C /* Deck.swift in Sources */,
+				C05BCFF62B78D12C0076CAD9 /* ImportedDeckView.swift in Sources */,
+				C02404082B6835930017EF2E /* TabItemView.swift in Sources */,
+				C07458282A939FA40046F39D /* LinkView.swift in Sources */,
+				C0750ECE2A9E9B8F00089B29 /* HapticManagerSUI.swift in Sources */,
+				C0CD12552AAB3F2700FE3BB6 /* CardView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -787,7 +768,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -842,7 +823,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -860,19 +841,24 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = KHNA6PF8QV;
 				INFOPLIST_FILE = "Simple Anki/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Simple Anki";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = nart.SimpleAnki;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -886,19 +872,24 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = KHNA6PF8QV;
 				INFOPLIST_FILE = "Simple Anki/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Simple Anki";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = nart.SimpleAnki;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1034,6 +1025,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		C09AE07C2B6A726B00DB3E28 /* XCRemoteSwiftPackageReference "Pow" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/EmergeTools/Pow.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.3;
+			};
+		};
 		C0B5FFA825E98362001D8D83 /* XCRemoteSwiftPackageReference "realm-cocoa" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/realm/realm-cocoa";
@@ -1058,14 +1057,6 @@
 				minimumVersion = 0.9.9;
 			};
 		};
-		C0D1C16E2815757A00350862 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 8.0.0;
-			};
-		};
 		C0DD10B92823F6D10058F96B /* XCRemoteSwiftPackageReference "SwiftCSV" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/swiftcsv/SwiftCSV.git";
@@ -1085,6 +1076,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		C09AE07D2B6A726B00DB3E28 /* Pow */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C09AE07C2B6A726B00DB3E28 /* XCRemoteSwiftPackageReference "Pow" */;
+			productName = Pow;
+		};
 		C0B5FFA925E98362001D8D83 /* RealmSwift */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = C0B5FFA825E98362001D8D83 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
@@ -1104,11 +1100,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = C0B85475282ABA14009816D0 /* XCRemoteSwiftPackageReference "ZIPFoundation" */;
 			productName = ZIPFoundation;
-		};
-		C0D1C16F2815757A00350862 /* FirebaseAnalytics */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = C0D1C16E2815757A00350862 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseAnalytics;
 		};
 		C0DD10BA2823F6D10058F96B /* SwiftCSV */ = {
 			isa = XCSwiftPackageProductDependency;
