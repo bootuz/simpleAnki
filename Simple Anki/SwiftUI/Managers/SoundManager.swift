@@ -19,35 +19,40 @@ class SoundManager {
     }
 
     private func setupPlayer() {
-        do {
-            try audioSession.setCategory(.playback)
-            try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
-        } catch {
-            print(error.localizedDescription)
+        DispatchQueue.global(qos: .background).async {
+            do {
+                try self.audioSession.setCategory(.playAndRecord)
+                try self.audioSession.setActive(true, options: .notifyOthersOnDeactivation)
+            } catch {
+                print(error.localizedDescription)
+            }
         }
     }
 
     func play(sound: String) {
-        let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-        let fullUrl = documentDirectory.appendingPathComponent(sound)
+        let url = FileManager.documentsDirectory.appendingPathComponent(sound)
+        print(url)
 
-        do {
-            self.player = try AVAudioPlayer(contentsOf: fullUrl)
-            self.player?.prepareToPlay()
-            self.player?.play()
-        } catch let error {
-            print("Error playing sound: \(error.localizedDescription)")
-            print("Error playing sound: \(error)")
+        DispatchQueue.global(qos: .background).async {
+            do {
+                self.player = try AVAudioPlayer(contentsOf: url)
+                self.player?.play()
+            } catch {
+                print("Error playing sound: \(error.localizedDescription)")
+                print("Error playing sound: \(error)")
+            }
         }
     }
 
     func play(sound: URL) {
-        do {
-            self.player = try AVAudioPlayer(contentsOf: sound)
-            self.player?.prepareToPlay()
-            self.player?.play()
-        } catch let error {
-            print("Error playing sound: \(error.localizedDescription)")
+        DispatchQueue.global(qos: .background).async {
+            do {
+                self.player = try AVAudioPlayer(contentsOf: sound)
+                self.player?.prepareToPlay()
+                self.player?.play()
+            } catch let error {
+                print("Error playing sound: \(error.localizedDescription)")
+            }
         }
     }
 }

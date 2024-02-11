@@ -46,12 +46,9 @@ extension FileManager {
     }
 
     func delete(_ fileName: String?) {
-
         guard let fileName = fileName else { return }
-        let path = Self.documentsDirectory.appendingPathComponent(fileName)
-
         do {
-            try Self.default.removeItem(at: path)
+            try Self.default.removeItem(at: Self.documentsDirectory.appendingPathComponent(fileName))
         } catch {
             print(error)
         }

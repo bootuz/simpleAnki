@@ -16,6 +16,17 @@ struct ReviewView: View {
     var body: some View {
         NavigationView {
             ZStack {
+                if let image = reviewManager.currentCard?.image {
+                    VStack {
+                        Image(uiImage: UIImage(imageLiteralResourceName: image))
+                            .resizable()
+                            .scaledToFill()
+                            .clipShape(RoundedRectangle(cornerRadius: 10))
+                            .frame(width: 150, height: 150)
+                            .padding(.top, 60)
+                        Spacer()
+                    }
+                }
                 VStack {
                     if reviewManager.isReviewing {
                         Text(reviewManager.currentCard?.front ?? "")
@@ -35,16 +46,21 @@ struct ReviewView: View {
                 .multilineTextAlignment(.center)
                 .onTapGesture {
                     if reviewManager.isReviewing {
-                        SoundManager.shared.play(sound: reviewManager.currentCard?.audioName ?? "")
+                        playPronunciation()
                     }
                 }
                 .font(.system(size: 40, weight: .medium))
                 .padding()
                 .onAppear {
                     reviewManager.startReview()
+                    if reviewManager.isAutoplayOn {
+                        playPronunciation()
+                    }
                 }
                 .onChange(of: reviewManager.currentCard) {
-                    playPronunciation()
+                    if reviewManager.isAutoplayOn {
+                        playPronunciation()
+                    }
                 }
 
                 VStack {
@@ -99,14 +115,15 @@ struct ReviewView: View {
 
     private func playPronunciation() {
         if let audioName = reviewManager.currentCard?.audioName {
-            SoundManager.shared.play(sound: audioName)
+            DispatchQueue.global(qos: .background).async {
+                SoundManager.shared.play(sound: audioName)
+            }
         }
     }
-
 }
 
 struct ReviewView_Previews: PreviewProvider {
     static var previews: some View {
-        ReviewView(reviewManager: ReviewManagerSUI(cards: Deck.deck2.cards))
+        ReviewView(reviewManager: ReviewManagerSUI(deck: Deck.deck2))
     }
 }

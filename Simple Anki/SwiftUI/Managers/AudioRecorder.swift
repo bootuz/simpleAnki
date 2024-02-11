@@ -13,26 +13,28 @@ class AudioRecorder: NSObject, AVAudioRecorderDelegate, AVAudioPlayerDelegate {
     var isPlaybackReady = false
     var isRecording = false
 
+    @ObservationIgnored
     private var audioRecorder: AVAudioRecorder?
+    @ObservationIgnored
     private var player: AVAudioPlayer?
+    @ObservationIgnored
     private var fileName: String
+    @ObservationIgnored
     private var audioSession = AVAudioSession.sharedInstance()
 
     init(fileName: String) {
         self.fileName = fileName
         super.init()
-        setupRecorder()
     }
 
-    private var settings: [String: Any] = [
+    private let settings: [String: Any] = [
         AVFormatIDKey: kAudioFormatMPEG4AAC,
         AVEncoderAudioQualityKey: AVAudioQuality.max.rawValue,
         AVSampleRateKey: 44100.0,
         AVNumberOfChannelsKey: 2
     ]
 
-    private func setupRecorder() {
-
+    func startRecording() {
         do {
             try audioSession.setCategory(.playAndRecord, mode: .default, options: [.defaultToSpeaker, .allowBluetooth])
             try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
@@ -41,24 +43,16 @@ class AudioRecorder: NSObject, AVAudioRecorderDelegate, AVAudioPlayerDelegate {
 
             audioRecorder = try AVAudioRecorder(url: fileURL, settings: settings)
             audioRecorder?.delegate = self
+            audioRecorder?.prepareToRecord()
+            audioRecorder?.record()
+            isRecording = true
         } catch {
             print("Error setting up audio recorder: \(error.localizedDescription)")
         }
     }
 
-    func startRecording() {
-        audioRecorder?.record()
-        isRecording = true
-    }
-
     func stopRecording(completion: @escaping (String) -> Void) {
         audioRecorder?.stop()
-
-        do {
-            try audioSession.setActive(false)
-        } catch {
-            print(error.localizedDescription)
-        }
 
         isRecording = false
         isPlaybackReady = true

@@ -7,8 +7,9 @@
 
 import Foundation
 import UserNotifications
+import SwiftUI
 
-struct Weekday {
+struct Weekday: Identifiable, Codable {
     let id: Int
     let name: String
 }
@@ -45,6 +46,10 @@ class ReminderManager {
 
     func addWeekdayToReminder(index: Int) {
         UserDefaults.standard.set(weekdays[index].id, forKey: weekdays[index].name)
+    }
+
+    func addWeekdayToReminder(weekday: Weekday) {
+        UserDefaults.standard.set(weekday.id, forKey: weekday.name)
     }
 
     func deleteDayFromReminder(index: Int) {

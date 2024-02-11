@@ -8,39 +8,49 @@
 import SwiftUI
 
 struct MainView: View {
-
-//    init() {
-//        let appearance = UITabBarAppearance()
-//        appearance.configureWithOpaqueBackground()
-//        UITabBar.appearance().standardAppearance = appearance
-//        UITabBar.appearance().scrollEdgeAppearance = appearance
-//    }
+    @State private var selectedTab: Tab = .first
 
     var body: some View {
-        TabView {
-            DecksView()
-                .tabItem {
-                    Image(systemName: "tray.full")
-                    Text("Decks")
+        VStack(spacing: 0) {
+            ZStack {
+                switch selectedTab {
+                case .first:
+                    NavigationStack {
+                        VStack(spacing: 0) {
+                            DecksView()
+                            TabBarView()
+                        }
+                    }
+                case .second:
+                    SettingsView()
+                case .third:
+                    Text("Third")
                 }
-                .tag(1)
+            }
 
-            SettingsView()
-                .tabItem {
-                    Image(systemName: "gear")
-                    Text("Settings")
-                }
-                .tag(2)
+            if selectedTab != .first {
+                TabBarView()
+            }
         }
+    }
+
+    @ViewBuilder
+    func TabBarView() -> some View {
+        VStack(spacing: 0) {
+            Divider()
+            HStack {
+                Spacer()
+                TabItemView(tab: .first, title: "Decks", icon: "tray.full.fill", selectedTab: $selectedTab)
+                Spacer(minLength: 144)
+                TabItemView(tab: .second, title: "Settings", icon: "gear", selectedTab: $selectedTab)
+                Spacer()
+            }
+            .padding(.top, 8)
+        }
+        .frame(height: 50)
     }
 }
 
 #Preview {
     MainView()
 }
-
-// struct MainView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        MainView()
-//    }
-// }

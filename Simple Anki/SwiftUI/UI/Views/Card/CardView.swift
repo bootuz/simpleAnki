@@ -8,6 +8,7 @@
 import SwiftUI
 import RealmSwift
 import PhotosUI
+import Pow
 
 enum FocusableField: Hashable {
     case frontField
@@ -21,6 +22,7 @@ struct CardView: View {
     @State private var selectedImage: PhotosPickerItem?
     @State private var isPreviewPresented: Bool = false
     @State private var showAlert: Bool = false
+    @State private var saveButtonTapped: Bool = false
     @FocusState private var focusedField: FocusableField?
 
     private var transaction: Transaction {
@@ -36,6 +38,7 @@ struct CardView: View {
         VStack {
             Spacer()
 
+            // MARK: VSTACK START
             VStack {
                 TextField("Front word", text: $viewModel.frontWord)
                     .padding(.bottom)
@@ -49,7 +52,7 @@ struct CardView: View {
                     .padding(.top)
                     .submitLabel(.done)
                     .focused($focusedField, equals: .backField)
-            }
+            } // MARK: VSTACK END
             .font(.system(size: 35, weight: .medium))
             .multilineTextAlignment(.center)
             .padding()
@@ -65,6 +68,7 @@ struct CardView: View {
                 HStack {
                     Group {
                         ImagePickerButton(image: $viewModel.image)
+                            .hidden()
 
                         Spacer()
 
@@ -77,10 +81,19 @@ struct CardView: View {
                                 viewModel.clear()
                                 recorder.setName(UUID().uuidString + ".m4a")
                             }
+                            withAnimation {
+                                saveButtonTapped.toggle()
+                            }
                             HapticManagerSUI.shared.impact(style: .heavy)
                         } label: {
                             Text(viewModel.updating ? "Update" : "Save")
                         }
+                        .changeEffect(
+                            .rise(origin: UnitPoint(x: 0.45, y: -11)) {
+                                Text(viewModel.updating ? "Updated" : "Added")
+                                    .font(.system(size: 20, weight: .semibold, design: .rounded))
+                                    .foregroundStyle(.blue)
+                          }, value: saveButtonTapped)
                         .controlSize(.extraLarge)
                         .buttonStyle(.borderedProminent)
                     }
@@ -115,7 +128,9 @@ struct CardView: View {
                             } else {
                                 recorder.checkRecordPermission { granted in
                                     if granted {
-                                        recorder.startRecording()
+                                        DispatchQueue.global(qos: .background).async {
+                                            recorder.startRecording()
+                                        }
                                     } else {
                                         showAlert.toggle()
                                     }
@@ -166,8 +181,12 @@ struct CardView: View {
                 }
             }
 
+            ToolbarItem(placement: .principal) {
+            }
+
             ToolbarItem(placement: .cancellationAction) {
                 Button {
+                    FileManager.default.delete(viewModel.audioName)
                     dismiss()
                 } label: {
                     Image(systemName: "xmark")

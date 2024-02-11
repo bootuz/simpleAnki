@@ -15,9 +15,15 @@ struct SimpleAnkiApp: SwiftUI.App {
     var body: some Scene {
         WindowGroup {
             MainView()
-                .environment(\.realmConfiguration, Realm.Configuration(schemaVersion: 1))
+                .environment(\.realmConfiguration, Realm.Configuration(schemaVersion: 2, migrationBlock: { migration, oldSchemaVersion in
+                    if oldSchemaVersion < 2 {
+                        migration.enumerateObjects(ofType: Card.className()) { _, newObject in
+                            newObject!["shuffled"] = false
+                            newObject!["image"] = nil
+                        }
+                    }
+                }))
                 .preferredColorScheme(userSettings.colorScheme ? .dark : .light)
-                .environmentObject(userSettings)
                 .onAppear {
                     print(NSHomeDirectory())
                 }

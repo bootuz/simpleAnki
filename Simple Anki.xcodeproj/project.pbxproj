@@ -16,6 +16,7 @@
 		C02348CB2861F47E002FFBDF /* UILabelExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02348CA2861F47E002FFBDF /* UILabelExtension.swift */; };
 		C02348D3286343F4002FFBDF /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C02348D2286343F4002FFBDF /* StoreKit.framework */; };
 		C02348D728671E16002FFBDF /* LaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02348D628671E16002FFBDF /* LaunchScreenViewController.swift */; };
+		C02404082B6835930017EF2E /* TabItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02404072B6835930017EF2E /* TabItemView.swift */; };
 		C025748D2B4B1D4000F8EE29 /* CardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C025748C2B4B1D4000F8EE29 /* CardViewModel.swift */; };
 		C028C4C8280C852400F6894E /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = C028C4C7280C852400F6894E /* .gitignore */; };
 		C028C4CA2811C0F000F6894E /* NewDeckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C028C4C92811C0F000F6894E /* NewDeckViewController.swift */; };
@@ -23,14 +24,20 @@
 		C02D41C3282146BF005E9835 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02D41C2282146BF005E9835 /* DateExtension.swift */; };
 		C02D41D028218E3C005E9835 /* SwitchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02D41CF28218E3C005E9835 /* SwitchTableViewCell.swift */; };
 		C03A02612B5299EF00576543 /* CardViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03A02602B5299EF00576543 /* CardViewState.swift */; };
+		C03B91C82B6FA60500EA483F /* DeckSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03B91C72B6FA60500EA483F /* DeckSettingsView.swift */; };
+		C03B91CA2B6FA82400EA483F /* LayoutButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03B91C92B6FA82400EA483F /* LayoutButton.swift */; };
 		C05695D42B501AAA00033AF2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05695D32B501AAA00033AF2 /* ContentView.swift */; };
+		C05BCFF02B78CD3F0076CAD9 /* CreateDeckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05BCFEF2B78CD3F0076CAD9 /* CreateDeckView.swift */; };
+		C05BCFF22B78CF4D0076CAD9 /* ImportDeckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05BCFF12B78CF4D0076CAD9 /* ImportDeckView.swift */; };
+		C05BCFF42B78D04D0076CAD9 /* DelimeterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05BCFF32B78D04D0076CAD9 /* DelimeterButton.swift */; };
+		C05BCFF62B78D12C0076CAD9 /* ImportedDeckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05BCFF52B78D12C0076CAD9 /* ImportedDeckView.swift */; };
 		C05F7C4827E3A29700F4FAB4 /* BaseSettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05F7C4727E3A29700F4FAB4 /* BaseSettingsCell.swift */; };
 		C067B6852A8C1235000AF881 /* SimpleAnkiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C067B6842A8C1235000AF881 /* SimpleAnkiApp.swift */; };
 		C067B6872A8C1251000AF881 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C067B6862A8C1251000AF881 /* MainView.swift */; };
 		C067B6892A8C139A000AF881 /* DecksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C067B6882A8C139A000AF881 /* DecksView.swift */; };
 		C067B68B2A8C13A5000AF881 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C067B68A2A8C13A5000AF881 /* SettingsView.swift */; };
 		C070008E263E86E0006DF020 /* RateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C070008D263E86E0006DF020 /* RateManager.swift */; };
-		C074581D2A924A0B0046F39D /* NewCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C074581C2A924A0B0046F39D /* NewCardView.swift */; };
+		C0730B172B77F26A00B43D42 /* NewDeckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0730B162B77F26A00B43D42 /* NewDeckView.swift */; };
 		C074581F2A9293AA0046F39D /* CardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C074581E2A9293AA0046F39D /* CardsView.swift */; };
 		C07458232A938CF90046F39D /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07458222A938CF90046F39D /* UserSettings.swift */; };
 		C07458252A93943E0046F39D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07458242A93943E0046F39D /* Constants.swift */; };
@@ -43,6 +50,7 @@
 		C08903252A8D444F00EFC51C /* DeckSUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C08903242A8D444F00EFC51C /* DeckSUI.swift */; };
 		C08903272A8D474900EFC51C /* CardSUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C08903262A8D474900EFC51C /* CardSUI.swift */; };
 		C09479502B518EFC00C44BCF /* ImagePickerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C094794F2B518EFC00C44BCF /* ImagePickerButton.swift */; };
+		C09AE07E2B6A726B00DB3E28 /* Pow in Frameworks */ = {isa = PBXBuildFile; productRef = C09AE07D2B6A726B00DB3E28 /* Pow */; };
 		C0A0C64A2A9DFC210015C65E /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A0C6492A9DFC210015C65E /* SoundManager.swift */; };
 		C0A70E6028211E620020D533 /* ReminderManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A70E5F28211E620020D533 /* ReminderManager.swift */; };
 		C0ADAD4225EC0E0B005DE503 /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0ADAD4125EC0E0B005DE503 /* Deck.swift */; };
@@ -101,6 +109,8 @@
 		C0F4FD5127BD87CE00814BD6 /* DecksScrenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F4FD4F27BD87CE00814BD6 /* DecksScrenTests.swift */; };
 		C0F4FD5527BD87EB00814BD6 /* WaitUtillities.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F4FD5327BD87EB00814BD6 /* WaitUtillities.swift */; };
 		C0F4FD5627BD87EB00814BD6 /* RandomGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F4FD5427BD87EB00814BD6 /* RandomGenerator.swift */; };
+		C0F730C22B7424D900127CB4 /* ReminderManagerSUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F730C12B7424D900127CB4 /* ReminderManagerSUI.swift */; };
+		C0F730C42B752F7100127CB4 /* ReminderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F730C32B752F7100127CB4 /* ReminderView.swift */; };
 		C0FA7EAA25F511FE00710F0D /* ConstantsOld.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0FA7EA925F511FE00710F0D /* ConstantsOld.swift */; };
 /* End PBXBuildFile section */
 
@@ -131,6 +141,7 @@
 		C02348CA2861F47E002FFBDF /* UILabelExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabelExtension.swift; sourceTree = "<group>"; };
 		C02348D2286343F4002FFBDF /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		C02348D628671E16002FFBDF /* LaunchScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenViewController.swift; sourceTree = "<group>"; };
+		C02404072B6835930017EF2E /* TabItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabItemView.swift; sourceTree = "<group>"; };
 		C025748C2B4B1D4000F8EE29 /* CardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewModel.swift; sourceTree = "<group>"; };
 		C028C4C7280C852400F6894E /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		C028C4C92811C0F000F6894E /* NewDeckViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDeckViewController.swift; sourceTree = "<group>"; };
@@ -138,14 +149,20 @@
 		C02D41C2282146BF005E9835 /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		C02D41CF28218E3C005E9835 /* SwitchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchTableViewCell.swift; sourceTree = "<group>"; };
 		C03A02602B5299EF00576543 /* CardViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewState.swift; sourceTree = "<group>"; };
+		C03B91C72B6FA60500EA483F /* DeckSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckSettingsView.swift; sourceTree = "<group>"; };
+		C03B91C92B6FA82400EA483F /* LayoutButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutButton.swift; sourceTree = "<group>"; };
 		C05695D32B501AAA00033AF2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		C05BCFEF2B78CD3F0076CAD9 /* CreateDeckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDeckView.swift; sourceTree = "<group>"; };
+		C05BCFF12B78CF4D0076CAD9 /* ImportDeckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportDeckView.swift; sourceTree = "<group>"; };
+		C05BCFF32B78D04D0076CAD9 /* DelimeterButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DelimeterButton.swift; sourceTree = "<group>"; };
+		C05BCFF52B78D12C0076CAD9 /* ImportedDeckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportedDeckView.swift; sourceTree = "<group>"; };
 		C05F7C4727E3A29700F4FAB4 /* BaseSettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseSettingsCell.swift; sourceTree = "<group>"; };
 		C067B6842A8C1235000AF881 /* SimpleAnkiApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleAnkiApp.swift; sourceTree = "<group>"; };
 		C067B6862A8C1251000AF881 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		C067B6882A8C139A000AF881 /* DecksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecksView.swift; sourceTree = "<group>"; };
 		C067B68A2A8C13A5000AF881 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		C070008D263E86E0006DF020 /* RateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateManager.swift; sourceTree = "<group>"; };
-		C074581C2A924A0B0046F39D /* NewCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCardView.swift; sourceTree = "<group>"; };
+		C0730B162B77F26A00B43D42 /* NewDeckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDeckView.swift; sourceTree = "<group>"; };
 		C074581E2A9293AA0046F39D /* CardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsView.swift; sourceTree = "<group>"; };
 		C07458222A938CF90046F39D /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 		C07458242A93943E0046F39D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -216,6 +233,8 @@
 		C0F4FD4F27BD87CE00814BD6 /* DecksScrenTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DecksScrenTests.swift; sourceTree = "<group>"; };
 		C0F4FD5327BD87EB00814BD6 /* WaitUtillities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaitUtillities.swift; sourceTree = "<group>"; };
 		C0F4FD5427BD87EB00814BD6 /* RandomGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomGenerator.swift; sourceTree = "<group>"; };
+		C0F730C12B7424D900127CB4 /* ReminderManagerSUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderManagerSUI.swift; sourceTree = "<group>"; };
+		C0F730C32B752F7100127CB4 /* ReminderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderView.swift; sourceTree = "<group>"; };
 		C0FA7EA925F511FE00710F0D /* ConstantsOld.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstantsOld.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -225,6 +244,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C02348D3286343F4002FFBDF /* StoreKit.framework in Frameworks */,
+				C09AE07E2B6A726B00DB3E28 /* Pow in Frameworks */,
 				C0B85474282AB18F009816D0 /* SQLite in Frameworks */,
 				C0DD10BB2823F6D10058F96B /* SwiftCSV in Frameworks */,
 				C0B5FFAC25E98362001D8D83 /* Realm in Frameworks */,
@@ -279,6 +299,7 @@
 				C0750ECF2AA3A60400089B29 /* AudioRecorder.swift */,
 				C0750ED72AA3D4AC00089B29 /* ReviewManagerSUI.swift */,
 				C0CD12522AA9069400FE3BB6 /* LocalFileManager.swift */,
+				C0F730C12B7424D900127CB4 /* ReminderManagerSUI.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -337,6 +358,38 @@
 			path = SwiftUI;
 			sourceTree = "<group>";
 		};
+		C0730B182B77F28900B43D42 /* Deck */ = {
+			isa = PBXGroup;
+			children = (
+				C03B91C72B6FA60500EA483F /* DeckSettingsView.swift */,
+				C0730B162B77F26A00B43D42 /* NewDeckView.swift */,
+				C067B6882A8C139A000AF881 /* DecksView.swift */,
+				C05BCFEF2B78CD3F0076CAD9 /* CreateDeckView.swift */,
+				C05BCFF12B78CF4D0076CAD9 /* ImportDeckView.swift */,
+				C05BCFF52B78D12C0076CAD9 /* ImportedDeckView.swift */,
+			);
+			path = Deck;
+			sourceTree = "<group>";
+		};
+		C0730B192B77F2A200B43D42 /* Card */ = {
+			isa = PBXGroup;
+			children = (
+				C00513FA2B517E91005F5815 /* CardPreviewView.swift */,
+				C0CD12542AAB3F2700FE3BB6 /* CardView.swift */,
+				C074581E2A9293AA0046F39D /* CardsView.swift */,
+			);
+			path = Card;
+			sourceTree = "<group>";
+		};
+		C0730B1A2B77F2B700B43D42 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				C0F730C32B752F7100127CB4 /* ReminderView.swift */,
+				C067B68A2A8C13A5000AF881 /* SettingsView.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
 		C07458262A939F800046F39D /* UIComponents */ = {
 			isa = PBXGroup;
 			children = (
@@ -346,6 +399,9 @@
 				C0CC42522B5052C000F683CE /* CardToolbarView.swift */,
 				C094794F2B518EFC00C44BCF /* ImagePickerButton.swift */,
 				C03A02602B5299EF00576543 /* CardViewState.swift */,
+				C02404072B6835930017EF2E /* TabItemView.swift */,
+				C03B91C92B6FA82400EA483F /* LayoutButton.swift */,
+				C05BCFF32B78D04D0076CAD9 /* DelimeterButton.swift */,
 			);
 			path = UIComponents;
 			sourceTree = "<group>";
@@ -353,15 +409,12 @@
 		C0750ED92AA492BD00089B29 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				C0730B1A2B77F2B700B43D42 /* Settings */,
+				C0730B192B77F2A200B43D42 /* Card */,
+				C0730B182B77F28900B43D42 /* Deck */,
 				C067B6862A8C1251000AF881 /* MainView.swift */,
-				C067B6882A8C139A000AF881 /* DecksView.swift */,
-				C074581E2A9293AA0046F39D /* CardsView.swift */,
-				C067B68A2A8C13A5000AF881 /* SettingsView.swift */,
-				C074581C2A924A0B0046F39D /* NewCardView.swift */,
 				C07458242A93943E0046F39D /* Constants.swift */,
 				C0750ED32AA3C01800089B29 /* ReviewView.swift */,
-				C0CD12542AAB3F2700FE3BB6 /* CardView.swift */,
-				C00513FA2B517E91005F5815 /* CardPreviewView.swift */,
 				C05695D32B501AAA00033AF2 /* ContentView.swift */,
 			);
 			path = Views;
@@ -624,6 +677,7 @@
 				C0DD10BA2823F6D10058F96B /* SwiftCSV */,
 				C0B85473282AB18F009816D0 /* SQLite */,
 				C0B85476282ABA14009816D0 /* ZIPFoundation */,
+				C09AE07D2B6A726B00DB3E28 /* Pow */,
 			);
 			productName = "Simple Anki";
 			productReference = C0B5FF7225E981A8001D8D83 /* Simple Anki.app */;
@@ -703,6 +757,7 @@
 				C0DD10B92823F6D10058F96B /* XCRemoteSwiftPackageReference "SwiftCSV" */,
 				C0B85472282AB18F009816D0 /* XCRemoteSwiftPackageReference "SQLite.swift" */,
 				C0B85475282ABA14009816D0 /* XCRemoteSwiftPackageReference "ZIPFoundation" */,
+				C09AE07C2B6A726B00DB3E28 /* XCRemoteSwiftPackageReference "Pow" */,
 			);
 			productRefGroup = C0B5FF7325E981A8001D8D83 /* Products */;
 			projectDirPath = "";
@@ -774,13 +829,16 @@
 				C0ADAD4225EC0E0B005DE503 /* Deck.swift in Sources */,
 				C0C9BAB62848B9F20020E555 /* APKGModel.swift in Sources */,
 				C02D41C3282146BF005E9835 /* DateExtension.swift in Sources */,
+				C0F730C42B752F7100127CB4 /* ReminderView.swift in Sources */,
 				C0A70E6028211E620020D533 /* ReminderManager.swift in Sources */,
 				C0CBE872266BA50900B83253 /* URLExtension.swift in Sources */,
+				C0F730C22B7424D900127CB4 /* ReminderManagerSUI.swift in Sources */,
 				C07458252A93943E0046F39D /* Constants.swift in Sources */,
 				C067B6892A8C139A000AF881 /* DecksView.swift in Sources */,
 				C0FA7EAA25F511FE00710F0D /* ConstantsOld.swift in Sources */,
 				C0C043E328206B1F00A8AC6D /* WeekdaysViewController.swift in Sources */,
 				C09479502B518EFC00C44BCF /* ImagePickerButton.swift in Sources */,
+				C05BCFF22B78CF4D0076CAD9 /* ImportDeckView.swift in Sources */,
 				C025748D2B4B1D4000F8EE29 /* CardViewModel.swift in Sources */,
 				C0F4FD1F27BD84DA00814BD6 /* SettingsViewCell.swift in Sources */,
 				C02D41D028218E3C005E9835 /* SwitchTableViewCell.swift in Sources */,
@@ -788,8 +846,8 @@
 				C0AF0E7D2614F1E000853FA7 /* ReviewManager.swift in Sources */,
 				C0CC42532B5052C000F683CE /* CardToolbarView.swift in Sources */,
 				C0750ED82AA3D4AC00089B29 /* ReviewManagerSUI.swift in Sources */,
+				C05BCFF42B78D04D0076CAD9 /* DelimeterButton.swift in Sources */,
 				C0750ED02AA3A60400089B29 /* AudioRecorder.swift in Sources */,
-				C074581D2A924A0B0046F39D /* NewCardView.swift in Sources */,
 				C0F4FD3027BD855A00814BD6 /* SettingsTableViewController.swift in Sources */,
 				C0D1C1722815A57600350862 /* ReminderViewController.swift in Sources */,
 				C0DBE8322673E9E00074DC13 /* HapticManager.swift in Sources */,
@@ -803,6 +861,7 @@
 				C028C4CA2811C0F000F6894E /* NewDeckViewController.swift in Sources */,
 				C00648AA2682060F00265EB8 /* UIApplicationExtension.swift in Sources */,
 				C0CBE870266B7A2900B83253 /* PlayerManager.swift in Sources */,
+				C03B91C82B6FA60500EA483F /* DeckSettingsView.swift in Sources */,
 				C0C9BAA52848B9120020E555 /* ImportedCardsCollectionViewController.swift in Sources */,
 				C0E5546D2AB59C9C000A3CA4 /* RecordingButton.swift in Sources */,
 				C070008E263E86E0006DF020 /* RateManager.swift in Sources */,
@@ -824,21 +883,26 @@
 				C0B6D156285E2DFD00E354BA /* FeatureView.swift in Sources */,
 				C0C9BABE2848BD460020E555 /* APKGDatabase.swift in Sources */,
 				C0ADAD4725EC0E62005DE503 /* Card.swift in Sources */,
+				C05BCFF02B78CD3F0076CAD9 /* CreateDeckView.swift in Sources */,
 				C074581F2A9293AA0046F39D /* CardsView.swift in Sources */,
 				C0F4FD3127BD855A00814BD6 /* MainTabBarViewController.swift in Sources */,
 				C0D1C1742815CB9100350862 /* DatePickerViewCell.swift in Sources */,
 				C05F7C4827E3A29700F4FAB4 /* BaseSettingsCell.swift in Sources */,
 				C0C9BAB82848BA160020E555 /* ImportViewController.swift in Sources */,
 				C08903272A8D474900EFC51C /* CardSUI.swift in Sources */,
+				C0730B172B77F26A00B43D42 /* NewDeckView.swift in Sources */,
 				C0B5FF7625E981A8001D8D83 /* AppDelegate.swift in Sources */,
 				C00648AF2682140800265EB8 /* Options.swift in Sources */,
 				C00D75CC282E68A7004E92B2 /* UIButtonExtension.swift in Sources */,
 				C0B5FF7825E981A8001D8D83 /* SceneDelegate.swift in Sources */,
 				C0B6D151285DE01A00E354BA /* OnboardingManager.swift in Sources */,
 				C0750ED42AA3C01800089B29 /* ReviewView.swift in Sources */,
+				C03B91CA2B6FA82400EA483F /* LayoutButton.swift in Sources */,
 				C00513FB2B517E91005F5815 /* CardPreviewView.swift in Sources */,
 				C08903252A8D444F00EFC51C /* DeckSUI.swift in Sources */,
+				C05BCFF62B78D12C0076CAD9 /* ImportedDeckView.swift in Sources */,
 				C028C4CC2811C71500F6894E /* EmptyState.swift in Sources */,
+				C02404082B6835930017EF2E /* TabItemView.swift in Sources */,
 				C07458282A939FA40046F39D /* LinkView.swift in Sources */,
 				C0750ECE2A9E9B8F00089B29 /* HapticManagerSUI.swift in Sources */,
 				C0CD12552AAB3F2700FE3BB6 /* CardView.swift in Sources */,
@@ -1197,6 +1261,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		C09AE07C2B6A726B00DB3E28 /* XCRemoteSwiftPackageReference "Pow" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/EmergeTools/Pow.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.3;
+			};
+		};
 		C0B5FFA825E98362001D8D83 /* XCRemoteSwiftPackageReference "realm-cocoa" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/realm/realm-cocoa";
@@ -1240,6 +1312,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		C09AE07D2B6A726B00DB3E28 /* Pow */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C09AE07C2B6A726B00DB3E28 /* XCRemoteSwiftPackageReference "Pow" */;
+			productName = Pow;
+		};
 		C0B5FFA925E98362001D8D83 /* RealmSwift */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = C0B5FFA825E98362001D8D83 /* XCRemoteSwiftPackageReference "realm-cocoa" */;

@@ -46,5 +46,5 @@ struct K {
     }
 
     static let email = "help@simpleanki.com"
-    static let appURL = "https://apple.co/2Sx5VC1"
+    static let appURL = "https://apple.co/3Sxml7z"
 }

@@ -49,12 +49,14 @@ final class CardViewModel {
     }
 
     func addCard() {
+        cleanWords()
         let card = Card(front: frontWord, back: backWord, audioName: audioName)
         cardRepository.add(card: card)
     }
 
     func updateCard() {
         guard let id = id else { return }
+        cleanWords()
         let card = Card(front: frontWord, back: backWord, audioName: audioName)
         card._id = id
         card.memorized = memorized
@@ -64,5 +66,10 @@ final class CardViewModel {
     func deleteCard() {
         guard let id = id else { return }
         cardRepository.delete(by: id)
+    }
+
+    private func cleanWords() {
+        frontWord = frontWord.trimmingCharacters(in: .whitespacesAndNewlines)
+        backWord = backWord.trimmingCharacters(in: .whitespacesAndNewlines)
     }
 }

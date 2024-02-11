@@ -12,16 +12,19 @@ class Card: Object, ObjectKeyIdentifiable {
     @Persisted(primaryKey: true) var _id: ObjectId
     @Persisted var front: String
     @Persisted var back: String
+    @Persisted var image: String?
     @Persisted var dateCreated: Date = Date()
     @Persisted var audioName: String?
     @Persisted var memorized: Bool = false
+    @Persisted var shuffled: Bool = false
     @Persisted(originProperty: "cards") var deck: LinkingObjects<Deck>
 
-    convenience init(front: String, back: String, audioName: String? = nil) {
+    convenience init(front: String, back: String, audioName: String? = nil, image: String? = nil) {
         self.init()
         self.front = front
         self.back = back
         self.audioName = audioName
+        self.image = image
     }
 }
 

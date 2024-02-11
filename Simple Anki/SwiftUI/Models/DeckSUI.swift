@@ -17,7 +17,7 @@ import RealmSwift
 class Deck: Object, ObjectKeyIdentifiable {
     @Persisted(primaryKey: true) var _id: ObjectId
     @Persisted var name: String
-    @Persisted var dateCreated: Date = Date()
+    @Persisted(indexed: true) var dateCreated: Date = Date()
     @Persisted var layout: String = "frontToBack"
     @Persisted var autoplay: Bool = false
     @Persisted var cards: List<Card>

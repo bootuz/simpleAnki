@@ -11,7 +11,7 @@ import RealmSwift
 protocol Repository {
     associatedtype Item
 
-    func getCard(by id: ObjectId) -> Item?
+    func fetchCard(by id: ObjectId) -> Item?
     func add(card: Item)
     func update(card: Item)
     func delete(by cardID: ObjectId)
@@ -28,19 +28,19 @@ class CardRepository: Repository {
         self.deck = deck
     }
 
-    func getCard(by id: ObjectId) -> Card? {
+    func fetchCard(by id: ObjectId) -> Card? {
         return realm.object(ofType: Card.self, forPrimaryKey: id)
     }
 
     func add(card: Card) {
-        guard let deck = getDeck(by: deck._id) else { return }
+        guard let deck = fetchDeck(by: deck._id) else { return }
         try! realm.write {
             deck.cards.append(card)
         }
     }
 
     func update(card: Card) {
-        guard let cardToUpdate = getCard(by: card._id) else { return }
+        guard let cardToUpdate = fetchCard(by: card._id) else { return }
 
         try! realm.write {
             cardToUpdate.front = card.front
@@ -65,7 +65,7 @@ class CardRepository: Repository {
 
 extension CardRepository {
 
-    private func getDeck(by id: ObjectId) -> Deck? {
+    private func fetchDeck(by id: ObjectId) -> Deck? {
         return realm.object(ofType: Deck.self, forPrimaryKey: deck._id)
     }
 

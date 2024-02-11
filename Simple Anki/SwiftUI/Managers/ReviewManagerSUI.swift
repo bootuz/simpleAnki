@@ -11,29 +11,32 @@ import RealmSwift
 class ReviewManagerSUI: ObservableObject {
     @Published var currentCard: Card?
     @Published var isReviewing = false
+    var isAutoplayOn: Bool {
+        return deck.autoplay
+    }
 
-    private var cards: List<Card>
     private var currentIndex = 0
+    private var deck: Deck
 
-    init(cards: List<Card>) {
-        self.cards = cards
+    init(deck: Deck) {
+        self.deck = deck
     }
 
     func startReview() {
-        guard !cards.isEmpty else {
+        guard !deck.cards.isEmpty else {
             return
         }
 
         currentIndex = 0
-        currentCard = cards[currentIndex]
+        currentCard = deck.cards[currentIndex]
         isReviewing = true
     }
 
     func nextCard() {
         currentIndex += 1
 
-        if currentIndex < cards.count {
-            currentCard = cards[currentIndex]
+        if currentIndex < deck.cards.count {
+            currentCard = deck.cards[currentIndex]
         } else {
             isReviewing = false
         }
