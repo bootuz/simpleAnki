@@ -8,6 +8,27 @@
 import Foundation
 import UserNotifications
 
+struct Weekday: Codable, Identifiable {
+    let id: Int
+    let name: String
+}
+
+struct CustomNotification {
+    let title: String
+    let body: String
+    let weekday: Weekday
+}
+
+let weekdays = [
+    Weekday(id: 2, name: "Monday"),
+    Weekday(id: 3, name: "Tuesday"),
+    Weekday(id: 4, name: "Wednesday"),
+    Weekday(id: 5, name: "Thursday"),
+    Weekday(id: 6, name: "Friday"),
+    Weekday(id: 7, name: "Saturday"),
+    Weekday(id: 1, name: "Sunday")
+]
+
 @Observable
 class ReminderViewModel {
 

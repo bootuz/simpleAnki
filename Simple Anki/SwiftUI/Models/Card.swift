@@ -16,7 +16,6 @@ class Card: Object, ObjectKeyIdentifiable {
     @Persisted var dateCreated: Date = Date()
     @Persisted var audioName: String?
     @Persisted var memorized: Bool = false
-    @Persisted var shuffled: Bool = false
     @Persisted(originProperty: "cards") var deck: LinkingObjects<Deck>
 
     convenience init(front: String, back: String, audioName: String? = nil, image: String? = nil) {

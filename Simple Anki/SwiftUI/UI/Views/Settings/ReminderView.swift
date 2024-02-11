@@ -35,7 +35,7 @@ struct ReminderView: View {
                 }
 
                 Section {
-                    ForEach(ReminderManager.shared.weekdays) { weekday in
+                    ForEach(weekdays) { weekday in
                         Button {
                             if viewModel.isWeekdayInReminder(weekday: weekday) {
                                 viewModel.removeNotificationFromReminder(weekday: weekday)

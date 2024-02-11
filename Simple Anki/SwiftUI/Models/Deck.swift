@@ -20,6 +20,7 @@ class Deck: Object, ObjectKeyIdentifiable {
     @Persisted(indexed: true) var dateCreated: Date = Date()
     @Persisted var layout: String = "frontToBack"
     @Persisted var autoplay: Bool = false
+    @Persisted var shuffled: Bool = false
     @Persisted var cards: List<Card>
 
     convenience init(name: String) {

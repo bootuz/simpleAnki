@@ -32,6 +32,12 @@ struct DeckSettingsView: View {
                         })
                     }
 
+                    Section("Cards order") {
+                        Toggle(isOn: $deck.shuffled, label: {
+                            Label("Shuffle", systemImage: "shuffle")
+                        })
+                    }
+
                     Section {
                         Button(action: {
                             remove(deck: deck)

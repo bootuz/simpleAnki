@@ -10,8 +10,8 @@ import SwiftUI
 struct ReviewView: View {
     @Environment(\.dismiss) var dismiss
 
-    @State private var isShowAnswer: Bool = false
-    @StateObject var reviewManager: ReviewManagerSUI
+    @State private var isAnswerPresented: Bool = false
+    @State var reviewManager: ReviewManagerSUI
 
     var body: some View {
         NavigationView {
@@ -35,7 +35,7 @@ struct ReviewView: View {
                             Divider()
                             Text(reviewManager.currentCard?.back ?? "No back text")
                         }
-                        .opacity(isShowAnswer ? 1 : 0)
+                        .opacity(isAnswerPresented ? 1 : 0)
                     } else {
                         Text("Finished!")
                             .font(.system(size: 60, weight: .bold))
@@ -67,20 +67,20 @@ struct ReviewView: View {
                     Spacer()
                     if reviewManager.isReviewing {
                         Button {
-                            if isShowAnswer {
+                            if isAnswerPresented {
                                 reviewManager.nextCard()
-                                isShowAnswer = false
+                                isAnswerPresented = false
                             } else {
-                                isShowAnswer = true
+                                isAnswerPresented = true
                             }
                             HapticManagerSUI.shared.impact(style: .medium)
                         } label: {
-                            Image(systemName: isShowAnswer ? "arrow.right.circle.fill" : "eye.circle.fill")
+                            Image(systemName: isAnswerPresented ? "arrow.right.circle.fill" : "eye.circle.fill")
                         }
                     } else {
                         Button {
                             reviewManager.startReview()
-                            isShowAnswer = false
+                            isAnswerPresented = false
                             HapticManagerSUI.shared.impact(style: .medium)
                         } label: {
                             Image(systemName: "repeat.circle.fill")

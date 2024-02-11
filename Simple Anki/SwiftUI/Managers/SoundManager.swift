@@ -21,7 +21,7 @@ class SoundManager {
     private func setupPlayer() {
         DispatchQueue.global(qos: .background).async {
             do {
-                try self.audioSession.setCategory(.playAndRecord)
+                try self.audioSession.setCategory(.playback)
                 try self.audioSession.setActive(true, options: .notifyOthersOnDeactivation)
             } catch {
                 print(error.localizedDescription)
@@ -31,8 +31,6 @@ class SoundManager {
 
     func play(sound: String) {
         let url = FileManager.documentsDirectory.appendingPathComponent(sound)
-        print(url)
-
         DispatchQueue.global(qos: .background).async {
             do {
                 self.player = try AVAudioPlayer(contentsOf: url)

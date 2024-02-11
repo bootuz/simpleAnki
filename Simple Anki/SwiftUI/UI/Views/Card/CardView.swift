@@ -22,7 +22,7 @@ struct CardView: View {
     @State private var selectedImage: PhotosPickerItem?
     @State private var isPreviewPresented: Bool = false
     @State private var showAlert: Bool = false
-    @State private var saveButtonTapped: Bool = false
+    @State private var addButtonTapped: Bool = false
     @FocusState private var focusedField: FocusableField?
 
     private var transaction: Transaction {
@@ -82,18 +82,18 @@ struct CardView: View {
                                 recorder.setName(UUID().uuidString + ".m4a")
                             }
                             withAnimation {
-                                saveButtonTapped.toggle()
+                                addButtonTapped.toggle()
                             }
                             HapticManagerSUI.shared.impact(style: .heavy)
                         } label: {
-                            Text(viewModel.updating ? "Update" : "Save")
+                            Text(viewModel.updating ? "Update" : "Add")
                         }
                         .changeEffect(
                             .rise(origin: UnitPoint(x: 0.45, y: -11)) {
                                 Text(viewModel.updating ? "Updated" : "Added")
                                     .font(.system(size: 20, weight: .semibold, design: .rounded))
                                     .foregroundStyle(.blue)
-                          }, value: saveButtonTapped)
+                          }, value: addButtonTapped)
                         .controlSize(.extraLarge)
                         .buttonStyle(.borderedProminent)
                     }
@@ -145,7 +145,6 @@ struct CardView: View {
                         .alert("No access", isPresented: $showAlert, actions: {
                             Button("Cancel", role: .cancel, action: {})
                             Button("Open settings", role: .none) {
-
                             }
                         })
                     }
@@ -181,12 +180,11 @@ struct CardView: View {
                 }
             }
 
-            ToolbarItem(placement: .principal) {
-            }
-
             ToolbarItem(placement: .cancellationAction) {
                 Button {
-                    FileManager.default.delete(viewModel.audioName)
+                    if !viewModel.updating {
+                        FileManager.default.delete(viewModel.audioName)
+                    }
                     dismiss()
                 } label: {
                     Image(systemName: "xmark")
