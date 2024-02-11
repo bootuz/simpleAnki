@@ -31,6 +31,13 @@ struct K {
     }
 
     struct Icon {
+        static let recordButton = "waveform.badge.mic"
+        static let stopCircleFill = "stop.circle.fill"
+        static let playCircle = "play.circle"
+        static let plusCircleFill = "plus.circle.fill"
+        static let gearshape = "gearshape"
+        static let trash = "trash"
+        static let noCards = "rectangle.portrait.on.rectangle.portrait.angled"
         static let lefthalf = "circle.lefthalf.fill"
         static let ladybug = "ladybug"
         static let chevron = "chevron.left.slash.chevron.right"

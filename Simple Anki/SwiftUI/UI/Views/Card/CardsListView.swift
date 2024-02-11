@@ -8,18 +8,19 @@
 import SwiftUI
 import RealmSwift
 
-struct CardsView: View {
+struct CardsListView: View {
+    @ObservedRealmObject var deck: Deck
     @State private var isCardViewPresented: Bool = false
     @State private var isReviewPresented: Bool = false
-    @State private var isLayoutDialogPresented: Bool = false
-    @ObservedRealmObject var deck: Deck
+    @State private var isDeckSettingsPresented: Bool = false
     @Environment(\.realm) var realm
+    @Environment(\.dismiss) var dismiss
 
     var body: some View {
         ZStack {
             if deck.cards.isEmpty {
                 ContentUnavailableView(label: {
-                    Label("No cards", systemImage: "rectangle.portrait.on.rectangle.portrait.angled")
+                    Label("No cards", systemImage: K.Icon.noCards)
                 }, description: {
                     Text("Cards will appear here.")
                 }, actions: {
@@ -38,8 +39,13 @@ struct CardsView: View {
                         ForEach(deck.cards) { card in
                             NavigationLink {
                                 CardView(
-                                    viewModel: CardViewModel(card: card, repository: CardRepository(deck: deck)),
-                                    recorder: AudioRecorder(fileName: card.audioName != nil ? card.audioName! : UUID().uuidString + ".m4a")
+                                    viewModel: CardViewModel(
+                                        card: card,
+                                        repository: CardRepository(deck: deck)
+                                    ),
+                                    recorder: AudioRecorder(
+                                        fileName: card.audioName != nil ? card.audioName! : UUID().uuidString + ".m4a"
+                                    )
                                 )
                                 .navigationBarBackButtonHidden()
                             } label: {
@@ -49,7 +55,7 @@ struct CardsView: View {
                                 Button {
                                     remove(card)
                                 } label: {
-                                    Image(systemName: "trash")
+                                    Image(systemName: K.Icon.trash)
                                 }
                                 .tint(.red)
                             }
@@ -62,16 +68,20 @@ struct CardsView: View {
 
                     HStack(spacing: 10) {
                         Button {
-                            isLayoutDialogPresented.toggle()
+                            isDeckSettingsPresented.toggle()
                             HapticManagerSUI.shared.impact(style: .heavy)
                         } label: {
-                            Image(systemName: "gearshape")
+                            Image(systemName: K.Icon.gearshape)
                                 .padding(.vertical, 8)
                                 .padding(.horizontal, 4)
                         }
                         .tint(.blue)
                         .buttonStyle(.bordered)
-                        .sheet(isPresented: $isLayoutDialogPresented, content: {
+                        .sheet(isPresented: $isDeckSettingsPresented, onDismiss: {
+                            if deckIsRemoved(deck: deck) {
+                                dismiss()
+                            }
+                        }, content: {
                             DeckSettingsView(deck: deck)
                                 .interactiveDismissDisabled(deck.name.isEmpty)
                         })
@@ -88,7 +98,6 @@ struct CardsView: View {
                         .fullScreenCover(isPresented: $isReviewPresented) {
                             ReviewView(reviewManager: ReviewManagerSUI(deck: deck))
                         }
-
                     }
                     .padding()
                     .padding(.top)
@@ -101,11 +110,14 @@ struct CardsView: View {
                 Button {
                     isCardViewPresented.toggle()
                 } label: {
-                    Image(systemName: "plus.circle.fill")
+                    Image(systemName: K.Icon.plusCircleFill)
                 }
                 .sheet(isPresented: $isCardViewPresented) {
                     NavigationView {
-                        CardView(viewModel: CardViewModel(repositry: CardRepository(deck: deck)), recorder: AudioRecorder(fileName: UUID().uuidString + ".m4a"))
+                        CardView(
+                            viewModel: CardViewModel(repositry: CardRepository(deck: deck)),
+                            recorder: AudioRecorder(fileName: UUID().uuidString + ".m4a")
+                        )
                     }
                 }
             }
@@ -121,6 +133,10 @@ struct CardsView: View {
         LocalFileManager.shared.delete(audioName)
     }
 
+    private func deckIsRemoved(deck: Deck) -> Bool {
+        return realm.object(ofType: Deck.self, forPrimaryKey: deck._id) == nil
+    }
+
     private func findIndex(of card: Card) -> Int? {
         return deck.cards.firstIndex(of: card)
     }
@@ -129,7 +145,7 @@ struct CardsView: View {
 struct CardsView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            CardsView(deck: Deck.deck2)
+            CardsListView(deck: Deck.deck2)
         }
     }
 }

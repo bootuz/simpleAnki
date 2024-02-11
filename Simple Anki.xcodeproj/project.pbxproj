@@ -23,11 +23,11 @@
 		C05BCFF62B78D12C0076CAD9 /* ImportedDeckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05BCFF52B78D12C0076CAD9 /* ImportedDeckView.swift */; };
 		C067B6852A8C1235000AF881 /* SimpleAnkiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C067B6842A8C1235000AF881 /* SimpleAnkiApp.swift */; };
 		C067B6872A8C1251000AF881 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C067B6862A8C1251000AF881 /* MainView.swift */; };
-		C067B6892A8C139A000AF881 /* DecksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C067B6882A8C139A000AF881 /* DecksView.swift */; };
+		C067B6892A8C139A000AF881 /* DecksListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C067B6882A8C139A000AF881 /* DecksListView.swift */; };
 		C067B68B2A8C13A5000AF881 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C067B68A2A8C13A5000AF881 /* SettingsView.swift */; };
 		C070008E263E86E0006DF020 /* RateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C070008D263E86E0006DF020 /* RateManager.swift */; };
 		C0730B172B77F26A00B43D42 /* NewDeckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0730B162B77F26A00B43D42 /* NewDeckView.swift */; };
-		C074581F2A9293AA0046F39D /* CardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C074581E2A9293AA0046F39D /* CardsView.swift */; };
+		C074581F2A9293AA0046F39D /* CardsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C074581E2A9293AA0046F39D /* CardsListView.swift */; };
 		C07458232A938CF90046F39D /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07458222A938CF90046F39D /* UserSettings.swift */; };
 		C07458252A93943E0046F39D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07458242A93943E0046F39D /* Constants.swift */; };
 		C07458282A939FA40046F39D /* LinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07458272A939FA40046F39D /* LinkView.swift */; };
@@ -109,11 +109,11 @@
 		C05BCFF52B78D12C0076CAD9 /* ImportedDeckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportedDeckView.swift; sourceTree = "<group>"; };
 		C067B6842A8C1235000AF881 /* SimpleAnkiApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleAnkiApp.swift; sourceTree = "<group>"; };
 		C067B6862A8C1251000AF881 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
-		C067B6882A8C139A000AF881 /* DecksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecksView.swift; sourceTree = "<group>"; };
+		C067B6882A8C139A000AF881 /* DecksListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecksListView.swift; sourceTree = "<group>"; };
 		C067B68A2A8C13A5000AF881 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		C070008D263E86E0006DF020 /* RateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateManager.swift; sourceTree = "<group>"; };
 		C0730B162B77F26A00B43D42 /* NewDeckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDeckView.swift; sourceTree = "<group>"; };
-		C074581E2A9293AA0046F39D /* CardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsView.swift; sourceTree = "<group>"; };
+		C074581E2A9293AA0046F39D /* CardsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsListView.swift; sourceTree = "<group>"; };
 		C07458222A938CF90046F39D /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 		C07458242A93943E0046F39D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		C07458272A939FA40046F39D /* LinkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkView.swift; sourceTree = "<group>"; };
@@ -260,7 +260,7 @@
 			children = (
 				C03B91C72B6FA60500EA483F /* DeckSettingsView.swift */,
 				C0730B162B77F26A00B43D42 /* NewDeckView.swift */,
-				C067B6882A8C139A000AF881 /* DecksView.swift */,
+				C067B6882A8C139A000AF881 /* DecksListView.swift */,
 				C05BCFEF2B78CD3F0076CAD9 /* CreateDeckView.swift */,
 				C05BCFF12B78CF4D0076CAD9 /* ImportDeckView.swift */,
 				C05BCFF52B78D12C0076CAD9 /* ImportedDeckView.swift */,
@@ -273,7 +273,7 @@
 			children = (
 				C00513FA2B517E91005F5815 /* CardPreviewView.swift */,
 				C0CD12542AAB3F2700FE3BB6 /* CardView.swift */,
-				C074581E2A9293AA0046F39D /* CardsView.swift */,
+				C074581E2A9293AA0046F39D /* CardsListView.swift */,
 			);
 			path = Card;
 			sourceTree = "<group>";
@@ -625,7 +625,7 @@
 				C0F730C42B752F7100127CB4 /* ReminderView.swift in Sources */,
 				C0F730C22B7424D900127CB4 /* ReminderManagerSUI.swift in Sources */,
 				C07458252A93943E0046F39D /* Constants.swift in Sources */,
-				C067B6892A8C139A000AF881 /* DecksView.swift in Sources */,
+				C067B6892A8C139A000AF881 /* DecksListView.swift in Sources */,
 				C0FA7EAA25F511FE00710F0D /* ConstantsOld.swift in Sources */,
 				C09479502B518EFC00C44BCF /* ImagePickerButton.swift in Sources */,
 				C05BCFF22B78CF4D0076CAD9 /* ImportDeckView.swift in Sources */,
@@ -650,7 +650,7 @@
 				C07458232A938CF90046F39D /* UserSettings.swift in Sources */,
 				C0C9BABE2848BD460020E555 /* APKGDatabase.swift in Sources */,
 				C05BCFF02B78CD3F0076CAD9 /* CreateDeckView.swift in Sources */,
-				C074581F2A9293AA0046F39D /* CardsView.swift in Sources */,
+				C074581F2A9293AA0046F39D /* CardsListView.swift in Sources */,
 				C08903272A8D474900EFC51C /* Card.swift in Sources */,
 				C0730B172B77F26A00B43D42 /* NewDeckView.swift in Sources */,
 				C0B6D151285DE01A00E354BA /* OnboardingManager.swift in Sources */,

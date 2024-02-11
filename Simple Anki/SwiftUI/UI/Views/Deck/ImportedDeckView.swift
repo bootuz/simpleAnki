@@ -9,7 +9,7 @@ import SwiftUI
 import RealmSwift
 
 struct ImportedDeckView: View {
-    @ObservedResults(Deck.self, sortDescriptor: SortDescriptor(keyPath: "dateCreated", ascending: false)) var decks
+    @ObservedResults(Deck.self, sortDescriptor: SortDescriptor(keyPath: \Deck.dateCreated, ascending: false)) var decks
     @Binding var deckName: String
     @Binding var importedCards: RealmSwift.List<Card>
 

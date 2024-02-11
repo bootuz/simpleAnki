@@ -9,6 +9,7 @@ import SwiftUI
 import RealmSwift
 
 struct DeckSettingsView: View {
+    @State private var isDeleteAlertPresented: Bool = false
     @ObservedRealmObject var deck: Deck
     @Environment(\.dismiss) var dismiss
     @Environment(\.realm) var realm
@@ -19,6 +20,7 @@ struct DeckSettingsView: View {
                 List {
                     Section("Name") {
                         TextField("Enter name", text: $deck.name)
+                            .submitLabel(.done)
                     }
                     Section("Layout") {
                         LayoutButton(labelText: "Front to Back", layout: K.Layout.frontToBack, deck: deck)
@@ -40,12 +42,20 @@ struct DeckSettingsView: View {
 
                     Section {
                         Button(action: {
-                            remove(deck: deck)
+                            isDeleteAlertPresented = true
+
                         }, label: {
                             Label("Delete deck", systemImage: "trash")
                                 .foregroundStyle(.red)
                         })
                         .tint(.red)
+                        .alert("Delete \(deck.name) deck?", isPresented: $isDeleteAlertPresented) {
+                            Button(role: .destructive) {
+                                remove(deck: deck)
+                            } label: {
+                                Text("Delete")
+                            }
+                        }
                     }
                 }
             }
@@ -75,7 +85,6 @@ struct DeckSettingsView: View {
         } catch {
             print("Error: \(error)")
         }
-
     }
 }
 

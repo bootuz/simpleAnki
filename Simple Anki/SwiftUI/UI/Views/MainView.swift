@@ -17,7 +17,7 @@ struct MainView: View {
                 case .first:
                     NavigationStack {
                         VStack(spacing: 0) {
-                            DecksView()
+                            DecksListView()
                             TabBarView()
                         }
                     }

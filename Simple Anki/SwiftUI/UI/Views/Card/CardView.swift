@@ -84,6 +84,7 @@ struct CardView: View {
                             withAnimation {
                                 addButtonTapped.toggle()
                             }
+                            focusedField = .frontField
                             HapticManagerSUI.shared.impact(style: .heavy)
                         } label: {
                             Text(viewModel.updating ? "Update" : "Add")
@@ -107,14 +108,14 @@ struct CardView: View {
                         Button {
                             SoundManager.shared.play(sound: fileName)
                         } label: {
-                            Image(systemName: "play.circle")
+                            Image(systemName: K.Icon.playCircle)
                                 .font(.system(size: 18))
                         }
                         .contextMenu {
                             Button(role: .destructive) {
                                 deleteAudioAndUpdateCard()
                             } label: {
-                                Label("Delete", systemImage: "trash")
+                                Label("Delete", systemImage: K.Icon.trash)
                             }
                         }
                     } else {
@@ -137,7 +138,7 @@ struct CardView: View {
                                 }
                             }
                         } label: {
-                            Image(systemName: recorder.isRecording ? "stop.circle.fill" : "waveform.badge.mic")
+                            Image(systemName: recorder.isRecording ? K.Icon.stopCircleFill : K.Icon.recordButton)
                                 .foregroundStyle(recorder.isRecording ? .red : .blue)
                                 .font(.system(size: recorder.isRecording ? 35 : 18))
                                 .contentTransition(.symbolEffect(.replace.offUp.wholeSymbol))
@@ -176,7 +177,13 @@ struct CardView: View {
                 }
                 .disabled(viewModel.incomplete)
                 .fullScreenCover(isPresented: $isPreviewPresented) {
-                    CardPreviewView(front: viewModel.frontWord, back: viewModel.backWord, image: viewModel.image, audio: viewModel.audioName, isPreviewPresented: $isPreviewPresented)
+                    CardPreviewView(
+                        front: viewModel.frontWord,
+                        back: viewModel.backWord,
+                        image: viewModel.image,
+                        audio: viewModel.audioName,
+                        isPreviewPresented: $isPreviewPresented
+                    )
                 }
             }
 

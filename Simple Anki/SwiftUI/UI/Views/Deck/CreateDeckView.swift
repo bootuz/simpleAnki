@@ -9,7 +9,14 @@ import SwiftUI
 import RealmSwift
 
 struct CreateDeckView: View {
-    @ObservedResults(Deck.self, sortDescriptor: SortDescriptor(keyPath: "dateCreated", ascending: false)) var decks
+    @ObservedResults(
+        Deck.self,
+        sortDescriptor: SortDescriptor(
+            keyPath: \Deck.dateCreated,
+            ascending: false
+        )
+    )
+    var decks
     @State private var deckName: String = ""
     @FocusState private var isFocused: Bool
     @Environment(\.dismiss) var dismiss
